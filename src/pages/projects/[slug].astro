@@ -1,0 +1,116 @@
+---
+import { ArrowLeft, CircleCheckBig } from '@lucide/astro';
+import ArchitectureDiagram from '@/components/ArchitectureDiagram.astro';
+import Footer from '@/components/Footer.astro';
+import SiteHeader from '@/components/SiteHeader.astro';
+import { projects } from '@/data/profile';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project }
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<BaseLayout title={`${project.name} | Chandu Venna`} description={project.summary} canonical={`/projects/${project.slug}`}>
+  <SiteHeader />
+  <main class="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
+    <a href="/projects" class="mb-10 inline-flex items-center gap-2 text-sm font-semibold text-violet hover:text-white">
+      <ArrowLeft size={16} /> Back to projects
+    </a>
+
+    <article>
+      <header class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+        <div>
+          <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-violet">{project.category}</p>
+          <h1 class="mt-5 text-4xl font-semibold leading-tight text-white sm:text-6xl">{project.name}</h1>
+        </div>
+        <div>
+          <p class="text-lg leading-8 text-muted">{project.summary}</p>
+          <div class="mt-5 flex flex-wrap gap-2 text-sm text-slate-300">
+            <span class="rounded-full bg-white/[0.055] px-3 py-1">Client context: {project.client}</span>
+            <span class="rounded-full bg-white/[0.055] px-3 py-1">Resume-backed case study</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {project.metrics.map((metric) => (
+          <div class="rounded-2xl bg-white p-5 text-ink">
+            <p class="text-2xl font-semibold">{metric.split(' ')[0]}</p>
+            <p class="mt-2 text-sm font-medium text-slate-700">{metric}</p>
+          </div>
+        ))}
+      </section>
+
+      <section class="mt-12 rounded-[20px] bg-panel2/75 p-5">
+        <div class="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p class="font-mono text-xs uppercase tracking-[0.2em] text-violet">Architecture</p>
+            <h2 class="mt-2 text-3xl font-semibold text-white">Implementation overview</h2>
+          </div>
+          <p class="max-w-md text-sm leading-6 text-muted">Structured from resume-supported tools and responsibilities. It intentionally avoids undocumented internals.</p>
+        </div>
+        <ArchitectureDiagram groups={project.architecture} />
+      </section>
+
+      <section class="mt-14 grid gap-10 lg:grid-cols-[0.72fr_1.28fr]">
+        <aside class="space-y-8">
+          <div>
+            <p class="font-mono text-xs uppercase tracking-[0.2em] text-violet">Technology</p>
+            <p class="mt-4 text-sm leading-7 text-slate-300">{project.stack.join(' / ')}</p>
+          </div>
+          <div>
+            <p class="font-mono text-xs uppercase tracking-[0.2em] text-violet">Evidence Boundary</p>
+            <p class="mt-4 text-sm leading-7 text-muted">All page content is derived from the provided resume/project data and the links you supplied.</p>
+          </div>
+        </aside>
+
+        <div class="space-y-10">
+          <section>
+            <h2 class="text-3xl font-semibold text-white">Problem</h2>
+            <p class="mt-4 text-lg leading-8 text-muted">{project.problem}</p>
+          </section>
+          <section>
+            <h2 class="text-3xl font-semibold text-white">Solution</h2>
+            <p class="mt-4 text-lg leading-8 text-muted">{project.solution}</p>
+          </section>
+          <section>
+            <h2 class="text-3xl font-semibold text-white">Implementation</h2>
+            <p class="mt-4 text-lg leading-8 text-muted">
+              The implementation centers on the tools listed for this project, with responsibilities presented only where the resume explicitly supports them.
+            </p>
+          </section>
+          <section>
+            <h2 class="text-3xl font-semibold text-white">Operational Challenges</h2>
+            <p class="mt-4 text-lg leading-8 text-muted">
+              The operational work involved release consistency, environment provisioning, Kubernetes troubleshooting, monitoring, incident workflows, and post-change validation as applicable to this project.
+            </p>
+          </section>
+          <section>
+            <h2 class="text-3xl font-semibold text-white">Results</h2>
+            <ul class="mt-5 grid gap-3">
+              {project.outcomes.map((outcome) => (
+                <li class="flex gap-3 text-sm leading-6 text-slate-300">
+                  <CircleCheckBig class="mt-0.5 shrink-0 text-mint" size={18} />
+                  <span>{outcome}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section>
+            <h2 class="text-3xl font-semibold text-white">Lessons Learned</h2>
+            <p class="mt-4 text-lg leading-8 text-muted">
+              Reliable DevOps work depends on repeatable infrastructure, traceable deployments, usable monitoring signals, and clear handoffs between automation and incident response.
+            </p>
+          </section>
+        </div>
+      </section>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>

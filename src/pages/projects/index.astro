@@ -1,0 +1,49 @@
+---
+import { ArrowRight } from '@lucide/astro';
+import ArchitectureDiagram from '@/components/ArchitectureDiagram.astro';
+import Footer from '@/components/Footer.astro';
+import SiteHeader from '@/components/SiteHeader.astro';
+import { projects } from '@/data/profile';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Projects | Chandu Venna DevOps Portfolio" description="Resume-backed DevOps, cloud migration, Kubernetes, and observability project case studies by Chandu Venna.">
+  <SiteHeader />
+  <main class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <section class="py-10">
+      <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-violet">Projects</p>
+      <div class="mt-5 grid gap-8 lg:grid-cols-[0.86fr_1.14fr] lg:items-end">
+        <h1 class="text-5xl font-semibold leading-tight text-white sm:text-6xl">Selected engineering work</h1>
+        <p class="max-w-2xl text-lg leading-8 text-muted">
+          Infrastructure, Kubernetes, automation, and reliability case studies based on supplied resume experience. Each architecture preview is an implementation overview, not a claim beyond the source data.
+        </p>
+      </div>
+      <div class="mt-8 flex flex-wrap gap-2">
+        {['Infrastructure', 'Kubernetes', 'Automation', 'Reliability', 'Observability'].map((item) => <span class="rounded-full bg-white/[0.055] px-4 py-2 text-sm text-slate-300">{item}</span>)}
+      </div>
+    </section>
+
+    <section class="grid gap-7 py-8">
+      {projects.map((project, index) => (
+        <article class:list={['grid gap-6 rounded-[20px] p-6 lg:grid-cols-[0.82fr_1.18fr]', index === 0 ? 'bg-white text-ink shadow-lift' : 'surface']}>
+          <div>
+            <p class:list={['font-mono text-xs uppercase tracking-[0.18em]', index === 0 ? 'text-slate-600' : 'text-muted']}>0{index + 1} | {project.category}</p>
+            <h2 class:list={['mt-4 text-3xl font-semibold', index === 0 ? 'text-ink' : 'text-white']}>{project.name}</h2>
+            <p class:list={['mt-4 leading-7', index === 0 ? 'text-slate-700' : 'text-muted']}>{project.problem}</p>
+            <div class="mt-6 grid gap-3 sm:grid-cols-2">
+              {project.metrics.map((metric) => <div class:list={['rounded-2xl p-4 text-sm font-semibold', index === 0 ? 'bg-ink/5' : 'bg-white/[0.05] text-slate-200']}>{metric}</div>)}
+            </div>
+            <p class:list={['mt-6 font-mono text-xs uppercase tracking-[0.13em]', index === 0 ? 'text-slate-600' : 'text-slate-400']}>{project.stack.join(' / ')}</p>
+            <a href={`/projects/${project.slug}`} class:list={['mt-6 inline-flex items-center gap-2 rounded-[10px] px-5 py-3 font-semibold', index === 0 ? 'bg-ink text-white' : 'bg-white text-ink']}>
+              Read case study <ArrowRight size={17} />
+            </a>
+          </div>
+          <div class:list={['rounded-2xl p-4', index === 0 ? 'bg-ink text-white' : 'bg-ink/55']}>
+            <ArchitectureDiagram groups={project.architecture} />
+          </div>
+        </article>
+      ))}
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

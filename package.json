@@ -1,0 +1,23 @@
+{
+  "name": "chandu-venna-devops-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/astro.mjs dev",
+    "build": "node scripts/astro.mjs build",
+    "preview": "node scripts/astro.mjs preview",
+    "check": "node scripts/astro.mjs check"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^7.2.2",
+    "@lucide/astro": "^1.31.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.2"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,271 @@
+---
+import { ArrowRight, Award, BriefcaseBusiness, CircleCheckBig, CloudCog, Code, Download, ExternalLink, Mail, ShieldCheck, Sparkles, Workflow, Zap } from '@lucide/astro';
+import ArchitectureDiagram from '@/components/ArchitectureDiagram.astro';
+import Footer from '@/components/Footer.astro';
+import SectionTitle from '@/components/SectionTitle.astro';
+import SiteHeader from '@/components/SiteHeader.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { achievements, certifications, earlyCareer, education, experiences, impactMetrics, profile, projects, skillGroups } from '@/data/profile';
+
+const coreSkills = ['AWS', 'Azure', 'Kubernetes', 'Terraform', 'Docker', 'Helm', 'Argo CD', 'CI/CD'];
+const focusItems = ['Cloud infrastructure', 'Kubernetes delivery', 'Infrastructure as Code', 'CI/CD automation', 'Observability', 'Production troubleshooting'];
+const capabilities = [
+  { icon: CloudCog, title: 'Cloud Infrastructure', text: 'AWS and Azure environments covering VPC, EKS, AKS, EC2, ALB, S3, RDS, IAM, and DNS routing.' },
+  { icon: Workflow, title: 'Delivery Systems', text: 'CI/CD pipelines, GitOps releases, Helm standardization, and deployment workflows for production and QA.' },
+  { icon: ShieldCheck, title: 'DevSecOps Checks', text: 'SonarQube and Trivy gates added before container deployment, with secure ingress and access patterns.' },
+  { icon: Zap, title: 'Observability Ops', text: 'Prometheus, Grafana, Elastic Stack, Catchpoint, Selenium monitoring, SSL health checks, and incident workflows.' }
+];
+const currentProject = projects[0];
+---
+
+<BaseLayout>
+  <SiteHeader />
+  <main>
+    <section class="relative overflow-hidden">
+      <div class="mx-auto grid min-h-[calc(100vh-4.25rem)] max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[0.96fr_1.04fr] lg:px-8">
+        <div class="reveal">
+          <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-violet">DevOps / Cloud Engineer</p>
+          <h1 class="mt-6 max-w-4xl text-5xl font-semibold leading-[0.98] tracking-normal text-white sm:text-6xl lg:text-7xl">{profile.name}</h1>
+          <p class="mt-6 max-w-3xl text-2xl font-medium leading-tight text-slate-100 sm:text-3xl">
+            Building automated cloud infrastructure, Kubernetes delivery systems, and observability workflows.
+          </p>
+          <p class="mt-6 max-w-2xl text-lg leading-8 text-muted">
+            DevOps Engineer with 5+ years of experience creating, deploying, monitoring, and troubleshooting AWS and Azure infrastructure with Terraform, Kubernetes, CI/CD, GitOps, and production support practices.
+          </p>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a href="/projects" class="inline-flex items-center gap-2 rounded-[10px] bg-white px-5 py-3 font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-cyan">
+              Explore Projects <ArrowRight size={18} />
+            </a>
+            <a href={profile.resume} class="inline-flex items-center gap-2 rounded-[10px] border border-white/12 bg-white/[0.045] px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/45">
+              Download Resume <Download size={18} />
+            </a>
+          </div>
+          <div class="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 border-l border-white/12 pl-4">
+            {coreSkills.map((skill) => <span class="font-mono text-xs uppercase tracking-[0.14em] text-slate-300">{skill}</span>)}
+          </div>
+          <div class="mt-7 flex gap-4 text-sm text-muted">
+            <a class="inline-flex items-center gap-2 hover:text-white" href={profile.github}><Code size={17} /> GitHub</a>
+            <a class="inline-flex items-center gap-2 hover:text-white" href={profile.linkedin}><BriefcaseBusiness size={17} /> LinkedIn</a>
+          </div>
+        </div>
+
+        <div class="relative reveal lg:pt-16">
+          <div class="absolute -left-8 top-2 hidden h-24 w-24 rounded-full bg-violet/20 blur-3xl lg:block"></div>
+          <div class="relative rounded-[20px] border border-white/10 bg-panel/88 p-4 shadow-focus">
+            <div class="mb-4 flex items-center justify-between border-b border-white/[0.08] pb-3">
+              <div class="flex items-center gap-2">
+                <span class="h-2.5 w-2.5 rounded-full bg-[#FF6B6B]"></span>
+                <span class="h-2.5 w-2.5 rounded-full bg-amber"></span>
+                <span class="h-2.5 w-2.5 rounded-full bg-mint"></span>
+              </div>
+              <span class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">infra-console</span>
+            </div>
+            <div class="grid gap-4 lg:grid-cols-[1fr_0.86fr]">
+              <pre class="overflow-x-auto whitespace-pre-wrap rounded-2xl bg-ink/70 p-4 font-mono text-[13px] leading-6 text-slate-200"><code><span class="text-violet">$ kubectl get deploy -A</span>
+production  api-service      Running
+production  gateway          Running
+qa          worker-service   Running
+
+<span class="text-violet">$ terraform plan</span>
+aws_vpc.eks_cluster.node_groups
+provisioning: under 30 minutes
+
+<span class="text-violet">$ argocd app sync</span>
+gitops deployment path ready</code></pre>
+              <div class="grid content-between gap-3">
+                <div class="rounded-2xl bg-white/[0.045] p-4">
+                  <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">Runtime</p>
+                  <p class="mt-2 text-3xl font-semibold text-white">12+</p>
+                  <p class="text-sm text-slate-300">microservices across prod and QA</p>
+                </div>
+                <div class="rounded-2xl bg-white/[0.045] p-4">
+                  <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">Delivery</p>
+                  <p class="mt-2 text-3xl font-semibold text-white">60%</p>
+                  <p class="text-sm text-slate-300">deployment speed improvement</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-y border-white/[0.07] bg-white/[0.025] py-6">
+      <div class="mx-auto grid max-w-7xl gap-3 overflow-x-auto px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-6 lg:px-8">
+        {impactMetrics.map((metric) => (
+          <div class="min-w-40 rounded-2xl bg-white/[0.035] p-4">
+            <p class="text-3xl font-semibold text-white">{metric.value}</p>
+            <p class="mt-1 font-mono text-[11px] uppercase tracking-[0.16em] text-violet">{metric.label}</p>
+            <p class="mt-2 text-xs leading-5 text-muted">{metric.detail}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="about" class="section-pad">
+      <div class="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_0.72fr] lg:px-8">
+        <div>
+          <SectionTitle eyebrow="About" title="Production-minded DevOps engineering" description="A portfolio focused on how infrastructure, delivery, observability, and troubleshooting connect in real operating environments." />
+          <div class="space-y-5 text-lg leading-8 text-muted">
+            <p>I work across AWS and Azure environments, with hands-on experience in Terraform provisioning, Kubernetes delivery, Helm standardization, GitOps deployment, CI/CD automation, monitoring, log analysis, and production incident response.</p>
+            <p>My recent work includes AWS EKS microservice operations, Azure AKS monitoring with Elastic Stack, synthetic checks in Catchpoint, and cloud migration work using Terraform-managed AWS infrastructure.</p>
+          </div>
+        </div>
+        <aside class="rounded-[18px] bg-panel2/72 p-6">
+          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">Engineering Focus</p>
+          <div class="mt-6 grid gap-3">
+            {focusItems.map((item) => (
+              <div class="flex items-center gap-3 border-b border-white/[0.07] pb-3 last:border-b-0 last:pb-0">
+                <CircleCheckBig size={18} class="shrink-0 text-mint" />
+                <span class="text-slate-200">{item}</span>
+              </div>
+            ))}
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="skills" class="section-pad bg-white/[0.025]">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionTitle eyebrow="Capabilities" title="Technology grouped by operating capability" description="A tighter skills presentation, using resume-backed tools grouped around cloud, delivery, runtime, security, and observability work." />
+        <div class="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2 xl:grid-cols-3">
+          {skillGroups.map((group) => (
+            <article class="bg-panel p-6">
+              <div class="flex items-start justify-between gap-4">
+                <h3 class="text-xl font-semibold text-white">{group.name}</h3>
+                <span class:list={['rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.13em]', group.tier === 'Core' ? 'bg-violet/12 text-violet' : group.tier === 'Strong' ? 'bg-mint/10 text-mint' : 'bg-white/[0.06] text-muted']}>{group.tier}</span>
+              </div>
+              <p class="mt-5 text-sm leading-7 text-slate-300">{group.skills.join('  |  ')}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionTitle eyebrow="Systems" title="Engineering capabilities, not just tools" />
+        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {capabilities.map((item, index) => (
+            <article class:list={['rounded-2xl p-6 transition hover:-translate-y-0.5', index === 0 ? 'bg-white text-ink' : 'surface']}>
+              <item.icon class:list={['mb-6', index === 0 ? 'text-ink' : 'text-violet']} size={30} aria-hidden="true" />
+              <h3 class:list={['text-xl font-semibold', index === 0 ? 'text-ink' : 'text-white']}>{item.title}</h3>
+              <p class:list={['mt-4 text-sm leading-6', index === 0 ? 'text-slate-700' : 'text-muted']}>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section-pad bg-white/[0.025]">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionTitle eyebrow="Experience" title="Career progression through cloud and production operations" />
+        <div class="relative ml-3 border-l border-white/[0.12] pl-8">
+          {experiences.map((job, index) => (
+            <article class="relative pb-12 last:pb-0">
+              <span class:list={['absolute -left-[42px] top-1 h-5 w-5 rounded-full border-4 border-ink', index === 0 ? 'bg-cyan' : index === 1 ? 'bg-violet' : 'bg-mint']}></span>
+              <div class={index === 0 ? 'rounded-[18px] bg-panel2/82 p-6 shadow-lift' : ''}>
+                <div class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                  <div>
+                    <p class="font-mono text-xs uppercase tracking-[0.18em] text-muted">{job.dates}</p>
+                    <h3 class="mt-2 text-2xl font-semibold text-white">{job.role}</h3>
+                    <p class="mt-1 text-slate-300">{job.company}{job.client && ` | Client: ${job.client}`}{job.location && ` | ${job.location}`}</p>
+                  </div>
+                  {index === 0 && <span class="rounded-full bg-cyan/12 px-3 py-1 text-sm font-semibold text-cyan">Current focus</span>}
+                </div>
+                <ul class="mt-6 grid gap-3 text-sm leading-6 text-muted lg:grid-cols-2">
+                  {job.highlights.slice(0, index === 0 ? 7 : 5).map((item) => <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-violet"></span><span>{item}</span></li>)}
+                </ul>
+                <p class="mt-5 font-mono text-xs uppercase tracking-[0.14em] text-slate-400">{job.technologies.join(' / ')}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section-pad">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionTitle eyebrow="Selected Engineering Work" title="Case studies with architecture and measurable impact" description="Project narratives stay inside resume-supported facts while improving how the technical story is presented." />
+        <div class="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+          <article class="rounded-[20px] bg-white p-6 text-ink shadow-lift">
+            <p class="font-mono text-xs uppercase tracking-[0.18em] text-slate-600">01 | {currentProject.category}</p>
+            <h3 class="mt-4 text-3xl font-semibold">{currentProject.name}</h3>
+            <p class="mt-4 text-slate-700">{currentProject.problem}</p>
+            <div class="mt-6 grid gap-3 sm:grid-cols-3">
+              {currentProject.metrics.map((metric) => <div class="rounded-2xl bg-ink/5 p-4 text-sm font-semibold">{metric}</div>)}
+            </div>
+            <div class="mt-6 rounded-2xl bg-ink p-4 text-white">
+              <ArchitectureDiagram groups={currentProject.architecture} />
+            </div>
+            <a href={`/projects/${currentProject.slug}`} class="mt-6 inline-flex items-center gap-2 rounded-[10px] bg-ink px-5 py-3 font-semibold text-white">
+              Read Kubernetes case study <ExternalLink size={17} />
+            </a>
+          </article>
+          <div class="grid gap-6">
+            {projects.slice(1).map((project, index) => (
+              <article class:list={['rounded-[18px] p-6 transition hover:-translate-y-0.5', index === 0 ? 'surface' : 'bg-panel2/75']}>
+                <p class="font-mono text-xs uppercase tracking-[0.18em] text-muted">0{index + 2} | {project.category}</p>
+                <h3 class="mt-3 text-2xl font-semibold text-white">{project.name}</h3>
+                <p class="mt-3 text-sm leading-6 text-muted">{project.problem}</p>
+                <div class="mt-5 flex flex-wrap gap-2">
+                  {project.metrics.map((metric) => <span class="rounded-full bg-white/[0.06] px-3 py-1 text-xs text-slate-200">{metric}</span>)}
+                </div>
+                <a href={`/projects/${project.slug}`} class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-violet hover:text-white">
+                  Open case study <ArrowRight size={15} />
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad bg-white/[0.025]">
+      <div class="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.9fr_0.8fr_1fr] lg:px-8">
+        <div>
+          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">Certifications</p>
+          <div class="mt-5 space-y-4">
+            {certifications.map((cert) => <p class="flex gap-3 text-slate-200"><Award size={18} class="mt-1 shrink-0 text-amber" /> {cert}</p>)}
+          </div>
+        </div>
+        <div>
+          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">Early Career</p>
+          <div class="mt-5 space-y-4">
+            {earlyCareer.map((item) => <p class="text-slate-300">{item}</p>)}
+          </div>
+          <p class="mt-7 font-mono text-xs uppercase tracking-[0.22em] text-violet">Education</p>
+          <p class="mt-4 text-slate-200">{education.degree}</p>
+          <p class="mt-1 text-sm text-muted">{education.institution} | {education.date}</p>
+        </div>
+        <div>
+          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">Recognition</p>
+          <div class="mt-5 divide-y divide-white/[0.07]">
+            {achievements.map((item) => <p class="flex gap-3 py-3 text-sm leading-6 text-slate-300"><Sparkles size={16} class="mt-1 shrink-0 text-mint" /> {item}</p>)}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section-pad">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="relative overflow-hidden rounded-[20px] bg-white p-8 text-ink shadow-lift sm:p-10">
+          <div class="absolute right-0 top-0 h-40 w-40 rounded-full bg-cyan/35 blur-3xl"></div>
+          <div class="relative grid gap-8 lg:grid-cols-[1fr_0.82fr] lg:items-end">
+            <div>
+              <p class="font-mono text-xs uppercase tracking-[0.22em] text-slate-600">Contact</p>
+              <h2 class="mt-4 text-4xl font-semibold sm:text-5xl">Let's build reliable systems.</h2>
+              <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-700">Cloud infrastructure, automation, Kubernetes, CI/CD, observability, and production troubleshooting are the center of this portfolio.</p>
+            </div>
+            <div class="flex flex-wrap gap-3 lg:justify-end">
+              <a href={`mailto:${profile.email}`} class="inline-flex items-center gap-2 rounded-[10px] bg-ink px-5 py-3 font-semibold text-white"><Mail size={18} /> Email Me</a>
+              <a href={profile.linkedin} class="inline-flex items-center gap-2 rounded-[10px] border border-ink/10 px-5 py-3 font-semibold"><BriefcaseBusiness size={18} /> LinkedIn</a>
+              <a href={profile.resume} class="inline-flex items-center gap-2 rounded-[10px] border border-ink/10 px-5 py-3 font-semibold"><Download size={18} /> Resume</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,81 @@
+---
+interface Props {
+  groups: Array<{ group: string; nodes: string[] }>;
+}
+
+const { groups } = Astro.props;
+---
+
+<div class="architecture-flow">
+  {groups.map((group, index) => (
+    <div class="architecture-group">
+      <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">{group.group}</p>
+      <div class="mt-4 grid gap-2">
+        {group.nodes.map((node) => (
+          <div class="rounded-[10px] border border-white/[0.08] bg-white/[0.045] px-3 py-2 text-sm text-slate-200">{node}</div>
+        ))}
+      </div>
+      {index < groups.length - 1 && <span class="architecture-connector" aria-hidden="true"></span>}
+    </div>
+  ))}
+</div>
+
+<style>
+  .architecture-flow {
+    display: grid;
+    grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr));
+    gap: 0.85rem;
+  }
+
+  .architecture-group {
+    position: relative;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(180deg, rgba(18, 25, 34, 0.8), rgba(8, 11, 16, 0.62));
+    padding: 1rem;
+    min-height: 100%;
+  }
+
+  .architecture-connector {
+    position: absolute;
+    top: 50%;
+    right: -0.85rem;
+    width: 0.85rem;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(76, 201, 240, 0.25), rgba(124, 140, 255, 0.75));
+  }
+
+  .architecture-connector::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -3px;
+    width: 7px;
+    height: 7px;
+    border-top: 1px solid rgba(124, 140, 255, 0.75);
+    border-right: 1px solid rgba(124, 140, 255, 0.75);
+    transform: rotate(45deg);
+  }
+
+  @media (max-width: 900px) {
+    .architecture-flow {
+      grid-template-columns: 1fr;
+    }
+
+    .architecture-connector {
+      left: 50%;
+      right: auto;
+      top: auto;
+      bottom: -0.85rem;
+      width: 1px;
+      height: 0.85rem;
+    }
+
+    .architecture-connector::after {
+      right: -3px;
+      top: auto;
+      bottom: 0;
+      transform: rotate(135deg);
+    }
+  }
+</style>

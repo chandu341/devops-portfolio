@@ -1,0 +1,67 @@
+---
+import '../styles/global.css';
+import { profile } from '@/data/profile';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title = `${profile.name} | DevOps & Cloud Engineer | AWS | Kubernetes | Terraform`,
+  description = profile.summary,
+  canonical = Astro.url.pathname
+} = Astro.props;
+
+const canonicalUrl = new URL(canonical, Astro.site || 'https://example.com').toString();
+const personSchema: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.name,
+  jobTitle: profile.title,
+  email: `mailto:${profile.email}`,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Bengaluru',
+    addressCountry: 'India'
+  },
+  sameAs: [profile.linkedin, profile.github]
+};
+
+if (profile.showPhone) {
+  personSchema.telephone = profile.phone;
+}
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: `${profile.name} Portfolio`,
+  url: new URL('/', Astro.site || 'https://example.com').toString()
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={new URL('/og-image.svg', Astro.site || 'https://example.com').toString()} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify([personSchema, websiteSchema])} />
+  </head>
+  <body class="text-slate-100 antialiased selection:bg-cyan/25">
+    <slot />
+  </body>
+</html>

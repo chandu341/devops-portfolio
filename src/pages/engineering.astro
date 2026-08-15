@@ -1,0 +1,30 @@
+---
+import Footer from '@/components/Footer.astro';
+import SectionTitle from '@/components/SectionTitle.astro';
+import SiteHeader from '@/components/SiteHeader.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const futureNotes = [
+  'Kubernetes pod failure troubleshooting checklist',
+  'Terraform workflow for AWS environment provisioning',
+  'Synthetic monitoring patterns with Selenium and Catchpoint',
+  'CI/CD security checks with SonarQube and Trivy'
+];
+---
+
+<BaseLayout title="Engineering Notes | Chandu Venna" description="Future engineering notes planned for Kubernetes, Terraform, CI/CD, monitoring, and cloud operations.">
+  <SiteHeader />
+  <main class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+    <SectionTitle eyebrow="Engineering Notes" title="A place for future technical writing" description="This section is prepared for future articles. These are clearly labeled placeholders and do not claim unpublished personal write-ups." />
+    <div class="grid gap-4 sm:grid-cols-2">
+      {futureNotes.map((note) => (
+        <article class="rounded-md border border-white/10 bg-panel/75 p-5">
+          <p class="text-sm font-semibold text-cyan">Planned note</p>
+          <h2 class="mt-3 text-xl font-semibold text-white">{note}</h2>
+          <p class="mt-3 text-sm leading-6 text-slate-300">Placeholder topic for future resume-aligned engineering content.</p>
+        </article>
+      ))}
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

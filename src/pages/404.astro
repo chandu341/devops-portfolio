@@ -1,0 +1,18 @@
+---
+import Footer from '@/components/Footer.astro';
+import SiteHeader from '@/components/SiteHeader.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="404 | Chandu Venna" description="The requested route does not exist.">
+  <SiteHeader />
+  <main class="grid min-h-[70vh] place-items-center px-4 py-20 text-center">
+    <div class="max-w-xl rounded-md border border-white/10 bg-panel/75 p-8 shadow-glow">
+      <p class="text-sm font-semibold uppercase tracking-[0.24em] text-cyan">404</p>
+      <h1 class="mt-4 text-4xl font-semibold text-white">Looks like this route does not exist.</h1>
+      <p class="mt-4 text-slate-300">Return to the portfolio homepage to view DevOps, cloud, and SRE-focused work.</p>
+      <a href="/" class="mt-8 inline-flex rounded-md bg-cyan px-5 py-3 font-semibold text-ink">Return Home</a>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

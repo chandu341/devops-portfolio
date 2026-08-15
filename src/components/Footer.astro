@@ -1,0 +1,15 @@
+---
+import { BriefcaseBusiness, Code, Mail } from '@lucide/astro';
+import { profile } from '@/data/profile';
+---
+
+<footer class="border-t border-white/[0.07] bg-ink">
+  <div class="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-8 text-sm text-slate-400 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+    <p>&copy; {new Date().getFullYear()} {profile.name}. Static portfolio for DevOps, cloud, and reliability work.</p>
+    <div class="flex items-center gap-3">
+      <a class="rounded-[10px] p-2 text-slate-300 hover:bg-white/[0.06] hover:text-white" href={`mailto:${profile.email}`} aria-label="Email Chandu Venna"><Mail size={18} /></a>
+      <a class="rounded-[10px] p-2 text-slate-300 hover:bg-white/[0.06] hover:text-white" href={profile.github} aria-label="GitHub"><Code size={18} /></a>
+      <a class="rounded-[10px] p-2 text-slate-300 hover:bg-white/[0.06] hover:text-white" href={profile.linkedin} aria-label="LinkedIn"><BriefcaseBusiness size={18} /></a>
+    </div>
+  </div>
+</footer>

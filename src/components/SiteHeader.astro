@@ -1,0 +1,45 @@
+---
+import { BriefcaseBusiness, Code, Download, Menu } from '@lucide/astro';
+import { navItems, profile } from '@/data/profile';
+---
+
+<header class="sticky top-0 z-50 border-b border-white/[0.07] bg-ink/78 backdrop-blur-xl">
+  <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8" aria-label="Main navigation">
+    <a href="/" class="group flex items-center gap-3 font-semibold">
+      <span class="grid h-10 w-10 place-items-center rounded-[10px] bg-white text-ink transition group-hover:bg-cyan">
+        CV
+      </span>
+      <span class="leading-tight">
+        <span class="block text-base text-white">{profile.name}</span>
+        <span class="block font-mono text-[11px] uppercase tracking-[0.16em] text-muted">DevOps Engineer</span>
+      </span>
+    </a>
+    <details class="group md:hidden">
+      <summary class="grid h-11 w-11 cursor-pointer list-none place-items-center rounded-[10px] border border-white/12 bg-white/[0.04] text-white">
+        <Menu size={20} aria-label="Open navigation menu" />
+      </summary>
+      <div class="absolute left-4 right-4 top-16 rounded-2xl border border-white/10 bg-panel p-3 shadow-lift">
+        {navItems.map((item) => <a class="block rounded-[10px] px-3 py-3 text-sm text-slate-200 hover:bg-white/[0.06]" href={item.href}>{item.label}</a>)}
+        <div class="mt-2 grid grid-cols-3 gap-2 border-t border-white/10 pt-3">
+          <a class="grid h-10 place-items-center rounded-[10px] bg-white/[0.05] text-slate-200" href={profile.github} aria-label="GitHub profile"><Code size={17} /></a>
+          <a class="grid h-10 place-items-center rounded-[10px] bg-white/[0.05] text-slate-200" href={profile.linkedin} aria-label="LinkedIn profile"><BriefcaseBusiness size={17} /></a>
+          <a class="grid h-10 place-items-center rounded-[10px] bg-white text-ink" href={profile.resume} aria-label="Download resume"><Download size={17} /></a>
+        </div>
+      </div>
+    </details>
+    <div class="hidden items-center gap-1 rounded-full border border-white/[0.07] bg-white/[0.035] p-1 md:flex">
+      {navItems.map((item) => <a class="rounded-full px-4 py-2 text-sm text-slate-300 transition hover:bg-white/[0.06] hover:text-white" href={item.href}>{item.label}</a>)}
+    </div>
+    <div class="hidden items-center gap-2 md:flex">
+      <a class="grid h-10 w-10 place-items-center rounded-[10px] border border-white/10 bg-white/[0.04] text-slate-200 transition hover:border-violet/40 hover:text-white" href={profile.github} aria-label="GitHub profile">
+        <Code size={18} />
+      </a>
+      <a class="grid h-10 w-10 place-items-center rounded-[10px] border border-white/10 bg-white/[0.04] text-slate-200 transition hover:border-violet/40 hover:text-white" href={profile.linkedin} aria-label="LinkedIn profile">
+        <BriefcaseBusiness size={18} />
+      </a>
+      <a class="inline-flex h-10 items-center gap-2 rounded-[10px] bg-white px-4 text-sm font-semibold text-ink transition hover:bg-cyan" href={profile.resume}>
+        <Download size={16} /> Resume
+      </a>
+    </div>
+  </nav>
+</header>
