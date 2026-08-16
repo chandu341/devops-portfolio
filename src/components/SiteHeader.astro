@@ -50,7 +50,7 @@ import { navItems, profile } from '@/data/profile';
       <summary class="grid h-11 w-11 cursor-pointer list-none place-items-center rounded-[10px] border border-white/12 bg-white/[0.04] text-white">
         <Menu size={20} aria-label="Open navigation menu" />
       </summary>
-      <div class="absolute left-4 right-4 top-[6.5rem] rounded-2xl border border-white/10 bg-panel p-3 shadow-lift">
+      <div class="absolute left-3 right-3 top-full mt-2 z-50 rounded-2xl border border-white/10 bg-panel p-3 shadow-lift">
         {navItems.map((item) => <a class="block rounded-[10px] px-3 py-3 text-sm text-slate-200 hover:bg-white/[0.06]" href={item.href}>{item.label}</a>)}
         <div class="mt-2 grid grid-cols-3 gap-2 border-t border-white/10 pt-3">
           <a class="grid h-10 place-items-center rounded-[10px] bg-white/[0.05] text-slate-200" href={profile.github} aria-label="GitHub profile"><Code size={17} /></a>
