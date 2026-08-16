@@ -37,54 +37,56 @@ const gitChips = [
     </div>
   </div>
 
-  <div class="mx-auto grid min-h-0 max-w-7xl items-center gap-8 px-4 pb-8 pt-4 sm:gap-10 sm:px-6 sm:pb-10 sm:pt-10 lg:min-h-[calc(100vh-5.5rem)] lg:grid-cols-[1fr_0.9fr] lg:px-8 lg:pt-8">
+  <div class="mx-auto grid min-h-0 max-w-7xl items-center gap-8 px-4 pb-8 pt-4 sm:gap-10 sm:px-6 sm:pb-10 sm:pt-8 lg:min-h-[calc(100vh-5.5rem)] lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:pt-8 w-full max-w-full min-w-0">
 
     <!-- LEFT COLUMN -->
-    <div class="reveal-up">
+    <div class="reveal-up w-full min-w-0">
       <!-- Eyebrow -->
-      <p class="hero-eyebrow">
-        DevOps &amp; Cloud Engineer &nbsp;·&nbsp; ap-south-1 / Bengaluru
+      <p class="hero-eyebrow break-words leading-relaxed text-xs uppercase tracking-widest text-cyan">
+        DevOps &amp; Cloud Engineer <span class="hidden sm:inline text-slate-500">·</span> <span class="block sm:inline text-slate-400">ap-south-1 / Bengaluru</span>
       </p>
 
       <!-- Display name -->
-      <h1 class="hero-display-name mt-4 sm:mt-5">
+      <h1 class="hero-display-name mt-3 sm:mt-5 break-words">
         {profile.name}
       </h1>
 
       <!-- Tagline -->
-      <p class="hero-tagline mt-4 sm:mt-5">
+      <p class="hero-tagline mt-3 sm:mt-5 text-sm sm:text-base lg:text-lg leading-relaxed text-slate-300 w-full max-w-full">
         {profile.tagline}
       </p>
 
-      <!-- CTAs -->
-      <div class="mt-6 sm:mt-8 flex flex-wrap items-center gap-2.5 sm:gap-3">
+      <!-- CTAs (Stacked on mobile, row on tablet/desktop) -->
+      <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row sm:flex-wrap gap-2.5 sm:gap-3 w-full max-w-full">
         <a
           href="/#contact"
           id="hero-cta-connect"
-          class="inline-flex items-center justify-center gap-2 rounded-[12px] bg-cyan px-4 py-2.5 sm:px-5 sm:py-3 text-sm sm:text-base font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-white"
+          class="inline-flex items-center justify-between sm:justify-center gap-2 rounded-[12px] bg-cyan px-4 py-3 sm:px-5 sm:py-3 text-sm sm:text-base font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-white text-center w-full sm:w-auto"
         >
-          Let's connect <ArrowRight size={16} />
+          <span>Let's connect</span> <ArrowRight size={16} />
         </a>
         <a
           href="/projects"
           id="hero-cta-work"
-          class="inline-flex items-center justify-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-4 py-2.5 sm:px-5 sm:py-3 text-sm sm:text-base font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/45"
+          class="inline-flex items-center justify-between sm:justify-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-4 py-3 sm:px-5 sm:py-3 text-sm sm:text-base font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/45 text-center w-full sm:w-auto"
         >
-          View the work
+          <span>View the work</span> <ArrowRight size={16} class="sm:hidden" />
         </a>
         <a
           href={profile.resume}
           id="hero-cta-resume"
-          class="inline-flex items-center justify-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-4 py-2.5 sm:px-5 sm:py-3 text-sm sm:text-base font-semibold text-white transition hover:-translate-y-0.5 hover:border-cyan/45"
+          class="inline-flex items-center justify-between sm:justify-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-4 py-3 sm:px-5 sm:py-3 text-sm sm:text-base font-semibold text-white transition hover:-translate-y-0.5 hover:border-cyan/45 text-center w-full sm:w-auto"
         >
-          <Download size={16} /> Resume
+          <span><Download size={15} class="inline mr-1.5" /> Resume</span>
         </a>
         <a
           href={profile.github}
           id="hero-cta-github"
-          class="inline-flex items-center justify-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-4 py-2.5 sm:px-5 sm:py-3 text-sm sm:text-base font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/45"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-between sm:justify-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-4 py-3 sm:px-5 sm:py-3 text-sm sm:text-base font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/45 text-center w-full sm:w-auto"
         >
-          <Code size={16} /> GitHub
+          <span><Code size={15} class="inline mr-1.5" /> GitHub</span> <ArrowRight size={16} class="sm:hidden" />
         </a>
       </div>
 
@@ -97,14 +99,14 @@ const gitChips = [
       </div>
 
       <!-- Git chip strip -->
-      <div class="mt-6 git-strip" aria-hidden="true">
+      <div class="mt-5 sm:mt-6 git-strip" aria-hidden="true">
         {gitChips.map((chip) => (
           <span class:list={['git-chip', chip.cls]}>{chip.label}</span>
         ))}
       </div>
 
       <!-- Scroll cue -->
-      <a href="/#about" class="scroll-cue mt-8 inline-flex" aria-label="Scroll to About section">
+      <a href="/#about" class="scroll-cue mt-6 sm:mt-8 inline-flex" aria-label="Scroll to About section">
         <ChevronDown size={14} />&nbsp;scroll down
       </a>
     </div>
