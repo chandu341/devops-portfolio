@@ -1,100 +1,30 @@
 ---
-import { ArrowRight, Award, BriefcaseBusiness, CircleCheckBig, CloudCog, Code, Download, ExternalLink, Mail, ShieldCheck, Sparkles, Workflow, Zap } from '@lucide/astro';
+import { Award, BriefcaseBusiness, Check, Code, Download, ExternalLink, Mail, MessageCircle, Phone, Sparkles } from '@lucide/astro';
 import ArchitectureDiagram from '@/components/ArchitectureDiagram.astro';
 import Footer from '@/components/Footer.astro';
-import SectionTitle from '@/components/SectionTitle.astro';
+import Hero from '@/components/Hero.astro';
 import SiteHeader from '@/components/SiteHeader.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { achievements, certifications, earlyCareer, education, experiences, impactMetrics, profile, projects, skillGroups } from '@/data/profile';
+import { achievements, certifications, education, experiences, impactMetrics, profile, projects, skillGroups, stackYaml } from '@/data/profile';
 
-const coreSkills = ['AWS', 'Azure', 'Kubernetes', 'Terraform', 'Docker', 'Helm', 'Argo CD', 'CI/CD'];
-const focusItems = ['Cloud infrastructure', 'Kubernetes delivery', 'Infrastructure as Code', 'CI/CD automation', 'Observability', 'Production troubleshooting'];
-const capabilities = [
-  { icon: CloudCog, title: 'Cloud Infrastructure', text: 'AWS and Azure environments covering VPC, EKS, AKS, EC2, ALB, S3, RDS, IAM, and DNS routing.' },
-  { icon: Workflow, title: 'Delivery Systems', text: 'CI/CD pipelines, GitOps releases, Helm standardization, and deployment workflows for production and QA.' },
-  { icon: ShieldCheck, title: 'DevSecOps Checks', text: 'SonarQube and Trivy gates added before container deployment, with secure ingress and access patterns.' },
-  { icon: Zap, title: 'Observability Ops', text: 'Prometheus, Grafana, Elastic Stack, Catchpoint, Selenium monitoring, SSL health checks, and incident workflows.' }
+const principleCards = [
+  { id: '01', title: 'Automate toil', text: 'Reduce repetitive manual deployment and support work through reusable automation and IaC.' },
+  { id: '02', title: 'Build reliable systems', text: 'Design for resilient infrastructure, health checks, and production-grade recovery paths.' },
+  { id: '03', title: 'Observe everything', text: 'Document, monitor, and troubleshoot environments with structured observability and feedback loops.' }
 ];
+const focusItems = ['Cloud infrastructure automation','Kubernetes delivery & operations','Infrastructure as Code (IaC)','CI/CD pipeline engineering','Observability & monitoring','Production troubleshooting'];
 const currentProject = projects[0];
 ---
-
 <BaseLayout>
   <SiteHeader />
-  <main>
-    <section class="relative overflow-hidden">
-      <div class="mx-auto grid min-h-[calc(100vh-4.25rem)] max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[0.96fr_1.04fr] lg:px-8">
-        <div class="reveal">
-          <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-violet">DevOps / Cloud Engineer</p>
-          <h1 class="mt-6 max-w-4xl text-5xl font-semibold leading-[0.98] tracking-normal text-white sm:text-6xl lg:text-7xl">{profile.name}</h1>
-          <p class="mt-6 max-w-3xl text-2xl font-medium leading-tight text-slate-100 sm:text-3xl">
-            Building automated cloud infrastructure, Kubernetes delivery systems, and observability workflows.
-          </p>
-          <p class="mt-6 max-w-2xl text-lg leading-8 text-muted">
-            DevOps Engineer with 5+ years of experience creating, deploying, monitoring, and troubleshooting AWS and Azure infrastructure with Terraform, Kubernetes, CI/CD, GitOps, and production support practices.
-          </p>
-          <div class="mt-9 flex flex-wrap gap-3">
-            <a href="/projects" class="inline-flex items-center gap-2 rounded-[10px] bg-white px-5 py-3 font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-cyan">
-              Explore Projects <ArrowRight size={18} />
-            </a>
-            <a href={profile.resume} class="inline-flex items-center gap-2 rounded-[10px] border border-white/12 bg-white/[0.045] px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/45">
-              Download Resume <Download size={18} />
-            </a>
-          </div>
-          <div class="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 border-l border-white/12 pl-4">
-            {coreSkills.map((skill) => <span class="font-mono text-xs uppercase tracking-[0.14em] text-slate-300">{skill}</span>)}
-          </div>
-          <div class="mt-7 flex gap-4 text-sm text-muted">
-            <a class="inline-flex items-center gap-2 hover:text-white" href={profile.github}><Code size={17} /> GitHub</a>
-            <a class="inline-flex items-center gap-2 hover:text-white" href={profile.linkedin}><BriefcaseBusiness size={17} /> LinkedIn</a>
-          </div>
-        </div>
+  <main id="main-content">
+    <Hero />
 
-        <div class="relative reveal lg:pt-16">
-          <div class="absolute -left-8 top-2 hidden h-24 w-24 rounded-full bg-violet/20 blur-3xl lg:block"></div>
-          <div class="relative rounded-[20px] border border-white/10 bg-panel/88 p-4 shadow-focus">
-            <div class="mb-4 flex items-center justify-between border-b border-white/[0.08] pb-3">
-              <div class="flex items-center gap-2">
-                <span class="h-2.5 w-2.5 rounded-full bg-[#FF6B6B]"></span>
-                <span class="h-2.5 w-2.5 rounded-full bg-amber"></span>
-                <span class="h-2.5 w-2.5 rounded-full bg-mint"></span>
-              </div>
-              <span class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">infra-console</span>
-            </div>
-            <div class="grid gap-4 lg:grid-cols-[1fr_0.86fr]">
-              <pre class="overflow-x-auto whitespace-pre-wrap rounded-2xl bg-ink/70 p-4 font-mono text-[13px] leading-6 text-slate-200"><code><span class="text-violet">$ kubectl get deploy -A</span>
-production  api-service      Running
-production  gateway          Running
-qa          worker-service   Running
-
-<span class="text-violet">$ terraform plan</span>
-aws_vpc.eks_cluster.node_groups
-provisioning: under 30 minutes
-
-<span class="text-violet">$ argocd app sync</span>
-gitops deployment path ready</code></pre>
-              <div class="grid content-between gap-3">
-                <div class="rounded-2xl bg-white/[0.045] p-4">
-                  <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">Runtime</p>
-                  <p class="mt-2 text-3xl font-semibold text-white">12+</p>
-                  <p class="text-sm text-slate-300">microservices across prod and QA</p>
-                </div>
-                <div class="rounded-2xl bg-white/[0.045] p-4">
-                  <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">Delivery</p>
-                  <p class="mt-2 text-3xl font-semibold text-white">60%</p>
-                  <p class="text-sm text-slate-300">deployment speed improvement</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="border-y border-white/[0.07] bg-white/[0.025] py-6">
+    <section class="border-y border-white/[0.07] bg-white/[0.02] py-6" aria-label="Impact metrics">
       <div class="mx-auto grid max-w-7xl gap-3 overflow-x-auto px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-6 lg:px-8">
-        {impactMetrics.map((metric) => (
-          <div class="min-w-40 rounded-2xl bg-white/[0.035] p-4">
-            <p class="text-3xl font-semibold text-white">{metric.value}</p>
+        {impactMetrics.map((metric, i) => (
+          <div class="min-w-40 rounded-2xl bg-white/[0.035] p-4 reveal-up" style={`animation-delay:${i * 60}ms`}>
+            <p class="text-3xl font-semibold text-white stat-counter" data-target={metric.value}>{metric.value}</p>
             <p class="mt-1 font-mono text-[11px] uppercase tracking-[0.16em] text-violet">{metric.label}</p>
             <p class="mt-2 text-xs leading-5 text-muted">{metric.detail}</p>
           </div>
@@ -103,39 +33,107 @@ gitops deployment path ready</code></pre>
     </section>
 
     <section id="about" class="section-pad">
-      <div class="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_0.72fr] lg:px-8">
-        <div>
-          <SectionTitle eyebrow="About" title="Production-minded DevOps engineering" description="A portfolio focused on how infrastructure, delivery, observability, and troubleshooting connect in real operating environments." />
-          <div class="space-y-5 text-lg leading-8 text-muted">
-            <p>I work across AWS and Azure environments, with hands-on experience in Terraform provisioning, Kubernetes delivery, Helm standardization, GitOps deployment, CI/CD automation, monitoring, log analysis, and production incident response.</p>
-            <p>My recent work includes AWS EKS microservice operations, Azure AKS monitoring with Elastic Stack, synthetic checks in Catchpoint, and cloud migration work using Terraform-managed AWS infrastructure.</p>
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mb-10 flex items-end justify-between gap-4 reveal-up">
+          <div>
+            <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">01 — whoami</p>
+            <h2 class="mt-4 text-3xl font-semibold text-white sm:text-4xl">Reliability is built, not assumed.</h2>
+          </div>
+          <span class="hidden rounded-full border border-cyan/40 bg-cyan/8 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-cyan md:inline-flex">{profile.availability}</span>
+        </div>
+        <div class="grid gap-6 lg:grid-cols-[0.82fr_1.18fr]">
+          <aside class="identity-card reveal-up" style="animation-delay:80ms">
+            <div class="relative aspect-square w-full overflow-hidden rounded-2xl border border-white/10 bg-panel2/60">
+              <img
+                class="h-full w-full object-cover object-center"
+                src="/images/profile.jpg"
+                alt={profile.name}
+                loading="lazy"
+              />
+              <span class="absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full border border-white/15 bg-ink/80 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-slate-200 shadow-md backdrop-blur-md">
+                verified ✓
+              </span>
+            </div>
+            <div class="mt-6">
+              <p class="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">Identity</p>
+              <h3 class="mt-3 text-2xl font-semibold text-white">{profile.name}</h3>
+              <p class="mt-2 text-sm uppercase tracking-[0.18em] text-cyan">{profile.title}</p>
+              <div class="mt-5 space-y-3 text-sm text-slate-300">
+                <p class="flex items-center gap-2"><span class="text-cyan">📍</span> {profile.location}</p>
+                <p class="flex items-center gap-2"><span class="text-cyan">📞</span> {profile.phone}</p>
+                <p class="flex items-center gap-2"><Check size={15} class="text-mint" /> {profile.availability}</p>
+              </div>
+            </div>
+            <div class="mt-6 grid gap-2 sm:grid-cols-2">
+              <a href={profile.github} class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-3 text-sm font-medium text-white hover:border-cyan/40 transition"><Code size={15} /> GitHub</a>
+              <a href={profile.linkedin} class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-3 text-sm font-medium text-white hover:border-cyan/40 transition"><BriefcaseBusiness size={15} /> LinkedIn</a>
+              <a href={profile.resume} class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-3 text-sm font-medium text-white hover:border-cyan/40 transition"><Download size={15} /> Resume</a>
+              <a href={`mailto:${profile.email}`} class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-3 text-sm font-medium text-white hover:border-cyan/40 transition"><Mail size={15} /> Email</a>
+            </div>
+          </aside>
+          <div class="reveal-up" style="animation-delay:120ms">
+            <div class="space-y-5 text-lg leading-8 text-muted">
+              <p>{profile.summary}</p>
+              <p>I focus on building resilient cloud operations, infrastructure automation, and production feedback loops that reduce deployment friction and improve platform reliability across AWS and Azure workloads.</p>
+            </div>
+            <div class="mt-8 grid gap-4 md:grid-cols-3">
+              {principleCards.map((card) => (
+                <article class="engineering-principle transition hover:-translate-y-1">
+                  <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-violet">{card.id}</span>
+                  <h3 class="mt-3 text-xl font-semibold text-white">{card.title}</h3>
+                  <p class="mt-3 text-sm leading-6 text-slate-300">{card.text}</p>
+                </article>
+              ))}
+            </div>
+            <div class="mt-8 rounded-[18px] border border-white/[0.08] bg-white/[0.025] p-5">
+              <p class="font-mono text-[10px] uppercase tracking-[0.18em] text-violet">Engineering focus</p>
+              <div class="mt-4 grid gap-3 sm:grid-cols-2">
+                {focusItems.map((item) => (
+                  <div class="flex items-center gap-3 text-sm text-slate-200">
+                    <span class="inline-flex h-2 w-2 flex-shrink-0 rounded-full bg-cyan"></span>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
-        <aside class="rounded-[18px] bg-panel2/72 p-6">
-          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">Engineering Focus</p>
-          <div class="mt-6 grid gap-3">
-            {focusItems.map((item) => (
-              <div class="flex items-center gap-3 border-b border-white/[0.07] pb-3 last:border-b-0 last:pb-0">
-                <CircleCheckBig size={18} class="shrink-0 text-mint" />
-                <span class="text-slate-200">{item}</span>
-              </div>
-            ))}
-          </div>
-        </aside>
       </div>
     </section>
 
-    <section id="skills" class="section-pad bg-white/[0.025]">
+    <section id="experience" class="section-pad bg-white/[0.02]">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionTitle eyebrow="Capabilities" title="Technology grouped by operating capability" description="A tighter skills presentation, using resume-backed tools grouped around cloud, delivery, runtime, security, and observability work." />
-        <div class="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2 xl:grid-cols-3">
-          {skillGroups.map((group) => (
-            <article class="bg-panel p-6">
-              <div class="flex items-start justify-between gap-4">
-                <h3 class="text-xl font-semibold text-white">{group.name}</h3>
-                <span class:list={['rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.13em]', group.tier === 'Core' ? 'bg-violet/12 text-violet' : group.tier === 'Strong' ? 'bg-mint/10 text-mint' : 'bg-white/[0.06] text-muted']}>{group.tier}</span>
+        <div class="mb-10 reveal-up">
+          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">02 — git log --career</p>
+          <h2 class="mt-4 text-3xl font-semibold text-white sm:text-4xl">Deployment history.</h2>
+        </div>
+        <div class="career-timeline">
+          {experiences.map((job, index) => (
+            <article class="career-timeline__item reveal-up" style={`animation-delay:${index * 80}ms`}>
+              <div class="career-timeline__marker"></div>
+              <div class="career-timeline__content">
+                <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                  <div>
+                    <p class="font-mono text-[10px] uppercase tracking-[0.18em] text-cyan">
+                      release/{job.dates.split(' to ')[1] ? job.dates.split(' to ')[1].toLowerCase().replace(/\s+/g, '-') : 'current'}{index === 0 ? ' — HEAD' : ''}
+                    </p>
+                    <h3 class="mt-2 text-2xl font-semibold text-white">{job.role}</h3>
+                  </div>
+                  {index === 0 && <span class="rounded-full border border-cyan/40 bg-cyan/8 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-cyan">● current</span>}
+                </div>
+                <p class="mt-3 text-slate-300">{job.company}{job.client ? ` · ${job.client}` : ''}{job.location ? ` · ${job.location}` : ''}</p>
+                <p class="mt-1 font-mono text-[10px] uppercase tracking-[0.18em] text-muted">{job.dates}</p>
+                <ul class="mt-6 grid gap-3 text-sm leading-6 text-muted lg:grid-cols-2">
+                  {job.highlights.map((item) => (
+                    <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-violet"></span><span>{item}</span></li>
+                  ))}
+                </ul>
+                <div class="mt-6 flex flex-wrap gap-2">
+                  {job.technologies.map((tech) => (
+                    <span class="rounded-full border border-white/8 bg-white/[0.02] px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-slate-300">{tech}</span>
+                  ))}
+                </div>
               </div>
-              <p class="mt-5 text-sm leading-7 text-slate-300">{group.skills.join('  |  ')}</p>
             </article>
           ))}
         </div>
@@ -144,75 +142,63 @@ gitops deployment path ready</code></pre>
 
     <section class="section-pad">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionTitle eyebrow="Systems" title="Engineering capabilities, not just tools" />
-        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {capabilities.map((item, index) => (
-            <article class:list={['rounded-2xl p-6 transition hover:-translate-y-0.5', index === 0 ? 'bg-white text-ink' : 'surface']}>
-              <item.icon class:list={['mb-6', index === 0 ? 'text-ink' : 'text-violet']} size={30} aria-hidden="true" />
-              <h3 class:list={['text-xl font-semibold', index === 0 ? 'text-ink' : 'text-white']}>{item.title}</h3>
-              <p class:list={['mt-4 text-sm leading-6', index === 0 ? 'text-slate-700' : 'text-muted']}>{item.text}</p>
-            </article>
+        <div class="mb-8 reveal-up">
+          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">02a — git diff --stat</p>
+          <h2 class="mt-4 text-3xl font-semibold text-white">The career, diffed.</h2>
+        </div>
+        <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-6">
+          {impactMetrics.map((metric, i) => (
+            <div class="metric-card reveal-up" style={`animation-delay:${i * 60}ms`}>
+              <p class="text-3xl font-semibold text-white stat-counter" data-target={metric.value}>{metric.value}</p>
+              <p class="mt-2 font-mono text-[10px] uppercase tracking-[0.18em] text-violet">{metric.label}</p>
+              <p class="mt-3 text-xs leading-5 text-muted">{metric.detail}</p>
+            </div>
           ))}
         </div>
       </div>
     </section>
 
-    <section id="experience" class="section-pad bg-white/[0.025]">
+    <section id="projects" class="section-pad bg-white/[0.02]">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionTitle eyebrow="Experience" title="Career progression through cloud and production operations" />
-        <div class="relative ml-3 border-l border-white/[0.12] pl-8">
-          {experiences.map((job, index) => (
-            <article class="relative pb-12 last:pb-0">
-              <span class:list={['absolute -left-[42px] top-1 h-5 w-5 rounded-full border-4 border-ink', index === 0 ? 'bg-cyan' : index === 1 ? 'bg-violet' : 'bg-mint']}></span>
-              <div class={index === 0 ? 'rounded-[18px] bg-panel2/82 p-6 shadow-lift' : ''}>
-                <div class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                  <div>
-                    <p class="font-mono text-xs uppercase tracking-[0.18em] text-muted">{job.dates}</p>
-                    <h3 class="mt-2 text-2xl font-semibold text-white">{job.role}</h3>
-                    <p class="mt-1 text-slate-300">{job.company}{job.client && ` | Client: ${job.client}`}{job.location && ` | ${job.location}`}</p>
-                  </div>
-                  {index === 0 && <span class="rounded-full bg-cyan/12 px-3 py-1 text-sm font-semibold text-cyan">Current focus</span>}
-                </div>
-                <ul class="mt-6 grid gap-3 text-sm leading-6 text-muted lg:grid-cols-2">
-                  {job.highlights.slice(0, index === 0 ? 7 : 5).map((item) => <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-violet"></span><span>{item}</span></li>)}
-                </ul>
-                <p class="mt-5 font-mono text-xs uppercase tracking-[0.14em] text-slate-400">{job.technologies.join(' / ')}</p>
-              </div>
-            </article>
-          ))}
+        <div class="mb-10 flex items-end justify-between gap-4 reveal-up">
+          <div>
+            <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">03 — ls projects/</p>
+            <h2 class="mt-4 text-3xl font-semibold text-white sm:text-4xl">Things I've shipped.</h2>
+          </div>
+          <a href="/projects" class="hidden items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm font-medium text-slate-200 hover:border-cyan/40 md:inline-flex">All projects <ExternalLink size={14} /></a>
         </div>
-      </div>
-    </section>
-
-    <section id="projects" class="section-pad">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionTitle eyebrow="Selected Engineering Work" title="Case studies with architecture and measurable impact" description="Project narratives stay inside resume-supported facts while improving how the technical story is presented." />
         <div class="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-          <article class="rounded-[20px] bg-white p-6 text-ink shadow-lift">
-            <p class="font-mono text-xs uppercase tracking-[0.18em] text-slate-600">01 | {currentProject.category}</p>
-            <h3 class="mt-4 text-3xl font-semibold">{currentProject.name}</h3>
+          <article class="project-card project-card--featured reveal-up">
+            <div class="flex items-center justify-between gap-3">
+              <p class="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-600">01 | {currentProject.category}</p>
+              <span class="rounded-full bg-mint/12 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-mint">deployed</span>
+            </div>
+            <h3 class="mt-4 text-3xl font-semibold text-ink">{currentProject.name}</h3>
             <p class="mt-4 text-slate-700">{currentProject.problem}</p>
             <div class="mt-6 grid gap-3 sm:grid-cols-3">
-              {currentProject.metrics.map((metric) => <div class="rounded-2xl bg-ink/5 p-4 text-sm font-semibold">{metric}</div>)}
+              {currentProject.metrics.map((metric) => <div class="rounded-2xl bg-ink/5 p-4 text-sm font-semibold text-ink">{metric}</div>)}
             </div>
             <div class="mt-6 rounded-2xl bg-ink p-4 text-white">
               <ArchitectureDiagram groups={currentProject.architecture} />
             </div>
-            <a href={`/projects/${currentProject.slug}`} class="mt-6 inline-flex items-center gap-2 rounded-[10px] bg-ink px-5 py-3 font-semibold text-white">
-              Read Kubernetes case study <ExternalLink size={17} />
+            <a href={`/projects/${currentProject.slug}`} class="mt-6 inline-flex items-center gap-2 rounded-[10px] bg-ink px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5">
+              Read case study <ExternalLink size={17} />
             </a>
           </article>
           <div class="grid gap-6">
             {projects.slice(1).map((project, index) => (
-              <article class:list={['rounded-[18px] p-6 transition hover:-translate-y-0.5', index === 0 ? 'surface' : 'bg-panel2/75']}>
-                <p class="font-mono text-xs uppercase tracking-[0.18em] text-muted">0{index + 2} | {project.category}</p>
+              <article class="project-card reveal-up" style={`animation-delay:${index * 80}ms`}>
+                <div class="flex items-center justify-between gap-3">
+                  <p class="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">0{index + 2} | {project.category}</p>
+                  <span class="rounded-full bg-violet/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-violet">production</span>
+                </div>
                 <h3 class="mt-3 text-2xl font-semibold text-white">{project.name}</h3>
                 <p class="mt-3 text-sm leading-6 text-muted">{project.problem}</p>
                 <div class="mt-5 flex flex-wrap gap-2">
-                  {project.metrics.map((metric) => <span class="rounded-full bg-white/[0.06] px-3 py-1 text-xs text-slate-200">{metric}</span>)}
+                  {project.metrics.map((metric) => <span class="rounded-full bg-white/[0.06] px-3 py-1 text-[10px] uppercase tracking-[0.14em] text-slate-200">{metric}</span>)}
                 </div>
-                <a href={`/projects/${project.slug}`} class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-violet hover:text-white">
-                  Open case study <ArrowRight size={15} />
+                <a href={`/projects/${project.slug}`} class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-violet hover:text-white transition">
+                  Open case study <ExternalLink size={15} />
                 </a>
               </article>
             ))}
@@ -221,27 +207,76 @@ gitops deployment path ready</code></pre>
       </div>
     </section>
 
-    <section class="section-pad bg-white/[0.025]">
-      <div class="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.9fr_0.8fr_1fr] lg:px-8">
-        <div>
-          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">Certifications</p>
-          <div class="mt-5 space-y-4">
-            {certifications.map((cert) => <p class="flex gap-3 text-slate-200"><Award size={18} class="mt-1 shrink-0 text-amber" /> {cert}</p>)}
+    <section id="skills" class="section-pad">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mb-10 reveal-up">
+          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">04 — cat stack.yaml</p>
+          <h2 class="mt-4 text-3xl font-semibold text-white sm:text-4xl">The toolchain, declared.</h2>
+        </div>
+        <div class="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+          <div class="stack-panel reveal-up">
+            <div class="flex items-center gap-2 border-b border-white/[0.07] px-4 py-2.5">
+              <span class="status-dot red"></span><span class="status-dot amber"></span><span class="status-dot green"></span>
+              <span class="ml-2 font-mono text-[10px] tracking-widest text-muted uppercase">infra/stack.yaml</span>
+            </div>
+            <pre class="overflow-x-auto p-5 font-mono text-sm leading-relaxed text-slate-200 m-0"><code><span class="yaml-line"><span class="yaml-comment"># infra/stack.yaml — tracked · drift-checked</span></span>
+<span class="yaml-line"><span class="yaml-key">stack:</span></span>
+{Object.entries(stackYaml).map(([key, vals]) => (
+  <span class="yaml-line">  <span class="yaml-key">{key}:</span><span class="yaml-val"> [{vals.join(', ')}]</span></span>
+))}
+<span class="yaml-line"><span class="yaml-comment"># mode: automate · observe · ship reliably</span></span>
+</code></pre>
+          </div>
+          <div class="grid gap-4 reveal-up" style="animation-delay:100ms">
+            {skillGroups.map((group) => (
+              <article class="skill-pill-card transition hover:-translate-y-1">
+                <div class="flex items-start justify-between gap-4">
+                  <h3 class="text-lg font-semibold text-white">{group.name}</h3>
+                  <span class="rounded-full bg-white/[0.04] px-2 py-1 font-mono text-[9px] uppercase tracking-[0.15em] text-muted">{group.tier}</span>
+                </div>
+                <p class="mt-3 text-sm leading-6 text-slate-300">{group.skills.join(' · ')}</p>
+              </article>
+            ))}
           </div>
         </div>
-        <div>
-          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">Early Career</p>
-          <div class="mt-5 space-y-4">
-            {earlyCareer.map((item) => <p class="text-slate-300">{item}</p>)}
-          </div>
-          <p class="mt-7 font-mono text-xs uppercase tracking-[0.22em] text-violet">Education</p>
-          <p class="mt-4 text-slate-200">{education.degree}</p>
-          <p class="mt-1 text-sm text-muted">{education.institution} | {education.date}</p>
+      </div>
+    </section>
+
+    <section id="credentials" class="section-pad bg-white/[0.02]">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mb-10 reveal-up">
+          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">05 — ls -la credentials/</p>
+          <h2 class="mt-4 text-3xl font-semibold text-white sm:text-4xl">Proof, not promises.</h2>
         </div>
-        <div>
-          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">Recognition</p>
-          <div class="mt-5 divide-y divide-white/[0.07]">
-            {achievements.map((item) => <p class="flex gap-3 py-3 text-sm leading-6 text-slate-300"><Sparkles size={16} class="mt-1 shrink-0 text-mint" /> {item}</p>)}
+        <div class="mb-10 reveal-up">
+          <p class="mb-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted">Certifications</p>
+          <div class="flex flex-wrap gap-3">
+            {certifications.map((cert) => (
+              <a href={profile.linkedin} class="cred-pill" target="_blank" rel="noopener noreferrer">
+                <Award size={15} class="text-amber flex-shrink-0" />
+                {cert}
+                <ExternalLink size={12} class="text-muted ml-1" />
+              </a>
+            ))}
+          </div>
+        </div>
+        <div class="mb-10">
+          <p class="mb-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted">Recognition</p>
+          <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {achievements.map((item, i) => (
+              <article class="credential-card reveal-up" style={`animation-delay:${i * 60}ms`}>
+                <div class="flex items-center gap-3"><Sparkles size={16} class="text-mint" /><span class="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">achievement</span></div>
+                <p class="mt-4 text-sm leading-6 text-slate-300">{item}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+        <div class="reveal-up">
+          <p class="mb-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted">Education</p>
+          <div class="education-card">
+            <p class="font-mono text-[10px] uppercase tracking-[0.18em] text-cyan">{education.date}</p>
+            <h3 class="mt-3 text-2xl font-semibold text-white">{education.degree}</h3>
+            <p class="mt-2 text-slate-300">{education.institution}</p>
           </div>
         </div>
       </div>
@@ -249,23 +284,102 @@ gitops deployment path ready</code></pre>
 
     <section id="contact" class="section-pad">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="relative overflow-hidden rounded-[20px] bg-white p-8 text-ink shadow-lift sm:p-10">
-          <div class="absolute right-0 top-0 h-40 w-40 rounded-full bg-cyan/35 blur-3xl"></div>
-          <div class="relative grid gap-8 lg:grid-cols-[1fr_0.82fr] lg:items-end">
-            <div>
-              <p class="font-mono text-xs uppercase tracking-[0.22em] text-slate-600">Contact</p>
-              <h2 class="mt-4 text-4xl font-semibold sm:text-5xl">Let's build reliable systems.</h2>
-              <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-700">Cloud infrastructure, automation, Kubernetes, CI/CD, observability, and production troubleshooting are the center of this portfolio.</p>
+        <div class="contact-panel">
+          <div class="grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">
+            <div class="reveal-up">
+              <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">07 — ping chandu</p>
+              <h2 class="mt-4 text-3xl font-semibold text-white sm:text-4xl">Ready to ship something reliable.</h2>
+              <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-300">I work across cloud infrastructure, automation, Kubernetes delivery, CI/CD, observability, and production troubleshooting. Let's build something that actually works.</p>
+              <div class="mt-6 max-w-md">
+                <button id="email-copy-btn" class="copy-row" type="button" aria-label="Copy email address to clipboard">
+                  <span class="copy-row__prompt">$</span>
+                  <span class="copy-row__email" id="email-copy-text">echo {profile.email} | clip</span>
+                  <span class="copy-row__action" id="email-copy-label">copy ↗</span>
+                </button>
+              </div>
+              <div class="mt-8 flex flex-wrap gap-3">
+                <a href={`mailto:${profile.email}`} class="inline-flex items-center gap-2 rounded-[12px] bg-white px-5 py-3 font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-cyan"><Mail size={18} /> Email Me</a>
+                <a href={`tel:${profile.phone.replace(/\s+/g, '')}`} class="inline-flex items-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.04] px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:border-cyan/40"><Phone size={18} /> {profile.phone}</a>
+                <a href={profile.linkedin} class="inline-flex items-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.04] px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/40"><BriefcaseBusiness size={18} /> LinkedIn</a>
+                <a href={profile.whatsapp} class="inline-flex items-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.04] px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:border-mint/40"><MessageCircle size={18} /> WhatsApp</a>
+              </div>
             </div>
-            <div class="flex flex-wrap gap-3 lg:justify-end">
-              <a href={`mailto:${profile.email}`} class="inline-flex items-center gap-2 rounded-[10px] bg-ink px-5 py-3 font-semibold text-white"><Mail size={18} /> Email Me</a>
-              <a href={profile.linkedin} class="inline-flex items-center gap-2 rounded-[10px] border border-ink/10 px-5 py-3 font-semibold"><BriefcaseBusiness size={18} /> LinkedIn</a>
-              <a href={profile.resume} class="inline-flex items-center gap-2 rounded-[10px] border border-ink/10 px-5 py-3 font-semibold"><Download size={18} /> Resume</a>
+            <div class="terminal-card reveal-up" style="animation-delay:100ms">
+              <div class="terminal-card__header">
+                <span class="status-dot red"></span><span class="status-dot amber"></span><span class="status-dot green"></span>
+                <span class="terminal-card__label">$ ping chandu</span>
+              </div>
+              <div class="terminal-card__body">
+                <p class="font-mono text-sm leading-7 text-slate-200">status: <span class="text-mint">available_for_opportunities=true</span></p>
+                <p class="font-mono text-sm leading-7 text-slate-200">email: {profile.email}</p>
+                <p class="font-mono text-sm leading-7 text-slate-200">location: {profile.location}</p>
+                <p class="font-mono text-sm leading-7 text-slate-200">focus: cloud · automation · kubernetes</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
   </main>
+
+  <div class="floating-actions" aria-label="Quick contact actions">
+    <a href={profile.whatsapp} class="floating-actions__link whatsapp" aria-label="Open WhatsApp"><MessageCircle size={18} /></a>
+    <a href={`tel:${profile.phone.replace(/\s+/g, '')}`} class="floating-actions__link" aria-label="Call Chandu Venna"><Phone size={18} /></a>
+    <a href={profile.linkedin} class="floating-actions__link linkedin" aria-label="Open LinkedIn"><BriefcaseBusiness size={18} /></a>
+  </div>
+
   <Footer />
 </BaseLayout>
+
+<script is:inline>
+  (function () {
+    if ('IntersectionObserver' in window) {
+      var revealObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { entry.target.classList.add('is-visible'); revealObs.unobserve(entry.target); }
+        });
+      }, { rootMargin: '0px 0px -60px 0px', threshold: 0.05 });
+      document.querySelectorAll('.reveal-up').forEach(function (el) { revealObs.observe(el); });
+    } else {
+      document.querySelectorAll('.reveal-up').forEach(function (el) { el.classList.add('is-visible'); });
+    }
+
+    function animateCounter(el) {
+      var raw = el.getAttribute('data-target') || el.textContent || '';
+      var match = raw.match(/^(\d+(?:\.\d+)?)(.*)/);
+      if (!match) return;
+      var end = parseFloat(match[1]);
+      var suffix = match[2];
+      var start = performance.now();
+      (function step(ts) {
+        var p = Math.min((ts - start) / 1200, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(eased * end) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+      })(start);
+    }
+
+    if ('IntersectionObserver' in window) {
+      var ctrObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { animateCounter(entry.target); ctrObs.unobserve(entry.target); }
+        });
+      }, { threshold: 0.5 });
+      document.querySelectorAll('.stat-counter').forEach(function (el) { ctrObs.observe(el); });
+    }
+
+    var copyBtn = document.getElementById('email-copy-btn');
+    var copyLabel = document.getElementById('email-copy-label');
+    var copyText = document.getElementById('email-copy-text');
+    if (copyBtn && copyLabel && copyText && navigator.clipboard) {
+      var EMAIL = copyText.textContent.replace('echo ', '').replace(' | clip', '').trim();
+      copyBtn.addEventListener('click', function () {
+        navigator.clipboard.writeText(EMAIL).then(function () {
+          copyLabel.textContent = '✓ copied!';
+          copyText.style.color = '#5EE6A8';
+          setTimeout(function () { copyLabel.textContent = 'copy ↗'; copyText.style.color = ''; }, 2000);
+        });
+      });
+    }
+  })();
+</script>

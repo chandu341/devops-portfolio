@@ -1,22 +1,39 @@
 export const profile = {
   name: 'Chandu Venna',
-  title: 'DevOps & Cloud Engineer',
-  location: 'Bengaluru, India',
+  title: 'DevOps / Cloud Engineer',
+  tagline: 'I build resilient systems and automate the paths that keep production running — so incidents stay rare and recovery stays fast.',
+  location: 'Bengaluru',
   email: 'chanduv4378@gmail.com',
   phone: '+91 9666032664',
-  showPhone: false,
+  whatsapp: 'https://wa.me/919666032664?text=Hi%20Chandu%2C%20I%20found%20your%20DevOps%20portfolio%20and%20would%20like%20to%20connect.',
+  showPhone: true,
   linkedin: 'https://www.linkedin.com/in/im-chanduvenna/',
   github: 'https://github.com/chandu341',
   resume: '/resume.pdf',
+  availability: 'Open to DevOps / Cloud / SRE opportunities',
   summary:
     'DevOps Engineer with 5+ years of experience creating and managing cloud infrastructure, CI/CD pipelines, Kubernetes platforms, monitoring, and production support across AWS and Azure environments.'
 };
 
+export const stackYaml = {
+  cloud: ['AWS', 'Azure', 'EC2', 'EKS', 'AKS', 'ECS'],
+  iac: ['Terraform', 'CloudFormation', 'Ansible'],
+  containers: ['Docker', 'Kubernetes', 'Helm'],
+  gitops: ['Argo CD', 'GitHub Actions', 'Jenkins'],
+  monitoring: ['Prometheus', 'Grafana', 'Elastic Stack', 'Dynatrace', 'Catchpoint Synthetic Monitoring'],
+  devsecops: ['SonarQube', 'Trivy'],
+  scripting: ['Python', 'Bash', 'YAML', 'JSON'],
+  ops: ['Linux', 'Jira', 'ServiceNow', 'Confluence']
+};
+
 export const navItems = [
+  { label: 'Home', href: '/#top' },
   { label: 'About', href: '/#about' },
   { label: 'Experience', href: '/#experience' },
   { label: 'Projects', href: '/projects' },
-  { label: 'Engineering', href: '/engineering' },
+  { label: 'Skills', href: '/#skills' },
+  { label: 'Certifications', href: '/#credentials' },
+  { label: 'Education', href: '/#education' },
   { label: 'Contact', href: '/#contact' }
 ];
 

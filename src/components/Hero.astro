@@ -1,0 +1,169 @@
+---
+import { ArrowRight, BriefcaseBusiness, ChevronDown, Code, Download, Mail } from '@lucide/astro';
+import { profile } from '@/data/profile';
+
+const allSkills = [
+  'AWS', 'Azure', 'Kubernetes', 'Terraform', 'Docker', 'Helm', 'Argo CD',
+  'Jenkins', 'GitHub Actions', 'Prometheus', 'Grafana', 'Elastic Stack',
+  'SonarQube', 'Trivy', 'VPC', 'EKS', 'AKS', 'ECS', 'RDS', 'Linux',
+  'Python', 'Bash', 'Ansible', 'Jira', 'ServiceNow', 'CI/CD', 'GitOps',
+  'IAM', 'ALB', 'Route 53', 'CloudFormation', 'Catchpoint', 'Dynatrace'
+];
+// Duplicate for seamless infinite scroll
+const marqueeSkills = [...allSkills, ...allSkills];
+
+const gitChips = [
+  { label: 'main', cls: 'git-chip--violet' },
+  { label: '→ checkout -b feat/ci', cls: '' },
+  { label: 'pipeline.yml', cls: 'git-chip--cyan' },
+  { label: '✓ checks passing', cls: 'git-chip--green' },
+  { label: '● secure', cls: 'git-chip--green' },
+  { label: 'merge → main', cls: 'git-chip--violet' },
+  { label: 'v2.0.0', cls: 'git-chip--cyan' },
+  { label: '✓ deployed', cls: 'git-chip--green' },
+  { label: 'status: 200 OK', cls: 'git-chip--green' },
+];
+---
+
+<section class="relative overflow-hidden pt-4" id="top">
+  <!-- Marquee background flourish -->
+  <div class="pointer-events-none absolute inset-x-0 bottom-12 opacity-[0.055] select-none" aria-hidden="true">
+    <div class="marquee-outer">
+      <div class="marquee-track font-mono text-sm uppercase tracking-widest text-slate-200">
+        {marqueeSkills.map((skill) => (
+          <span class="flex-shrink-0 whitespace-nowrap px-3">{skill}</span>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="mx-auto grid min-h-[calc(100vh-5.5rem)] max-w-7xl items-center gap-10 px-4 pb-10 pt-10 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8 lg:pt-8">
+
+    <!-- LEFT COLUMN -->
+    <div class="reveal-up">
+      <!-- Eyebrow -->
+      <p class="hero-eyebrow">
+        DevOps &amp; Cloud Engineer &nbsp;·&nbsp; ap-south-1 / Bengaluru
+      </p>
+
+      <!-- Display name -->
+      <h1 class="hero-display-name mt-5">
+        {profile.name}
+      </h1>
+
+      <!-- Tagline -->
+      <p class="hero-tagline mt-5">
+        {profile.tagline}
+      </p>
+
+      <!-- CTAs -->
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <a
+          href="/#contact"
+          id="hero-cta-connect"
+          class="inline-flex items-center gap-2 rounded-[12px] bg-cyan px-5 py-3 font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-white"
+        >
+          Let's connect <ArrowRight size={17} />
+        </a>
+        <a
+          href="/projects"
+          id="hero-cta-work"
+          class="inline-flex items-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/45"
+        >
+          View the work
+        </a>
+        <a
+          href={profile.resume}
+          id="hero-cta-resume"
+          class="inline-flex items-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:border-cyan/45"
+        >
+          <Download size={17} /> Resume
+        </a>
+        <a
+          href={profile.github}
+          id="hero-cta-github"
+          class="inline-flex items-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/45"
+        >
+          <Code size={17} /> GitHub
+        </a>
+      </div>
+
+      <!-- Status meta block -->
+      <div class="mt-7 status-meta-block">
+        <span><span class="s-label">status</span><span class="s-live">● operational</span></span>
+        <span><span class="s-label">region</span>ap-south-1 · Bengaluru</span>
+        <span><span class="s-label">since</span>2021 · 5y+ uptime</span>
+        <span><span class="s-label">local</span><span id="hero-clock" class="s-live">--:--:--</span></span>
+      </div>
+
+      <!-- Git chip strip -->
+      <div class="mt-6 git-strip" aria-hidden="true">
+        {gitChips.map((chip) => (
+          <span class:list={['git-chip', chip.cls]}>{chip.label}</span>
+        ))}
+      </div>
+
+      <!-- Scroll cue -->
+      <a href="/#about" class="scroll-cue mt-8 inline-flex" aria-label="Scroll to About section">
+        <ChevronDown size={14} />&nbsp;scroll down
+      </a>
+    </div>
+
+    <!-- RIGHT COLUMN — Identity card -->
+    <div class="relative reveal-up lg:pt-4" style="animation-delay: 120ms;">
+      <div class="identity-card max-w-md mx-auto lg:mx-0">
+        <!-- Photo area -->
+        <div class="relative aspect-square w-full overflow-hidden rounded-2xl border border-white/10 bg-panel2/60">
+          <img
+            class="h-full w-full object-cover object-center"
+            src="/images/profile.jpg"
+            alt={profile.name}
+            loading="eager"
+          />
+          <span class="absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full border border-white/15 bg-ink/80 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-slate-200 shadow-md backdrop-blur-md">
+            verified ✓
+          </span>
+        </div>
+
+        <!-- Metadata rows -->
+        <div class="mt-5 rounded-xl border border-white/[0.06] bg-white/[0.025] p-4">
+          <p class="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-violet">Identity</p>
+          <div class="id-meta-row"><span class="id-meta-key">name</span><span class="id-meta-val">{profile.name}</span></div>
+          <div class="id-meta-row"><span class="id-meta-key">uid</span><span class="id-meta-val">chandu341</span></div>
+          <div class="id-meta-row"><span class="id-meta-key">role</span><span class="id-meta-val">devops / cloud engineer</span></div>
+          <div class="id-meta-row"><span class="id-meta-key">location</span><span class="id-meta-val">{profile.location}</span></div>
+          <div class="id-meta-row"><span class="id-meta-key">exp</span><span class="id-meta-val">5y · since 2021</span></div>
+          <div class="id-meta-row">
+            <span class="id-meta-key">status</span>
+            <span class="id-meta-val" style="color:#5EE6A8;">● open to opportunities</span>
+          </div>
+        </div>
+
+        <!-- Social links -->
+        <div class="mt-4 grid grid-cols-2 gap-2">
+          <a href={profile.github} class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2.5 text-sm font-medium text-white hover:border-cyan/40 transition"><Code size={15} /> GitHub</a>
+          <a href={profile.linkedin} class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2.5 text-sm font-medium text-white hover:border-cyan/40 transition"><BriefcaseBusiness size={15} /> LinkedIn</a>
+          <a href={profile.resume} class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2.5 text-sm font-medium text-white hover:border-cyan/40 transition"><Download size={15} /> Resume</a>
+          <a href={`mailto:${profile.email}`} class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2.5 text-sm font-medium text-white hover:border-cyan/40 transition"><Mail size={15} /> Email</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  // Hero live clock
+  (function () {
+    var el = document.getElementById('hero-clock');
+    if (!el) return;
+    function tick() {
+      var now = new Date();
+      var h = String(now.getHours()).padStart(2, '0');
+      var m = String(now.getMinutes()).padStart(2, '0');
+      var s = String(now.getSeconds()).padStart(2, '0');
+      el.textContent = h + ':' + m + ':' + s;
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
