@@ -1,0 +1,130 @@
+---
+// BootLoader.astro — JS-driven boot screen with pipeline stages
+---
+
+<div id="bootloader" class="bootloader" aria-live="polite" aria-label="Loading portfolio" role="status">
+  <div class="bootloader__screen">
+    <div class="bootloader__header">
+      <span class="status-dot red"></span>
+      <span class="status-dot amber"></span>
+      <span class="status-dot green"></span>
+      <span class="bootloader__title">deploy-pipeline</span>
+    </div>
+    <div class="bootloader__body">
+      <div class="bootloader__prompt">
+        <span class="bootloader__prompt-user">chandu</span>
+        <span style="color:rgba(148,163,184,0.6)">@</span>
+        <span class="bootloader__prompt-dir">prod</span>
+        <span style="color:rgba(148,163,184,0.6)">:~$</span>
+        <span id="bl-cmd" style="margin-left:0.4rem"> deploy --env production --portfolio</span>
+      </div>
+
+      <div class="bootloader__stages" id="bl-stages">
+        <span class="pipeline-stage" data-stage="build">
+          <span class="pipeline-stage__dot"></span>Build
+        </span>
+        <span class="pipeline-stage" data-stage="test">
+          <span class="pipeline-stage__dot"></span>Test
+        </span>
+        <span class="pipeline-stage" data-stage="deploy">
+          <span class="pipeline-stage__dot"></span>Deploy
+        </span>
+        <span class="pipeline-stage" data-stage="release">
+          <span class="pipeline-stage__dot"></span>Release
+        </span>
+      </div>
+
+      <div class="bootloader__status" id="bl-status">› initializing build environment…</div>
+
+      <div class="bootloader__progress-wrap">
+        <div class="bootloader__progress-bar" id="bl-bar"></div>
+      </div>
+      <div class="bootloader__pct" id="bl-pct">0%</div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var SESSION_KEY = 'cv-boot-seen';
+    var el = document.getElementById('bootloader');
+    if (!el) return;
+
+    // Respect reduced-motion or already-seen
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var alreadySeen = sessionStorage.getItem(SESSION_KEY) === 'true';
+
+    if (prefersReduced || alreadySeen) {
+      el.style.display = 'none';
+      document.body.style.overflow = '';
+      return;
+    }
+
+    // Lock scroll during boot
+    document.body.style.overflow = 'hidden';
+
+    var bar = document.getElementById('bl-bar');
+    var pct = document.getElementById('bl-pct');
+    var status = document.getElementById('bl-status');
+    var stages = Array.from(document.querySelectorAll('.pipeline-stage'));
+
+    var STAGES = [
+      { key: 'build',   msg: '› running build checks…' },
+      { key: 'test',    msg: '› running validation checks…' },
+      { key: 'deploy',  msg: '› release orchestration active…' },
+      { key: 'release', msg: '› deployment complete · status 200 OK' }
+    ];
+
+    var DURATION = 1500; // ms total
+    var start = null;
+    var stageActivated = [false, false, false, false];
+
+    function tick(ts) {
+      if (!start) start = ts;
+      var elapsed = ts - start;
+
+      var progress = Math.min(elapsed / DURATION, 1);
+
+      // Update bar
+      var pctVal = Math.floor(progress * 100);
+      if (bar) bar.style.width = pctVal + '%';
+      if (pct) pct.textContent = pctVal + '%';
+
+      // Activate stages at 15%, 35%, 60%, 85%
+      var thresholds = [0.15, 0.35, 0.6, 0.85];
+      thresholds.forEach(function (t, i) {
+        if (progress >= t && !stageActivated[i]) {
+          stageActivated[i] = true;
+          // Mark previous as done
+          if (i > 0) {
+            stages[i - 1].classList.remove('is-active');
+            stages[i - 1].classList.add('is-done');
+          }
+          stages[i].classList.add('is-active');
+          if (status) status.textContent = STAGES[i].msg;
+        }
+      });
+
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        // Mark all done
+        stages.forEach(function (s) {
+          s.classList.remove('is-active');
+          s.classList.add('is-done');
+        });
+        if (status) status.textContent = '✓ portfolio deployed successfully';
+
+        setTimeout(function () {
+          el.classList.add('is-done');
+          document.body.style.overflow = '';
+          sessionStorage.setItem(SESSION_KEY, 'true');
+          // Remove from DOM after transition
+          setTimeout(function () { el.style.display = 'none'; }, 300);
+        }, 300);
+      }
+    }
+
+    requestAnimationFrame(tick);
+  })();
+</script>

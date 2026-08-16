@@ -3,22 +3,54 @@ import { BriefcaseBusiness, Code, Download, Menu } from '@lucide/astro';
 import { navItems, profile } from '@/data/profile';
 ---
 
-<header class="sticky top-0 z-50 border-b border-white/[0.07] bg-ink/78 backdrop-blur-xl">
+<!-- Skip to content (accessibility) -->
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header id="site-header" class="sticky top-0 z-50 border-b border-white/[0.07] bg-ink/80 backdrop-blur-xl">
+  <!-- Top status bar -->
+  <div class="border-b border-white/[0.04] bg-white/[0.02]">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-1.5 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
+        <span class="flex items-center gap-1.5">
+          <span class="inline-block h-1.5 w-1.5 rounded-full bg-mint"></span>
+          <span class="text-mint">build: pass</span>
+        </span>
+        <span class="hidden items-center gap-1.5 md:flex">
+          <span class="inline-block h-1.5 w-1.5 rounded-full bg-cyan"></span>
+          <span>deploy: healthy</span>
+        </span>
+        <span class="hidden items-center gap-1.5 lg:flex">
+          <span class="inline-block h-1.5 w-1.5 rounded-full bg-violet"></span>
+          <span>status: operational</span>
+        </span>
+      </div>
+      <div class="flex items-center gap-3">
+        <!-- Availability pill -->
+        <span class="hidden items-center gap-1.5 rounded-full border border-mint/25 bg-mint/8 px-2.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.16em] text-mint md:inline-flex">
+          <span class="h-1.5 w-1.5 rounded-full bg-mint"></span>
+          open to opportunities
+        </span>
+        <!-- Live local clock -->
+        <span class="nav-clock" id="nav-local-time">--:--:--</span>
+      </div>
+    </div>
+  </div>
+
   <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8" aria-label="Main navigation">
-    <a href="/" class="group flex items-center gap-3 font-semibold">
-      <span class="grid h-10 w-10 place-items-center rounded-[10px] bg-white text-ink transition group-hover:bg-cyan">
-        CV
-      </span>
+    <a href="/#top" class="group flex items-center gap-3 font-semibold">
+      <span class="grid h-10 w-10 place-items-center rounded-[10px] bg-white text-sm font-bold text-ink transition group-hover:bg-cyan">CV</span>
       <span class="leading-tight">
         <span class="block text-base text-white">{profile.name}</span>
-        <span class="block font-mono text-[11px] uppercase tracking-[0.16em] text-muted">DevOps Engineer</span>
+        <span class="block font-mono text-[10px] uppercase tracking-[0.16em] text-muted">{profile.title}</span>
       </span>
     </a>
+
+    <!-- Mobile hamburger -->
     <details class="group md:hidden">
       <summary class="grid h-11 w-11 cursor-pointer list-none place-items-center rounded-[10px] border border-white/12 bg-white/[0.04] text-white">
         <Menu size={20} aria-label="Open navigation menu" />
       </summary>
-      <div class="absolute left-4 right-4 top-16 rounded-2xl border border-white/10 bg-panel p-3 shadow-lift">
+      <div class="absolute left-4 right-4 top-[6.5rem] rounded-2xl border border-white/10 bg-panel p-3 shadow-lift">
         {navItems.map((item) => <a class="block rounded-[10px] px-3 py-3 text-sm text-slate-200 hover:bg-white/[0.06]" href={item.href}>{item.label}</a>)}
         <div class="mt-2 grid grid-cols-3 gap-2 border-t border-white/10 pt-3">
           <a class="grid h-10 place-items-center rounded-[10px] bg-white/[0.05] text-slate-200" href={profile.github} aria-label="GitHub profile"><Code size={17} /></a>
@@ -27,19 +59,76 @@ import { navItems, profile } from '@/data/profile';
         </div>
       </div>
     </details>
+
+    <!-- Desktop nav -->
     <div class="hidden items-center gap-1 rounded-full border border-white/[0.07] bg-white/[0.035] p-1 md:flex">
-      {navItems.map((item) => <a class="rounded-full px-4 py-2 text-sm text-slate-300 transition hover:bg-white/[0.06] hover:text-white" href={item.href}>{item.label}</a>)}
+      {navItems.map((item) => (
+        <a
+          class="nav-link rounded-full px-4 py-2 text-sm text-slate-300 transition hover:bg-white/[0.06] hover:text-white"
+          href={item.href}
+          data-section={item.href.replace('/#', '').replace('/', '')}
+        >{item.label}</a>
+      ))}
     </div>
+
+    <!-- Right actions -->
     <div class="hidden items-center gap-2 md:flex">
-      <a class="grid h-10 w-10 place-items-center rounded-[10px] border border-white/10 bg-white/[0.04] text-slate-200 transition hover:border-violet/40 hover:text-white" href={profile.github} aria-label="GitHub profile">
-        <Code size={18} />
-      </a>
       <a class="grid h-10 w-10 place-items-center rounded-[10px] border border-white/10 bg-white/[0.04] text-slate-200 transition hover:border-violet/40 hover:text-white" href={profile.linkedin} aria-label="LinkedIn profile">
         <BriefcaseBusiness size={18} />
       </a>
-      <a class="inline-flex h-10 items-center gap-2 rounded-[10px] bg-white px-4 text-sm font-semibold text-ink transition hover:bg-cyan" href={profile.resume}>
-        <Download size={16} /> Resume
+      <a class="inline-flex h-10 items-center gap-2 rounded-[10px] bg-cyan px-4 text-sm font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-white" href="/#contact">
+        Let's talk →
       </a>
     </div>
   </nav>
 </header>
+
+<script is:inline>
+  (function () {
+    // ── Live local clock ────────────────────────────────
+    var clockEl = document.getElementById('nav-local-time');
+    function updateClock() {
+      if (!clockEl) return;
+      var now = new Date();
+      var h = String(now.getHours()).padStart(2, '0');
+      var m = String(now.getMinutes()).padStart(2, '0');
+      var s = String(now.getSeconds()).padStart(2, '0');
+      clockEl.textContent = h + ':' + m + ':' + s;
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // ── Active nav link via IntersectionObserver ────────
+    var navLinks = Array.from(document.querySelectorAll('.nav-link[data-section]'));
+    if (!navLinks.length || !('IntersectionObserver' in window)) return;
+
+    var activeSections = new Set();
+
+    var sectionIds = navLinks.map(function (l) { return l.getAttribute('data-section'); }).filter(Boolean);
+
+    function setActive(id) {
+      navLinks.forEach(function (l) {
+        var match = l.getAttribute('data-section') === id;
+        l.classList.toggle('nav-link--active', match);
+      });
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          activeSections.add(entry.target.id);
+        } else {
+          activeSections.delete(entry.target.id);
+        }
+      });
+      // Activate topmost visible section
+      var topId = sectionIds.find(function (id) { return activeSections.has(id); });
+      if (topId) setActive(topId);
+    }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+
+    sectionIds.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+  })();
+</script>

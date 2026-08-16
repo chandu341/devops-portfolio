@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import BootLoader from '@/components/BootLoader.astro';
 import { profile } from '@/data/profile';
 
 interface Props {
@@ -59,9 +60,15 @@ const websiteSchema = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- Google Fonts: Inter + JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
     <script is:inline type="application/ld+json" set:html={JSON.stringify([personSchema, websiteSchema])} />
   </head>
   <body class="text-slate-100 antialiased selection:bg-cyan/25">
+    <BootLoader />
     <slot />
   </body>
 </html>
+

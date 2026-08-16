@@ -21,6 +21,25 @@ export default {
       boxShadow: {
         lift: '0 18px 60px rgba(0, 0, 0, 0.38)',
         focus: '0 0 0 1px rgba(76, 201, 240, 0.18), 0 28px 100px rgba(0, 0, 0, 0.48)'
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' }
+        },
+        'fade-up': {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' }
+        },
+        'blink-cursor': {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0' }
+        }
+      },
+      animation: {
+        marquee: 'marquee 32s linear infinite',
+        'fade-up': 'fade-up 600ms ease-out both',
+        'blink-cursor': 'blink-cursor 1s step-end infinite'
       }
     }
   },
