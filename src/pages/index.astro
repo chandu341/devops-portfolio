@@ -279,11 +279,11 @@ const currentProject = projects[0];
                   <span class="copy-row__action" id="email-copy-label">copy ↗</span>
                 </button>
               </div>
-              <div class="mt-8 flex flex-wrap gap-3">
-                <a href={`mailto:${profile.email}`} class="inline-flex items-center gap-2 rounded-[12px] bg-white px-5 py-3 font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-cyan"><Mail size={18} /> Email Me</a>
-                <a href={`tel:${profile.phone.replace(/\s+/g, '')}`} class="inline-flex items-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.04] px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:border-cyan/40"><Phone size={18} /> {profile.phone}</a>
-                <a href={profile.linkedin} class="inline-flex items-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.04] px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/40"><BriefcaseBusiness size={18} /> LinkedIn</a>
-                <a href={profile.whatsapp} class="inline-flex items-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.04] px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:border-mint/40"><MessageCircle size={18} /> WhatsApp</a>
+              <div class="mt-6 sm:mt-8 grid grid-cols-2 sm:flex sm:flex-wrap gap-2.5 sm:gap-3 w-full">
+                <a href={`mailto:${profile.email}`} class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-[12px] bg-white px-3.5 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-base font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-cyan text-center w-full sm:w-auto"><Mail size={16} /> Email Me</a>
+                <a href={`tel:${profile.phone.replace(/\s+/g, '')}`} class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-[12px] border border-white/12 bg-white/[0.04] px-3.5 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-base font-semibold text-white transition hover:-translate-y-0.5 hover:border-cyan/40 text-center w-full sm:w-auto"><Phone size={16} /> {profile.phone}</a>
+                <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-[12px] border border-white/12 bg-white/[0.04] px-3.5 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-base font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/40 text-center w-full sm:w-auto"><BriefcaseBusiness size={16} /> LinkedIn</a>
+                <a href={profile.whatsapp} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-[12px] border border-white/12 bg-white/[0.04] px-3.5 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-base font-semibold text-white transition hover:-translate-y-0.5 hover:border-mint/40 text-center w-full sm:w-auto"><MessageCircle size={16} /> WhatsApp</a>
               </div>
             </div>
             <div class="terminal-card reveal-up" style="animation-delay:100ms">

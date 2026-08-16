@@ -37,59 +37,61 @@ const gitChips = [
     </div>
   </div>
 
-  <div class="mx-auto grid min-h-[calc(100vh-5.5rem)] max-w-7xl items-center gap-10 px-4 pb-10 pt-10 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8 lg:pt-8">
+  <div class="mx-auto grid min-h-0 max-w-7xl items-center gap-8 px-4 pb-8 pt-4 sm:gap-10 sm:px-6 sm:pb-10 sm:pt-8 lg:min-h-[calc(100vh-5.5rem)] lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:pt-8 w-full max-w-full min-w-0">
 
     <!-- LEFT COLUMN -->
-    <div class="reveal-up">
+    <div class="reveal-up w-full min-w-0">
       <!-- Eyebrow -->
-      <p class="hero-eyebrow">
-        DevOps &amp; Cloud Engineer &nbsp;·&nbsp; ap-south-1 / Bengaluru
+      <p class="hero-eyebrow break-words leading-relaxed">
+        DevOps &amp; Cloud Engineer <span class="text-slate-500">·</span> ap-south-1 / Bengaluru
       </p>
 
       <!-- Display name -->
-      <h1 class="hero-display-name mt-5">
+      <h1 class="hero-display-name mt-3 sm:mt-5 break-words">
         {profile.name}
       </h1>
 
       <!-- Tagline -->
-      <p class="hero-tagline mt-5">
+      <p class="hero-tagline mt-3 sm:mt-5 text-sm sm:text-base lg:text-lg leading-relaxed text-slate-300 w-full max-w-full">
         {profile.tagline}
       </p>
 
       <!-- CTAs -->
-      <div class="mt-8 flex flex-wrap items-center gap-3">
+      <div class="mt-6 sm:mt-8 grid grid-cols-2 sm:flex sm:flex-wrap gap-2.5 sm:gap-3 w-full max-w-full">
         <a
           href="/#contact"
           id="hero-cta-connect"
-          class="inline-flex items-center gap-2 rounded-[12px] bg-cyan px-5 py-3 font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-white"
+          class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-[12px] bg-cyan px-3.5 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-base font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-white text-center w-full sm:w-auto"
         >
-          Let's connect <ArrowRight size={17} />
+          Let's connect <ArrowRight size={15} />
         </a>
         <a
           href="/projects"
           id="hero-cta-work"
-          class="inline-flex items-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/45"
+          class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-3.5 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-base font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/45 text-center w-full sm:w-auto"
         >
-          View the work
+          View work
         </a>
         <a
           href={profile.resume}
           id="hero-cta-resume"
-          class="inline-flex items-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:border-cyan/45"
+          class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-3.5 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-base font-semibold text-white transition hover:-translate-y-0.5 hover:border-cyan/45 text-center w-full sm:w-auto"
         >
-          <Download size={17} /> Resume
+          <Download size={15} /> Resume
         </a>
         <a
           href={profile.github}
           id="hero-cta-github"
-          class="inline-flex items-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/45"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-3.5 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-base font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/45 text-center w-full sm:w-auto"
         >
-          <Code size={17} /> GitHub
+          <Code size={15} /> GitHub
         </a>
       </div>
 
       <!-- Status meta block -->
-      <div class="mt-7 status-meta-block">
+      <div class="mt-6 sm:mt-7 status-meta-block">
         <span><span class="s-label">status</span><span class="s-live">● operational</span></span>
         <span><span class="s-label">region</span>ap-south-1 · Bengaluru</span>
         <span><span class="s-label">since</span>2021 · 5y+ uptime</span>
@@ -97,14 +99,14 @@ const gitChips = [
       </div>
 
       <!-- Git chip strip -->
-      <div class="mt-6 git-strip" aria-hidden="true">
+      <div class="mt-5 sm:mt-6 git-strip" aria-hidden="true">
         {gitChips.map((chip) => (
           <span class:list={['git-chip', chip.cls]}>{chip.label}</span>
         ))}
       </div>
 
       <!-- Scroll cue -->
-      <a href="/#about" class="scroll-cue mt-8 inline-flex" aria-label="Scroll to About section">
+      <a href="/#about" class="scroll-cue mt-6 sm:mt-8 inline-flex" aria-label="Scroll to About section">
         <ChevronDown size={14} />&nbsp;scroll down
       </a>
     </div>

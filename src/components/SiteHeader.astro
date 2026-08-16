@@ -37,24 +37,24 @@ import { navItems, profile } from '@/data/profile';
   </div>
 
   <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8" aria-label="Main navigation">
-    <a href="/#top" class="group flex items-center gap-3 font-semibold">
-      <span class="grid h-10 w-10 place-items-center rounded-[10px] bg-white text-sm font-bold text-ink transition group-hover:bg-cyan">CV</span>
-      <span class="leading-tight">
-        <span class="block text-base text-white">{profile.name}</span>
-        <span class="block font-mono text-[10px] uppercase tracking-[0.16em] text-muted">{profile.title}</span>
+    <a href="/#top" class="group flex items-center gap-2.5 sm:gap-3 font-semibold min-w-0">
+      <span class="grid h-9 w-9 sm:h-10 sm:w-10 place-items-center rounded-[10px] bg-white text-xs sm:text-sm font-bold text-ink transition group-hover:bg-cyan flex-shrink-0">CV</span>
+      <span class="leading-tight min-w-0">
+        <span class="block text-sm sm:text-base text-white truncate">{profile.name}</span>
+        <span class="block font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.12em] sm:tracking-[0.16em] text-muted truncate max-w-[150px] sm:max-w-none">{profile.title}</span>
       </span>
     </a>
 
     <!-- Mobile hamburger -->
     <details class="group md:hidden">
-      <summary class="grid h-11 w-11 cursor-pointer list-none place-items-center rounded-[10px] border border-white/12 bg-white/[0.04] text-white">
-        <Menu size={20} aria-label="Open navigation menu" />
+      <summary class="grid h-10 w-10 cursor-pointer list-none place-items-center rounded-[10px] border border-white/12 bg-white/[0.04] text-white">
+        <Menu size={18} aria-label="Open navigation menu" />
       </summary>
-      <div class="absolute left-4 right-4 top-[6.5rem] rounded-2xl border border-white/10 bg-panel p-3 shadow-lift">
-        {navItems.map((item) => <a class="block rounded-[10px] px-3 py-3 text-sm text-slate-200 hover:bg-white/[0.06]" href={item.href}>{item.label}</a>)}
+      <div class="absolute left-3 right-3 top-full mt-2 z-50 rounded-2xl border border-white/10 bg-panel p-3 shadow-lift">
+        {navItems.map((item) => <a class="block rounded-[10px] px-3 py-2.5 text-sm text-slate-200 hover:bg-white/[0.06]" href={item.href}>{item.label}</a>)}
         <div class="mt-2 grid grid-cols-3 gap-2 border-t border-white/10 pt-3">
-          <a class="grid h-10 place-items-center rounded-[10px] bg-white/[0.05] text-slate-200" href={profile.github} aria-label="GitHub profile"><Code size={17} /></a>
-          <a class="grid h-10 place-items-center rounded-[10px] bg-white/[0.05] text-slate-200" href={profile.linkedin} aria-label="LinkedIn profile"><BriefcaseBusiness size={17} /></a>
+          <a class="grid h-10 place-items-center rounded-[10px] bg-white/[0.05] text-slate-200" href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile"><Code size={17} /></a>
+          <a class="grid h-10 place-items-center rounded-[10px] bg-white/[0.05] text-slate-200" href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile"><BriefcaseBusiness size={17} /></a>
           <a class="grid h-10 place-items-center rounded-[10px] bg-white text-ink" href={profile.resume} aria-label="Download resume"><Download size={17} /></a>
         </div>
       </div>
