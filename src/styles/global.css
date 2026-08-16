@@ -603,85 +603,7 @@ body.portfolio-intro-complete .portfolio-intro {
   to { transform: translate3d(1.5%, 1%, 0) scale(1.04); opacity: 0.82; }
 }
 
-@media (max-width: 768px) {
-  .section-pad {
-    padding-block: 3.5rem;
-  }
 
-  .hero-display-name {
-    font-size: clamp(2.2rem, 8vw, 3.8rem);
-    line-height: 1.05;
-    word-break: break-word;
-  }
-
-  .hero-tagline {
-    font-size: 1.05rem;
-    line-height: 1.5;
-  }
-
-  .identity-card {
-    padding: 1.15rem;
-    border-radius: 20px;
-  }
-
-  .id-meta-row {
-    grid-template-columns: 4.8rem 1fr;
-    font-size: 0.66rem;
-    gap: 0.2rem 0.35rem;
-  }
-
-  .career-timeline::before {
-    left: 0.6rem;
-  }
-
-  .career-timeline__item {
-    grid-template-columns: 1.25rem 1fr;
-    gap: 0.75rem;
-  }
-
-  .career-timeline__marker {
-    width: 0.85rem;
-    height: 0.85rem;
-    margin-top: 1.25rem;
-  }
-
-  .career-timeline__content {
-    padding: 1.15rem;
-    border-radius: 16px;
-  }
-
-  .contact-panel {
-    padding: 1.25rem;
-    border-radius: 18px;
-  }
-
-  .copy-row {
-    padding: 0.65rem 0.75rem;
-    font-size: 0.72rem;
-  }
-
-  .floating-actions {
-    right: 0.65rem;
-    bottom: 0.75rem;
-    gap: 0.5rem;
-    transform: scale(0.9);
-    transform-origin: bottom right;
-  }
-
-  .bootloader__screen {
-    width: 94vw;
-    border-radius: 16px;
-  }
-
-  .bootloader__body {
-    padding: 1rem;
-  }
-
-  .bootloader__prompt {
-    font-size: 0.7rem;
-    word-break: break-all;
-  }
-}
 
 /* ─── Reveal-up (IntersectionObserver fade-in) ─────────────────────────── */
 .reveal-up {
@@ -1140,28 +1062,33 @@ body.portfolio-intro-complete .portfolio-intro {
 }
 
 @media (max-width: 768px) {
+  .section-pad {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
   .hero-eyebrow {
-    font-size: clamp(0.6rem, 2.8vw, 0.7rem);
+    font-size: clamp(0.62rem, 2.8vw, 0.72rem);
     letter-spacing: 0.12em;
     line-height: 1.5;
   }
 
   .hero-display-name {
-    font-size: clamp(2.2rem, 10vw, 3.8rem);
+    font-size: clamp(2.2rem, 9.5vw, 3.8rem);
     line-height: 1.05;
     word-break: break-word;
   }
 
   .hero-tagline {
-    font-size: clamp(0.92rem, 3.8vw, 1.15rem);
+    font-size: clamp(0.95rem, 3.8vw, 1.15rem);
     line-height: 1.55;
   }
 
   .status-meta-block {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.4rem 0.75rem;
-    font-size: 0.62rem;
+    gap: 0.5rem 0.75rem;
+    font-size: 0.65rem;
     letter-spacing: 0.08em;
   }
 
@@ -1179,16 +1106,16 @@ body.portfolio-intro-complete .portfolio-intro {
 
   .career-timeline {
     margin-left: 0;
-    gap: 1rem;
+    gap: 1.25rem;
   }
 
   .career-timeline::before {
-    left: 0.45rem;
+    left: 0.55rem;
   }
 
   .career-timeline__item {
-    grid-template-columns: 1rem 1fr;
-    gap: 0.6rem;
+    grid-template-columns: 1.15rem 1fr;
+    gap: 0.75rem;
   }
 
   .career-timeline__marker {
@@ -1198,8 +1125,8 @@ body.portfolio-intro-complete .portfolio-intro {
   }
 
   .career-timeline__content {
-    padding: 1rem;
-    border-radius: 14px;
+    padding: 1.25rem;
+    border-radius: 18px;
   }
 
   .project-card,
@@ -1208,36 +1135,41 @@ body.portfolio-intro-complete .portfolio-intro {
   .skill-pill-card,
   .credential-card,
   .education-card {
-    padding: 1rem !important;
-    border-radius: 14px !important;
+    padding: 1.25rem !important;
+    border-radius: 18px !important;
   }
 
   .status-panel,
   .terminal-card {
-    border-radius: 16px !important;
+    border-radius: 18px !important;
   }
 
   .status-panel__body,
   .terminal-card__body {
-    padding: 0.75rem !important;
-    font-size: 0.65rem !important;
+    padding: 0.85rem !important;
+    font-size: 0.7rem !important;
   }
 
   .contact-panel {
-    padding: 1.2rem !important;
-    border-radius: 18px !important;
+    padding: 1.35rem !important;
+    border-radius: 20px !important;
   }
 
   .copy-row {
-    padding: 0.65rem 0.75rem;
-    font-size: 0.7rem;
+    padding: 0.75rem 0.85rem;
+    font-size: 0.72rem;
     gap: 0.5rem;
   }
 
   .floating-actions {
     right: 0.75rem !important;
     bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px)) !important;
-    gap: 0.4rem !important;
+    gap: 0.45rem !important;
+  }
+
+  .floating-actions__link {
+    width: 2.5rem;
+    height: 2.5rem;
   }
 }
 
