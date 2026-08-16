@@ -21,29 +21,36 @@ const currentProject = projects[0];
   <main id="main-content">
     <Hero />
 
-    <section class="border-y border-white/[0.07] bg-white/[0.02] py-8 sm:py-10" aria-label="Impact metrics">
-      <div class="mx-auto grid max-w-7xl grid-cols-2 gap-3 px-4 sm:grid-cols-3 sm:gap-4 sm:px-6 lg:grid-cols-6 lg:px-8 w-full max-w-full min-w-0 box-border">
-        {impactMetrics.map((metric, i) => (
-          <div class="rounded-2xl bg-white/[0.035] border border-white/[0.05] p-4 sm:p-5 flex flex-col justify-between h-full reveal-up" style={`animation-delay:${i * 60}ms`}>
-            <div>
-              <p class="text-2xl sm:text-3xl font-semibold text-white stat-counter" data-target={metric.value}>{metric.value}</p>
-              <p class="mt-1 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-violet">{metric.label}</p>
-            </div>
-            <p class="mt-2 text-xs leading-5 text-muted">{metric.detail}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-
     <!-- 01 — IDENTITY (Single Source of Truth for Profile Photo) -->
     <IdentitySection />
 
-    <!-- 02 — WHOAMI / Philosophy & Engineering Principles (No Photo) -->
+    <!-- 02 — STATS / Production Impact & Telemetry -->
+    <section id="stats" class="section-pad border-y border-white/[0.07] bg-white/[0.02]" aria-label="Impact metrics">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full max-w-full min-w-0 box-border">
+        <div class="mb-6 sm:mb-8 reveal-up">
+          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">02 — git diff --stat</p>
+          <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-semibold text-white">The career, diffed.</h2>
+        </div>
+        <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 xl:grid-cols-6">
+          {impactMetrics.map((metric, i) => (
+            <div class="metric-card p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06] flex flex-col justify-between h-full reveal-up" style={`animation-delay:${i * 60}ms`}>
+              <div>
+                <p class="text-2xl sm:text-3xl font-semibold text-white stat-counter" data-target={metric.value}>{metric.value}</p>
+                <p class="mt-1.5 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-violet">{metric.label}</p>
+              </div>
+              <p class="mt-2.5 text-xs leading-5 text-muted">{metric.detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 — WHOAMI / Philosophy & Engineering Principles (No Photo) -->
     <section id="about" class="section-pad">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full max-w-full min-w-0 box-border">
         <div class="mb-8 sm:mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 reveal-up">
           <div>
-            <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">02 — whoami</p>
+            <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">03 — whoami</p>
             <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-semibold text-white">Reliability is built, not assumed.</h2>
           </div>
           <span class="hidden sm:inline-flex rounded-full border border-cyan/40 bg-cyan/8 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-cyan">
@@ -87,10 +94,11 @@ const currentProject = projects[0];
       </div>
     </section>
 
+    <!-- 04 — EXPERIENCE -->
     <section id="experience" class="section-pad bg-white/[0.02]">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full max-w-full min-w-0 box-border">
         <div class="mb-8 sm:mb-10 reveal-up">
-          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">02 — git log --career</p>
+          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">04 — git log --career</p>
           <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-semibold text-white">Deployment history.</h2>
         </div>
         <div class="career-timeline">
@@ -126,31 +134,12 @@ const currentProject = projects[0];
       </div>
     </section>
 
-    <section class="section-pad">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full max-w-full min-w-0 box-border">
-        <div class="mb-6 sm:mb-8 reveal-up">
-          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">02a — git diff --stat</p>
-          <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-semibold text-white">The career, diffed.</h2>
-        </div>
-        <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 xl:grid-cols-6">
-          {impactMetrics.map((metric, i) => (
-            <div class="metric-card p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06] flex flex-col justify-between h-full reveal-up" style={`animation-delay:${i * 60}ms`}>
-              <div>
-                <p class="text-2xl sm:text-3xl font-semibold text-white stat-counter" data-target={metric.value}>{metric.value}</p>
-                <p class="mt-1.5 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-violet">{metric.label}</p>
-              </div>
-              <p class="mt-2.5 text-xs leading-5 text-muted">{metric.detail}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="section-pad bg-white/[0.02]">
+    <!-- 05 — PROJECTS -->
+    <section id="projects" class="section-pad">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full max-w-full min-w-0 box-border">
         <div class="mb-8 sm:mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 reveal-up">
           <div>
-            <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">03 — ls projects/</p>
+            <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">05 — ls projects/</p>
             <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-semibold text-white">Things I've shipped.</h2>
           </div>
           <a href="/projects" class="self-start sm:self-auto inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-xs sm:text-sm font-medium text-slate-200 hover:border-cyan/40">All projects <ExternalLink size={14} /></a>
@@ -197,10 +186,11 @@ const currentProject = projects[0];
       </div>
     </section>
 
-    <section id="skills" class="section-pad">
+    <!-- 06 — SKILLS -->
+    <section id="skills" class="section-pad bg-white/[0.02]">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full max-w-full min-w-0 box-border">
         <div class="mb-8 sm:mb-10 reveal-up">
-          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">04 — cat stack.yaml</p>
+          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">06 — cat stack.yaml</p>
           <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-semibold text-white">The toolchain, declared.</h2>
         </div>
         <div class="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
@@ -232,10 +222,11 @@ const currentProject = projects[0];
       </div>
     </section>
 
-    <section id="credentials" class="section-pad bg-white/[0.02]">
+    <!-- 07 — CREDENTIALS -->
+    <section id="credentials" class="section-pad">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full max-w-full min-w-0 box-border">
         <div class="mb-8 sm:mb-10 reveal-up">
-          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">05 — ls -la credentials/</p>
+          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">07 — ls -la credentials/</p>
           <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-semibold text-white">Proof, not promises.</h2>
         </div>
         <div class="mb-8 sm:mb-10 reveal-up">
@@ -272,12 +263,13 @@ const currentProject = projects[0];
       </div>
     </section>
 
-    <section id="contact" class="section-pad">
+    <!-- 08 — CONTACT -->
+    <section id="contact" class="section-pad bg-white/[0.02]">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full max-w-full min-w-0 box-border">
         <div class="contact-panel surface rounded-[22px] sm:rounded-[28px] border border-white/10 p-6 sm:p-8 lg:p-10">
           <div class="grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">
             <div class="reveal-up">
-              <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">07 — ping chandu</p>
+              <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">08 — ping chandu</p>
               <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-semibold text-white">Ready to ship something reliable.</h2>
               <p class="mt-4 max-w-2xl text-base sm:text-lg leading-relaxed text-slate-300">I work across cloud infrastructure, automation, Kubernetes delivery, CI/CD, observability, and production troubleshooting. Let's build something that actually works.</p>
               <div class="mt-5 sm:mt-6 max-w-md">
