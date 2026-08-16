@@ -2,7 +2,9 @@ export const profile = {
   name: 'Chandu Venna',
   title: 'DevOps / Cloud Engineer',
   tagline: 'I build resilient systems and automate the paths that keep production running — so incidents stay rare and recovery stays fast.',
-  location: 'Bengaluru',
+  location: 'Bengaluru, India',
+  experience: '5+ years',
+  photo: '/images/profile.jpg',
   email: 'chanduv4378@gmail.com',
   phone: '+91 9666032664',
   whatsapp: 'https://wa.me/919666032664?text=Hi%20Chandu%2C%20I%20found%20your%20DevOps%20portfolio%20and%20would%20like%20to%20connect.',
@@ -28,12 +30,12 @@ export const stackYaml = {
 
 export const navItems = [
   { label: 'Home', href: '/#top' },
+  { label: 'Identity', href: '/#identity' },
   { label: 'About', href: '/#about' },
   { label: 'Experience', href: '/#experience' },
   { label: 'Projects', href: '/projects' },
   { label: 'Skills', href: '/#skills' },
   { label: 'Certifications', href: '/#credentials' },
-  { label: 'Education', href: '/#education' },
   { label: 'Contact', href: '/#contact' }
 ];
 
