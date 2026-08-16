@@ -37,7 +37,7 @@ const gitChips = [
     </div>
   </div>
 
-  <div class="mx-auto grid min-h-[calc(100vh-5.5rem)] max-w-7xl items-center gap-10 px-4 pb-10 pt-10 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8 lg:pt-8">
+  <div class="mx-auto grid min-h-0 max-w-7xl items-center gap-8 px-4 pb-8 pt-4 sm:gap-10 sm:px-6 sm:pb-10 sm:pt-10 lg:min-h-[calc(100vh-5.5rem)] lg:grid-cols-[1fr_0.9fr] lg:px-8 lg:pt-8">
 
     <!-- LEFT COLUMN -->
     <div class="reveal-up">
@@ -47,49 +47,49 @@ const gitChips = [
       </p>
 
       <!-- Display name -->
-      <h1 class="hero-display-name mt-5">
+      <h1 class="hero-display-name mt-4 sm:mt-5">
         {profile.name}
       </h1>
 
       <!-- Tagline -->
-      <p class="hero-tagline mt-5">
+      <p class="hero-tagline mt-4 sm:mt-5">
         {profile.tagline}
       </p>
 
       <!-- CTAs -->
-      <div class="mt-8 flex flex-wrap items-center gap-3">
+      <div class="mt-6 sm:mt-8 flex flex-wrap items-center gap-2.5 sm:gap-3">
         <a
           href="/#contact"
           id="hero-cta-connect"
-          class="inline-flex items-center gap-2 rounded-[12px] bg-cyan px-5 py-3 font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-white"
+          class="inline-flex items-center justify-center gap-2 rounded-[12px] bg-cyan px-4 py-2.5 sm:px-5 sm:py-3 text-sm sm:text-base font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-white"
         >
-          Let's connect <ArrowRight size={17} />
+          Let's connect <ArrowRight size={16} />
         </a>
         <a
           href="/projects"
           id="hero-cta-work"
-          class="inline-flex items-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/45"
+          class="inline-flex items-center justify-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-4 py-2.5 sm:px-5 sm:py-3 text-sm sm:text-base font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/45"
         >
           View the work
         </a>
         <a
           href={profile.resume}
           id="hero-cta-resume"
-          class="inline-flex items-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:border-cyan/45"
+          class="inline-flex items-center justify-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-4 py-2.5 sm:px-5 sm:py-3 text-sm sm:text-base font-semibold text-white transition hover:-translate-y-0.5 hover:border-cyan/45"
         >
-          <Download size={17} /> Resume
+          <Download size={16} /> Resume
         </a>
         <a
           href={profile.github}
           id="hero-cta-github"
-          class="inline-flex items-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/45"
+          class="inline-flex items-center justify-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-4 py-2.5 sm:px-5 sm:py-3 text-sm sm:text-base font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/45"
         >
-          <Code size={17} /> GitHub
+          <Code size={16} /> GitHub
         </a>
       </div>
 
       <!-- Status meta block -->
-      <div class="mt-7 status-meta-block">
+      <div class="mt-6 sm:mt-7 status-meta-block">
         <span><span class="s-label">status</span><span class="s-live">● operational</span></span>
         <span><span class="s-label">region</span>ap-south-1 · Bengaluru</span>
         <span><span class="s-label">since</span>2021 · 5y+ uptime</span>
