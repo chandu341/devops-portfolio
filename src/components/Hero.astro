@@ -42,8 +42,8 @@ const gitChips = [
     <!-- LEFT COLUMN -->
     <div class="reveal-up w-full min-w-0">
       <!-- Eyebrow -->
-      <p class="hero-eyebrow break-words leading-relaxed">
-        DevOps &amp; Cloud Engineer <span class="text-slate-500">·</span> ap-south-1 / Bengaluru
+      <p class="hero-eyebrow break-words leading-relaxed text-xs uppercase tracking-widest text-cyan">
+        DevOps &amp; Cloud Engineer <span class="hidden sm:inline text-slate-500">·</span> <span class="block sm:inline text-slate-400">ap-south-1 / Bengaluru</span>
       </p>
 
       <!-- Display name -->
@@ -56,37 +56,37 @@ const gitChips = [
         {profile.tagline}
       </p>
 
-      <!-- CTAs -->
-      <div class="mt-6 sm:mt-8 grid grid-cols-2 sm:flex sm:flex-wrap gap-2.5 sm:gap-3 w-full max-w-full">
+      <!-- CTAs (Stacked on mobile, row on tablet/desktop) -->
+      <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row sm:flex-wrap gap-2.5 sm:gap-3 w-full max-w-full">
         <a
           href="/#contact"
           id="hero-cta-connect"
-          class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-[12px] bg-cyan px-3.5 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-base font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-white text-center w-full sm:w-auto"
+          class="inline-flex items-center justify-between sm:justify-center gap-2 rounded-[12px] bg-cyan px-4 py-3 sm:px-5 sm:py-3 text-sm sm:text-base font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-white text-center w-full sm:w-auto"
         >
-          Let's connect <ArrowRight size={15} />
+          <span>Let's connect</span> <ArrowRight size={16} />
         </a>
         <a
           href="/projects"
           id="hero-cta-work"
-          class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-3.5 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-base font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/45 text-center w-full sm:w-auto"
+          class="inline-flex items-center justify-between sm:justify-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-4 py-3 sm:px-5 sm:py-3 text-sm sm:text-base font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/45 text-center w-full sm:w-auto"
         >
-          View work
+          <span>View the work</span> <ArrowRight size={16} class="sm:hidden" />
         </a>
         <a
           href={profile.resume}
           id="hero-cta-resume"
-          class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-3.5 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-base font-semibold text-white transition hover:-translate-y-0.5 hover:border-cyan/45 text-center w-full sm:w-auto"
+          class="inline-flex items-center justify-between sm:justify-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-4 py-3 sm:px-5 sm:py-3 text-sm sm:text-base font-semibold text-white transition hover:-translate-y-0.5 hover:border-cyan/45 text-center w-full sm:w-auto"
         >
-          <Download size={15} /> Resume
+          <span><Download size={15} class="inline mr-1.5" /> Resume</span>
         </a>
         <a
           href={profile.github}
           id="hero-cta-github"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-3.5 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-base font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/45 text-center w-full sm:w-auto"
+          class="inline-flex items-center justify-between sm:justify-center gap-2 rounded-[12px] border border-white/12 bg-white/[0.045] px-4 py-3 sm:px-5 sm:py-3 text-sm sm:text-base font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/45 text-center w-full sm:w-auto"
         >
-          <Code size={15} /> GitHub
+          <span><Code size={15} class="inline mr-1.5" /> GitHub</span> <ArrowRight size={16} class="sm:hidden" />
         </a>
       </div>
 
