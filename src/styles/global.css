@@ -727,12 +727,25 @@ body.portfolio-intro-complete .portfolio-intro {
 }
 
 .hero-display-name {
-  font-size: clamp(2.8rem, 7vw, 5.2rem);
-  font-weight: 700;
-  line-height: 0.92;
-  letter-spacing: -0.01em;
+  font-size: clamp(3.2rem, 7.5vw, 5.6rem);
+  font-weight: 800;
+  line-height: 0.93;
+  letter-spacing: -0.025em;
   text-transform: uppercase;
-  color: #f5f7fa;
+}
+
+.hero-name-first {
+  background: linear-gradient(180deg, #FFFFFF 25%, #CBD5E1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 20px rgba(255, 255, 255, 0.12));
+}
+
+.hero-name-last {
+  background: linear-gradient(135deg, #4CC9F0 0%, #7ab8ff 50%, #7C8CFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 28px rgba(76, 201, 240, 0.38));
 }
 
 .hero-tagline {
@@ -1081,8 +1094,8 @@ body.portfolio-intro-complete .portfolio-intro {
   }
 
   .hero-display-name {
-    font-size: clamp(2.2rem, 9.5vw, 3.8rem);
-    line-height: 1.05;
+    font-size: clamp(2.4rem, 10.5vw, 3.8rem);
+    line-height: 0.96;
     word-break: break-word;
   }
 
