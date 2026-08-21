@@ -4,7 +4,7 @@ export const profile = {
   tagline: 'I build resilient systems and automate the paths that keep production running — so incidents stay rare and recovery stays fast.',
   location: 'Bengaluru, India',
   experience: '5+ years',
-  photo: '/images/profile.jpg',
+  photo: '/images/profile-image.jpeg',
   email: 'chanduv4378@gmail.com',
   phone: '+91 9666032664',
   whatsapp: 'https://wa.me/919666032664?text=Hi%20Chandu%2C%20I%20found%20your%20DevOps%20portfolio%20and%20would%20like%20to%20connect.',
