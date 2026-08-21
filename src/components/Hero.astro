@@ -169,29 +169,34 @@ const gitChips = [
     <div class="relative reveal-up w-full min-w-0 lg:pt-2" style="animation-delay: 120ms;">
       <div class="w-full max-w-full lg:max-w-lg mx-auto lg:ml-auto space-y-4">
         
-        <!-- Profile Photo Card (Single source of truth with Verified badge) -->
-        <div class="flex items-center gap-4 rounded-2xl border border-white/10 bg-panel2/80 p-3.5 sm:p-4 shadow-xl backdrop-blur-md">
-          <div class="relative aspect-square w-20 sm:w-24 flex-shrink-0 overflow-hidden rounded-xl border border-white/15 bg-panel2 shadow-lg">
+        <!-- Profile Photo Card (Generous 130-144px portrait frame with verified badge and breathing room) -->
+        <div class="flex flex-col sm:flex-row items-center sm:items-center gap-4 sm:gap-5 rounded-[22px] border border-white/10 bg-panel2/85 p-4 sm:p-5 shadow-xl backdrop-blur-md">
+          <!-- Photo frame (128-144px) -->
+          <div class="relative aspect-square w-32 sm:w-36 flex-shrink-0 overflow-hidden rounded-2xl border-2 border-white/15 bg-panel2 shadow-2xl">
             <img
               class="h-full w-full object-cover object-center"
               src={profile.photo}
               alt="Chandu Venna - DevOps / Cloud Engineer"
               loading="eager"
             />
-            <div class="absolute bottom-1 left-1/2 -translate-x-1/2">
-              <span class="inline-flex items-center rounded-full border border-white/15 bg-ink/90 px-1.5 py-0.5 font-mono text-[8px] uppercase tracking-widest text-slate-200 shadow-md backdrop-blur-md">
+            <div class="absolute bottom-1.5 left-1/2 -translate-x-1/2">
+              <span class="inline-flex items-center rounded-full border border-white/15 bg-ink/95 px-2 py-0.5 font-mono text-[9px] uppercase tracking-widest text-slate-200 shadow-md backdrop-blur-md">
                 verified ✓
               </span>
             </div>
           </div>
-          <div class="min-w-0 flex-1">
-            <div class="flex items-center gap-1.5">
-              <span class="h-2 w-2 rounded-full bg-mint"></span>
-              <span class="font-mono text-[9px] sm:text-[10px] uppercase tracking-wider text-mint font-semibold">● available for hire</span>
+
+          <!-- Identity Details with breathing room -->
+          <div class="min-w-0 flex-1 text-center sm:text-left space-y-1.5">
+            <div>
+              <span class="inline-flex items-center gap-1.5 rounded-full border border-mint/30 bg-mint/10 px-2.5 py-0.5 font-mono text-[9px] sm:text-[10px] uppercase tracking-wider text-mint font-semibold">
+                <span class="h-1.5 w-1.5 rounded-full bg-mint"></span>
+                available for hire
+              </span>
             </div>
-            <h2 class="mt-1 text-base sm:text-lg font-semibold text-white truncate">{profile.name}</h2>
-            <p class="font-mono text-[10px] sm:text-xs text-cyan truncate">{profile.title}</p>
-            <p class="mt-0.5 font-mono text-[10px] text-slate-400 truncate">Genpact · Honeywell account</p>
+            <h2 class="text-lg sm:text-xl font-semibold text-white tracking-tight">{profile.name}</h2>
+            <p class="font-mono text-xs text-cyan font-medium">{profile.title}</p>
+            <p class="font-mono text-[11px] text-slate-400">Genpact · Honeywell account</p>
           </div>
         </div>
 
