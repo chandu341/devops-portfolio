@@ -30,7 +30,6 @@ export const stackYaml = {
 
 export const navItems = [
   { label: 'Home', href: '/#top' },
-  { label: 'Identity', href: '/#identity' },
   { label: 'About', href: '/#about' },
   { label: 'Experience', href: '/#experience' },
   { label: 'Projects', href: '/projects' },
