@@ -736,11 +736,11 @@ body.portfolio-intro-complete .portfolio-intro {
 }
 
 .hero-tagline {
-  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
-  font-weight: 500;
-  line-height: 1.45;
-  color: rgba(245,247,250,0.88);
-  max-width: 36rem;
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgba(245,247,250,0.82);
+  max-width: 32rem;
 }
 
 /* ─── Git chip strip ────────────────────────────────────────────────────────── */
@@ -770,28 +770,29 @@ body.portfolio-intro-complete .portfolio-intro {
 .git-chip {
   display: inline-flex;
   align-items: center;
-  padding: 0.28rem 0.6rem;
+  padding: 0.22rem 0.5rem;
   border-radius: 999px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
   flex-shrink: 0;
+  opacity: 0.6;
 }
 
 .git-chip--green {
-  background: rgba(94,230,168,0.1);
-  border-color: rgba(94,230,168,0.25);
+  background: rgba(94,230,168,0.05);
+  border-color: rgba(94,230,168,0.12);
   color: #5EE6A8;
 }
 
 .git-chip--violet {
-  background: rgba(124,140,255,0.1);
-  border-color: rgba(124,140,255,0.25);
+  background: rgba(124,140,255,0.05);
+  border-color: rgba(124,140,255,0.12);
   color: #7C8CFF;
 }
 
 .git-chip--cyan {
-  background: rgba(76,201,240,0.1);
-  border-color: rgba(76,201,240,0.25);
+  background: rgba(76,201,240,0.05);
+  border-color: rgba(76,201,240,0.12);
   color: #4CC9F0;
 }
 
@@ -814,6 +815,12 @@ body.portfolio-intro-complete .portfolio-intro {
 
 .status-meta-block .s-live {
   color: #5EE6A8;
+}
+
+/* Clock is decorative — mute relative to location/experience */
+.status-meta-block .s-clock {
+  color: rgba(148,163,184,0.55);
+  font-size: 0.62rem;
 }
 
 /* ─── Pipeline stage pills (BootLoader) ─────────────────────────────────── */

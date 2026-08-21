@@ -31,6 +31,7 @@ import { profile } from '@/data/profile';
 
         <!-- Column 2: Identity Information -->
         <div class="flex flex-col justify-center items-center lg:items-start text-center lg:text-left min-w-0 w-full">
+          <!-- Role + Availability — quick scan line -->
           <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-3">
             <span class="font-mono text-[11px] sm:text-xs uppercase tracking-[0.18em] text-cyan">DevOps &amp; Cloud Practitioner</span>
             <span class="rounded-full border border-mint/30 bg-mint/10 px-2.5 py-0.5 font-mono text-[9px] sm:text-[10px] uppercase tracking-wider text-mint">
@@ -38,6 +39,7 @@ import { profile } from '@/data/profile';
             </span>
           </div>
 
+          <!-- Name — strong heading -->
           <h3 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-semibold text-white break-words w-full">{profile.name}</h3>
           <p class="mt-1 font-mono text-xs sm:text-sm uppercase tracking-wider text-slate-300 w-full">{profile.title}</p>
 
@@ -45,7 +47,7 @@ import { profile } from '@/data/profile';
             {profile.summary}
           </p>
 
-          <!-- Key Metadata Strip -->
+          <!-- Key Metadata Strip — Location / Experience / Availability -->
           <div class="mt-5 sm:mt-6 grid grid-cols-1 gap-2 sm:grid-cols-3 font-mono text-xs text-slate-300 w-full text-left">
             <div class="flex items-center gap-2 rounded-xl border border-white/[0.06] bg-white/[0.025] px-3 py-2.5">
               <MapPin size={14} class="text-cyan flex-shrink-0" />
@@ -61,8 +63,18 @@ import { profile } from '@/data/profile';
             </div>
           </div>
 
-          <!-- Direct Action Buttons (Even 2x2 grid on mobile) -->
+          <!-- Contact Action Buttons — priority: LinkedIn → GitHub → Resume → Email -->
           <div class="mt-5 sm:mt-6 grid grid-cols-2 lg:flex lg:flex-wrap items-center gap-2.5 sm:gap-3 w-full">
+            <!-- 1. LinkedIn — primary recruiter destination -->
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl border border-violet/30 bg-white/[0.04] px-3 py-3 sm:px-4 text-xs sm:text-sm font-medium text-white transition hover:-translate-y-0.5 hover:border-violet/55 hover:bg-white/[0.08] text-center w-full lg:w-auto"
+            >
+              <BriefcaseBusiness size={14} /> LinkedIn
+            </a>
+            <!-- 2. GitHub -->
             <a
               href={profile.github}
               target="_blank"
@@ -71,20 +83,14 @@ import { profile } from '@/data/profile';
             >
               <Code size={14} /> GitHub
             </a>
-            <a
-              href={profile.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-3 sm:px-4 text-xs sm:text-sm font-medium text-white transition hover:-translate-y-0.5 hover:border-violet/40 hover:bg-white/[0.08] text-center w-full lg:w-auto"
-            >
-              <BriefcaseBusiness size={14} /> LinkedIn
-            </a>
+            <!-- 3. Resume — filled white, highest visual weight -->
             <a
               href={profile.resume}
               class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl bg-white px-3 py-3 sm:px-4 text-xs sm:text-sm font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-cyan text-center w-full lg:w-auto"
             >
               <Download size={14} /> Resume
             </a>
+            <!-- 4. Email -->
             <a
               href={`mailto:${profile.email}`}
               class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-3 sm:px-4 text-xs sm:text-sm font-medium text-white transition hover:-translate-y-0.5 hover:border-mint/40 hover:bg-white/[0.08] text-center w-full lg:w-auto"
