@@ -103,10 +103,10 @@ import { profile } from '@/data/profile';
             >
               <Mail size={14} /> Email
             </a>
-            <!-- 5. Phone — visible text, not just floating icon -->
+            <!-- 5. Phone — visible text, spans full width on 2-col mobile -->
             <a
               href={`tel:${profile.phone.replace(/\s+/g, '')}`}
-              class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-3 sm:px-4 text-xs sm:text-sm font-medium text-white transition hover:-translate-y-0.5 hover:border-cyan/40 hover:bg-white/[0.08] text-center w-full lg:w-auto"
+              class="col-span-2 sm:col-span-1 lg:col-span-auto inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-3 sm:px-4 text-xs sm:text-sm font-medium text-white transition hover:-translate-y-0.5 hover:border-cyan/40 hover:bg-white/[0.08] text-center w-full lg:w-auto"
             >
               <Phone size={14} /> {profile.phone}
             </a>
