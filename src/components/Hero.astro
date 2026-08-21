@@ -1,5 +1,5 @@
 ---
-import { ArrowRight, BriefcaseBusiness, Building, Check, ChevronDown, Code, Download, Mail, MapPin, Phone, Sparkles } from '@lucide/astro';
+import { ArrowRight, BriefcaseBusiness, ChevronDown, Code, Download, MapPin, Sparkles } from '@lucide/astro';
 import { profile } from '@/data/profile';
 
 const allSkills = [
@@ -37,11 +37,11 @@ const gitChips = [
     </div>
   </div>
 
-  <div class="mx-auto grid min-h-0 max-w-7xl items-center gap-8 px-4 pb-10 pt-4 sm:gap-10 sm:px-6 sm:pb-12 sm:pt-8 lg:min-h-[calc(100vh-5.5rem)] lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:pt-8 w-full min-w-0">
+  <div class="mx-auto grid min-h-0 max-w-7xl items-center gap-8 px-4 pb-8 pt-4 sm:gap-10 sm:px-6 sm:pb-10 sm:pt-8 lg:min-h-[calc(100vh-5.5rem)] lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:pt-8 w-full min-w-0">
 
-    <!-- LEFT COLUMN: Candidate Identity, Narrative, Chips & Actions -->
+    <!-- LEFT COLUMN: Candidate Identity, Tagline, Chips & Actions -->
     <div class="reveal-up w-full min-w-0">
-      <!-- Eyebrow & Availability Badge -->
+      <!-- 1. Eyebrow & Availability Badge (Single primary availability statement) -->
       <div class="flex flex-wrap items-center gap-2.5 sm:gap-3">
         <p class="hero-eyebrow break-words leading-relaxed text-xs uppercase tracking-widest text-cyan font-semibold">
           DevOps / Cloud Engineer
@@ -51,47 +51,34 @@ const gitChips = [
         </span>
       </div>
 
-      <!-- Display Name — Single prominent heading -->
+      <!-- 2. Display Name — Single prominent heading -->
       <h1 class="hero-display-name mt-2.5 sm:mt-3 break-words">
         {profile.name}
       </h1>
 
-      <!-- Current-Role Credibility Line (Merged single instance) -->
+      <!-- 3. Current-Role Credibility Line -->
       <p class="mt-2 font-mono text-[11px] sm:text-xs tracking-wide text-slate-400 w-full max-w-full">
         Currently at Genpact — Honeywell account · {profile.experience} in cloud infrastructure
       </p>
 
-      <!-- Combined Flowing Narrative (Tagline as lead, Bio as supporting detail) -->
-      <div class="mt-4 space-y-2 text-sm sm:text-base leading-relaxed text-slate-300 max-w-2xl">
-        <p class="font-medium text-slate-200">
-          {profile.tagline}
-        </p>
-        <p class="text-xs sm:text-sm leading-relaxed text-slate-400">
-          {profile.summary}
-        </p>
-      </div>
+      <!-- 4. Tagline (Bio paragraph removed to avoid duplication with Whoami) -->
+      <p class="hero-tagline mt-4 sm:mt-5 text-sm sm:text-base lg:text-lg leading-relaxed text-slate-300 w-full max-w-full">
+        {profile.tagline}
+      </p>
 
-      <!-- Info Chips Grid (Location / Experience / Employer / Availability) -->
-      <div class="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-2 font-mono text-[11px] sm:text-xs text-slate-300 w-full text-left">
-        <div class="flex items-center gap-2 rounded-xl border border-white/[0.06] bg-white/[0.025] px-3 py-2.5">
+      <!-- 5. Info Chips Row (Reduced to 2 high-signal chips: Location & Experience) -->
+      <div class="mt-5 flex flex-wrap gap-2 sm:gap-2.5 font-mono text-[11px] sm:text-xs text-slate-300 w-full text-left">
+        <div class="flex items-center gap-2 rounded-xl border border-white/[0.06] bg-white/[0.025] px-3.5 py-2.5">
           <MapPin size={13} class="text-cyan flex-shrink-0" />
-          <span class="truncate">{profile.location}</span>
+          <span>{profile.location}</span>
         </div>
-        <div class="flex items-center gap-2 rounded-xl border border-white/[0.06] bg-white/[0.025] px-3 py-2.5">
+        <div class="flex items-center gap-2 rounded-xl border border-white/[0.06] bg-white/[0.025] px-3.5 py-2.5">
           <Sparkles size={13} class="text-violet flex-shrink-0" />
-          <span class="truncate">{profile.experience} Exp</span>
-        </div>
-        <div class="flex items-center gap-2 rounded-xl border border-white/[0.06] bg-white/[0.025] px-3 py-2.5">
-          <Building size={13} class="text-cyan flex-shrink-0" />
-          <span class="truncate">Genpact · Honeywell</span>
-        </div>
-        <div class="flex items-center gap-2 rounded-xl border border-white/[0.06] bg-white/[0.025] px-3 py-2.5">
-          <Check size={13} class="text-mint flex-shrink-0" />
-          <span class="text-mint truncate">Available for Hire</span>
+          <span>{profile.experience} Experience</span>
         </div>
       </div>
 
-      <!-- ── PRIMARY CTAs ── -->
+      <!-- 6. PRIMARY CTAs (3 Actions) -->
       <div class="mt-6 flex flex-col sm:flex-row sm:flex-wrap gap-2.5 sm:gap-3 w-full max-w-full">
         <!-- 1. Let's connect — PRIMARY -->
         <a
@@ -119,7 +106,7 @@ const gitChips = [
         </a>
       </div>
 
-      <!-- ── CONTACT & QUICK ACTIONS ROW: LinkedIn · GitHub · Email · Phone ── -->
+      <!-- 7. SECONDARY BUTTONS (Reduced to LinkedIn & GitHub) -->
       <div class="mt-3 flex flex-wrap items-center gap-2 sm:gap-2.5 w-full max-w-full">
         <a
           href={profile.linkedin}
@@ -138,28 +125,9 @@ const gitChips = [
         >
           <Code size={14} /> GitHub
         </a>
-        <a
-          href={`mailto:${profile.email}`}
-          class="inline-flex items-center justify-center gap-1.5 rounded-[10px] border border-white/10 bg-white/[0.03] px-3.5 py-2 text-xs sm:text-sm font-medium text-slate-300 transition hover:-translate-y-0.5 hover:border-mint/40 hover:text-white"
-        >
-          <Mail size={14} /> {profile.email}
-        </a>
-        <a
-          href={`tel:${profile.phone.replace(/\s+/g, '')}`}
-          class="inline-flex items-center justify-center gap-1.5 rounded-[10px] border border-white/10 bg-white/[0.03] px-3.5 py-2 text-xs sm:text-sm font-medium text-slate-300 transition hover:-translate-y-0.5 hover:border-cyan/40 hover:text-white"
-        >
-          <Phone size={14} /> {profile.phone}
-        </a>
       </div>
 
-      <!-- Git chip strip — tertiary decoration, aria-hidden -->
-      <div class="mt-4 sm:mt-5 git-strip" aria-hidden="true">
-        {gitChips.map((chip) => (
-          <span class:list={['git-chip', chip.cls]}>{chip.label}</span>
-        ))}
-      </div>
-
-      <!-- Scroll cue -->
+      <!-- 8. Scroll cue -->
       <a href="/#about" class="scroll-cue mt-6 sm:mt-8 inline-flex" aria-label="Scroll to About section">
         <ChevronDown size={14} />&nbsp;scroll down
       </a>
@@ -169,7 +137,7 @@ const gitChips = [
     <div class="relative reveal-up w-full min-w-0 lg:pt-2" style="animation-delay: 120ms;">
       <div class="w-full max-w-full lg:max-w-lg mx-auto lg:ml-auto space-y-4">
         
-        <!-- Profile Photo Card (Generous 130-144px portrait frame with verified badge and breathing room) -->
+        <!-- Profile Photo Card (De-cluttered: no redundant available pill) -->
         <div class="flex flex-col sm:flex-row items-center sm:items-center gap-4 sm:gap-5 rounded-[22px] border border-white/10 bg-panel2/85 p-4 sm:p-5 shadow-xl backdrop-blur-md">
           <!-- Photo frame (128-144px) -->
           <div class="relative aspect-square w-32 sm:w-36 flex-shrink-0 overflow-hidden rounded-2xl border-2 border-white/15 bg-panel2 shadow-2xl">
@@ -186,25 +154,29 @@ const gitChips = [
             </div>
           </div>
 
-          <!-- Identity Details with breathing room -->
-          <div class="min-w-0 flex-1 text-center sm:text-left space-y-1.5">
-            <div>
-              <span class="inline-flex items-center gap-1.5 rounded-full border border-mint/30 bg-mint/10 px-2.5 py-0.5 font-mono text-[9px] sm:text-[10px] uppercase tracking-wider text-mint font-semibold">
-                <span class="h-1.5 w-1.5 rounded-full bg-mint"></span>
-                available for hire
-              </span>
-            </div>
+          <!-- Identity Details -->
+          <div class="min-w-0 flex-1 text-center sm:text-left space-y-1">
             <h2 class="text-lg sm:text-xl font-semibold text-white tracking-tight">{profile.name}</h2>
             <p class="font-mono text-xs text-cyan font-medium">{profile.title}</p>
             <p class="font-mono text-[11px] text-slate-400">Genpact · Honeywell account</p>
           </div>
         </div>
 
-        <!-- Deploy Monitor Widget -->
+        <!-- Deploy Monitor Widget Area -->
         <div>
+          <!-- Caption -->
           <p class="mb-2 font-mono text-[10px] sm:text-[11px] tracking-wide text-slate-500 text-center lg:text-left">
             Live-style snapshot of a Kubernetes production environment I manage
           </p>
+
+          <!-- Relocated slim Git chip strip (Item 5) -->
+          <div class="mb-3 git-strip" aria-hidden="true">
+            {gitChips.map((chip) => (
+              <span class:list={['git-chip', chip.cls]}>{chip.label}</span>
+            ))}
+          </div>
+
+          <!-- Terminal Panel -->
           <div class="w-full rounded-[20px] sm:rounded-[22px] border border-white/10 bg-panel2/90 p-4 sm:p-5 shadow-2xl backdrop-blur-md min-w-0 box-border overflow-hidden">
             <!-- Terminal Header -->
             <div class="flex items-center justify-between border-b border-white/[0.08] pb-3">
