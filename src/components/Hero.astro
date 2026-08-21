@@ -37,7 +37,7 @@ const gitChips = [
     </div>
   </div>
 
-  <div class="mx-auto grid min-h-0 max-w-7xl items-center gap-8 px-4 pb-8 pt-4 sm:gap-10 sm:px-6 sm:pb-10 sm:pt-8 lg:min-h-[calc(100vh-5.5rem)] lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:pt-8 w-full max-w-full min-w-0">
+  <div class="mx-auto grid min-h-0 max-w-7xl items-center gap-8 px-4 pb-8 pt-4 sm:gap-10 sm:px-6 sm:pb-10 sm:pt-8 lg:min-h-[calc(100vh-5.5rem)] lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:pt-8 w-full min-w-0">
 
     <!-- LEFT COLUMN -->
     <div class="reveal-up w-full min-w-0">
@@ -143,11 +143,12 @@ const gitChips = [
 
     <!-- RIGHT COLUMN — DEPLOY-MONITOR / Production System Dashboard -->
     <div class="relative reveal-up w-full min-w-0 lg:pt-4" style="animation-delay: 120ms;">
-      <!-- Item 2: Context caption for non-technical recruiters -->
-      <p class="mb-2.5 font-mono text-[10px] sm:text-[11px] tracking-wide text-slate-500 text-center lg:text-left">
-        Live-style snapshot of a Kubernetes production environment I manage
-      </p>
-      <div class="w-full max-w-full lg:max-w-lg mx-auto lg:mx-0 rounded-[20px] sm:rounded-[22px] border border-white/10 bg-panel2/90 p-4 sm:p-6 shadow-2xl backdrop-blur-md min-w-0 box-border overflow-hidden">
+      <div class="w-full max-w-full lg:max-w-lg mx-auto lg:ml-auto">
+        <!-- Item 2: Context caption for non-technical recruiters -->
+        <p class="mb-2.5 font-mono text-[10px] sm:text-[11px] tracking-wide text-slate-500 text-center lg:text-left">
+          Live-style snapshot of a Kubernetes production environment I manage
+        </p>
+        <div class="w-full rounded-[20px] sm:rounded-[22px] border border-white/10 bg-panel2/90 p-4 sm:p-6 shadow-2xl backdrop-blur-md min-w-0 box-border overflow-hidden">
         <!-- Terminal Header -->
         <div class="flex items-center justify-between border-b border-white/[0.08] pb-3 sm:pb-3.5">
           <div class="flex items-center gap-2 min-w-0">
@@ -234,8 +235,9 @@ const gitChips = [
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Mobile Scroll cue -->
+    <!-- Mobile Scroll cue -->
       <div class="mt-6 text-center sm:hidden">
         <a href="/#identity" class="scroll-cue inline-flex" aria-label="Scroll to Identity section">
           <ChevronDown size={14} />&nbsp;scroll down
