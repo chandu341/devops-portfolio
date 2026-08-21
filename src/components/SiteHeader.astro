@@ -30,8 +30,6 @@ import { navItems, profile } from '@/data/profile';
           <span class="h-1.5 w-1.5 rounded-full bg-mint"></span>
           open to opportunities
         </span>
-        <!-- Live local clock -->
-        <span class="nav-clock" id="nav-local-time">--:--:--</span>
       </div>
     </div>
   </div>
@@ -73,11 +71,11 @@ import { navItems, profile } from '@/data/profile';
 
     <!-- Right actions -->
     <div class="hidden items-center gap-2 md:flex">
-      <a class="grid h-10 w-10 place-items-center rounded-[10px] border border-white/10 bg-white/[0.04] text-slate-200 transition hover:border-violet/40 hover:text-white" href={profile.linkedin} aria-label="LinkedIn profile">
+      <a class="grid h-10 w-10 place-items-center rounded-[10px] border border-white/10 bg-white/[0.04] text-slate-200 transition hover:border-violet/40 hover:text-white" href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
         <BriefcaseBusiness size={18} />
       </a>
-      <a class="inline-flex h-10 items-center gap-2 rounded-[10px] bg-cyan px-4 text-sm font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-white" href="/#contact">
-        Let's talk →
+      <a class="inline-flex h-10 items-center gap-2 rounded-[10px] border border-white/15 bg-white/[0.05] px-4 text-sm font-semibold text-slate-200 transition hover:-translate-y-0.5 hover:border-cyan/50 hover:text-white" href={profile.resume} aria-label="Download resume">
+        <Download size={15} /> Resume
       </a>
     </div>
   </nav>
@@ -85,19 +83,6 @@ import { navItems, profile } from '@/data/profile';
 
 <script is:inline>
   (function () {
-    // ── Live local clock ────────────────────────────────
-    var clockEl = document.getElementById('nav-local-time');
-    function updateClock() {
-      if (!clockEl) return;
-      var now = new Date();
-      var h = String(now.getHours()).padStart(2, '0');
-      var m = String(now.getMinutes()).padStart(2, '0');
-      var s = String(now.getSeconds()).padStart(2, '0');
-      clockEl.textContent = h + ':' + m + ':' + s;
-    }
-    updateClock();
-    setInterval(updateClock, 1000);
-
     // ── Active nav link via IntersectionObserver ────────
     var navLinks = Array.from(document.querySelectorAll('.nav-link[data-section]'));
     if (!navLinks.length || !('IntersectionObserver' in window)) return;
