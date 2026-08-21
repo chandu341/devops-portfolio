@@ -747,24 +747,14 @@ body.portfolio-intro-complete .portfolio-intro {
 .git-strip {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
+  gap: 0.3rem 0.4rem;
   align-items: center;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.62rem;
-  letter-spacing: 0.08em;
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
   color: rgba(148,163,184,0.85);
   width: 100%;
   max-width: 100%;
-}
-
-@media (min-width: 1024px) {
-  .git-strip {
-    flex-wrap: nowrap;
-    overflow: hidden;
-    gap: 0.5rem;
-    letter-spacing: 0.1em;
-    mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
-  }
 }
 
 .git-chip {

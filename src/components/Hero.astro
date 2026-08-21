@@ -61,12 +61,12 @@ const gitChips = [
         Currently at Genpact — Honeywell account · {profile.experience} in cloud infrastructure
       </p>
 
-      <!-- 4. Tagline (Bio paragraph removed to avoid duplication with Whoami) -->
+      <!-- 4. Tagline -->
       <p class="hero-tagline mt-4 sm:mt-5 text-sm sm:text-base lg:text-lg leading-relaxed text-slate-300 w-full max-w-full">
         {profile.tagline}
       </p>
 
-      <!-- 5. Info Chips Row (Reduced to 2 high-signal chips: Location & Experience) -->
+      <!-- 5. Info Chips Row (2 high-signal chips: Location & Experience) -->
       <div class="mt-5 flex flex-wrap gap-2 sm:gap-2.5 font-mono text-[11px] sm:text-xs text-slate-300 w-full text-left">
         <div class="flex items-center gap-2 rounded-xl border border-white/[0.06] bg-white/[0.025] px-3.5 py-2.5">
           <MapPin size={13} class="text-cyan flex-shrink-0" />
@@ -106,7 +106,7 @@ const gitChips = [
         </a>
       </div>
 
-      <!-- 7. SECONDARY BUTTONS (Reduced to LinkedIn & GitHub) -->
+      <!-- 7. SECONDARY BUTTONS (LinkedIn & GitHub) -->
       <div class="mt-3 flex flex-wrap items-center gap-2 sm:gap-2.5 w-full max-w-full">
         <a
           href={profile.linkedin}
@@ -134,21 +134,21 @@ const gitChips = [
     </div>
 
     <!-- RIGHT COLUMN — Profile Photo & Deploy Monitor Dashboard -->
-    <div class="relative reveal-up w-full min-w-0 lg:pt-2" style="animation-delay: 120ms;">
-      <div class="w-full max-w-full lg:max-w-lg mx-auto lg:ml-auto space-y-4">
+    <div class="relative reveal-up w-full min-w-0 lg:pt-1" style="animation-delay: 120ms;">
+      <div class="w-full max-w-full lg:max-w-lg mx-auto lg:ml-auto space-y-3">
         
-        <!-- Profile Photo Card (De-cluttered: no redundant available pill) -->
-        <div class="flex flex-col sm:flex-row items-center sm:items-center gap-4 sm:gap-5 rounded-[22px] border border-white/10 bg-panel2/85 p-4 sm:p-5 shadow-xl backdrop-blur-md">
-          <!-- Photo frame (128-144px) -->
-          <div class="relative aspect-square w-32 sm:w-36 flex-shrink-0 overflow-hidden rounded-2xl border-2 border-white/15 bg-panel2 shadow-2xl">
+        <!-- Profile Photo Card (Compact, proportional portrait card) -->
+        <div class="flex flex-col sm:flex-row items-center sm:items-center gap-3.5 sm:gap-4 rounded-[20px] border border-white/10 bg-panel2/85 p-3 sm:p-3.5 shadow-xl backdrop-blur-md">
+          <!-- Photo frame (96-112px) -->
+          <div class="relative aspect-square w-24 sm:w-28 flex-shrink-0 overflow-hidden rounded-xl border-2 border-white/15 bg-panel2 shadow-xl">
             <img
               class="h-full w-full object-cover object-center"
               src={profile.photo}
               alt="Chandu Venna - DevOps / Cloud Engineer"
               loading="eager"
             />
-            <div class="absolute bottom-1.5 left-1/2 -translate-x-1/2">
-              <span class="inline-flex items-center rounded-full border border-white/15 bg-ink/95 px-2 py-0.5 font-mono text-[9px] uppercase tracking-widest text-slate-200 shadow-md backdrop-blur-md">
+            <div class="absolute bottom-1 left-1/2 -translate-x-1/2">
+              <span class="inline-flex items-center rounded-full border border-white/15 bg-ink/95 px-1.5 py-0.5 font-mono text-[8px] uppercase tracking-widest text-slate-200 shadow-md backdrop-blur-md">
                 verified ✓
               </span>
             </div>
@@ -156,30 +156,30 @@ const gitChips = [
 
           <!-- Identity Details -->
           <div class="min-w-0 flex-1 text-center sm:text-left space-y-1">
-            <h2 class="text-lg sm:text-xl font-semibold text-white tracking-tight">{profile.name}</h2>
-            <p class="font-mono text-xs text-cyan font-medium">{profile.title}</p>
-            <p class="font-mono text-[11px] text-slate-400">Genpact · Honeywell account</p>
+            <h2 class="text-base sm:text-lg font-semibold text-white tracking-tight">{profile.name}</h2>
+            <p class="font-mono text-[11px] sm:text-xs text-cyan font-medium">{profile.title}</p>
+            <p class="font-mono text-[10px] sm:text-[11px] text-slate-400">Genpact · Honeywell account</p>
           </div>
         </div>
 
         <!-- Deploy Monitor Widget Area -->
         <div>
           <!-- Caption -->
-          <p class="mb-2 font-mono text-[10px] sm:text-[11px] tracking-wide text-slate-500 text-center lg:text-left">
+          <p class="mb-1.5 font-mono text-[10px] sm:text-[11px] tracking-wide text-slate-500 text-center lg:text-left">
             Live-style snapshot of a Kubernetes production environment I manage
           </p>
 
-          <!-- Relocated slim Git chip strip (Item 5) -->
-          <div class="mb-3 git-strip" aria-hidden="true">
+          <!-- Wrapped Git chip strip (Item 2) -->
+          <div class="mb-2.5 git-strip" aria-hidden="true">
             {gitChips.map((chip) => (
               <span class:list={['git-chip', chip.cls]}>{chip.label}</span>
             ))}
           </div>
 
           <!-- Terminal Panel -->
-          <div class="w-full rounded-[20px] sm:rounded-[22px] border border-white/10 bg-panel2/90 p-4 sm:p-5 shadow-2xl backdrop-blur-md min-w-0 box-border overflow-hidden">
+          <div class="w-full rounded-[18px] sm:rounded-[20px] border border-white/10 bg-panel2/90 p-3.5 sm:p-4 shadow-2xl backdrop-blur-md min-w-0 box-border overflow-hidden">
             <!-- Terminal Header -->
-            <div class="flex items-center justify-between border-b border-white/[0.08] pb-3">
+            <div class="flex items-center justify-between border-b border-white/[0.08] pb-2.5">
               <div class="flex items-center gap-2 min-w-0">
                 <span class="status-dot red flex-shrink-0"></span>
                 <span class="status-dot amber flex-shrink-0"></span>
@@ -192,13 +192,13 @@ const gitChips = [
             </div>
 
             <!-- Command Line -->
-            <div class="mt-3 font-mono text-[11px] sm:text-xs text-slate-300 truncate">
+            <div class="mt-2.5 font-mono text-[11px] sm:text-xs text-slate-300 truncate">
               <span class="text-mint">$</span> <span class="text-cyan">kubectl</span> get pods -n production
             </div>
 
-            <!-- Pods Status List -->
-            <div class="mt-2.5 space-y-1.5 font-mono text-[10px] sm:text-[11px]">
-              <div class="flex items-center justify-between rounded-xl bg-white/[0.03] px-3 py-1.5 sm:py-2 border border-white/[0.04]">
+            <!-- Pods Status List (3 key production services for height balance) -->
+            <div class="mt-2 space-y-1.5 font-mono text-[10px] sm:text-[11px]">
+              <div class="flex items-center justify-between rounded-lg bg-white/[0.03] px-3 py-1.5 border border-white/[0.04]">
                 <div class="flex items-center gap-2 min-w-0">
                   <span class="h-1.5 w-1.5 rounded-full bg-mint flex-shrink-0"></span>
                   <span class="text-slate-200 truncate">api-service-prod</span>
@@ -209,7 +209,7 @@ const gitChips = [
                 </div>
               </div>
 
-              <div class="flex items-center justify-between rounded-xl bg-white/[0.03] px-3 py-1.5 sm:py-2 border border-white/[0.04]">
+              <div class="flex items-center justify-between rounded-lg bg-white/[0.03] px-3 py-1.5 border border-white/[0.04]">
                 <div class="flex items-center gap-2 min-w-0">
                   <span class="h-1.5 w-1.5 rounded-full bg-mint flex-shrink-0"></span>
                   <span class="text-slate-200 truncate">auth-microservice</span>
@@ -220,7 +220,7 @@ const gitChips = [
                 </div>
               </div>
 
-              <div class="flex items-center justify-between rounded-xl bg-white/[0.03] px-3 py-1.5 sm:py-2 border border-white/[0.04]">
+              <div class="flex items-center justify-between rounded-lg bg-white/[0.03] px-3 py-1.5 border border-white/[0.04]">
                 <div class="flex items-center gap-2 min-w-0">
                   <span class="h-1.5 w-1.5 rounded-full bg-mint flex-shrink-0"></span>
                   <span class="text-slate-200 truncate">ingress-alb-controller</span>
@@ -230,34 +230,23 @@ const gitChips = [
                   <span class="text-mint font-medium">Running</span>
                 </div>
               </div>
-
-              <div class="flex items-center justify-between rounded-xl bg-white/[0.03] px-3 py-1.5 sm:py-2 border border-white/[0.04]">
-                <div class="flex items-center gap-2 min-w-0">
-                  <span class="h-1.5 w-1.5 rounded-full bg-cyan flex-shrink-0"></span>
-                  <span class="text-slate-200 truncate">prometheus-collector</span>
-                </div>
-                <div class="flex items-center gap-2 text-slate-400 flex-shrink-0">
-                  <span>1/1</span>
-                  <span class="text-cyan font-medium">Healthy</span>
-                </div>
-              </div>
             </div>
 
             <!-- Telemetry & Deploy Metrics Grid -->
-            <div class="mt-3 grid grid-cols-2 gap-2 pt-2.5 border-t border-white/[0.08]">
-              <div class="rounded-xl border border-white/[0.06] bg-white/[0.025] p-2 flex flex-col justify-between">
+            <div class="mt-2.5 grid grid-cols-2 gap-2 pt-2 border-t border-white/[0.08]">
+              <div class="rounded-lg border border-white/[0.06] bg-white/[0.025] p-1.5 sm:p-2 flex flex-col justify-between">
                 <span class="block font-mono text-[8px] sm:text-[9px] uppercase tracking-wider text-muted">deployment</span>
                 <span class="mt-0.5 block font-mono text-[10px] sm:text-xs font-semibold text-mint">zero-downtime deploys</span>
               </div>
-              <div class="rounded-xl border border-white/[0.06] bg-white/[0.025] p-2 flex flex-col justify-between">
+              <div class="rounded-lg border border-white/[0.06] bg-white/[0.025] p-1.5 sm:p-2 flex flex-col justify-between">
                 <span class="block font-mono text-[8px] sm:text-[9px] uppercase tracking-wider text-muted">gitops sync</span>
                 <span class="mt-0.5 block font-mono text-[10px] sm:text-xs font-semibold text-cyan">Argo CD · in-sync</span>
               </div>
-              <div class="rounded-xl border border-white/[0.06] bg-white/[0.025] p-2 flex flex-col justify-between">
+              <div class="rounded-lg border border-white/[0.06] bg-white/[0.025] p-1.5 sm:p-2 flex flex-col justify-between">
                 <span class="block font-mono text-[8px] sm:text-[9px] uppercase tracking-wider text-muted">iac state</span>
                 <span class="mt-0.5 block font-mono text-[10px] sm:text-xs font-semibold text-slate-200">Terraform · 0 drift</span>
               </div>
-              <div class="rounded-xl border border-white/[0.06] bg-white/[0.025] p-2 flex flex-col justify-between">
+              <div class="rounded-lg border border-white/[0.06] bg-white/[0.025] p-1.5 sm:p-2 flex flex-col justify-between">
                 <span class="block font-mono text-[8px] sm:text-[9px] uppercase tracking-wider text-muted">cluster health</span>
                 <span class="mt-0.5 block font-mono text-[10px] sm:text-xs font-semibold text-mint">cluster: healthy</span>
               </div>
