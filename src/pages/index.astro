@@ -3,7 +3,6 @@ import { Award, BriefcaseBusiness, ExternalLink, Mail, MessageCircle, Phone, Spa
 import ArchitectureDiagram from '@/components/ArchitectureDiagram.astro';
 import Footer from '@/components/Footer.astro';
 import Hero from '@/components/Hero.astro';
-import IdentitySection from '@/components/IdentitySection.astro';
 import SiteHeader from '@/components/SiteHeader.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { achievements, certifications, education, experiences, impactMetrics, profile, projects, skillGroups, stackYaml } from '@/data/profile';
@@ -20,9 +19,6 @@ const currentProject = projects[0];
   <SiteHeader />
   <main id="main-content">
     <Hero />
-
-    <!-- 01 — IDENTITY (Single Source of Truth for Profile Photo) -->
-    <IdentitySection />
 
     <!-- 02 — STATS / Production Impact & Telemetry -->
     <section id="stats" class="section-pad border-y border-white/[0.07] bg-white/[0.02]" aria-label="Impact metrics">
