@@ -14,18 +14,20 @@ export const profile = {
   resume: '/resume.pdf',
   availability: 'Open to DevOps / Cloud / SRE opportunities',
   summary:
-    'DevOps Engineer with 5+ years of experience creating and managing cloud infrastructure, CI/CD pipelines, Kubernetes platforms, monitoring, and production support across AWS and Azure environments.'
+    'DevOps Engineer with 5+ years of experience in creating and managing cloud-based infrastructures and CI/CD pipelines in AWS and Azure environments. Experienced in deploying containerized applications on various Kubernetes-based platforms, such as Amazon EKS and Azure AKS. Knowledgeable in using Infrastructure as Code tools, such as Terraform, and CI/CD tools, like Jenkins and GitHub Actions, in addition to GitOps using Argo CD. Experienced in using various DevSecOps tools, such as Prometheus, Grafana, Elastic Stack, and Catchpoint, in monitoring and log analysis.'
 };
 
 export const stackYaml = {
-  cloud: ['AWS', 'Azure', 'EC2', 'EKS', 'AKS', 'ECS'],
+  cloud: ['AWS', 'Azure', 'EC2', 'EKS', 'AKS', 'ECS', 'S3', 'RDS', 'DynamoDB'],
   iac: ['Terraform', 'CloudFormation', 'Ansible'],
   containers: ['Docker', 'Kubernetes', 'Helm'],
-  gitops: ['Argo CD', 'GitHub Actions', 'Jenkins'],
-  monitoring: ['Prometheus', 'Grafana', 'Elastic Stack', 'Dynatrace', 'Catchpoint Synthetic Monitoring'],
+  gitops: ['Argo CD', 'GitHub Actions', 'Jenkins', 'GitLab CI/CD', 'Azure DevOps'],
+  monitoring: ['Dynatrace', 'Grafana', 'Catchpoint', 'Elastic Stack (ELK)', 'Prometheus', 'Selenium'],
   devsecops: ['SonarQube', 'Trivy'],
-  scripting: ['Python', 'Bash', 'YAML', 'JSON'],
-  ops: ['Linux', 'Jira', 'ServiceNow', 'Confluence']
+  scripting: ['Python Script', 'Shell/Bash', 'YAML', 'JSON'],
+  ai_automation: ['Generative AI', 'LLMs', 'Prompt Engineering', 'AI-Assisted Troubleshooting', 'Log Analysis', 'Python Automation'],
+  servers_db: ['Apache', 'Nginx', 'Tomcat', 'MySQL', 'Amazon RDS', 'DynamoDB'],
+  ops: ['Linux', 'Windows', 'Jira', 'ServiceNow', 'Confluence', 'Agile']
 };
 
 export const navItems = [
@@ -49,39 +51,54 @@ export const impactMetrics = [
 
 export const skillGroups = [
   {
-    name: 'Cloud Platforms',
+    name: 'Version Control & Config Management',
     tier: 'Core',
-    skills: ['AWS', 'Azure', 'EC2', 'EKS', 'AKS', 'ECS', 'S3', 'RDS', 'DynamoDB']
+    skills: ['Git (GitHub, Bitbucket)', 'Branching Strategy', 'Repository Management']
   },
   {
-    name: 'Infrastructure as Code',
+    name: 'CI/CD & Build Automation',
     tier: 'Core',
-    skills: ['Terraform', 'CloudFormation', 'Ansible', 'VPC', 'IAM', 'Security Groups']
+    skills: ['Azure DevOps Pipelines', 'GitLab CI/CD', 'Jenkins', 'GitHub Actions', 'Argo CD']
   },
   {
     name: 'Containers & Orchestration',
     tier: 'Core',
-    skills: ['Docker', 'Kubernetes', 'Helm', 'Argo CD', 'Ingress', 'StatefulSets']
+    skills: ['Docker', 'Kubernetes', 'Helm', 'Amazon EKS', 'Azure AKS', 'Ingress', 'StatefulSets']
   },
   {
-    name: 'CI/CD & DevSecOps',
+    name: 'Cloud Platforms',
     tier: 'Core',
-    skills: ['Jenkins', 'GitHub Actions', 'Azure DevOps Pipelines', 'SonarQube', 'Trivy']
+    skills: ['Azure', 'AWS (EC2, EKS, ECS, S3, RDS, DynamoDB)', 'VPC', 'IAM', 'Security Groups']
+  },
+  {
+    name: 'Infrastructure as Code',
+    tier: 'Core',
+    skills: ['Terraform', 'CloudFormation', 'Ansible']
   },
   {
     name: 'Monitoring & Observability',
     tier: 'Strong',
-    skills: ['Prometheus', 'Grafana', 'Elastic Stack', 'Catchpoint', 'Dynatrace', 'Selenium']
+    skills: ['Dynatrace', 'Grafana', 'Catchpoint', 'ELK / Elastic Stack', 'Prometheus', 'Selenium']
   },
   {
-    name: 'Programming & Scripting',
+    name: 'AI & Automation',
+    tier: 'Core',
+    skills: ['Generative AI', 'LLMs', 'Prompt Engineering', 'AI-Assisted Troubleshooting', 'Log Analysis', 'Python Automation']
+  },
+  {
+    name: 'Scripting & Programming',
     tier: 'Supporting',
-    skills: ['Shell/Bash', 'Python Script', 'Java', 'YAML', 'JSON']
+    skills: ['Shell/Bash', 'Python Script', 'YAML', 'JSON', 'Selenium']
+  },
+  {
+    name: 'Web Servers & Databases',
+    tier: 'Supporting',
+    skills: ['Apache', 'Nginx', 'Tomcat', 'MySQL', 'Amazon RDS', 'DynamoDB']
   },
   {
     name: 'Systems & Collaboration',
     tier: 'Supporting',
-    skills: ['Linux', 'Windows', 'Apache', 'Nginx', 'Tomcat', 'Jira', 'ServiceNow', 'Confluence']
+    skills: ['Linux', 'Windows', 'Jira', 'ServiceNow', 'Confluence', 'Agile']
   }
 ];
 
@@ -93,49 +110,49 @@ export const experiences = [
     location: 'Bengaluru, India',
     dates: '10/2023 to Current',
     highlights: [
-      'Managed AWS EKS microservice deployments across production and QA for 12+ services using Docker, Kubernetes manifests, and Helm charts.',
-      'Provisioned AWS VPCs, EKS clusters, node groups, and IAM roles with Terraform, reducing environment provisioning from multiple hours to under 30 minutes.',
-      'Built and maintained Jenkins and GitHub Actions pipelines, improving deployment speed by 60%.',
-      'Implemented GitOps deployments with Argo CD for zero-downtime application delivery across environments.',
-      'Configured ALB Ingress Controllers and Route 53 for secure Kubernetes endpoints and custom domains.',
-      'Added SonarQube and Trivy checks to CI/CD pipelines before container deployments.',
-      'Built synthetic monitoring in Catchpoint with Selenium for transactions, APIs, and SSL health.',
-      'Managed Elastic Stack monitoring on AKS and resolved 20+ production and QA incidents through Jira and ServiceNow.',
-      'Supported Linux-based HPC and Grid computing environments including compute-node administration, workload scheduling, troubleshooting, and performance optimization.'
+      'Managed containerized microservices on Amazon EKS across production and QA environments, supporting 12+ services with Docker, Kubernetes and Helm while maintaining application availability, scalability and reliable releases.',
+      'Built and maintained Jenkins and GitHub Actions CI/CD pipelines, improving deployment speed by 60%, and implemented Argo CD GitOps workflows for consistent, zero-downtime deployments across environments.',
+      'Provisioned AWS infrastructure with Terraform, including VPCs, EKS clusters, node groups and IAM roles, reducing environment provisioning time from several hours to under 30 minutes through reusable IaC workflows.',
+      'Tracked SLIs including availability, error rates, latency and application health against defined SLA/SLO targets, identifying reliability risks and using Error Budgets to prioritize remediation.',
+      'Handled P1/P2 production incidents and RCA for Kubernetes and application issues by correlating Dynatrace, Catchpoint, Elastic Stack and Kubernetes logs and metrics to identify root causes, restore services and implement preventive actions.',
+      'Developed synthetic monitoring tests in Catchpoint using Selenium for critical web applications, business transactions, APIs and SSL health checks, enabling proactive detection of availability and performance issues.',
+      'Analyzed application and infrastructure logs across AKS using Elastic Stack, supporting troubleshooting, RCA and faster incident resolution during production operations.',
+      'Troubleshot production and QA Kubernetes clusters, resolving pod failures, scaling issues and 20+ incidents through Jira and ServiceNow while participating in on-call operational support.',
+      'Administered Kubernetes Deployments, Services, StatefulSets and Ingress resources alongside AWS ALB Ingress and Route 53 DNS routing to maintain reliable application connectivity and standardized deployments.',
+      'Integrated SonarQube and Trivy into CI/CD pipelines, adding automated code-quality analysis and container vulnerability scanning before production releases.'
     ],
-    technologies: ['AWS', 'EKS', 'AKS', 'Terraform', 'Kubernetes', 'Helm', 'Argo CD', 'Jenkins', 'GitHub Actions', 'Prometheus', 'Grafana', 'Elastic Stack', 'Catchpoint', 'SonarQube', 'Trivy']
+    technologies: ['AWS', 'Amazon EKS', 'Azure AKS', 'Docker', 'Kubernetes', 'Helm', 'Argo CD', 'Terraform', 'Jenkins', 'GitHub Actions', 'Dynatrace', 'Catchpoint', 'Elastic Stack', 'SonarQube', 'Trivy', 'ServiceNow', 'Jira']
   },
   {
-    role: 'Cloud Migration Project',
+    role: 'Cloud Engineer',
     company: 'GENPACT',
     client: 'GE',
     location: '',
     dates: '06/2021 to 10/2023',
     highlights: [
-      'Implemented AWS infrastructure with Terraform including VPC, multi-AZ subnets, route tables, IGW, security groups, EC2, ALB, S3, and RDS.',
-      'Improved infrastructure performance by 35-40% and reduced manual provisioning time by 50-80% through structured IaC workflows.',
-      'Created zero-touch EC2 Ubuntu provisioning using Terraform user data scripts for Apache configuration and deployment verification.',
-      'Migrated 50+ on-premises VMs and databases to AWS using rehost and replatforming strategies with zero downtime.',
-      'Managed internet-facing ALB listeners, target groups, and health checks for 99.9% availability across multiple AZs.',
-      'Provisioned S3 and RDS with Terraform while supporting secure architecture, scalable design, cost control, and Git-based version control.'
+      'Migrated 50+ on-premises VMs and databases to AWS using rehost and replatforming strategies with zero downtime, covering migration assessment, workload validation and post-migration performance optimization.',
+      'Automated AWS infrastructure with Terraform across multi-AZ VPCs, EC2, ALB, S3 and RDS, improving infrastructure performance by 35-40% and reducing manual provisioning effort by 50-80%.',
+      'Automated Ubuntu EC2 provisioning with Terraform user data scripts for Apache configuration, application bootstrapping and deployment validation, reducing release cycle time by 70%.',
+      'Implemented internet-facing Application Load Balancers with listeners, target groups and health checks, achieving 99.9% availability across multiple Availability Zones.',
+      'Provisioned and managed S3 and RDS through Terraform, using Git-based IaC workflows to maintain secure, scalable infrastructure while improving consistency and cost control.'
     ],
-    technologies: ['AWS', 'Terraform', 'VPC', 'EC2', 'ALB', 'S3', 'RDS', 'Linux', 'Apache']
+    technologies: ['AWS', 'Terraform', 'VPC', 'EC2', 'ALB', 'S3', 'RDS', 'Linux', 'Apache', 'Git']
   },
   {
-    role: 'Internship',
+    role: 'Internship Trainee',
     company: 'MNP Technologies',
     client: '',
     location: '',
     dates: '10/2020 to 03/2021',
     highlights: [
-      'Managed AWS EC2, EBS, VPC, and Security Groups for development and testing.',
-      'Configured IAM users, groups, policies, and secure access controls.',
-      'Handled Linux user management, package installation, service checks, and troubleshooting commands.',
-      'Built Docker images and ran containers to test and deploy applications.',
-      'Set up a basic Kubernetes environment and deployed test applications.',
-      'Created simple Terraform scripts to provision AWS resources and practice Infrastructure as Code.'
+      'Managed AWS resources including EC2, EBS, VPC and Security Groups to support development and testing environments.',
+      'Configured IAM users, groups and access policies, applying role-based access controls and security best practices for controlled AWS access.',
+      'Created and executed Terraform configurations to provision AWS resources, gaining practical experience with Infrastructure as Code and repeatable infrastructure deployments.',
+      'Set up a Kubernetes environment and deployed test applications to understand container orchestration, services and application lifecycle management.',
+      'Built Docker images and managed containers for application testing and deployment across development environments.',
+      'Administered Linux user accounts, installed and configured required packages, monitored services and used system troubleshooting commands to diagnose and resolve issues.'
     ],
-    technologies: ['AWS', 'IAM', 'Linux', 'Docker', 'Kubernetes', 'Terraform']
+    technologies: ['AWS', 'EC2', 'EBS', 'VPC', 'IAM', 'Terraform', 'Docker', 'Kubernetes', 'Linux']
   }
 ];
 
@@ -225,20 +242,20 @@ export const projects = [
 ];
 
 export const certifications = [
-  'AWS Solution Architect certification from Edureka',
-  'Terraform certification from Percipio SkillSoft'
+  'AWS and DevOps Internship at MNP Technologies',
+  'Completed AWS Solution Architect certification from Edureka',
+  'Completed Terraform certification from Percipio SkillSoft'
 ];
 
-export const earlyCareer = ['AWS and DevOps Internship at MNP Technologies'];
+export const achievements = [
+  'Promoted from an entry-level position to Consultant based on strong performance, technical growth and demonstrated expertise.',
+  'Received positive client feedback for consistently delivering high-quality work and meeting project requirements.',
+  'Recognized with ‘Cheers Points’ for dedication, ownership and contributions to key client projects.'
+];
 
 export const education = {
-  degree: 'Bachelor of Technology (B.Tech), Computer Science and Engineering',
-  institution: 'Aditya University',
+  degree: 'Bachelor of Technology (B.Tech): Computer Science and Engineering',
+  institution: 'Aditya University Surampalam',
   date: '05/2019'
 };
 
-export const achievements = [
-  'Promoted from an entry-level position to consultant based on performance and expertise.',
-  'Received positive client feedback for consistently delivering high-quality work.',
-  "Awarded 'Cheers Points' for dedication and exceptional contribution to client projects."
-];
