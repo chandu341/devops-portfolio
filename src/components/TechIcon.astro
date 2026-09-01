@@ -81,7 +81,7 @@ if (!rawSvg) {
 let renderedSvg = rawSvg;
 if (renderedSvg) {
   // Remove existing width/height/class attributes from the opening <svg tag
-  renderedSvg = renderedSvg.replace(/<svg\b([^>]*)>/i, (match, attrs) => {
+  renderedSvg = renderedSvg.replace(/<svg\b([^>]*)>/i, (_match, attrs) => {
     let cleanAttrs = attrs
       .replace(/\bwidth="[^"]*"/gi, '')
       .replace(/\bheight="[^"]*"/gi, '')
