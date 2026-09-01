@@ -1,0 +1,100 @@
+---
+import { BriefcaseBusiness, Mail, MessageCircle, MessageSquare, Phone, X } from '@lucide/astro';
+import { profile } from '@/data/profile';
+---
+
+<div id="floating-contact" class="fixed right-4 bottom-5 z-40 sm:right-6 sm:bottom-6">
+  
+  <!-- Popout Contact Drawer (Hidden by default, toggled with JS) -->
+  <div id="floating-menu" class="hidden mb-3 flex flex-col gap-2 rounded-2xl border border-slate-200 dark:border-white/10 bg-white/95 dark:bg-panel2/95 p-3 shadow-xl backdrop-blur-xl transition-all duration-200 min-w-[200px]">
+    <div class="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-white/10">
+      <span class="font-mono text-[10px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Direct Connect</span>
+      <button id="floating-close-btn" class="text-slate-400 hover:text-slate-700 dark:hover:text-white p-0.5" aria-label="Close contact options">
+        <X size={14} />
+      </button>
+    </div>
+
+    <a
+      href={`mailto:${profile.email}`}
+      class="flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/[0.06] transition-colors"
+    >
+      <Mail size={15} class="text-cyan" />
+      <span>{profile.email}</span>
+    </a>
+
+    <a
+      href={profile.linkedin}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/[0.06] transition-colors"
+    >
+      <BriefcaseBusiness size={15} class="text-violet" />
+      <span>LinkedIn Message</span>
+    </a>
+
+    <a
+      href={profile.whatsapp}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/[0.06] transition-colors"
+    >
+      <MessageCircle size={15} class="text-mint" />
+      <span>WhatsApp Chat</span>
+    </a>
+
+    {profile.showPhone && (
+      <a
+        href={`tel:${profile.phone.replace(/\s+/g, '')}`}
+        class="flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/[0.06] transition-colors"
+      >
+        <Phone size={15} class="text-amber" />
+        <span>Direct Call</span>
+      </a>
+    )}
+  </div>
+
+  <!-- Primary Floating Pill Button -->
+  <button
+    id="floating-trigger-btn"
+    type="button"
+    aria-label="Open contact options"
+    class="inline-flex items-center gap-2 rounded-full border border-slate-300 dark:border-white/15 bg-slate-900 dark:bg-white text-white dark:text-ink px-4 py-2.5 text-xs font-semibold shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
+  >
+    <MessageSquare size={14} class="text-cyan dark:text-ink" />
+    <span>Let's Talk</span>
+    <span class="h-1.5 w-1.5 rounded-full bg-mint animate-pulse" aria-hidden="true"></span>
+  </button>
+
+</div>
+
+<script is:inline>
+  (function () {
+    const trigger = document.getElementById('floating-trigger-btn');
+    const menu = document.getElementById('floating-menu');
+    const closeBtn = document.getElementById('floating-close-btn');
+
+    if (!trigger || !menu) return;
+
+    function toggleMenu() {
+      menu.classList.toggle('hidden');
+    }
+
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menu.classList.add('hidden');
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target) && !trigger.contains(e.target)) {
+        menu.classList.add('hidden');
+      }
+    });
+  })();
+</script>

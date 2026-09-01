@@ -1,35 +1,35 @@
-﻿---
+---
 import { ArrowUp, BriefcaseBusiness, Code, Mail, Phone } from '@lucide/astro';
 import { profile } from '@/data/profile';
 ---
 
-<footer class="border-t border-white/[0.07] bg-ink">
-  <div class="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-8 text-sm text-slate-400 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+<footer class="border-t border-slate-200 dark:border-white/[0.07] bg-white dark:bg-ink transition-colors duration-300">
+  <div class="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-8 text-sm text-slate-600 dark:text-slate-400 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
     <div>
       <a href="/#top" class="group flex items-center gap-3">
-        <span class="grid h-8 w-8 place-items-center rounded-[8px] bg-white text-xs font-bold text-ink transition group-hover:bg-cyan">CV</span>
+        <span class="grid h-8 w-8 place-items-center rounded-lg bg-slate-900 dark:bg-white text-xs font-bold text-white dark:text-ink transition group-hover:bg-cyan">CV</span>
         <span>
-          <span class="block text-base font-semibold text-white">{profile.name}</span>
-          <span class="block font-mono text-[10px] uppercase tracking-[0.18em] text-muted">DevOps / Cloud Engineer</span>
+          <span class="block text-base font-bold text-slate-900 dark:text-white font-display">{profile.name}</span>
+          <span class="block font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500 dark:text-muted">DevOps &amp; Cloud Engineer</span>
         </span>
       </a>
     </div>
-    <div class="flex flex-wrap items-center gap-3">
-      <a class="rounded-[10px] p-2 text-slate-300 hover:bg-white/[0.06] hover:text-white transition" href={profile.github} aria-label="GitHub"><Code size={18} /></a>
-      <a class="rounded-[10px] p-2 text-slate-300 hover:bg-white/[0.06] hover:text-white transition" href={profile.linkedin} aria-label="LinkedIn"><BriefcaseBusiness size={18} /></a>
-      <a class="rounded-[10px] p-2 text-slate-300 hover:bg-white/[0.06] hover:text-white transition" href={`mailto:${profile.email}`} aria-label="Email"><Mail size={18} /></a>
-      <a class="rounded-[10px] p-2 text-slate-300 hover:bg-white/[0.06] hover:text-white transition" href={`tel:${profile.phone.replace(/\s+/g, '')}`} aria-label="Phone"><Phone size={18} /></a>
-      <a class="inline-flex items-center gap-2 rounded-[10px] border border-white/10 px-3 py-2 text-xs uppercase tracking-[0.15em] text-slate-200 hover:border-cyan/50 hover:text-white transition" href={profile.resume}>Resume</a>
-      <a class="inline-flex items-center gap-2 rounded-[10px] border border-white/10 px-3 py-2 text-xs uppercase tracking-[0.15em] text-slate-200 hover:border-cyan/50 hover:text-white transition" href="#top">
+    <div class="flex flex-wrap items-center gap-2.5">
+      <a class="rounded-xl p-2.5 border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/[0.03] text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-white/[0.08] hover:text-slate-950 dark:hover:text-white transition" href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Code size={17} /></a>
+      <a class="rounded-xl p-2.5 border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/[0.03] text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-white/[0.08] hover:text-slate-950 dark:hover:text-white transition" href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><BriefcaseBusiness size={17} /></a>
+      <a class="rounded-xl p-2.5 border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/[0.03] text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-white/[0.08] hover:text-slate-950 dark:hover:text-white transition" href={`mailto:${profile.email}`} aria-label="Email"><Mail size={17} /></a>
+      <a class="rounded-xl p-2.5 border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/[0.03] text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-white/[0.08] hover:text-slate-950 dark:hover:text-white transition" href={`tel:${profile.phone.replace(/\s+/g, '')}`} aria-label="Phone"><Phone size={17} /></a>
+      <a class="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-white/[0.03] px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-800 dark:text-slate-200 hover:border-cyan hover:text-cyan transition" href={profile.resume}>Resume</a>
+      <a class="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-white/[0.03] px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-800 dark:text-slate-200 hover:border-cyan hover:text-cyan transition" href="#top">
         <ArrowUp size={14} /> Top
       </a>
     </div>
   </div>
-  <div class="border-t border-white/[0.06]">
-    <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 px-4 py-4 text-xs text-muted sm:px-6 lg:px-8">
+  <div class="border-t border-slate-200/80 dark:border-white/[0.06] bg-slate-50 dark:bg-black/20">
+    <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 px-4 py-4 text-xs text-slate-500 dark:text-muted sm:px-6 lg:px-8">
       <p>&copy; {new Date().getFullYear()} {profile.name}. All rights reserved.</p>
       <p class="font-mono uppercase tracking-[0.18em]">
-        deployed from Bengaluru, India &nbsp;·&nbsp; status: <span class="text-mint">operational</span>
+        deployed from Bengaluru, India &nbsp;·&nbsp; status: <span class="text-mint font-semibold">operational</span>
       </p>
     </div>
   </div>

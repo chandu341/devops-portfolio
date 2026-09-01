@@ -1,0 +1,102 @@
+---
+import kubernetesSvg from '@/assets/technologies/kubernetes.svg?raw';
+import terraformSvg from '@/assets/technologies/terraform.svg?raw';
+import awsSvg from '@/assets/technologies/aws.svg?raw';
+import dockerSvg from '@/assets/technologies/docker.svg?raw';
+import azureSvg from '@/assets/technologies/azure.svg?raw';
+import argocdSvg from '@/assets/technologies/argocd.svg?raw';
+import githubActionsSvg from '@/assets/technologies/github-actions.svg?raw';
+import prometheusSvg from '@/assets/technologies/prometheus.svg?raw';
+import grafanaSvg from '@/assets/technologies/grafana.svg?raw';
+import jenkinsSvg from '@/assets/technologies/jenkins.svg?raw';
+import helmSvg from '@/assets/technologies/helm.svg?raw';
+import ansibleSvg from '@/assets/technologies/ansible.svg?raw';
+import pythonSvg from '@/assets/technologies/python.svg?raw';
+import linuxSvg from '@/assets/technologies/linux.svg?raw';
+import elasticSvg from '@/assets/technologies/elastic.svg?raw';
+import dynatraceSvg from '@/assets/technologies/dynatrace.svg?raw';
+import sonarqubeSvg from '@/assets/technologies/sonarqube.svg?raw';
+import trivySvg from '@/assets/technologies/trivy.svg?raw';
+
+interface Props {
+  name: string;
+  class?: string;
+  size?: number;
+}
+
+const { name, class: className = '', size = 32 } = Astro.props;
+const key = name.toLowerCase().replace(/[\s\(\)\/\-\._]/g, '');
+
+const svgMap: Record<string, string> = {
+  kubernetes: kubernetesSvg,
+  k8s: kubernetesSvg,
+  eks: kubernetesSvg,
+  aks: kubernetesSvg,
+  terraform: terraformSvg,
+  aws: awsSvg,
+  amazonwebservices: awsSvg,
+  cloudformation: awsSvg,
+  ec2: awsSvg,
+  s3: awsSvg,
+  rds: awsSvg,
+  dynamo: awsSvg,
+  docker: dockerSvg,
+  azure: azureSvg,
+  microsoftazure: azureSvg,
+  argocd: argocdSvg,
+  argo: argocdSvg,
+  githubactions: githubActionsSvg,
+  github: githubActionsSvg,
+  git: githubActionsSvg,
+  prometheus: prometheusSvg,
+  grafana: grafanaSvg,
+  jenkins: jenkinsSvg,
+  helm: helmSvg,
+  ansible: ansibleSvg,
+  python: pythonSvg,
+  linux: linuxSvg,
+  elastic: elasticSvg,
+  elasticsearch: elasticSvg,
+  elasticstack: elasticSvg,
+  elk: elasticSvg,
+  dynatrace: dynatraceSvg,
+  sonarqube: sonarqubeSvg,
+  sonar: sonarqubeSvg,
+  trivy: trivySvg
+};
+
+let rawSvg = svgMap[key] || '';
+
+// Fallback search if exact key is not directly found
+if (!rawSvg) {
+  for (const [k, v] of Object.entries(svgMap)) {
+    if (key.includes(k) || k.includes(key)) {
+      rawSvg = v;
+      break;
+    }
+  }
+}
+
+// Clean and inject dimensions & classes into raw SVG
+let renderedSvg = rawSvg;
+if (renderedSvg) {
+  // Remove existing width/height/class attributes from the opening <svg tag
+  renderedSvg = renderedSvg.replace(/<svg\b([^>]*)>/i, (match, attrs) => {
+    let cleanAttrs = attrs
+      .replace(/\bwidth="[^"]*"/gi, '')
+      .replace(/\bheight="[^"]*"/gi, '')
+      .replace(/\bclass="[^"]*"/gi, '')
+      .trim();
+    return `<svg width="${size}" height="${size}" class="${className}" style="display:inline-block; vertical-align:middle;" ${cleanAttrs}>`;
+  });
+}
+---
+
+{renderedSvg ? (
+  <Fragment set:html={renderedSvg} />
+) : (
+  <svg class={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="16 18 22 12 16 6"></polyline>
+    <polyline points="8 6 2 12 8 18"></polyline>
+  </svg>
+)}

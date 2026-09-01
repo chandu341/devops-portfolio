@@ -1,62 +1,86 @@
 ---
-import { Award, BriefcaseBusiness, ExternalLink, Mail, MessageCircle, Phone, Sparkles } from '@lucide/astro';
+import { Award, BriefcaseBusiness, ExternalLink, Mail, MessageCircle, Phone, Sparkles, Cloud, Layers, Server, GitBranch, Cpu, ShieldCheck } from '@lucide/astro';
 import ArchitectureDiagram from '@/components/ArchitectureDiagram.astro';
 import Footer from '@/components/Footer.astro';
 import Hero from '@/components/Hero.astro';
 import SiteHeader from '@/components/SiteHeader.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import ContactSection from '@/components/ContactSection.astro';
+import FloatingContact from '@/components/FloatingContact.astro';
+import TechIcon from '@/components/TechIcon.astro';
 import { achievements, certifications, education, experiences, impactMetrics, profile, projects, skillGroups, stackYaml } from '@/data/profile';
+import { allTechnologies } from '@/data/technologies';
 
 const principleCards = [
   { id: '01', title: 'Automate toil', text: 'Reduce repetitive manual deployment and support work through reusable automation and IaC.' },
   { id: '02', title: 'Build reliable systems', text: 'Design for resilient infrastructure, health checks, and production-grade recovery paths.' },
   { id: '03', title: 'Observe everything', text: 'Document, monitor, and troubleshoot environments with structured observability and feedback loops.' }
 ];
-const focusItems = ['Cloud infrastructure automation','Kubernetes delivery & operations','Infrastructure as Code (IaC)','CI/CD pipeline engineering','Observability & monitoring','Production troubleshooting'];
+
+const focusItems = [
+  'Cloud infrastructure automation',
+  'Kubernetes delivery & operations',
+  'Infrastructure as Code (IaC)',
+  'CI/CD pipeline engineering',
+  'Observability & monitoring',
+  'Production troubleshooting'
+];
+
 const currentProject = projects[0];
 ---
+
 <BaseLayout>
   <SiteHeader />
   <main id="main-content">
     <Hero />
 
     <!-- 02 — STATS / Production Impact & Telemetry -->
-    <section id="stats" class="section-pad border-y border-white/[0.07] bg-white/[0.02]" aria-label="Impact metrics">
+    <section id="stats" class="section-pad border-y border-slate-200 dark:border-white/[0.07] bg-slate-100/60 dark:bg-white/[0.02]" aria-label="Impact metrics">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full min-w-0 box-border">
         <div class="mb-6 sm:mb-8 reveal-up">
-          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">02 — git diff --stat</p>
-          <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-semibold text-white">The career, diffed.</h2>
+          <p class="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-violet dark:text-violet inline-flex items-center gap-2">
+            <span class="inline-block h-1 w-2.5 rounded-full bg-cyan" aria-hidden="true"></span>
+            02 — git diff --stat
+          </p>
+          <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 dark:text-white font-display">
+            The career, diffed.
+          </h2>
         </div>
         <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 xl:grid-cols-6">
           {impactMetrics.map((metric, i) => (
-            <div class="metric-card p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06] flex flex-col justify-between h-full reveal-up" style={`animation-delay:${i * 60}ms`}>
+            <div class="metric-card p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-white/[0.06] bg-white/80 dark:bg-white/[0.03] flex flex-col justify-between h-full reveal-up shadow-sm dark:shadow-none" style={`animation-delay:${i * 60}ms`}>
               <div>
-                <p class="text-2xl sm:text-3xl font-semibold text-white stat-counter" data-target={metric.value}>{metric.value}</p>
-                <p class="mt-1.5 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-violet">{metric.label}</p>
+                <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white stat-counter font-display" data-target={metric.value}>{metric.value}</p>
+                <p class="mt-1.5 font-mono text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] text-violet dark:text-violet">{metric.label}</p>
               </div>
-              <p class="mt-2.5 text-xs leading-5 text-muted">{metric.detail}</p>
+              <p class="mt-2.5 text-xs leading-5 text-slate-600 dark:text-muted">{metric.detail}</p>
             </div>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- 03 — WHOAMI / Philosophy & Engineering Principles (No Photo) -->
+    <!-- 03 — WHOAMI / Philosophy & Engineering Principles -->
     <section id="about" class="section-pad">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full min-w-0 box-border">
         <div class="mb-8 sm:mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 reveal-up">
           <div>
-            <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">03 — whoami</p>
-            <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-semibold text-white">Reliability is built, not assumed.</h2>
+            <p class="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-violet dark:text-violet inline-flex items-center gap-2">
+              <span class="inline-block h-1 w-2.5 rounded-full bg-cyan" aria-hidden="true"></span>
+              03 — whoami
+            </p>
+            <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 dark:text-white font-display">
+              Reliability is built, not assumed.
+            </h2>
           </div>
-          <span class="hidden sm:inline-flex rounded-full border border-cyan/40 bg-cyan/8 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-cyan">
+          <span class="hidden sm:inline-flex rounded-full border border-cyan/40 bg-cyan/[0.08] px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan">
             {profile.availability}
           </span>
         </div>
 
         <div class="space-y-6 sm:space-y-8 reveal-up">
           <!-- Professional Narrative Summary -->
-          <div class="rounded-[20px] sm:rounded-[22px] border border-white/[0.07] bg-white/[0.02] p-5 sm:p-8 space-y-4 text-base sm:text-lg leading-relaxed sm:leading-8 text-slate-300">
+          <div class="rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-white/[0.07] bg-white/80 dark:bg-white/[0.02] p-6 sm:p-8 space-y-4 text-base sm:text-lg leading-relaxed sm:leading-8 text-slate-700 dark:text-slate-300 shadow-sm dark:shadow-none">
             <p>{profile.summary}</p>
             <p>I focus on building resilient cloud operations, infrastructure automation, and production feedback loops that reduce deployment friction and improve platform reliability across AWS and Azure workloads.</p>
           </div>
@@ -64,22 +88,25 @@ const currentProject = projects[0];
           <!-- Engineering Principles 3-Col Grid -->
           <div class="grid gap-4 md:grid-cols-3">
             {principleCards.map((card) => (
-              <article class="engineering-principle surface rounded-2xl border border-white/[0.08] p-5 sm:p-6 transition hover:-translate-y-1 flex flex-col justify-between">
+              <article class="engineering-principle surface rounded-2xl border border-slate-200 dark:border-white/[0.08] p-5 sm:p-6 transition hover:-translate-y-1 flex flex-col justify-between shadow-sm">
                 <div>
-                  <span class="font-mono text-xs uppercase tracking-[0.2em] text-violet">{card.id}</span>
-                  <h3 class="mt-2.5 sm:mt-3 text-lg sm:text-xl font-semibold text-white">{card.title}</h3>
+                  <span class="font-mono text-xs font-bold uppercase tracking-[0.2em] text-violet">{card.id}</span>
+                  <h3 class="mt-2.5 text-lg sm:text-xl font-bold text-slate-900 dark:text-white font-display">{card.title}</h3>
                 </div>
-                <p class="mt-3 text-sm leading-6 text-slate-300">{card.text}</p>
+                <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{card.text}</p>
               </article>
             ))}
           </div>
 
           <!-- Engineering Focus -->
-          <div class="rounded-[20px] sm:rounded-[22px] border border-white/[0.08] bg-white/[0.025] p-5 sm:p-6">
-            <p class="font-mono text-xs uppercase tracking-[0.18em] text-violet">Engineering focus</p>
+          <div class="rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-white/[0.08] bg-white/80 dark:bg-white/[0.025] p-5 sm:p-6 shadow-sm">
+            <p class="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-violet inline-flex items-center gap-2">
+              <span class="inline-block h-1 w-2 rounded-full bg-cyan" aria-hidden="true"></span>
+              Engineering focus
+            </p>
             <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {focusItems.map((item) => (
-                <div class="flex items-center gap-3 text-sm text-slate-200">
+                <div class="flex items-center gap-3 text-sm font-medium text-slate-700 dark:text-slate-200">
                   <span class="inline-flex h-2 w-2 flex-shrink-0 rounded-full bg-cyan"></span>
                   <span>{item}</span>
                 </div>
@@ -91,36 +118,41 @@ const currentProject = projects[0];
     </section>
 
     <!-- 04 — EXPERIENCE -->
-    <section id="experience" class="section-pad bg-white/[0.02]">
+    <section id="experience" class="section-pad bg-slate-100/60 dark:bg-white/[0.02]">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full min-w-0 box-border">
         <div class="mb-8 sm:mb-10 reveal-up">
-          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">04 — git log --career</p>
-          <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-semibold text-white">Deployment history.</h2>
+          <p class="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-violet inline-flex items-center gap-2">
+            <span class="inline-block h-1 w-2.5 rounded-full bg-cyan" aria-hidden="true"></span>
+            04 — git log --career
+          </p>
+          <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 dark:text-white font-display">
+            Deployment history.
+          </h2>
         </div>
         <div class="career-timeline">
           {experiences.map((job, index) => (
             <article class="career-timeline__item reveal-up" style={`animation-delay:${index * 80}ms`}>
               <div class="career-timeline__marker"></div>
-              <div class="career-timeline__content p-5 sm:p-6 lg:p-7 rounded-[20px] sm:rounded-[22px] surface border border-white/[0.08]">
+              <div class="career-timeline__content p-5 sm:p-6 lg:p-7 rounded-2xl sm:rounded-3xl surface border border-slate-200 dark:border-white/[0.08] shadow-sm">
                 <div class="flex flex-col gap-2 sm:gap-3 md:flex-row md:items-center md:justify-between">
                   <div>
-                    <p class="font-mono text-[10px] sm:text-xs uppercase tracking-[0.18em] text-cyan">
+                    <p class="font-mono text-[10px] sm:text-xs font-semibold uppercase tracking-[0.18em] text-cyan">
                       release/{job.dates.split(' to ')[1] ? job.dates.split(' to ')[1].toLowerCase().replace(/\s+/g, '-') : 'current'}{index === 0 ? ' — HEAD' : ''}
                     </p>
-                    <h3 class="mt-1.5 sm:mt-2 text-xl sm:text-2xl font-semibold text-white">{job.role}</h3>
+                    <h3 class="mt-1.5 text-xl sm:text-2xl font-bold text-slate-900 dark:text-white font-display">{job.role}</h3>
                   </div>
-                  {index === 0 && <span class="self-start md:self-auto rounded-full border border-cyan/40 bg-cyan/8 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-cyan">● current</span>}
+                  {index === 0 && <span class="self-start md:self-auto rounded-full border border-cyan/40 bg-cyan/[0.08] px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan">● current</span>}
                 </div>
-                <p class="mt-2 text-sm sm:text-base text-slate-300">{job.company}{job.client ? ` · ${job.client}` : ''}{job.location ? ` · ${job.location}` : ''}</p>
-                <p class="mt-1 font-mono text-[10px] sm:text-xs uppercase tracking-[0.18em] text-muted">{job.dates}</p>
-                <ul class="mt-5 sm:mt-6 grid gap-2.5 sm:gap-3 text-sm leading-6 text-muted lg:grid-cols-2">
+                <p class="mt-2 text-sm sm:text-base font-medium text-slate-700 dark:text-slate-300">{job.company}{job.client ? ` · ${job.client}` : ''}{job.location ? ` · ${job.location}` : ''}</p>
+                <p class="mt-1 font-mono text-[10px] sm:text-xs uppercase tracking-[0.18em] text-slate-500 dark:text-muted">{job.dates}</p>
+                <ul class="mt-5 sm:mt-6 grid gap-2.5 sm:gap-3 text-sm leading-6 text-slate-600 dark:text-slate-300 lg:grid-cols-2">
                   {job.highlights.map((item) => (
                     <li class="flex gap-2.5"><span class="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-violet"></span><span>{item}</span></li>
                   ))}
                 </ul>
                 <div class="mt-5 sm:mt-6 flex flex-wrap gap-2">
                   {job.technologies.map((tech) => (
-                    <span class="rounded-full border border-white/8 bg-white/[0.02] px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-slate-300">{tech}</span>
+                    <span class="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-white/8 bg-slate-100 dark:bg-white/[0.02] px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-slate-700 dark:text-slate-300">{tech}</span>
                   ))}
                 </div>
               </div>
@@ -135,44 +167,51 @@ const currentProject = projects[0];
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full min-w-0 box-border">
         <div class="mb-8 sm:mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 reveal-up">
           <div>
-            <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">05 — ls projects/</p>
-            <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-semibold text-white">Things I've shipped.</h2>
+            <p class="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-violet dark:text-violet inline-flex items-center gap-2">
+              <span class="inline-block h-1 w-2.5 rounded-full bg-cyan" aria-hidden="true"></span>
+              05 — ls projects/
+            </p>
+            <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 dark:text-white font-display">
+              Things I've shipped.
+            </h2>
           </div>
-          <a href="/projects" class="self-start sm:self-auto inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-xs sm:text-sm font-medium text-slate-200 hover:border-cyan/40">All projects <ExternalLink size={14} /></a>
+          <a href="/projects" class="self-start sm:self-auto inline-flex items-center gap-2 rounded-full border border-slate-300 dark:border-white/10 bg-white dark:bg-white/[0.03] px-4 py-2 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 hover:border-cyan/40 shadow-sm">
+            All projects <ExternalLink size={14} />
+          </a>
         </div>
         <div class="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-          <article class="project-card project-card--featured surface rounded-[20px] sm:rounded-[24px] p-5 sm:p-6 lg:p-8 reveal-up">
+          <article class="project-card project-card--featured surface rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 reveal-up shadow-md">
             <div class="flex items-center justify-between gap-3">
-              <p class="font-mono text-[10px] sm:text-xs uppercase tracking-[0.18em] text-slate-600">01 | {currentProject.category}</p>
-              <span class="rounded-full bg-mint/12 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-mint">deployed</span>
+              <p class="font-mono text-[10px] sm:text-xs font-semibold uppercase tracking-[0.18em] text-slate-600 dark:text-slate-400">01 | {currentProject.category}</p>
+              <span class="rounded-full bg-mint/12 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-mint">deployed</span>
             </div>
-            <h3 class="mt-3 sm:mt-4 text-2xl sm:text-3xl font-semibold text-ink">{currentProject.name}</h3>
-            <p class="mt-3 sm:mt-4 text-sm sm:text-base leading-relaxed text-slate-700">{currentProject.problem}</p>
+            <h3 class="mt-3 sm:mt-4 text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display">{currentProject.name}</h3>
+            <p class="mt-3 sm:mt-4 text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300">{currentProject.problem}</p>
             <div class="mt-5 sm:mt-6 grid gap-2.5 sm:gap-3 sm:grid-cols-3">
-              {currentProject.metrics.map((metric) => <div class="rounded-xl sm:rounded-2xl bg-ink/5 p-3.5 sm:p-4 text-xs sm:text-sm font-semibold text-ink">{metric}</div>)}
+              {currentProject.metrics.map((metric) => <div class="rounded-xl bg-slate-100 dark:bg-ink/50 p-3.5 sm:p-4 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-white/5">{metric}</div>)}
             </div>
-            <div class="mt-5 sm:mt-6 rounded-xl sm:rounded-2xl bg-ink p-3.5 sm:p-4 text-white overflow-hidden">
+            <div class="mt-5 sm:mt-6 rounded-xl sm:rounded-2xl bg-slate-950 p-3.5 sm:p-4 text-white overflow-hidden shadow-inner">
               <ArchitectureDiagram groups={currentProject.architecture} />
             </div>
-            <a href={`/projects/${currentProject.slug}`} class="mt-5 sm:mt-6 inline-flex items-center gap-2 rounded-[12px] bg-ink px-4 py-3 sm:px-5 sm:py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5">
+            <a href={`/projects/${currentProject.slug}`} class="mt-5 sm:mt-6 inline-flex items-center gap-2 rounded-xl bg-slate-900 dark:bg-white px-5 py-3 text-sm font-semibold text-white dark:text-ink transition hover:-translate-y-0.5 shadow-md">
               Read case study <ExternalLink size={16} />
             </a>
           </article>
           <div class="grid gap-5 sm:gap-6">
             {projects.slice(1).map((project, index) => (
-              <article class="project-card surface rounded-[20px] sm:rounded-[22px] border border-white/[0.08] p-5 sm:p-6 reveal-up flex flex-col justify-between" style={`animation-delay:${index * 80}ms`}>
+              <article class="project-card surface rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-white/[0.08] p-5 sm:p-6 reveal-up flex flex-col justify-between shadow-sm" style={`animation-delay:${index * 80}ms`}>
                 <div>
                   <div class="flex items-center justify-between gap-3">
-                    <p class="font-mono text-[10px] sm:text-xs uppercase tracking-[0.18em] text-muted">0{index + 2} | {project.category}</p>
-                    <span class="rounded-full bg-violet/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-violet">production</span>
+                    <p class="font-mono text-[10px] sm:text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-muted">0{index + 2} | {project.category}</p>
+                    <span class="rounded-full bg-violet/10 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-violet">production</span>
                   </div>
-                  <h3 class="mt-3 text-xl sm:text-2xl font-semibold text-white">{project.name}</h3>
-                  <p class="mt-2.5 text-sm leading-relaxed text-muted">{project.problem}</p>
+                  <h3 class="mt-3 text-xl sm:text-2xl font-bold text-slate-900 dark:text-white font-display">{project.name}</h3>
+                  <p class="mt-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300">{project.problem}</p>
                   <div class="mt-4 flex flex-wrap gap-2">
-                    {project.metrics.map((metric) => <span class="rounded-full bg-white/[0.06] px-2.5 py-1 text-[10px] uppercase tracking-[0.14em] text-slate-200">{metric}</span>)}
+                    {project.metrics.map((metric) => <span class="rounded-lg bg-slate-100 dark:bg-white/[0.06] border border-slate-200 dark:border-white/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.14em] text-slate-700 dark:text-slate-200 font-mono">{metric}</span>)}
                   </div>
                 </div>
-                <a href={`/projects/${project.slug}`} class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-violet hover:text-white transition">
+                <a href={`/projects/${project.slug}`} class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-violet hover:text-cyan transition">
                   Open case study <ExternalLink size={15} />
                 </a>
               </article>
@@ -182,39 +221,81 @@ const currentProject = projects[0];
       </div>
     </section>
 
-    <!-- 06 — SKILLS -->
-    <section id="skills" class="section-pad bg-white/[0.02]">
+    <!-- 06 — VISUAL SKILLS & TOOLCHAIN ECOSYSTEM -->
+    <section id="skills" class="section-pad bg-slate-100/60 dark:bg-white/[0.02]">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full min-w-0 box-border">
+        
         <div class="mb-8 sm:mb-10 reveal-up">
-          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">06 — cat stack.yaml</p>
-          <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-semibold text-white">The toolchain, declared.</h2>
+          <p class="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-violet dark:text-violet inline-flex items-center gap-2">
+            <span class="inline-block h-1 w-2.5 rounded-full bg-cyan" aria-hidden="true"></span>
+            06 — visual toolchain &amp; declared stack
+          </p>
+          <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 dark:text-white font-display">
+            The technical ecosystem, visualized.
+          </h2>
+          <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl font-normal">
+            Technologies and tooling verified across 5+ years of production cloud engineering, Kubernetes delivery, and automated infrastructure.
+          </p>
         </div>
-        <div class="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-          <div class="stack-panel rounded-[20px] sm:rounded-[22px] border border-white/10 bg-panel2/90 overflow-hidden reveal-up">
-            <div class="flex items-center gap-2 border-b border-white/[0.07] px-4 py-3">
-              <span class="status-dot red"></span><span class="status-dot amber"></span><span class="status-dot green"></span>
-              <span class="ml-2 font-mono text-[10px] tracking-widest text-muted uppercase">infra/stack.yaml</span>
+
+        <!-- 1. Visual Tool Cards Grid (6 Columns x 3 Rows) -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-3.5 mb-10 reveal-up">
+          {allTechnologies.map((tool) => (
+            <div class="group flex flex-col justify-between rounded-2xl border border-slate-300/80 dark:border-white/[0.09] bg-[#CFD6E0] dark:bg-[#18202E] p-3.5 sm:p-4 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1 hover:border-cyan/50">
+              <!-- Top Header: Logo + Tag -->
+              <div class="flex items-center justify-between gap-2">
+                <span class="transition-transform duration-200 group-hover:scale-110 flex-shrink-0">
+                  <TechIcon name={tool.id} size={30} />
+                </span>
+                <span class="rounded-md border border-slate-400/40 dark:border-white/15 bg-slate-300/60 dark:bg-white/[0.06] px-2 py-0.5 font-mono text-[8.5px] font-bold uppercase tracking-wider text-slate-800 dark:text-slate-300 flex-shrink-0">
+                  {tool.tag}
+                </span>
+              </div>
+              <!-- Content: Name + Description -->
+              <div class="mt-3.5">
+                <h3 class="text-xs sm:text-sm font-bold text-slate-950 dark:text-white truncate font-display">{tool.name}</h3>
+                <p class="mt-0.5 font-mono text-[10px] text-slate-600 dark:text-slate-400 truncate">{tool.shortDesc}</p>
+              </div>
             </div>
-            <pre class="overflow-x-auto p-4 sm:p-5 font-mono text-xs sm:text-sm leading-relaxed text-slate-200 m-0"><code><span class="yaml-line"><span class="yaml-comment"># infra/stack.yaml — tracked · drift-checked</span></span>
+          ))}
+        </div>
+
+        <!-- 2. Side-by-Side: Interactive YAML Manifest + Categorized Skill Groups -->
+        <div class="grid gap-6 lg:grid-cols-[1fr_1fr]">
+          
+          <!-- YAML Manifest Viewer -->
+          <div class="stack-panel rounded-2xl sm:rounded-3xl border border-slate-300 dark:border-white/10 bg-slate-900 text-slate-100 overflow-hidden reveal-up shadow-md">
+            <div class="flex items-center justify-between border-b border-white/[0.08] px-4 py-3 bg-black/30">
+              <div class="flex items-center gap-2">
+                <span class="status-dot red"></span><span class="status-dot amber"></span><span class="status-dot green"></span>
+                <span class="ml-2 font-mono text-[10px] tracking-widest text-slate-400 uppercase">infra/stack.yaml</span>
+              </div>
+              <span class="font-mono text-[9px] text-mint uppercase tracking-wider">● drift-checked</span>
+            </div>
+            <pre class="overflow-x-auto p-4 sm:p-5 font-mono text-xs leading-relaxed text-slate-200 m-0 bg-transparent"><code><span class="yaml-line"><span class="yaml-comment"># infra/stack.yaml — declarative toolchain</span></span>
 <span class="yaml-line"><span class="yaml-key">stack:</span></span>
 {Object.entries(stackYaml).map(([key, vals]) => (
   <span class="yaml-line">  <span class="yaml-key">{key}:</span><span class="yaml-val"> [{vals.join(', ')}]</span></span>
 ))}
-<span class="yaml-line"><span class="yaml-comment"># mode: automate · observe · ship reliably</span></span>
+<span class="yaml-line"><span class="yaml-comment"># mode: zero-downtime · observable · resilient</span></span>
 </code></pre>
           </div>
-          <div class="grid gap-3 sm:gap-4 reveal-up" style="animation-delay:100ms">
-            {skillGroups.map((group) => (
-              <article class="skill-pill-card surface rounded-2xl border border-white/[0.08] p-4 sm:p-5 transition hover:-translate-y-1">
+
+          <!-- Structured Capability Pillars -->
+          <div class="grid gap-3 sm:gap-3.5 reveal-up" style="animation-delay:100ms">
+            {skillGroups.slice(0, 5).map((group) => (
+              <article class="surface rounded-2xl border border-slate-200 dark:border-white/[0.08] p-4 sm:p-4.5 transition hover:-translate-y-0.5 shadow-sm">
                 <div class="flex items-start justify-between gap-4">
-                  <h3 class="text-base sm:text-lg font-semibold text-white">{group.name}</h3>
-                  <span class="rounded-full bg-white/[0.04] px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.15em] text-muted">{group.tier}</span>
+                  <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white font-display">{group.name}</h3>
+                  <span class="rounded-full bg-slate-100 dark:bg-white/[0.05] px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-[0.15em] text-slate-600 dark:text-muted">{group.tier}</span>
                 </div>
-                <p class="mt-2.5 text-xs sm:text-sm leading-relaxed text-slate-300">{group.skills.join(' · ')}</p>
+                <p class="mt-2 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-300">{group.skills.join(' · ')}</p>
               </article>
             ))}
           </div>
+
         </div>
+
       </div>
     </section>
 
@@ -222,89 +303,60 @@ const currentProject = projects[0];
     <section id="credentials" class="section-pad">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full min-w-0 box-border">
         <div class="mb-8 sm:mb-10 reveal-up">
-          <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">07 — ls -la credentials/</p>
-          <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-semibold text-white">Proof, not promises.</h2>
+          <p class="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-violet dark:text-violet inline-flex items-center gap-2">
+            <span class="inline-block h-1 w-2.5 rounded-full bg-cyan" aria-hidden="true"></span>
+            07 — ls -la credentials/
+          </p>
+          <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 dark:text-white font-display">
+            Proof, not promises.
+          </h2>
         </div>
+
         <div class="mb-8 sm:mb-10 reveal-up">
-          <p class="mb-3 sm:mb-4 font-mono text-xs uppercase tracking-[0.2em] text-muted">Certifications</p>
+          <p class="mb-3 sm:mb-4 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-muted">Certifications</p>
           <div class="flex flex-wrap gap-2.5 sm:gap-3">
             {certifications.map((cert) => (
-              <a href={profile.linkedin} class="cred-pill rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-2 text-xs sm:text-sm text-slate-200 transition hover:border-amber/40 hover:bg-white/[0.06] inline-flex items-center gap-2" target="_blank" rel="noopener noreferrer">
+              <a href={profile.linkedin} class="cred-pill rounded-full border border-slate-300 dark:border-white/10 bg-white dark:bg-white/[0.03] px-4 py-2.5 text-xs sm:text-sm text-slate-800 dark:text-slate-200 transition hover:border-amber hover:shadow-sm inline-flex items-center gap-2 font-medium" target="_blank" rel="noopener noreferrer">
                 <Award size={15} class="text-amber flex-shrink-0" />
                 <span>{cert}</span>
-                <ExternalLink size={12} class="text-muted ml-1" />
+                <ExternalLink size={12} class="text-slate-400 ml-1" />
               </a>
             ))}
           </div>
         </div>
+
         <div class="mb-8 sm:mb-10">
-          <p class="mb-3 sm:mb-4 font-mono text-xs uppercase tracking-[0.2em] text-muted">Recognition</p>
+          <p class="mb-3 sm:mb-4 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-muted">Recognition</p>
           <div class="grid gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-3">
             {achievements.map((item, i) => (
-              <article class="credential-card surface rounded-2xl border border-white/[0.08] p-4 sm:p-5 reveal-up flex flex-col justify-between" style={`animation-delay:${i * 60}ms`}>
-                <div class="flex items-center gap-2.5"><Sparkles size={16} class="text-mint flex-shrink-0" /><span class="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">achievement</span></div>
-                <p class="mt-3 text-xs sm:text-sm leading-relaxed text-slate-300">{item}</p>
+              <article class="credential-card surface rounded-2xl border border-slate-200 dark:border-white/[0.08] p-4 sm:p-5 reveal-up flex flex-col justify-between shadow-sm" style={`animation-delay:${i * 60}ms`}>
+                <div class="flex items-center gap-2.5">
+                  <Sparkles size={16} class="text-mint flex-shrink-0" />
+                  <span class="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-muted">achievement</span>
+                </div>
+                <p class="mt-3 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-300">{item}</p>
               </article>
             ))}
           </div>
         </div>
+
         <div class="reveal-up">
-          <p class="mb-3 sm:mb-4 font-mono text-xs uppercase tracking-[0.2em] text-muted">Education</p>
-          <div class="education-card surface rounded-[20px] sm:rounded-[22px] border border-white/[0.08] p-5 sm:p-6">
-            <p class="font-mono text-[10px] sm:text-xs uppercase tracking-[0.18em] text-cyan">{education.date}</p>
-            <h3 class="mt-2 text-xl sm:text-2xl font-semibold text-white">{education.degree}</h3>
-            <p class="mt-1.5 text-sm sm:text-base text-slate-300">{education.institution}</p>
+          <p class="mb-3 sm:mb-4 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-muted">Education</p>
+          <div class="education-card surface rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-white/[0.08] p-5 sm:p-6 shadow-sm">
+            <p class="font-mono text-[10px] sm:text-xs font-semibold uppercase tracking-[0.18em] text-cyan">{education.date}</p>
+            <h3 class="mt-2 text-xl sm:text-2xl font-bold text-slate-900 dark:text-white font-display">{education.degree}</h3>
+            <p class="mt-1.5 text-sm sm:text-base text-slate-600 dark:text-slate-300">{education.institution}</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 08 — CONTACT -->
-    <section id="contact" class="section-pad bg-white/[0.02]">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full min-w-0 box-border">
-        <div class="contact-panel surface rounded-[22px] sm:rounded-[28px] border border-white/10 p-6 sm:p-8 lg:p-10">
-          <div class="grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">
-            <div class="reveal-up">
-              <p class="font-mono text-xs uppercase tracking-[0.22em] text-violet">08 — ping chandu</p>
-              <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-semibold text-white">Ready to ship something reliable.</h2>
-              <p class="mt-4 max-w-2xl text-base sm:text-lg leading-relaxed text-slate-300">I work across cloud infrastructure, automation, Kubernetes delivery, CI/CD, observability, and production troubleshooting. Let's build something that actually works.</p>
-              <div class="mt-5 sm:mt-6 max-w-md">
-                <button id="email-copy-btn" class="copy-row w-full flex items-center justify-between gap-2.5 rounded-xl border border-white/10 bg-white/[0.03] px-3.5 py-2.5 sm:px-4 sm:py-3 font-mono text-xs sm:text-sm text-slate-200 transition hover:border-cyan/40 hover:bg-white/[0.06]" type="button" aria-label="Copy email address to clipboard">
-                  <span class="copy-row__prompt text-cyan">$</span>
-                  <span class="copy-row__email truncate" id="email-copy-text">echo {profile.email} | clip</span>
-                  <span class="copy-row__action text-[10px] sm:text-xs uppercase tracking-widest text-muted" id="email-copy-label">copy ↗</span>
-                </button>
-              </div>
-              <div class="mt-6 sm:mt-8 grid grid-cols-2 sm:flex sm:flex-wrap gap-2.5 sm:gap-3 w-full">
-                <a href={`mailto:${profile.email}`} class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl bg-white px-3.5 py-3 sm:px-5 text-xs sm:text-sm font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-cyan text-center w-full sm:w-auto"><Mail size={16} /> Email Me</a>
-                <a href={`tel:${profile.phone.replace(/\s+/g, '')}`} class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl border border-white/12 bg-white/[0.04] px-3.5 py-3 sm:px-5 text-xs sm:text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-cyan/40 text-center w-full sm:w-auto"><Phone size={16} /> {profile.phone}</a>
-                <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl border border-white/12 bg-white/[0.04] px-3.5 py-3 sm:px-5 text-xs sm:text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-violet/40 text-center w-full sm:w-auto"><BriefcaseBusiness size={16} /> LinkedIn</a>
-                <a href={profile.whatsapp} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl border border-white/12 bg-white/[0.04] px-3.5 py-3 sm:px-5 text-xs sm:text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-mint/40 text-center w-full sm:w-auto"><MessageCircle size={16} /> WhatsApp</a>
-              </div>
-            </div>
-            <div class="terminal-card rounded-2xl border border-white/10 bg-black/40 overflow-hidden reveal-up" style="animation-delay:100ms">
-              <div class="terminal-card__header flex items-center gap-2 border-b border-white/[0.07] px-4 py-3">
-                <span class="status-dot red"></span><span class="status-dot amber"></span><span class="status-dot green"></span>
-                <span class="terminal-card__label ml-2 font-mono text-[10px] tracking-widest text-muted uppercase">$ ping chandu</span>
-              </div>
-              <div class="terminal-card__body p-4 sm:p-5 font-mono text-xs sm:text-sm leading-relaxed space-y-2">
-                <p class="text-slate-200">status: <span class="text-mint font-semibold">available_for_opportunities=true</span></p>
-                <p class="text-slate-200">email: <span class="text-cyan">{profile.email}</span></p>
-                <p class="text-slate-200">location: <span class="text-slate-300">{profile.location}</span></p>
-                <p class="text-slate-200">focus: <span class="text-violet">cloud · automation · kubernetes</span></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- 08 — FUNCTIONAL CONTACT SECTION WITH REAL EMAIL DISPATCH -->
+    <ContactSection />
   </main>
 
-  <div class="floating-actions" aria-label="Quick contact actions">
-    <a href={profile.whatsapp} class="floating-actions__link whatsapp" aria-label="Open WhatsApp"><MessageCircle size={18} /></a>
-    <a href={`tel:${profile.phone.replace(/\s+/g, '')}`} class="floating-actions__link" aria-label="Call Chandu Venna"><Phone size={18} /></a>
-    <a href={profile.linkedin} class="floating-actions__link linkedin" aria-label="Open LinkedIn"><BriefcaseBusiness size={18} /></a>
-  </div>
+  <!-- Elegant Floating Contact Trigger -->
+  <FloatingContact />
 
   <Footer />
 </BaseLayout>
@@ -344,20 +396,6 @@ const currentProject = projects[0];
         });
       }, { threshold: 0.5 });
       document.querySelectorAll('.stat-counter').forEach(function (el) { ctrObs.observe(el); });
-    }
-
-    var copyBtn = document.getElementById('email-copy-btn');
-    var copyLabel = document.getElementById('email-copy-label');
-    var copyText = document.getElementById('email-copy-text');
-    if (copyBtn && copyLabel && copyText && navigator.clipboard) {
-      var EMAIL = copyText.textContent.replace('echo ', '').replace(' | clip', '').trim();
-      copyBtn.addEventListener('click', function () {
-        navigator.clipboard.writeText(EMAIL).then(function () {
-          copyLabel.textContent = '✓ copied!';
-          copyText.style.color = '#5EE6A8';
-          setTimeout(function () { copyLabel.textContent = 'copy ↗'; copyText.style.color = ''; }, 2000);
-        });
-      });
     }
   })();
 </script>

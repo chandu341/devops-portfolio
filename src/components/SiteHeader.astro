@@ -1,119 +1,135 @@
 ---
-import { BriefcaseBusiness, Code, Download, Menu } from '@lucide/astro';
+import { BriefcaseBusiness, Code, Download, Menu, Sparkles } from '@lucide/astro';
 import { navItems, profile } from '@/data/profile';
+import ThemeToggle from '@/components/ThemeToggle.astro';
 ---
 
 <!-- Skip to content (accessibility) -->
 <a href="#main-content" class="skip-link">Skip to content</a>
 
-<header id="site-header" class="sticky top-0 z-50 border-b border-white/[0.07] bg-ink/80 backdrop-blur-xl">
-  <!-- Top status bar -->
-  <div class="border-b border-white/[0.04] bg-white/[0.02]">
-    <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-1.5 sm:px-6 lg:px-8">
-      <div class="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
-        <span class="flex items-center gap-1.5">
-          <span class="inline-block h-1.5 w-1.5 rounded-full bg-mint"></span>
-          <span class="text-mint">build: pass</span>
-        </span>
-        <span class="hidden items-center gap-1.5 md:flex">
-          <span class="inline-block h-1.5 w-1.5 rounded-full bg-cyan"></span>
-          <span>deploy: healthy</span>
-        </span>
-        <span class="hidden items-center gap-1.5 lg:flex">
-          <span class="inline-block h-1.5 w-1.5 rounded-full bg-violet"></span>
-          <span>status: operational</span>
-        </span>
-      </div>
-      <div class="flex items-center gap-3">
-        <!-- Availability pill -->
-        <span class="hidden items-center gap-1.5 rounded-full border border-mint/25 bg-mint/8 px-2.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.16em] text-mint md:inline-flex">
-          <span class="h-1.5 w-1.5 rounded-full bg-mint"></span>
-          open to opportunities
-        </span>
-      </div>
-    </div>
-  </div>
-
+<header id="site-header" class="sticky top-0 z-50 border-b border-slate-200/80 dark:border-white/[0.07] bg-white/80 dark:bg-ink/80 backdrop-blur-xl transition-colors duration-300">
   <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8" aria-label="Main navigation">
-    <a href="/#top" class="group flex items-center gap-2.5 sm:gap-3 font-semibold min-w-0">
-      <span class="grid h-9 w-9 sm:h-10 sm:w-10 place-items-center rounded-[10px] bg-white text-xs sm:text-sm font-bold text-ink transition group-hover:bg-cyan flex-shrink-0">CV</span>
+    
+    <!-- Candidate Monogram & Brand Identity -->
+    <a href="/#top" class="group flex items-center gap-3 font-semibold min-w-0" aria-label="Go to top">
+      <span class="grid h-9 w-9 sm:h-10 sm:w-10 place-items-center rounded-xl bg-slate-900 dark:bg-white text-xs sm:text-sm font-bold text-white dark:text-ink transition-transform duration-200 group-hover:scale-105 shadow-sm flex-shrink-0">
+        CV
+      </span>
       <span class="leading-tight min-w-0">
-        <span class="block text-sm sm:text-base text-white truncate">{profile.name}</span>
-        <span class="block font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.12em] sm:tracking-[0.16em] text-muted truncate max-w-[150px] sm:max-w-none">{profile.title}</span>
+        <span class="block text-sm sm:text-base font-bold text-slate-900 dark:text-white truncate font-display">
+          {profile.name}
+        </span>
+        <span class="block font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400 truncate">
+          DevOps &amp; Cloud Engineer
+        </span>
       </span>
     </a>
 
-    <!-- Mobile hamburger -->
-    <details class="group md:hidden">
-      <summary class="grid h-10 w-10 cursor-pointer list-none place-items-center rounded-[10px] border border-white/12 bg-white/[0.04] text-white">
-        <Menu size={18} aria-label="Open navigation menu" />
-      </summary>
-      <div class="absolute left-3 right-3 top-full mt-2 z-50 rounded-2xl border border-white/10 bg-panel p-3 shadow-lift">
-        {navItems.map((item) => <a class="block rounded-[10px] px-3 py-2.5 text-sm text-slate-200 hover:bg-white/[0.06]" href={item.href}>{item.label}</a>)}
-        <div class="mt-2 grid grid-cols-3 gap-2 border-t border-white/10 pt-3">
-          <a class="grid h-10 place-items-center rounded-[10px] bg-white/[0.05] text-slate-200" href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile"><Code size={17} /></a>
-          <a class="grid h-10 place-items-center rounded-[10px] bg-white/[0.05] text-slate-200" href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile"><BriefcaseBusiness size={17} /></a>
-          <a class="grid h-10 place-items-center rounded-[10px] bg-white text-ink" href={profile.resume} aria-label="Download resume"><Download size={17} /></a>
-        </div>
-      </div>
-    </details>
-
-    <!-- Desktop nav -->
-    <div class="hidden items-center gap-1 rounded-full border border-white/[0.07] bg-white/[0.035] p-1 md:flex">
+    <!-- Desktop Navigation Links -->
+    <div class="hidden items-center gap-1 rounded-full border border-slate-200 dark:border-white/[0.07] bg-slate-100/80 dark:bg-white/[0.035] p-1 lg:flex">
       {navItems.map((item) => (
         <a
-          class="nav-link rounded-full px-4 py-2 text-sm text-slate-300 transition hover:bg-white/[0.06] hover:text-white"
+          class="nav-link rounded-full px-4 py-1.5 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-300 transition-colors hover:bg-white dark:hover:bg-white/[0.08] hover:text-slate-950 dark:hover:text-white"
           href={item.href}
           data-section={item.href.replace('/#', '').replace('/', '')}
-        >{item.label}</a>
+        >
+          {item.label}
+        </a>
       ))}
     </div>
 
-    <!-- Right actions -->
-    <div class="hidden items-center gap-2 md:flex">
-      <a class="grid h-10 w-10 place-items-center rounded-[10px] border border-white/10 bg-white/[0.04] text-slate-200 transition hover:border-violet/40 hover:text-white" href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
-        <BriefcaseBusiness size={18} />
+    <!-- Desktop Right Controls: Availability + Theme Toggle + Resume -->
+    <div class="hidden items-center gap-3 md:flex">
+      <!-- Subtle Availability Status Pill -->
+      <span class="hidden xl:inline-flex items-center gap-1.5 rounded-full border border-mint/40 bg-mint/[0.08] px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-mint">
+        <span class="h-1.5 w-1.5 rounded-full bg-mint animate-pulse"></span>
+        Available for hire
+      </span>
+
+      <!-- Theme Switcher -->
+      <ThemeToggle id="theme-toggle-desktop" />
+
+      <!-- LinkedIn Quick Link -->
+      <a
+        class="grid h-9 w-9 place-items-center rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.04] text-slate-700 dark:text-slate-300 transition-colors hover:border-violet/40 hover:text-violet"
+        href={profile.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn profile"
+      >
+        <BriefcaseBusiness size={16} />
       </a>
-      <a class="inline-flex h-10 items-center gap-2 rounded-[10px] border border-white/15 bg-white/[0.05] px-4 text-sm font-semibold text-slate-200 transition hover:-translate-y-0.5 hover:border-cyan/50 hover:text-white" href={profile.resume} aria-label="Download resume">
-        <Download size={15} /> Resume
+
+      <!-- Direct Resume Button -->
+      <a
+        class="inline-flex h-9 items-center gap-1.5 rounded-xl border border-slate-300 dark:border-white/15 bg-slate-900 dark:bg-white text-white dark:text-ink px-3.5 text-xs font-semibold shadow-sm transition hover:scale-105 active:scale-95"
+        href={profile.resume}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Download resume"
+      >
+        <Download size={14} /> Resume
       </a>
     </div>
+
+    <!-- Mobile Navigation Toggle + Theme Switcher -->
+    <div class="flex items-center gap-2 md:hidden">
+      <ThemeToggle id="theme-toggle-mobile" />
+      <details class="group">
+        <summary class="grid h-9 w-9 cursor-pointer list-none place-items-center rounded-xl border border-slate-300 dark:border-white/12 bg-slate-100 dark:bg-white/[0.04] text-slate-800 dark:text-white">
+          <Menu size={18} aria-label="Open navigation menu" />
+        </summary>
+        <div class="absolute left-3 right-3 top-full mt-2 z-50 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-panel p-3 shadow-xl backdrop-blur-xl">
+          {navItems.map((item) => (
+            <a class="block rounded-xl px-3.5 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/[0.06]" href={item.href}>
+              {item.label}
+            </a>
+          ))}
+          <div class="mt-2 grid grid-cols-3 gap-2 border-t border-slate-200 dark:border-white/10 pt-3">
+            <a class="grid h-10 place-items-center rounded-xl bg-slate-100 dark:bg-white/[0.05] text-slate-700 dark:text-slate-200" href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile"><Code size={17} /></a>
+            <a class="grid h-10 place-items-center rounded-xl bg-slate-100 dark:bg-white/[0.05] text-slate-700 dark:text-slate-200" href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile"><BriefcaseBusiness size={17} /></a>
+            <a class="grid h-10 place-items-center rounded-xl bg-slate-900 dark:bg-white text-white dark:text-ink font-semibold text-xs" href={profile.resume} aria-label="Download resume"><Download size={16} /></a>
+          </div>
+        </div>
+      </details>
+    </div>
+
   </nav>
 </header>
 
 <script is:inline>
   (function () {
-    // ── Active nav link via IntersectionObserver ────────
     var navLinks = Array.from(document.querySelectorAll('.nav-link[data-section]'));
     if (!navLinks.length || !('IntersectionObserver' in window)) return;
 
     var activeSections = new Set();
+    var obs = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          var id = entry.target.id;
+          if (entry.isIntersecting) {
+            activeSections.add(id);
+          } else {
+            activeSections.delete(id);
+          }
+        });
 
-    var sectionIds = navLinks.map(function (l) { return l.getAttribute('data-section'); }).filter(Boolean);
+        navLinks.forEach(function (link) {
+          var sec = link.getAttribute('data-section');
+          if (activeSections.has(sec)) {
+            link.classList.add('bg-white', 'dark:bg-white/[0.08]', 'text-slate-950', 'dark:text-white', 'shadow-xs');
+            link.classList.remove('text-slate-600', 'dark:text-slate-300');
+          } else {
+            link.classList.remove('bg-white', 'dark:bg-white/[0.08]', 'text-slate-950', 'dark:text-white', 'shadow-xs');
+            link.classList.add('text-slate-600', 'dark:text-slate-300');
+          }
+        });
+      },
+      { rootMargin: '-20% 0px -70% 0px', threshold: 0.1 }
+    );
 
-    function setActive(id) {
-      navLinks.forEach(function (l) {
-        var match = l.getAttribute('data-section') === id;
-        l.classList.toggle('nav-link--active', match);
-      });
-    }
-
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          activeSections.add(entry.target.id);
-        } else {
-          activeSections.delete(entry.target.id);
-        }
-      });
-      // Activate topmost visible section
-      var topId = sectionIds.find(function (id) { return activeSections.has(id); });
-      if (topId) setActive(topId);
-    }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
-
-    sectionIds.forEach(function (id) {
-      var el = document.getElementById(id);
-      if (el) observer.observe(el);
+    document.querySelectorAll('section[id]').forEach(function (el) {
+      obs.observe(el);
     });
   })();
 </script>

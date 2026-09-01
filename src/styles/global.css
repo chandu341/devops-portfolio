@@ -3,10 +3,16 @@
 @tailwind utilities;
 
 :root {
+  color-scheme: light;
+  font-family: "Plus Jakarta Sans", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #F8FAFC;
+  color: #0F172A;
+}
+
+html.dark {
   color-scheme: dark;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: #080B10;
-  color: #F5F7FA;
+  color: #F8FAFC;
 }
 
 html {
@@ -18,10 +24,22 @@ body {
   min-width: 320px;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 16% 4%, rgba(76, 201, 240, 0.11), transparent 28rem),
-    radial-gradient(circle at 84% 20%, rgba(124, 140, 255, 0.1), transparent 30rem),
-    radial-gradient(circle at 50% 82%, rgba(94, 230, 168, 0.055), transparent 34rem),
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(2, 132, 199, 0.08), transparent),
+    radial-gradient(circle at 16% 4%, rgba(99, 102, 241, 0.06), transparent 28rem),
+    radial-gradient(circle at 84% 20%, rgba(5, 150, 105, 0.05), transparent 30rem),
+    linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 50%, #F8FAFC 100%);
+  color: #0F172A;
+  transition: background-color 300ms ease, color 300ms ease;
+}
+
+html.dark body {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(56, 189, 248, 0.12), transparent),
+    radial-gradient(circle at 16% 4%, rgba(56, 189, 248, 0.08), transparent 28rem),
+    radial-gradient(circle at 84% 20%, rgba(129, 140, 248, 0.09), transparent 30rem),
+    radial-gradient(circle at 50% 82%, rgba(52, 211, 153, 0.055), transparent 34rem),
     linear-gradient(180deg, #080B10 0%, #0B1016 45%, #080B10 100%);
+  color: #F8FAFC;
 }
 
 body::before {
@@ -30,12 +48,17 @@ body::before {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(245, 247, 250, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(245, 247, 250, 0.035) 1px, transparent 1px),
-    linear-gradient(115deg, transparent 0%, rgba(76, 201, 240, 0.035) 48%, transparent 58%);
-  background-size: 56px 56px, 56px 56px, 520px 520px;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.78), transparent 76%);
-  animation: grid-drift 28s linear infinite;
+    linear-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+  background-size: 52px 52px, 52px 52px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent 82%);
+  animation: grid-drift 30s linear infinite;
+}
+
+html.dark body::before {
+  background-image:
+    linear-gradient(rgba(245, 247, 250, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 247, 250, 0.045) 1px, transparent 1px);
 }
 
 body::after {
@@ -44,12 +67,19 @@ body::after {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 30% 30%, rgba(76, 201, 240, 0.08), transparent 22rem),
-    radial-gradient(circle at 72% 22%, rgba(124, 140, 255, 0.07), transparent 24rem);
-  filter: blur(22px);
-  opacity: 0.72;
+    radial-gradient(circle at 30% 30%, rgba(2, 132, 199, 0.05), transparent 22rem),
+    radial-gradient(circle at 72% 22%, rgba(99, 102, 241, 0.04), transparent 24rem);
+  filter: blur(24px);
+  opacity: 0.6;
   transform: translate3d(0, 0, 0);
   animation: ambient-shift 24s ease-in-out infinite alternate;
+}
+
+html.dark body::after {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(76, 201, 240, 0.07), transparent 22rem),
+    radial-gradient(circle at 72% 22%, rgba(124, 140, 255, 0.06), transparent 24rem);
+  opacity: 0.72;
 }
 
 a {
@@ -57,12 +87,20 @@ a {
 }
 
 ::selection {
-  background: rgba(53, 208, 216, 0.32);
+  background: rgba(2, 132, 199, 0.25);
+}
+
+html.dark ::selection {
+  background: rgba(56, 189, 248, 0.3);
 }
 
 :focus-visible {
-  outline: 2px solid #35d0d8;
+  outline: 2px solid #0284c7;
   outline-offset: 4px;
+}
+
+html.dark :focus-visible {
+  outline: 2px solid #38bdf8;
 }
 
 .section-pad {
@@ -70,53 +108,20 @@ a {
 }
 
 .surface {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+}
+
+html.dark .surface {
   background: linear-gradient(180deg, rgba(18, 25, 34, 0.86), rgba(14, 19, 26, 0.88));
   border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 14px 42px rgba(2, 6, 12, 0.24);
 }
 
 .reveal {
   animation: rise-in 700ms ease both;
 }
-
-.terminal-strip {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(10,14,20,0.72);
-  border-radius: 12px;
-  padding: 0.7rem 1rem;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
-}
-
-.terminal-strip__label {
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  text-transform: lowercase;
-  color: rgba(226,232,240,0.92);
-}
-
-.terminal-strip__status {
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 0.62rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(154,166,178,0.9);
-}
-
-.status-bullet {
-  display: inline-block;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  margin-right: 0.25rem;
-}
-
-.status-bullet.green { background: #5EE6A8; }
 
 .stat-card,
 .metric-card,
@@ -128,9 +133,24 @@ a {
 .project-card,
 .contact-panel,
 .terminal-card {
-  background: rgba(12, 18, 25, 0.72);
-  border: 1px solid rgba(255,255,255,0.06);
-  box-shadow: 0 14px 42px rgba(2,6,12,0.24);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+}
+
+html.dark .stat-card,
+html.dark .metric-card,
+html.dark .engineering-principle,
+html.dark .skill-pill-card,
+html.dark .credential-card,
+html.dark .education-card,
+html.dark .identity-card,
+html.dark .project-card,
+html.dark .contact-panel,
+html.dark .terminal-card {
+  background: rgba(12, 18, 25, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 14px 42px rgba(2, 6, 12, 0.24);
 }
 
 .stat-card {
@@ -728,26 +748,61 @@ body.portfolio-intro-complete .portfolio-intro {
 
 .hero-display-name {
   font-size: clamp(2.2rem, 3.8vw, 3.4rem);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.12;
   letter-spacing: -0.02em;
   text-transform: uppercase;
   color: #F5F7FA;
+  text-shadow: 0 0 36px rgba(76, 201, 240, 0.22), 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .hero-tagline {
-  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
   font-weight: 400;
-  line-height: 1.6;
-  color: rgba(245,247,250,0.82);
+  line-height: 1.62;
+  color: rgba(245,247,250,0.8);
   max-width: 32rem;
+}
+
+/* ─── Hero micro-interaction entrance animations ─────────────────────────── */
+@keyframes hero-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-animate-in {
+  opacity: 0;
+  animation: hero-fade-up 550ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pulse-live-dot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(94, 230, 168, 0.45);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(0.92);
+    box-shadow: 0 0 8px 2px rgba(94, 230, 168, 0.28);
+  }
+}
+
+.status-dot-pulse {
+  animation: pulse-live-dot 2.2s ease-in-out infinite;
 }
 
 /* ─── Git chip strip ────────────────────────────────────────────────────────── */
 .git-strip {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.3rem 0.4rem;
+  gap: 0.35rem 0.45rem;
   align-items: center;
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.6rem;
@@ -765,25 +820,48 @@ body.portfolio-intro-complete .portfolio-intro {
   background: rgba(255,255,255,0.02);
   border: 1px solid rgba(255,255,255,0.05);
   flex-shrink: 0;
-  opacity: 0.6;
+  opacity: 0.72;
+  transition: transform 200ms ease-out, border-color 200ms ease-out, background-color 200ms ease-out, opacity 200ms ease-out;
+}
+
+.git-chip:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .git-chip--green {
   background: rgba(94,230,168,0.05);
-  border-color: rgba(94,230,168,0.12);
+  border-color: rgba(94,230,168,0.14);
   color: #5EE6A8;
+}
+
+.git-chip--green:hover {
+  border-color: rgba(94, 230, 168, 0.38);
+  background: rgba(94, 230, 168, 0.1);
 }
 
 .git-chip--violet {
   background: rgba(124,140,255,0.05);
-  border-color: rgba(124,140,255,0.12);
+  border-color: rgba(124,140,255,0.14);
   color: #7C8CFF;
+}
+
+.git-chip--violet:hover {
+  border-color: rgba(124, 140, 255, 0.38);
+  background: rgba(124, 140, 255, 0.1);
 }
 
 .git-chip--cyan {
   background: rgba(76,201,240,0.05);
-  border-color: rgba(76,201,240,0.12);
+  border-color: rgba(76,201,240,0.14);
   color: #4CC9F0;
+}
+
+.git-chip--cyan:hover {
+  border-color: rgba(76, 201, 240, 0.38);
+  background: rgba(76, 201, 240, 0.1);
 }
 
 /* ─── Status meta block ────────────────────────────────────────────────────── */
@@ -1182,6 +1260,8 @@ body.portfolio-intro-complete .portfolio-intro {
   body::after,
   .reveal,
   .reveal-up,
+  .hero-animate-in,
+  .status-dot-pulse,
   .marquee-track,
   .scroll-cue,
   .orbital-glow,
@@ -1192,7 +1272,8 @@ body.portfolio-intro-complete .portfolio-intro {
     animation: none !important;
   }
 
-  .reveal-up {
+  .reveal-up,
+  .hero-animate-in {
     opacity: 1 !important;
     transform: none !important;
   }

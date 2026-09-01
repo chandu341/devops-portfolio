@@ -3,7 +3,7 @@ import { ArrowLeft, CircleCheckBig } from '@lucide/astro';
 import ArchitectureDiagram from '@/components/ArchitectureDiagram.astro';
 import Footer from '@/components/Footer.astro';
 import SiteHeader from '@/components/SiteHeader.astro';
-import { projects } from '@/data/profile';
+import { profile, projects } from '@/data/profile';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 
 export function getStaticPaths() {
@@ -16,91 +16,97 @@ export function getStaticPaths() {
 const { project } = Astro.props;
 ---
 
-<BaseLayout title={`${project.name} | Chandu Venna`} description={project.summary} canonical={`/projects/${project.slug}`}>
+<BaseLayout title={`${project.name} | ${profile.name}`} description={project.summary} canonical={`/projects/${project.slug}`}>
   <SiteHeader />
   <main id="main-content" class="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
-    <div class="mb-8 font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
-      <a href="/projects" class="inline-flex items-center gap-2 text-violet hover:text-white transition">
+    <div class="mb-8 font-mono text-[11px] uppercase tracking-[0.18em] text-slate-500 dark:text-muted flex items-center gap-2">
+      <a href="/projects" class="inline-flex items-center gap-1.5 text-violet hover:text-cyan transition font-semibold">
         <ArrowLeft size={14} /> ~/projects/
       </a>
-      <span class="ml-2 text-slate-500">&gt; {project.slug}</span>
+      <span class="text-slate-400 dark:text-slate-600">/</span>
+      <span class="text-slate-700 dark:text-slate-400">{project.slug}</span>
     </div>
-    <article>
+    
+    <article class="space-y-12">
       <header class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
         <div>
-          <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-violet">{project.category}</p>
-          <h1 class="mt-3 sm:mt-5 text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight text-white">{project.name}</h1>
+          <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-violet dark:text-violet">{project.category}</p>
+          <h1 class="mt-3 sm:mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-slate-900 dark:text-white font-display">{project.name}</h1>
         </div>
         <div>
-          <p class="text-lg leading-8 text-muted">{project.summary}</p>
-          <div class="mt-5 flex flex-wrap gap-2 text-sm text-slate-300">
-            <span class="rounded-full bg-white/[0.055] px-3 py-1">client: {project.client}</span>
-            <span class="rounded-full bg-mint/10 px-3 py-1 text-mint font-mono text-[10px] uppercase tracking-[0.14em]">resume-backed</span>
+          <p class="text-base sm:text-lg leading-relaxed text-slate-600 dark:text-slate-300">{project.summary}</p>
+          <div class="mt-5 flex flex-wrap gap-2 text-sm">
+            <span class="rounded-full border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.05] px-3 py-1 font-mono text-xs text-slate-700 dark:text-slate-300">client: {project.client}</span>
+            <span class="rounded-full border border-mint/40 bg-mint/10 px-3 py-1 text-mint font-mono text-[10px] font-semibold uppercase tracking-[0.14em]">production verified</span>
           </div>
         </div>
       </header>
-      <section class="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+
+      <!-- Key Outcomes Metrics -->
+      <section class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {project.metrics.map((metric) => (
-          <div class="rounded-2xl bg-white p-5 text-ink">
-            <p class="text-2xl font-semibold">{metric.split(' ')[0]}</p>
-            <p class="mt-2 text-sm font-medium text-slate-700">{metric}</p>
+          <div class="rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white/90 dark:bg-panel2/80 p-5 shadow-sm">
+            <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-display">{metric.split(' ')[0]}</p>
+            <p class="mt-2 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-300">{metric}</p>
           </div>
         ))}
       </section>
-      <section class="mt-12 rounded-[20px] bg-panel2/75 p-5">
-        <div class="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+
+      <!-- Architecture Overview -->
+      <section class="rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-white/[0.08] bg-white/90 dark:bg-panel2/80 p-6 sm:p-8 shadow-sm">
+        <div class="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between border-b border-slate-200 dark:border-white/[0.08] pb-4">
           <div>
-            <p class="font-mono text-xs uppercase tracking-[0.2em] text-violet">Architecture</p>
-            <h2 class="mt-2 text-3xl font-semibold text-white">Implementation overview</h2>
+            <p class="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-violet dark:text-violet">Architecture</p>
+            <h2 class="mt-1.5 text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display">Implementation overview</h2>
           </div>
-          <p class="max-w-md text-sm leading-6 text-muted">Structured from resume-supported tools and responsibilities.</p>
+          <p class="max-w-md text-xs sm:text-sm text-slate-500 dark:text-slate-400">Structured from resume-supported tools and responsibilities.</p>
         </div>
-        <ArchitectureDiagram groups={project.architecture} />
+        <div class="rounded-xl sm:rounded-2xl p-4 bg-slate-950 text-white overflow-hidden shadow-inner">
+          <ArchitectureDiagram groups={project.architecture} />
+        </div>
       </section>
-      <section class="mt-14 grid gap-10 lg:grid-cols-[0.72fr_1.28fr]">
+
+      <!-- Deep Dive Grid -->
+      <section class="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] pt-4">
         <aside class="space-y-8">
-          <div>
-            <p class="font-mono text-xs uppercase tracking-[0.2em] text-violet">Technology</p>
+          <div class="rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white/80 dark:bg-panel2/60 p-5 shadow-sm">
+            <p class="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-violet dark:text-violet">Toolchain Stack</p>
             <div class="mt-4 flex flex-wrap gap-2">
               {project.stack.map((tech) => (
-                <span class="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-slate-300">{tech}</span>
+                <span class="rounded-lg border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/[0.04] px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-slate-700 dark:text-slate-300">{tech}</span>
               ))}
             </div>
           </div>
-          <div>
-            <p class="font-mono text-xs uppercase tracking-[0.2em] text-violet">Evidence Boundary</p>
-            <p class="mt-4 text-sm leading-7 text-muted">All content is derived from the provided resume and project data.</p>
+          <div class="rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white/80 dark:bg-panel2/60 p-5 shadow-sm">
+            <p class="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-violet dark:text-violet">Evidence Boundary</p>
+            <p class="mt-3 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-400">All content is derived from validated production experience and project deliverables.</p>
           </div>
         </aside>
-        <div class="space-y-10">
-          <section>
-            <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-violet">Problem</p>
-            <h2 class="mt-2 text-2xl font-semibold text-white">The Challenge</h2>
-            <p class="mt-4 text-lg leading-8 text-muted">{project.problem}</p>
+
+        <div class="space-y-8">
+          <section class="rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white/80 dark:bg-panel2/60 p-6 shadow-sm">
+            <p class="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-violet dark:text-violet">Problem Statement</p>
+            <h2 class="mt-1.5 text-xl sm:text-2xl font-bold text-slate-900 dark:text-white font-display">The Challenge</h2>
+            <p class="mt-3 text-base leading-relaxed text-slate-600 dark:text-slate-300">{project.problem}</p>
           </section>
-          <section>
-            <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-violet">Solution</p>
-            <h2 class="mt-2 text-2xl font-semibold text-white">The Approach</h2>
-            <p class="mt-4 text-lg leading-8 text-muted">{project.solution}</p>
+
+          <section class="rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white/80 dark:bg-panel2/60 p-6 shadow-sm">
+            <p class="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-violet dark:text-violet">Technical Solution</p>
+            <h2 class="mt-1.5 text-xl sm:text-2xl font-bold text-slate-900 dark:text-white font-display">The Approach</h2>
+            <p class="mt-3 text-base leading-relaxed text-slate-600 dark:text-slate-300">{project.solution}</p>
           </section>
-          <section>
-            <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-violet">Results</p>
-            <h2 class="mt-2 text-2xl font-semibold text-white">Outcomes</h2>
-            <ul class="mt-5 grid gap-3">
+
+          <section class="rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white/80 dark:bg-panel2/60 p-6 shadow-sm">
+            <p class="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-violet dark:text-violet">Quantifiable Impact</p>
+            <h2 class="mt-1.5 text-xl sm:text-2xl font-bold text-slate-900 dark:text-white font-display">Outcomes &amp; Deliverables</h2>
+            <ul class="mt-4 grid gap-3">
               {project.outcomes.map((outcome) => (
-                <li class="flex gap-3 text-sm leading-6 text-slate-300">
+                <li class="flex gap-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
                   <CircleCheckBig class="mt-0.5 flex-shrink-0 text-mint" size={18} />
                   <span>{outcome}</span>
                 </li>
               ))}
             </ul>
-          </section>
-          <section>
-            <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-violet">Lessons</p>
-            <h2 class="mt-2 text-2xl font-semibold text-white">Key Takeaways</h2>
-            <p class="mt-4 text-lg leading-8 text-muted">
-              Reliable DevOps work depends on repeatable infrastructure, traceable deployments, usable monitoring signals, and clear handoffs between automation and incident response.
-            </p>
           </section>
         </div>
       </section>

@@ -1,7 +1,7 @@
 export const profile = {
   name: 'Chandu Venna',
-  title: 'DevOps / Cloud Engineer',
-  tagline: 'I build resilient systems and automate the paths that keep production running so incidents stay rare and recovery stays fast.',
+  title: 'DevOps & Cloud Engineer',
+  tagline: 'I build resilient cloud systems and automate the paths that keep production running — so incidents stay rare and recovery stays fast.',
   location: 'Bengaluru, India',
   experience: '5+ years',
   photo: '/images/profile-image.jpeg',
