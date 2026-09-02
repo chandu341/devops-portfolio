@@ -23,15 +23,15 @@ const pipelineStages = [
     tag: 'FOUNDATION',
     domain: 'Public Cloud & VPC',
     accent: 'cyan',
-    accentColor: '#0284C7',
-    accentGlow: 'rgba(2, 132, 199, 0.4)',
+    accentColor: '#38BDF8',
+    accentGlow: 'rgba(56, 189, 248, 0.38)',
+    accentBorder: 'rgba(56, 189, 248, 0.5)',
     technologies: [
       { id: 'aws', name: 'AWS' },
       { id: 'azure', name: 'Azure' }
     ],
     highlight: 'Multi-AZ VPCs, EKS, EC2, S3, RDS & IAM security',
     delay: '0s',
-    // Desktop layout coordinates (in 640x520 canvas)
     x: 95,
     y: 75
   },
@@ -42,8 +42,9 @@ const pipelineStages = [
     tag: 'PROVISIONING',
     domain: 'Declarative State',
     accent: 'violet',
-    accentColor: '#6366F1',
-    accentGlow: 'rgba(99, 102, 241, 0.4)',
+    accentColor: '#818CF8',
+    accentGlow: 'rgba(129, 140, 248, 0.38)',
+    accentBorder: 'rgba(129, 140, 248, 0.5)',
     technologies: [
       { id: 'terraform', name: 'Terraform' },
       { id: 'ansible', name: 'Ansible' }
@@ -60,8 +61,9 @@ const pipelineStages = [
     tag: 'PACKAGING',
     domain: 'Immutable Runtime',
     accent: 'cyan',
-    accentColor: '#0284C7',
-    accentGlow: 'rgba(2, 132, 199, 0.4)',
+    accentColor: '#38BDF8',
+    accentGlow: 'rgba(56, 189, 248, 0.38)',
+    accentBorder: 'rgba(56, 189, 248, 0.5)',
     technologies: [
       { id: 'docker', name: 'Docker' }
     ],
@@ -77,8 +79,9 @@ const pipelineStages = [
     tag: 'PLATFORM',
     domain: 'Kubernetes Platform',
     accent: 'cyan',
-    accentColor: '#0284C7',
-    accentGlow: 'rgba(2, 132, 199, 0.4)',
+    accentColor: '#38BDF8',
+    accentGlow: 'rgba(56, 189, 248, 0.38)',
+    accentBorder: 'rgba(56, 189, 248, 0.5)',
     technologies: [
       { id: 'kubernetes', name: 'Kubernetes' },
       { id: 'helm', name: 'Helm' }
@@ -95,8 +98,9 @@ const pipelineStages = [
     tag: 'DELIVERY',
     domain: 'Automated Pipelines',
     accent: 'violet',
-    accentColor: '#6366F1',
-    accentGlow: 'rgba(99, 102, 241, 0.4)',
+    accentColor: '#818CF8',
+    accentGlow: 'rgba(129, 140, 248, 0.38)',
+    accentBorder: 'rgba(129, 140, 248, 0.5)',
     technologies: [
       { id: 'githubactions', name: 'GitHub Actions' },
       { id: 'jenkins', name: 'Jenkins' }
@@ -113,8 +117,9 @@ const pipelineStages = [
     tag: 'GITOPS',
     domain: 'Declarative Sync',
     accent: 'mint',
-    accentColor: '#059669',
-    accentGlow: 'rgba(5, 150, 105, 0.4)',
+    accentColor: '#34D399',
+    accentGlow: 'rgba(52, 211, 153, 0.38)',
+    accentBorder: 'rgba(52, 211, 153, 0.5)',
     technologies: [
       { id: 'argocd', name: 'Argo CD' }
     ],
@@ -130,8 +135,9 @@ const pipelineStages = [
     tag: 'OBSERVE',
     domain: 'APM, Logs & Synthetics',
     accent: 'mint',
-    accentColor: '#059669',
-    accentGlow: 'rgba(5, 150, 105, 0.4)',
+    accentColor: '#34D399',
+    accentGlow: 'rgba(52, 211, 153, 0.38)',
+    accentBorder: 'rgba(52, 211, 153, 0.5)',
     technologies: [
       { id: 'prometheus', name: 'Prometheus' },
       { id: 'grafana', name: 'Grafana' },
@@ -146,25 +152,28 @@ const pipelineStages = [
 ];
 
 // Continuous SVG Pipeline Circuit Path for Desktop (640x520)
-// Starts at Stage 01 (95, 75) -> Stage 02 (320, 75) -> Stage 03 (545, 75)
-// -> Curves down right to Row 2 -> Stage 04 (545, 255) -> Stage 05 (320, 255) -> Stage 06 (95, 255)
-// -> Curves down left to Row 3 -> Stage 07 (320, 435) -> (545, 435)
 const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255 L 320 255 L 95 255 C 15 255, 15 435, 95 435 L 320 435 L 545 435';
 ---
 
 <section class="relative overflow-hidden pt-6 sm:pt-10 lg:pt-14 pb-12 sm:pb-16 lg:pb-24" id="top">
 
-  <!-- Ambient Background Glow Mesh (Theme-adaptive) -->
+  <!-- Layered Ambient Depth Field -->
   <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-    <div class="absolute -top-32 left-1/4 h-[550px] w-[550px] rounded-full bg-cyan/[0.07] dark:bg-cyan/[0.08] blur-[130px]"></div>
-    <div class="absolute top-1/3 right-0 h-[500px] w-[500px] rounded-full bg-violet/[0.06] dark:bg-violet/[0.08] blur-[130px]"></div>
-    <div class="absolute -bottom-20 left-1/3 h-[400px] w-[400px] rounded-full bg-mint/[0.04] dark:bg-mint/[0.05] blur-[120px]"></div>
-    <div class="absolute inset-0 bg-grid-pattern opacity-10 dark:opacity-20"></div>
+    <!-- Primary atmospheric orb - top left -->
+    <div class="hero-orb hero-orb--cyan absolute -top-40 -left-16 h-[800px] w-[800px] rounded-full"></div>
+    <!-- Secondary orb - right center -->
+    <div class="hero-orb hero-orb--violet absolute top-1/4 -right-24 h-[700px] w-[700px] rounded-full"></div>
+    <!-- Tertiary orb - bottom -->
+    <div class="hero-orb hero-orb--mint absolute -bottom-28 left-1/3 h-[600px] w-[600px] rounded-full"></div>
+    <!-- Engineering grid overlay -->
+    <div class="absolute inset-0 hero-grid-pattern opacity-[0.055] dark:opacity-[0.14]"></div>
+    <!-- Radial vignette top -->
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_0%,rgba(56,189,248,0.04)_0%,transparent_65%)] dark:bg-[radial-gradient(ellipse_70%_55%_at_50%_0%,rgba(56,189,248,0.09)_0%,transparent_65%)]"></div>
   </div>
 
   <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full min-w-0">
 
-    <!-- Main Hero Layout: Left Column (Identity, Profile Anchor, Proofs, CTAs) + Right Column (DevOps Pipeline) -->
+    <!-- Main Hero Layout: Left Column (Identity) + Right Column (Pipeline) -->
     <div class="grid items-center gap-10 lg:grid-cols-[1.05fr_1.15fr] lg:gap-12 xl:gap-14">
 
       <!-- ========================================================================= -->
@@ -188,70 +197,79 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
           </span>
         </div>
 
-        <!-- 2. Integrated Human Profile Anchor + Masterpiece Typographic Name -->
+        <!-- 2. Integrated Human Profile Anchor + Typographic Name -->
         <div class="hero-animate-in space-y-4" style="animation-delay: 80ms;">
 
           <div class="flex items-start gap-4 sm:gap-5">
-            <!-- Engineer Profile Portrait Anchor -->
-            <div class="relative flex-shrink-0 group">
-              <div class="absolute -inset-1.5 rounded-2xl bg-gradient-to-tr from-cyan via-violet to-mint opacity-60 blur-md transition duration-500 group-hover:opacity-90"></div>
-              <div class="relative h-16 w-16 sm:h-20 sm:w-20 rounded-2xl border-2 border-white dark:border-white/20 bg-slate-100 dark:bg-panel shadow-lg overflow-hidden ring-2 ring-slate-900/5 dark:ring-white/10">
+            <!-- Engineer Profile Portrait with Layered Glow Halo -->
+            <div class="relative flex-shrink-0 group hero-profile-anchor">
+              <!-- Animated ambient halo (always visible, subtle breathing) -->
+              <div class="hero-profile-halo absolute -inset-4 rounded-[26px] blur-2xl"></div>
+              <!-- Primary gradient halo border -->
+              <div class="absolute -inset-[2.5px] rounded-2xl bg-gradient-to-tr from-cyan via-violet to-mint opacity-70 dark:opacity-85 blur-[3px] transition-all duration-500 group-hover:opacity-100 group-hover:blur-[5px]"></div>
+              <!-- Inner border ring -->
+              <div class="absolute -inset-[1px] rounded-2xl bg-gradient-to-tr from-cyan/80 via-violet/60 to-mint/80 opacity-60 dark:opacity-75"></div>
+              <!-- Photo container -->
+              <div class="relative h-[72px] w-[72px] sm:h-[84px] sm:w-[84px] rounded-2xl bg-slate-100 dark:bg-panel shadow-2xl overflow-hidden">
                 <img
                   src={profile.photo}
                   alt={profile.name}
-                  class="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  class="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.08]"
                   loading="eager"
-                  width="80"
-                  height="80"
+                  width="84"
+                  height="84"
                 />
+                <!-- Subtle inner luminance overlay -->
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/10 to-transparent pointer-events-none"></div>
               </div>
-              <div class="absolute -bottom-2 -right-1 rounded-full border border-slate-300 dark:border-white/20 bg-white/95 dark:bg-slate-900/95 px-1.5 py-0.5 shadow-sm flex items-center gap-1">
+              <!-- Experience badge -->
+              <div class="absolute -bottom-2.5 -right-1.5 rounded-full border border-slate-200/90 dark:border-white/20 bg-white/98 dark:bg-slate-900/95 px-2 py-0.5 shadow-lg flex items-center gap-1.5 backdrop-blur-sm">
                 <span class="h-1.5 w-1.5 rounded-full bg-mint animate-pulse" aria-hidden="true"></span>
                 <span class="font-mono text-[8.5px] font-bold text-slate-800 dark:text-slate-200">5+ YRS</span>
               </div>
             </div>
 
-            <!-- Typographic Name & Category -->
+            <!-- Typographic Name & Eyebrow Category -->
             <div class="space-y-1 min-w-0 flex-1">
-              <span class="block font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-cyan font-bold">
+              <span class="block font-mono text-[11px] sm:text-xs uppercase tracking-[0.22em] text-cyan font-bold">
                 Engineering Portfolio
               </span>
-              <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight font-display leading-[1.08] text-slate-900 dark:text-white">
+              <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.4rem] font-black tracking-tight font-display leading-[1.05] text-slate-900 dark:text-white">
                 <span class="inline sm:block">Chandu</span>{' '}
-                <span class="inline sm:block bg-gradient-to-r from-cyan via-violet to-mint bg-clip-text text-transparent">
+                <span class="inline sm:block hero-name-gradient">
                   Venna
                 </span>
               </h1>
             </div>
           </div>
 
-          <!-- Professional Designation Pill Bar -->
+          <!-- Professional Designation Rule -->
           <div class="flex items-center gap-3 pt-1">
-            <div class="h-1 w-12 rounded-full bg-gradient-to-r from-cyan to-violet"></div>
-            <p class="text-lg sm:text-xl lg:text-2xl font-bold text-slate-800 dark:text-slate-200 font-display">
+            <div class="h-px w-14 rounded-full bg-gradient-to-r from-cyan to-violet"></div>
+            <p class="text-lg sm:text-xl lg:text-2xl font-bold text-slate-800 dark:text-slate-100 font-display tracking-tight">
               DevOps &amp; Cloud Engineer
             </p>
           </div>
         </div>
 
         <!-- 3. Value Proposition Statement -->
-        <div class="hero-animate-in space-y-4" style="animation-delay: 150ms;">
-          <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl font-normal">
+        <div class="hero-animate-in" style="animation-delay: 150ms;">
+          <p class="text-base sm:text-[1.05rem] text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl">
             Building reliable cloud infrastructure, Kubernetes platforms, and automated delivery systems across AWS and Azure.
           </p>
         </div>
 
-        <!-- 4. Resume-Verified Proof Points (Max 3 Points) -->
-        <div class="hero-animate-in flex flex-wrap items-center gap-2 pt-1 font-mono text-xs text-slate-600 dark:text-slate-300" style="animation-delay: 200ms;">
-          <span class="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-white/10 bg-slate-100/80 dark:bg-white/[0.04] px-2.5 py-1">
+        <!-- 4. Resume-Verified Proof Points -->
+        <div class="hero-animate-in flex flex-wrap items-center gap-2 pt-1 font-mono text-xs" style="animation-delay: 200ms;">
+          <span class="hero-proof-pill">
             <ShieldCheck size={13} class="text-cyan" />
             <span>5+ Yrs Production Ops</span>
           </span>
-          <span class="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-white/10 bg-slate-100/80 dark:bg-white/[0.04] px-2.5 py-1">
+          <span class="hero-proof-pill">
             <Layers size={13} class="text-violet" />
             <span>Multi-AZ K8s &amp; IaC</span>
           </span>
-          <span class="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-white/10 bg-slate-100/80 dark:bg-white/[0.04] px-2.5 py-1">
+          <span class="hero-proof-pill">
             <Sparkles size={13} class="text-mint" />
             <span>60% Faster Deployments</span>
           </span>
@@ -262,7 +280,7 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
           <!-- Primary CTA -->
           <a
             href="/projects"
-            class="group inline-flex items-center gap-2.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-ink px-6 py-3.5 text-sm sm:text-base font-semibold shadow-md transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+            class="hero-cta-primary group inline-flex items-center gap-2.5"
           >
             <span>Explore Case Studies</span>
             <ArrowRight size={16} class="transition-transform duration-200 group-hover:translate-x-1" />
@@ -273,43 +291,43 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
             href={profile.resume}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 rounded-xl border border-slate-300 dark:border-white/15 bg-white dark:bg-white/[0.04] text-slate-800 dark:text-slate-200 px-5 py-3.5 text-sm sm:text-base font-semibold transition-all duration-200 hover:border-slate-400 dark:hover:border-white/30 hover:bg-slate-50 dark:hover:bg-white/[0.08] active:scale-[0.98] shadow-sm"
+            class="hero-cta-secondary inline-flex items-center gap-2"
           >
             <Download size={16} />
             <span>Resume</span>
           </a>
         </div>
 
-        <!-- 6. Compact Social & Direct Contact Channels -->
+        <!-- 6. Social & Direct Contact Channels -->
         <div class="hero-animate-in pt-1 flex items-center gap-4 text-xs font-medium text-slate-600 dark:text-slate-400" style="animation-delay: 290ms;">
           <a
             href={profile.github}
             target="_blank"
             rel="noopener noreferrer"
-            class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors"
+            class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors duration-200"
             aria-label="GitHub Profile"
           >
-            <CodeXml size={16} class="text-slate-500 dark:text-slate-400" />
+            <CodeXml size={16} class="text-slate-400 dark:text-slate-500" />
             <span>GitHub</span>
           </a>
-          <span class="text-slate-300 dark:text-slate-700">/</span>
+          <span class="text-slate-200 dark:text-slate-700">/</span>
           <a
             href={profile.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            class="flex items-center gap-1.5 hover:text-violet transition-colors"
+            class="flex items-center gap-1.5 hover:text-violet transition-colors duration-200"
             aria-label="LinkedIn Profile"
           >
-            <BriefcaseBusiness size={16} class="text-slate-500 dark:text-slate-400" />
+            <BriefcaseBusiness size={16} class="text-slate-400 dark:text-slate-500" />
             <span>LinkedIn</span>
           </a>
-          <span class="text-slate-300 dark:text-slate-700">/</span>
+          <span class="text-slate-200 dark:text-slate-700">/</span>
           <a
             href={`mailto:${profile.email}`}
-            class="flex items-center gap-1.5 hover:text-cyan transition-colors"
+            class="flex items-center gap-1.5 hover:text-cyan transition-colors duration-200"
             aria-label="Send Email"
           >
-            <Mail size={16} class="text-slate-500 dark:text-slate-400" />
+            <Mail size={16} class="text-slate-400 dark:text-slate-500" />
             <span>Email</span>
           </a>
         </div>
@@ -323,208 +341,324 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
 
         <!-- Pipeline Glass Console Window -->
         <div
-          class="relative w-full rounded-3xl border border-slate-200/90 dark:border-white/[0.08] bg-white/70 dark:bg-panel/75 backdrop-blur-xl p-5 sm:p-6 overflow-hidden shadow-2xl"
+          class="pipeline-console-panel relative w-full rounded-3xl overflow-hidden"
           id="devops-pipeline-console"
           role="region"
           aria-label="Interactive DevOps Delivery Pipeline Animation"
         >
-
-          <!-- Top Console Header -->
-          <div class="flex items-center justify-between pb-4 border-b border-slate-200/80 dark:border-white/[0.06] mb-3">
-            <div class="flex items-center gap-2.5">
-              <span class="relative flex h-2.5 w-2.5">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan"></span>
-              </span>
-              <span class="font-mono text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200">
-                DevOps Delivery Pipeline
-              </span>
-            </div>
-
-            <div class="flex items-center gap-2 font-mono text-[10px] text-slate-500 dark:text-slate-400">
-              <span class="inline-flex items-center gap-1 rounded bg-slate-100 dark:bg-white/[0.05] px-2 py-0.5 text-cyan font-bold">
-                7 STAGES
-              </span>
-              <span class="hidden xl:inline text-slate-400 dark:text-slate-500">|</span>
-              <span class="hidden xl:inline text-mint font-semibold">● 60% Faster Velocity</span>
-            </div>
+          <!-- Background depth layers inside the console -->
+          <div class="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none" aria-hidden="true">
+            <div class="absolute inset-0 bg-gradient-to-br from-slate-50/97 via-white/92 to-slate-50/97 dark:from-[#0C1320]/97 dark:via-[#090E18]/92 dark:to-[#0C1320]/97"></div>
+            <!-- Top radial glow inside panel -->
+            <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-cyan/[0.03] dark:bg-cyan/[0.05] blur-3xl"></div>
+            <!-- Bottom radial glow inside panel -->
+            <div class="absolute -bottom-20 left-1/2 -translate-x-1/2 w-[500px] h-[300px] rounded-full bg-mint/[0.025] dark:bg-mint/[0.04] blur-3xl"></div>
+            <!-- Micro dot grid inside console -->
+            <div class="absolute inset-0 hero-dot-grid opacity-[0.035] dark:opacity-[0.07]"></div>
           </div>
 
-          <!-- =================================================================== -->
-          <!-- DESKTOP PIPELINE CANVAS: SVG Track + Sequential Traveling Pulses     -->
-          <!-- =================================================================== -->
-          <div class="relative w-full h-[470px] select-none">
+          <!-- Console inner border with gradient shimmer -->
+          <div class="absolute inset-0 rounded-3xl pointer-events-none" aria-hidden="true">
+            <div class="absolute inset-0 rounded-3xl ring-1 ring-slate-200/80 dark:ring-white/[0.06]"></div>
+            <div class="absolute inset-0 rounded-3xl bg-gradient-to-b from-white/50 to-transparent dark:from-white/[0.03] dark:to-transparent opacity-60"></div>
+          </div>
 
-            <!-- SVG Circuit Tracks & Animated Data Streams -->
-            <svg
-              class="absolute inset-0 h-full w-full pointer-events-none overflow-visible z-0"
-              viewBox="0 0 640 480"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <defs>
-                <!-- Glowing Filter for Signal Pulses -->
-                <filter id="signal-glow" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
-                  <feMerge>
-                    <feMergeNode in="coloredBlur"/>
-                    <feMergeNode in="SourceGraphic"/>
-                  </feMerge>
-                </filter>
-
-                <!-- Track Linear Gradients -->
-                <linearGradient id="track-flow" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#0284C7" stop-opacity="0.8" />
-                  <stop offset="50%" stop-color="#6366F1" stop-opacity="0.8" />
-                  <stop offset="100%" stop-color="#059669" stop-opacity="0.8" />
-                </linearGradient>
-
-                <linearGradient id="signal-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#38BDF8" />
-                  <stop offset="50%" stop-color="#818CF8" />
-                  <stop offset="100%" stop-color="#34D399" />
-                </linearGradient>
-              </defs>
-
-              <!-- Base Inactive Circuit Track -->
-              <path
-                d={desktopCircuitPath}
-                class="stroke-slate-300/60 dark:stroke-white/[0.08]"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-
-              <!-- Flowing Dashed Pulse Track -->
-              <path
-                d={desktopCircuitPath}
-                stroke="url(#track-flow)"
-                stroke-width="2"
-                stroke-dasharray="6 8"
-                class="pipeline-circuit-flow"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-
-              <!-- Primary Luminous Data Particle traveling along the complete 7-stage pipeline (10s cycle) -->
-              <circle
-                r="5"
-                fill="url(#signal-gradient)"
-                filter="url(#signal-glow)"
-                class="pipeline-signal-particle"
-              >
-                <animateMotion
-                  dur="10s"
-                  repeatCount="indefinite"
-                  path={desktopCircuitPath}
-                  rotate="auto"
-                />
-              </circle>
-
-              <!-- Secondary Trailing Packet for realistic data flow sensation -->
-              <circle
-                r="3"
-                fill="#38BDF8"
-                opacity="0.7"
-                filter="url(#signal-glow)"
-                class="pipeline-signal-particle"
-              >
-                <animateMotion
-                  dur="10s"
-                  begin="-0.4s"
-                  repeatCount="indefinite"
-                  path={desktopCircuitPath}
-                  rotate="auto"
-                />
-              </circle>
-            </svg>
-
-            <!-- =================================================================== -->
-            <!-- 7 SEQUENTIALLY POSITIONED & ANIMATED DEVOPS STAGE CAPSULES          -->
-            <!-- =================================================================== -->
-            {pipelineStages.map((stage) => (
-              <div
-                class="pipeline-node-wrapper absolute z-10 -translate-x-1/2 -translate-y-1/2 group cursor-pointer transition-all duration-300"
-                style={`left: ${(stage.x / 640) * 100}%; top: ${(stage.y / 480) * 100}%;`}
-                data-stage-id={stage.stage}
-                tabindex="0"
-                role="button"
-                aria-label={`Stage ${stage.stage}: ${stage.name} (${stage.tag}) - ${stage.highlight}`}
-              >
-                <!-- Stage Interactive Capsule -->
-                <div
-                  class:list={[
-                    "pipeline-stage-capsule flex flex-col gap-1.5 rounded-2xl border p-2.5 sm:p-3 shadow-md transition-all duration-300 backdrop-blur-md",
-                    "bg-white/95 dark:bg-panel2/95 border-slate-200/90 dark:border-white/10",
-                    "hover:scale-[1.06] hover:shadow-xl hover:bg-white dark:hover:bg-panel",
-                    "min-w-[145px] max-w-[170px]",
-                    stage.stage === '07' && "min-w-[280px] max-w-[340px]"
-                  ]}
-                  style={`--stage-accent: ${stage.accentColor}; --stage-glow: ${stage.accentGlow}; animation-delay: ${stage.delay};`}
-                >
-                  <!-- Stage Header: Stage Number Badge + Category Tag -->
-                  <div class="flex items-center justify-between gap-1">
-                    <span class:list={[
-                      "font-mono text-[9.5px] font-extrabold uppercase px-1.5 py-0.5 rounded-md",
-                      stage.accent === 'cyan' && "bg-cyan/10 text-cyan dark:text-cyan",
-                      stage.accent === 'violet' && "bg-violet/10 text-violet dark:text-violet",
-                      stage.accent === 'mint' && "bg-mint/10 text-mint dark:text-mint"
-                    ]}>
-                      {stage.stage} · {stage.tag}
-                    </span>
-
-                    <span class="font-mono text-[8px] text-slate-400 dark:text-slate-500 uppercase tracking-tight truncate">
-                      {stage.shortName}
-                    </span>
-                  </div>
-
-                  <!-- Stage Technology Logos + Names -->
-                  <div class="flex items-center flex-wrap gap-2 pt-0.5">
-                    {stage.technologies.map((t) => (
-                      <div class="flex items-center gap-1.5">
-                        <span class="flex-shrink-0 transition-transform duration-200 group-hover:scale-110">
-                          <TechIcon name={t.id} size={18} />
-                        </span>
-                        <span class="font-display font-bold text-xs text-slate-900 dark:text-white leading-tight">
-                          {t.name}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <!-- Micro Capability Caption -->
-                  <p class="text-[9.5px] leading-tight text-slate-500 dark:text-slate-400 truncate mt-0.5">
-                    {stage.highlight}
-                  </p>
+          <div class="relative z-10 p-5 sm:p-6">
+            <!-- Top Console Header -->
+            <div class="flex items-center justify-between pb-4 border-b border-slate-200/70 dark:border-white/[0.06] mb-3">
+              <div class="flex items-center gap-2.5">
+                <!-- Traffic lights -->
+                <div class="flex items-center gap-1.5">
+                  <span class="h-2.5 w-2.5 rounded-full bg-red-400/80 dark:bg-[#FF5F57]"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-amber-400/80 dark:bg-[#FEBC2E]"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-green-400/80 dark:bg-[#28C840]"></span>
                 </div>
+                <span class="font-mono text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500 ml-1">
+                  devops-pipeline.sh
+                </span>
               </div>
-            ))}
 
-          </div>
-
-          <!-- Bottom Telemetry Status Bar -->
-          <div class="mt-2 pt-3 border-t border-slate-200/80 dark:border-white/[0.06] flex items-center justify-between text-xs font-mono">
-            <div class="flex items-center gap-1 text-[10px] text-slate-500 dark:text-slate-400">
-              <span class="font-bold text-slate-700 dark:text-slate-300">FLOW:</span>
-              <span>Cloud</span>
-              <span>→</span>
-              <span>IaC</span>
-              <span>→</span>
-              <span>OCI</span>
-              <span>→</span>
-              <span>K8s</span>
-              <span>→</span>
-              <span>CI/CD</span>
-              <span>→</span>
-              <span>GitOps</span>
-              <span>→</span>
-              <span class="text-mint font-bold">Observe</span>
+              <div class="flex items-center gap-2 font-mono text-[10px] text-slate-500 dark:text-slate-400">
+                <span class="inline-flex items-center gap-1 rounded-md bg-cyan/10 dark:bg-cyan/[0.12] px-2 py-0.5 text-cyan font-bold border border-cyan/20">
+                  7 STAGES
+                </span>
+                <span class="hidden xl:inline">
+                  <span class="inline-flex items-center gap-1 text-mint font-semibold">
+                    <span class="h-1.5 w-1.5 rounded-full bg-mint animate-pulse"></span>
+                    60% Faster Velocity
+                  </span>
+                </span>
+              </div>
             </div>
 
-            <div class="flex items-center gap-1.5 text-[10px] text-mint">
-              <span class="h-1.5 w-1.5 rounded-full bg-mint animate-pulse"></span>
-              <span class="font-bold">99.9% Uptime</span>
+            <!-- =================================================================== -->
+            <!-- DESKTOP PIPELINE CANVAS: SVG Track + Sequential Traveling Pulses   -->
+            <!-- =================================================================== -->
+            <div class="relative w-full h-[470px] select-none">
+
+              <!-- SVG Circuit Tracks & Animated Data Streams -->
+              <svg
+                class="absolute inset-0 h-full w-full pointer-events-none overflow-visible z-0"
+                viewBox="0 0 640 480"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <defs>
+                  <!-- Main signal glow filter -->
+                  <filter id="signal-glow" x="-100%" y="-100%" width="300%" height="300%">
+                    <feGaussianBlur stdDeviation="5" result="blur1"/>
+                    <feGaussianBlur stdDeviation="2.5" result="blur2"/>
+                    <feMerge>
+                      <feMergeNode in="blur1"/>
+                      <feMergeNode in="blur2"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+
+                  <!-- Node glow filter -->
+                  <filter id="node-glow" x="-60%" y="-60%" width="220%" height="220%">
+                    <feGaussianBlur stdDeviation="7" result="coloredBlur"/>
+                    <feMerge>
+                      <feMergeNode in="coloredBlur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+
+                  <!-- Track outer glow filter (depth layer) -->
+                  <filter id="track-glow" x="-20%" y="-200%" width="140%" height="500%">
+                    <feGaussianBlur stdDeviation="3" result="glow"/>
+                    <feMerge>
+                      <feMergeNode in="glow"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+
+                  <!-- Linear gradient for the active glowing track -->
+                  <linearGradient id="track-flow-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.95" />
+                    <stop offset="40%" stop-color="#818CF8" stop-opacity="0.9" />
+                    <stop offset="100%" stop-color="#34D399" stop-opacity="0.95" />
+                  </linearGradient>
+
+                  <!-- Glow version of track gradient -->
+                  <linearGradient id="track-glow-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.3" />
+                    <stop offset="40%" stop-color="#818CF8" stop-opacity="0.25" />
+                    <stop offset="100%" stop-color="#34D399" stop-opacity="0.3" />
+                  </linearGradient>
+
+                  <!-- Primary signal particle gradient (white-hot center) -->
+                  <radialGradient id="signal-particle-fill" cx="50%" cy="35%" r="65%">
+                    <stop offset="0%" stop-color="#FFFFFF" />
+                    <stop offset="35%" stop-color="#A5EBFF" />
+                    <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.5" />
+                  </radialGradient>
+
+                  <!-- Trailing particle gradient (violet) -->
+                  <radialGradient id="trail-particle-fill" cx="50%" cy="35%" r="65%">
+                    <stop offset="0%" stop-color="#E0D8FF" />
+                    <stop offset="100%" stop-color="#818CF8" stop-opacity="0.4" />
+                  </radialGradient>
+
+                  <!-- Mint micro trail -->
+                  <radialGradient id="mint-particle-fill" cx="50%" cy="35%" r="65%">
+                    <stop offset="0%" stop-color="#AFFFDB" />
+                    <stop offset="100%" stop-color="#34D399" stop-opacity="0.4" />
+                  </radialGradient>
+                </defs>
+
+                <!-- Outermost ghost track (deepest depth layer, thick blur) -->
+                <path
+                  d={desktopCircuitPath}
+                  stroke="url(#track-glow-gradient)"
+                  stroke-width="10"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  opacity="0.45"
+                  filter="url(#track-glow)"
+                  class="dark:opacity-[0.55]"
+                />
+
+                <!-- Mid depth track (solid base) -->
+                <path
+                  d={desktopCircuitPath}
+                  class="stroke-slate-300/40 dark:stroke-white/[0.06]"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <!-- Active gradient track (luminous core) -->
+                <path
+                  d={desktopCircuitPath}
+                  stroke="url(#track-flow-gradient)"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  opacity="0.75"
+                  class="dark:opacity-[0.9]"
+                />
+
+                <!-- Flowing dashed pulse (marching ants effect) -->
+                <path
+                  d={desktopCircuitPath}
+                  stroke="url(#track-flow-gradient)"
+                  stroke-width="1.5"
+                  stroke-dasharray="6 14"
+                  class="pipeline-circuit-flow"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <!-- Primary luminous data signal (lead particle) -->
+                <circle
+                  r="6"
+                  fill="url(#signal-particle-fill)"
+                  filter="url(#signal-glow)"
+                  class="pipeline-signal-particle"
+                >
+                  <animateMotion
+                    dur="10s"
+                    repeatCount="indefinite"
+                    path={desktopCircuitPath}
+                    rotate="auto"
+                  />
+                </circle>
+
+                <!-- Secondary trailing packet (violet) -->
+                <circle
+                  r="4"
+                  fill="url(#trail-particle-fill)"
+                  opacity="0.8"
+                  filter="url(#signal-glow)"
+                  class="pipeline-signal-particle"
+                >
+                  <animateMotion
+                    dur="10s"
+                    begin="-0.55s"
+                    repeatCount="indefinite"
+                    path={desktopCircuitPath}
+                    rotate="auto"
+                  />
+                </circle>
+
+                <!-- Tertiary micro-packet (mint) -->
+                <circle
+                  r="2.5"
+                  fill="url(#mint-particle-fill)"
+                  opacity="0.65"
+                  filter="url(#signal-glow)"
+                  class="pipeline-signal-particle"
+                >
+                  <animateMotion
+                    dur="10s"
+                    begin="-1.1s"
+                    repeatCount="indefinite"
+                    path={desktopCircuitPath}
+                    rotate="auto"
+                  />
+                </circle>
+              </svg>
+
+              <!-- =================================================================== -->
+              <!-- 7 SEQUENTIALLY POSITIONED & ANIMATED DEVOPS STAGE CAPSULES          -->
+              <!-- =================================================================== -->
+              {pipelineStages.map((stage) => (
+                <div
+                  class="pipeline-node-wrapper absolute z-10 -translate-x-1/2 -translate-y-1/2 group cursor-pointer"
+                  style={`left: ${(stage.x / 640) * 100}%; top: ${(stage.y / 480) * 100}%;`}
+                  data-stage-id={stage.stage}
+                  data-accent={stage.accent}
+                  tabindex="0"
+                  role="button"
+                  aria-label={`Stage ${stage.stage}: ${stage.name} (${stage.tag}) - ${stage.highlight}`}
+                >
+                  <!-- Hover ambient glow halo (behind capsule) -->
+                  <div
+                    class="pipeline-node-glow absolute -inset-4 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl pointer-events-none"
+                    style={`background: radial-gradient(ellipse 80% 80%, ${stage.accentGlow} 0%, transparent 70%);`}
+                  ></div>
+
+                  <!-- Sequential activation pulse halo (synced with signal particle) -->
+                  <div
+                    class="pipeline-node-pulse-ring absolute -inset-2 rounded-3xl pointer-events-none"
+                    style={`border: 1.5px solid ${stage.accentColor}; animation-delay: ${stage.delay};`}
+                  ></div>
+
+                  <!-- Stage Interactive Capsule -->
+                  <div
+                    class:list={[
+                      "pipeline-stage-capsule relative flex flex-col gap-1.5 rounded-2xl p-2.5 sm:p-3",
+                      "transition-all duration-300 backdrop-blur-md",
+                      "min-w-[145px] max-w-[170px]",
+                      stage.stage === '07' && "min-w-[280px] max-w-[340px]"
+                    ]}
+                    style={`--stage-accent: ${stage.accentColor}; --stage-glow: ${stage.accentGlow}; --stage-border: ${stage.accentBorder}; animation-delay: ${stage.delay};`}
+                  >
+                    <!-- Stage Header: Stage Number Badge + Category Tag -->
+                    <div class="flex items-center justify-between gap-1">
+                      <span class:list={[
+                        "font-mono text-[9.5px] font-extrabold uppercase px-1.5 py-0.5 rounded-md",
+                        stage.accent === 'cyan' && "bg-cyan/10 text-cyan dark:text-cyan",
+                        stage.accent === 'violet' && "bg-violet/10 text-violet dark:text-violet",
+                        stage.accent === 'mint' && "bg-mint/10 text-mint dark:text-mint"
+                      ]}>
+                        {stage.stage} · {stage.tag}
+                      </span>
+
+                      <span class="font-mono text-[8px] text-slate-400 dark:text-slate-500 uppercase tracking-tight truncate">
+                        {stage.shortName}
+                      </span>
+                    </div>
+
+                    <!-- Stage Technology Logos + Names -->
+                    <div class="flex items-center flex-wrap gap-2 pt-0.5">
+                      {stage.technologies.map((t) => (
+                        <div class="flex items-center gap-1.5">
+                          <span class="flex-shrink-0 transition-transform duration-200 group-hover:scale-110">
+                            <TechIcon name={t.id} size={18} />
+                          </span>
+                          <span class="font-display font-bold text-xs text-slate-900 dark:text-white leading-tight">
+                            {t.name}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <!-- Micro Capability Caption -->
+                    <p class="text-[9.5px] leading-tight text-slate-500 dark:text-slate-400 truncate mt-0.5">
+                      {stage.highlight}
+                    </p>
+                  </div>
+                </div>
+              ))}
+
+            </div>
+
+            <!-- Bottom Telemetry Status Bar -->
+            <div class="mt-2 pt-3 border-t border-slate-200/70 dark:border-white/[0.06] flex items-center justify-between text-xs font-mono">
+              <div class="flex items-center gap-1 text-[10px] text-slate-500 dark:text-slate-400">
+                <span class="font-bold text-slate-700 dark:text-slate-300">FLOW:</span>
+                <span>Cloud</span>
+                <span class="text-slate-300 dark:text-slate-600">→</span>
+                <span>IaC</span>
+                <span class="text-slate-300 dark:text-slate-600">→</span>
+                <span>OCI</span>
+                <span class="text-slate-300 dark:text-slate-600">→</span>
+                <span>K8s</span>
+                <span class="text-slate-300 dark:text-slate-600">→</span>
+                <span>CI/CD</span>
+                <span class="text-slate-300 dark:text-slate-600">→</span>
+                <span>GitOps</span>
+                <span class="text-slate-300 dark:text-slate-600">→</span>
+                <span class="text-mint font-bold">Observe</span>
+              </div>
+
+              <div class="flex items-center gap-1.5 text-[10px] text-mint">
+                <span class="h-1.5 w-1.5 rounded-full bg-mint animate-pulse"></span>
+                <span class="font-bold">99.9% Uptime</span>
+              </div>
             </div>
           </div>
 
@@ -539,10 +673,10 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
     <!-- ========================================================================= -->
     <div class="block lg:hidden mt-8 sm:mt-10">
 
-      <div class="rounded-3xl border border-slate-200/90 dark:border-white/[0.08] bg-white/80 dark:bg-panel/85 backdrop-blur-xl p-4 sm:p-6 space-y-4 shadow-xl">
+      <div class="rounded-3xl border border-slate-200/80 dark:border-white/[0.07] bg-white/85 dark:bg-[#0D1420]/90 backdrop-blur-xl p-4 sm:p-6 space-y-4 shadow-2xl">
 
         <!-- Mobile Pipeline Header -->
-        <div class="flex items-center justify-between pb-3 border-b border-slate-200/80 dark:border-white/[0.06]">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-200/70 dark:border-white/[0.06]">
           <div class="flex items-center gap-2">
             <span class="relative flex h-2 w-2">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan opacity-75"></span>
@@ -553,7 +687,7 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
             </span>
           </div>
 
-          <span class="font-mono text-[10px] text-cyan font-bold bg-cyan/10 px-2 py-0.5 rounded-full">
+          <span class="font-mono text-[10px] text-cyan font-bold bg-cyan/10 border border-cyan/20 px-2 py-0.5 rounded-full">
             7 Sequential Stages
           </span>
         </div>
@@ -571,17 +705,17 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
               <!-- Node Anchor Dot on Vertical Spine -->
               <div class="absolute -left-6 sm:-left-8 top-3 flex items-center justify-center">
                 <span class:list={[
-                  "h-3.5 w-3.5 rounded-full border-2 border-white dark:border-panel shadow-sm flex items-center justify-center",
-                  stage.accent === 'cyan' && "bg-cyan",
-                  stage.accent === 'violet' && "bg-violet",
-                  stage.accent === 'mint' && "bg-mint"
+                  "h-3.5 w-3.5 rounded-full border-2 border-white dark:border-[#0D1420] shadow-sm flex items-center justify-center",
+                  stage.accent === 'cyan' && "bg-cyan shadow-[0_0_10px_rgba(56,189,248,0.7)]",
+                  stage.accent === 'violet' && "bg-violet shadow-[0_0_10px_rgba(129,140,248,0.7)]",
+                  stage.accent === 'mint' && "bg-mint shadow-[0_0_10px_rgba(52,211,153,0.7)]"
                 ]}>
                   <span class="h-1 w-1 rounded-full bg-white"></span>
                 </span>
               </div>
 
               <!-- Stage Content Card -->
-              <div class="flex-1 rounded-2xl border border-slate-200/80 dark:border-white/[0.06] bg-slate-50/90 dark:bg-panel2/90 p-3 sm:p-3.5 space-y-2">
+              <div class="flex-1 rounded-2xl border border-slate-200/70 dark:border-white/[0.06] bg-slate-50/90 dark:bg-white/[0.03] p-3 sm:p-3.5 space-y-2 backdrop-blur-sm">
                 <div class="flex items-center justify-between gap-1">
                   <span class:list={[
                     "font-mono text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded",
@@ -625,10 +759,74 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
 </section>
 
 <style>
+  /* ============================================================ */
+  /* AMBIENT ORBS (background depth field)                        */
+  /* ============================================================ */
+  .hero-orb {
+    filter: blur(120px);
+    will-change: transform;
+  }
+
+  .hero-orb--cyan {
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.07) 0%, transparent 70%);
+  }
+
+  :global(.dark) .hero-orb--cyan {
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, transparent 70%);
+  }
+
+  .hero-orb--violet {
+    background: radial-gradient(circle, rgba(129, 140, 248, 0.06) 0%, transparent 70%);
+  }
+
+  :global(.dark) .hero-orb--violet {
+    background: radial-gradient(circle, rgba(129, 140, 248, 0.1) 0%, transparent 70%);
+  }
+
+  .hero-orb--mint {
+    background: radial-gradient(circle, rgba(52, 211, 153, 0.05) 0%, transparent 70%);
+  }
+
+  :global(.dark) .hero-orb--mint {
+    background: radial-gradient(circle, rgba(52, 211, 153, 0.08) 0%, transparent 70%);
+  }
+
+  /* ============================================================ */
+  /* ENGINEERING GRID PATTERN                                     */
+  /* ============================================================ */
+  .hero-grid-pattern {
+    background-image:
+      linear-gradient(rgba(15, 23, 42, 0.6) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15, 23, 42, 0.6) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent 85%);
+  }
+
+  :global(.dark) .hero-grid-pattern {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.6) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.6) 1px, transparent 1px);
+  }
+
+  /* ============================================================ */
+  /* MICRO DOT GRID (inside console panel)                        */
+  /* ============================================================ */
+  .hero-dot-grid {
+    background-image: radial-gradient(circle, rgba(15, 23, 42, 0.8) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  :global(.dark) .hero-dot-grid {
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.6) 1px, transparent 1px);
+  }
+
+  /* ============================================================ */
+  /* HERO ENTRANCE ANIMATION                                       */
+  /* ============================================================ */
   @keyframes heroFadeIn {
     from {
       opacity: 0;
-      transform: translateY(16px);
+      transform: translateY(18px);
     }
     to {
       opacity: 1;
@@ -637,53 +835,346 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
   }
 
   .hero-animate-in {
-    animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: heroFadeIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
-  /* Moving Dash Animation along Connection Circuit */
+  /* ============================================================ */
+  /* NAME GRADIENT                                                 */
+  /* ============================================================ */
+  .hero-name-gradient {
+    background: linear-gradient(135deg, #38BDF8 0%, #818CF8 50%, #34D399 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ============================================================ */
+  /* PROOF PILLS                                                   */
+  /* ============================================================ */
+  .hero-proof-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    background: rgba(241, 245, 249, 0.85);
+    color: #475569;
+    font-size: 11px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  :global(.dark) .hero-proof-pill {
+    border-color: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+    color: #94a3b8;
+  }
+
+  .hero-proof-pill:hover {
+    border-color: rgba(56, 189, 248, 0.3);
+    background: rgba(56, 189, 248, 0.04);
+  }
+
+  /* ============================================================ */
+  /* CTA BUTTONS                                                   */
+  /* ============================================================ */
+  .hero-cta-primary {
+    border-radius: 12px;
+    background: #0f172a;
+    color: #ffffff;
+    padding: 14px 24px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15), 0 0 0 1px rgba(15, 23, 42, 0.08);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+
+  .hero-cta-primary:hover {
+    transform: translateY(-1px) scale(1.015);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2), 0 0 0 1px rgba(56, 189, 248, 0.2);
+  }
+
+  .hero-cta-primary:active {
+    transform: scale(0.98);
+  }
+
+  :global(.dark) .hero-cta-primary {
+    background: #f8fafc;
+    color: #0f172a;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  }
+
+  :global(.dark) .hero-cta-primary:hover {
+    box-shadow: 0 8px 28px rgba(56, 189, 248, 0.15), 0 0 0 1px rgba(56, 189, 248, 0.3);
+  }
+
+  .hero-cta-secondary {
+    border-radius: 12px;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    background: rgba(255, 255, 255, 0.9);
+    color: #334155;
+    padding: 14px 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+    transition: transform 0.15s ease, border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  }
+
+  .hero-cta-secondary:hover {
+    border-color: rgba(15, 23, 42, 0.22);
+    background: rgba(248, 250, 252, 1);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+  }
+
+  .hero-cta-secondary:active {
+    transform: scale(0.98);
+  }
+
+  :global(.dark) .hero-cta-secondary {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    color: #cbd5e1;
+    box-shadow: none;
+  }
+
+  :global(.dark) .hero-cta-secondary:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.07);
+  }
+
+  /* ============================================================ */
+  /* PIPELINE CONSOLE PANEL                                        */
+  /* ============================================================ */
+  .pipeline-console-panel {
+    box-shadow:
+      0 40px 100px rgba(15, 23, 42, 0.12),
+      0 12px 30px rgba(15, 23, 42, 0.07),
+      0 0 0 1px rgba(15, 23, 42, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+
+  :global(.dark) .pipeline-console-panel {
+    box-shadow:
+      0 40px 100px rgba(2, 6, 12, 0.6),
+      0 12px 40px rgba(2, 6, 12, 0.35),
+      0 0 0 1px rgba(255, 255, 255, 0.055),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  /* ============================================================ */
+  /* PROFILE PHOTO HALO (always-visible subtle breathing glow)    */
+  /* ============================================================ */
+  @keyframes profileHaloPulse {
+    0%, 100% {
+      opacity: 0.25;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.04);
+    }
+  }
+
+  .hero-profile-halo {
+    background: radial-gradient(ellipse, rgba(56, 189, 248, 0.25) 0%, rgba(129, 140, 248, 0.15) 40%, transparent 70%);
+    animation: profileHaloPulse 3.5s ease-in-out infinite;
+  }
+
+  :global(.dark) .hero-profile-halo {
+    background: radial-gradient(ellipse, rgba(56, 189, 248, 0.35) 0%, rgba(129, 140, 248, 0.2) 40%, transparent 70%);
+  }
+
+  /* ============================================================ */
+  /* CIRCUIT TRACK FLOW ANIMATION (marching ants)                 */
+  /* ============================================================ */
   @keyframes circuitTrackFlow {
     to {
-      stroke-dashoffset: -28;
+      stroke-dashoffset: -40;
     }
   }
 
   .pipeline-circuit-flow {
-    opacity: 0.65;
-    animation: circuitTrackFlow 1.8s linear infinite;
+    opacity: 0.6;
+    animation: circuitTrackFlow 2.2s linear infinite;
   }
 
-  /* Sequential Node Highlighting Keyframe Loop (10s total cycle) */
+  :global(.dark) .pipeline-circuit-flow {
+    opacity: 0.85;
+  }
+
+  /* ============================================================ */
+  /* STAGE CAPSULE: BASE + HOVER                                   */
+  /* ============================================================ */
+  .pipeline-stage-capsule {
+    background: rgba(255, 255, 255, 0.97);
+    border: 1.5px solid rgba(226, 232, 240, 0.85);
+    box-shadow:
+      0 4px 14px rgba(15, 23, 42, 0.07),
+      0 1px 3px rgba(15, 23, 42, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    animation: stageSequentialPulse 10s ease-in-out infinite;
+    will-change: border-color, box-shadow, transform;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  }
+
+  :global(.dark) .pipeline-stage-capsule {
+    background: rgba(12, 18, 30, 0.94);
+    border: 1.5px solid rgba(255, 255, 255, 0.07);
+    box-shadow:
+      0 4px 20px rgba(2, 6, 12, 0.4),
+      0 1px 4px rgba(2, 6, 12, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    animation: stageSequentialPulseDark 10s ease-in-out infinite;
+  }
+
+  /* Hover state for stage capsules */
+  .pipeline-node-wrapper:hover .pipeline-stage-capsule,
+  .pipeline-node-wrapper:focus .pipeline-stage-capsule {
+    transform: scale(1.07) translateY(-2px);
+    box-shadow:
+      0 16px 40px var(--stage-glow),
+      0 4px 14px rgba(15, 23, 42, 0.1),
+      0 0 0 1.5px var(--stage-border),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border-color: var(--stage-accent) !important;
+  }
+
+  :global(.dark) .pipeline-node-wrapper:hover .pipeline-stage-capsule,
+  :global(.dark) .pipeline-node-wrapper:focus .pipeline-stage-capsule {
+    box-shadow:
+      0 16px 40px var(--stage-glow),
+      0 4px 14px rgba(2, 6, 12, 0.3),
+      0 0 0 1.5px var(--stage-border),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  /* ============================================================ */
+  /* SEQUENTIAL PULSE (node activation synced with signal)        */
+  /* ============================================================ */
+
+  /* Light mode pulse */
   @keyframes stageSequentialPulse {
     0%, 18%, 100% {
-      border-color: rgba(226, 232, 240, 0.8);
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      border-color: rgba(226, 232, 240, 0.85);
+      box-shadow:
+        0 4px 14px rgba(15, 23, 42, 0.07),
+        0 1px 3px rgba(15, 23, 42, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+    4%, 14% {
+      border-color: var(--stage-accent);
+      box-shadow:
+        0 0 0 3px var(--stage-glow),
+        0 0 30px var(--stage-glow),
+        0 0 12px var(--stage-glow),
+        inset 0 0 10px rgba(255, 255, 255, 0.7),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+    9% {
+      border-color: var(--stage-accent);
+      box-shadow:
+        0 0 0 5px var(--stage-glow),
+        0 0 50px var(--stage-glow),
+        0 0 20px var(--stage-glow),
+        inset 0 0 16px rgba(255, 255, 255, 0.75),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+  }
+
+  /* Dark mode pulse */
+  @keyframes stageSequentialPulseDark {
+    0%, 18%, 100% {
+      border-color: rgba(255, 255, 255, 0.07);
+      box-shadow:
+        0 4px 20px rgba(2, 6, 12, 0.4),
+        0 1px 4px rgba(2, 6, 12, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    }
+    4%, 14% {
+      border-color: var(--stage-accent);
+      box-shadow:
+        0 0 0 3px var(--stage-glow),
+        0 0 35px var(--stage-glow),
+        0 0 14px var(--stage-glow),
+        inset 0 0 12px rgba(255, 255, 255, 0.06),
+        0 8px 24px rgba(2, 6, 12, 0.3);
+    }
+    9% {
+      border-color: var(--stage-accent);
+      box-shadow:
+        0 0 0 6px var(--stage-glow),
+        0 0 60px var(--stage-glow),
+        0 0 24px var(--stage-glow),
+        inset 0 0 18px rgba(255, 255, 255, 0.08),
+        0 8px 24px rgba(2, 6, 12, 0.3);
+    }
+  }
+
+  /* ============================================================ */
+  /* NODE PULSE RING (sequential activation ring around node)     */
+  /* ============================================================ */
+  @keyframes nodeActivationRing {
+    0%, 18%, 100% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    4% {
+      opacity: 0.6;
       transform: scale(1);
     }
-    4%, 12% {
-      border-color: var(--stage-accent);
-      box-shadow: 0 0 20px var(--stage-glow), inset 0 0 10px var(--stage-glow);
+    9% {
+      opacity: 0.8;
+      transform: scale(1.02);
+    }
+    14% {
+      opacity: 0.3;
       transform: scale(1.05);
     }
   }
 
-  :global(.dark) .pipeline-stage-capsule {
-    animation: stageSequentialPulse 10s ease-in-out infinite;
+  .pipeline-node-pulse-ring {
+    animation: nodeActivationRing 10s ease-in-out infinite;
+    border-radius: 1.25rem;
+    opacity: 0;
   }
 
-  .pipeline-stage-capsule {
-    animation: stageSequentialPulse 10s ease-in-out infinite;
+  /* ============================================================ */
+  /* SIGNAL PARTICLE VISIBILITY                                    */
+  /* ============================================================ */
+  .pipeline-signal-particle {
+    opacity: 1;
   }
 
-  /* Accessibility: Prefers Reduced Motion */
+  /* ============================================================ */
+  /* ACCESSIBILITY: PREFERS REDUCED MOTION                         */
+  /* ============================================================ */
   @media (prefers-reduced-motion: reduce) {
-    .hero-animate-in,
-    .pipeline-circuit-flow,
-    .pipeline-stage-capsule {
+    .hero-animate-in {
       animation: none !important;
+      opacity: 1 !important;
       transform: none !important;
     }
+
+    .pipeline-circuit-flow {
+      animation: none !important;
+    }
+
+    .pipeline-stage-capsule {
+      animation: none !important;
+    }
+
+    .pipeline-node-pulse-ring {
+      animation: none !important;
+      opacity: 0 !important;
+    }
+
     .pipeline-signal-particle {
       display: none !important;
+    }
+
+    .hero-profile-halo {
+      animation: none !important;
     }
   }
 </style>
