@@ -326,10 +326,10 @@ const { class: className = '' } = Astro.props;
       copyBtn.addEventListener('click', () => {
         navigator.clipboard.writeText(targetEmail).then(() => {
           copyText.textContent = 'Copied! ✓';
-          copyText.style.color = '#5EE6A8';
+          copyText.classList.add('text-mint', 'font-bold');
           setTimeout(() => {
             copyText.textContent = 'Copy';
-            copyText.style.color = '';
+            copyText.classList.remove('text-mint', 'font-bold');
           }, 2000);
         });
       });
