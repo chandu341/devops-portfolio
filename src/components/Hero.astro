@@ -13,118 +13,143 @@ import {
 import { profile } from '@/data/profile';
 import TechIcon from '@/components/TechIcon.astro';
 
-// Exactly 8 Curated Core Technologies for the Hero Constellation
-// Primary Ring (Inner, 4 nodes): AWS, Terraform, Kubernetes, Docker
-// Secondary Ring (Outer, 4 nodes): Azure, GitHub Actions, Prometheus, Grafana
-const constellationNodes = [
-  // Primary Ring (Inner 4 nodes around profile)
+// Structured 7-Stage DevOps Delivery Pipeline Flow
+// 01 Cloud -> 02 IaC -> 03 Containers -> 04 Platform -> 05 CI/CD -> 06 GitOps -> 07 Observability
+const pipelineStages = [
   {
-    id: 'aws',
-    name: 'AWS',
-    tag: 'Cloud',
-    domain: 'Public Cloud',
+    stage: '01',
+    name: 'Cloud Infrastructure',
+    shortName: 'Cloud',
+    tag: 'FOUNDATION',
+    domain: 'Public Cloud & VPC',
     accent: 'cyan',
-    ring: 'primary',
-    x: 170,
-    y: 140,
-    pathD: 'M 170 140 Q 205 165, 235 195',
-    dur: '3.2s',
-    begin: '0.4s'
+    accentColor: '#0284C7',
+    accentGlow: 'rgba(2, 132, 199, 0.4)',
+    technologies: [
+      { id: 'aws', name: 'AWS' },
+      { id: 'azure', name: 'Azure' }
+    ],
+    highlight: 'Multi-AZ VPCs, EKS, EC2, S3, RDS & IAM security',
+    delay: '0s',
+    // Desktop layout coordinates (in 640x520 canvas)
+    x: 95,
+    y: 75
   },
   {
-    id: 'terraform',
-    name: 'Terraform',
-    tag: 'IaC',
-    domain: 'Cloud Provisioning',
+    stage: '02',
+    name: 'Infrastructure as Code',
+    shortName: 'IaC',
+    tag: 'PROVISIONING',
+    domain: 'Declarative State',
     accent: 'violet',
-    ring: 'primary',
-    x: 390,
-    y: 140,
-    pathD: 'M 390 140 Q 355 165, 325 195',
-    dur: '3.2s',
-    begin: '0.8s'
+    accentColor: '#6366F1',
+    accentGlow: 'rgba(99, 102, 241, 0.4)',
+    technologies: [
+      { id: 'terraform', name: 'Terraform' },
+      { id: 'ansible', name: 'Ansible' }
+    ],
+    highlight: 'Automated cloud provisioning, modules & state locks',
+    delay: '1.4s',
+    x: 320,
+    y: 75
   },
   {
-    id: 'kubernetes',
-    name: 'Kubernetes',
-    tag: 'Platform',
-    domain: 'Container Orchestration',
+    stage: '03',
+    name: 'Containers',
+    shortName: 'Containers',
+    tag: 'PACKAGING',
+    domain: 'Immutable Runtime',
     accent: 'cyan',
-    ring: 'primary',
-    x: 390,
-    y: 340,
-    pathD: 'M 390 340 Q 355 315, 325 285',
-    dur: '3.2s',
-    begin: '2.0s'
+    accentColor: '#0284C7',
+    accentGlow: 'rgba(2, 132, 199, 0.4)',
+    technologies: [
+      { id: 'docker', name: 'Docker' }
+    ],
+    highlight: 'Multi-stage OCI builds & minimal attack surfaces',
+    delay: '2.8s',
+    x: 545,
+    y: 75
   },
   {
-    id: 'docker',
-    name: 'Docker',
-    tag: 'Containers',
-    domain: 'Container Runtime',
+    stage: '04',
+    name: 'Orchestration',
+    shortName: 'Platform',
+    tag: 'PLATFORM',
+    domain: 'Kubernetes Platform',
     accent: 'cyan',
-    ring: 'primary',
-    x: 170,
-    y: 340,
-    pathD: 'M 170 340 Q 205 315, 235 285',
-    dur: '3.2s',
-    begin: '2.4s'
-  },
-
-  // Secondary Ring (Outer 4 nodes filling the corners)
-  {
-    id: 'grafana',
-    name: 'Grafana',
-    tag: 'Dashboards',
-    domain: 'APM & Telemetry',
-    accent: 'mint',
-    ring: 'secondary',
-    x: 75,
-    y: 65,
-    pathD: 'M 75 65 Q 160 125, 230 185',
-    dur: '3.5s',
-    begin: '0s'
+    accentColor: '#0284C7',
+    accentGlow: 'rgba(2, 132, 199, 0.4)',
+    technologies: [
+      { id: 'kubernetes', name: 'Kubernetes' },
+      { id: 'helm', name: 'Helm' }
+    ],
+    highlight: 'EKS/AKS clusters, 12+ microservices & ALB ingress',
+    delay: '4.2s',
+    x: 545,
+    y: 255
   },
   {
-    id: 'azure',
-    name: 'Azure',
-    tag: 'Cloud',
-    domain: 'Public Cloud',
-    accent: 'cyan',
-    ring: 'secondary',
-    x: 485,
-    y: 65,
-    pathD: 'M 485 65 Q 400 125, 330 185',
-    dur: '3.5s',
-    begin: '1.2s'
-  },
-  {
-    id: 'githubactions',
-    name: 'GitHub Actions',
-    tag: 'CI/CD',
-    domain: 'Automated Delivery',
+    stage: '05',
+    name: 'CI/CD Automation',
+    shortName: 'CI / CD',
+    tag: 'DELIVERY',
+    domain: 'Automated Pipelines',
     accent: 'violet',
-    ring: 'secondary',
-    x: 485,
-    y: 415,
-    pathD: 'M 485 415 Q 400 355, 330 295',
-    dur: '3.5s',
-    begin: '1.6s'
+    accentColor: '#6366F1',
+    accentGlow: 'rgba(99, 102, 241, 0.4)',
+    technologies: [
+      { id: 'githubactions', name: 'GitHub Actions' },
+      { id: 'jenkins', name: 'Jenkins' }
+    ],
+    highlight: 'Automated test, SonarQube quality & Trivy security gates',
+    delay: '5.6s',
+    x: 320,
+    y: 255
   },
   {
-    id: 'prometheus',
-    name: 'Prometheus',
-    tag: 'Metrics',
-    domain: 'Monitoring & Alerts',
+    stage: '06',
+    name: 'GitOps Delivery',
+    shortName: 'GitOps',
+    tag: 'GITOPS',
+    domain: 'Declarative Sync',
     accent: 'mint',
-    ring: 'secondary',
-    x: 75,
-    y: 415,
-    pathD: 'M 75 415 Q 160 355, 230 295',
-    dur: '3.5s',
-    begin: '2.8s'
+    accentColor: '#059669',
+    accentGlow: 'rgba(5, 150, 105, 0.4)',
+    technologies: [
+      { id: 'argocd', name: 'Argo CD' }
+    ],
+    highlight: 'Zero-downtime releases & automated cluster sync',
+    delay: '7.0s',
+    x: 95,
+    y: 255
+  },
+  {
+    stage: '07',
+    name: 'Observability & Telemetry',
+    shortName: 'Telemetry',
+    tag: 'OBSERVE',
+    domain: 'APM, Logs & Synthetics',
+    accent: 'mint',
+    accentColor: '#059669',
+    accentGlow: 'rgba(5, 150, 105, 0.4)',
+    technologies: [
+      { id: 'prometheus', name: 'Prometheus' },
+      { id: 'grafana', name: 'Grafana' },
+      { id: 'dynatrace', name: 'Dynatrace' },
+      { id: 'elastic', name: 'Elastic Stack' }
+    ],
+    highlight: 'Dynatrace APM, Catchpoint synthetics & fast RCA',
+    delay: '8.4s',
+    x: 320,
+    y: 435
   }
 ];
+
+// Continuous SVG Pipeline Circuit Path for Desktop (640x520)
+// Starts at Stage 01 (95, 75) -> Stage 02 (320, 75) -> Stage 03 (545, 75)
+// -> Curves down right to Row 2 -> Stage 04 (545, 255) -> Stage 05 (320, 255) -> Stage 06 (95, 255)
+// -> Curves down left to Row 3 -> Stage 07 (320, 435) -> (545, 435)
+const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255 L 320 255 L 95 255 C 15 255, 15 435, 95 435 L 320 435 L 545 435';
 ---
 
 <section class="relative overflow-hidden pt-6 sm:pt-10 lg:pt-14 pb-12 sm:pb-16 lg:pb-24" id="top">
@@ -134,15 +159,16 @@ const constellationNodes = [
     <div class="absolute -top-32 left-1/4 h-[550px] w-[550px] rounded-full bg-cyan/[0.07] dark:bg-cyan/[0.08] blur-[130px]"></div>
     <div class="absolute top-1/3 right-0 h-[500px] w-[500px] rounded-full bg-violet/[0.06] dark:bg-violet/[0.08] blur-[130px]"></div>
     <div class="absolute -bottom-20 left-1/3 h-[400px] w-[400px] rounded-full bg-mint/[0.04] dark:bg-mint/[0.05] blur-[120px]"></div>
+    <div class="absolute inset-0 bg-grid-pattern opacity-10 dark:opacity-20"></div>
   </div>
 
   <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full min-w-0">
 
-    <!-- Main Hero Layout: Left Column (Identity, Values, Proofs, CTAs) + Right Column (Constellation Layout) -->
-    <div class="grid items-center gap-10 lg:grid-cols-[1.05fr_1.15fr] lg:gap-12 xl:gap-16">
+    <!-- Main Hero Layout: Left Column (Identity, Profile Anchor, Proofs, CTAs) + Right Column (DevOps Pipeline) -->
+    <div class="grid items-center gap-10 lg:grid-cols-[1.05fr_1.15fr] lg:gap-12 xl:gap-14">
 
       <!-- ========================================================================= -->
-      <!-- LEFT COLUMN: Editorial Identity, Proven Value & High-Contrast CTAs       -->
+      <!-- LEFT COLUMN: Editorial Identity, Profile Anchor & High-Contrast CTAs      -->
       <!-- ========================================================================= -->
       <div class="space-y-6 sm:space-y-7">
 
@@ -162,18 +188,41 @@ const constellationNodes = [
           </span>
         </div>
 
-        <!-- 2. Masterpiece Typographic Name & Title -->
-        <div class="hero-animate-in space-y-3" style="animation-delay: 80ms;">
-          <div class="space-y-1">
-            <span class="block font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-cyan font-bold">
-              Engineering Portfolio
-            </span>
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight font-display leading-[1.05] text-slate-900 dark:text-white">
-              <span class="inline sm:block">Chandu</span>{' '}
-              <span class="inline sm:block bg-gradient-to-r from-cyan via-violet to-mint bg-clip-text text-transparent">
-                Venna
+        <!-- 2. Integrated Human Profile Anchor + Masterpiece Typographic Name -->
+        <div class="hero-animate-in space-y-4" style="animation-delay: 80ms;">
+
+          <div class="flex items-start gap-4 sm:gap-5">
+            <!-- Engineer Profile Portrait Anchor -->
+            <div class="relative flex-shrink-0 group">
+              <div class="absolute -inset-1.5 rounded-2xl bg-gradient-to-tr from-cyan via-violet to-mint opacity-60 blur-md transition duration-500 group-hover:opacity-90"></div>
+              <div class="relative h-16 w-16 sm:h-20 sm:w-20 rounded-2xl border-2 border-white dark:border-white/20 bg-slate-100 dark:bg-panel shadow-lg overflow-hidden ring-2 ring-slate-900/5 dark:ring-white/10">
+                <img
+                  src={profile.photo}
+                  alt={profile.name}
+                  class="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  loading="eager"
+                  width="80"
+                  height="80"
+                />
+              </div>
+              <div class="absolute -bottom-2 -right-1 rounded-full border border-slate-300 dark:border-white/20 bg-white/95 dark:bg-slate-900/95 px-1.5 py-0.5 shadow-sm flex items-center gap-1">
+                <span class="h-1.5 w-1.5 rounded-full bg-mint animate-pulse" aria-hidden="true"></span>
+                <span class="font-mono text-[8.5px] font-bold text-slate-800 dark:text-slate-200">5+ YRS</span>
+              </div>
+            </div>
+
+            <!-- Typographic Name & Category -->
+            <div class="space-y-1 min-w-0 flex-1">
+              <span class="block font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-cyan font-bold">
+                Engineering Portfolio
               </span>
-            </h1>
+              <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight font-display leading-[1.08] text-slate-900 dark:text-white">
+                <span class="inline sm:block">Chandu</span>{' '}
+                <span class="inline sm:block bg-gradient-to-r from-cyan via-violet to-mint bg-clip-text text-transparent">
+                  Venna
+                </span>
+              </h1>
+            </div>
           </div>
 
           <!-- Professional Designation Pill Bar -->
@@ -190,76 +239,6 @@ const constellationNodes = [
           <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl font-normal">
             Building reliable cloud infrastructure, Kubernetes platforms, and automated delivery systems across AWS and Azure.
           </p>
-        </div>
-
-        <!-- ========================================================================= -->
-        <!-- MOBILE-ONLY VIEW (< 768px): Standalone Profile + 8-Node Clean Grid        -->
-        <!-- ========================================================================= -->
-        <div class="block lg:hidden space-y-5 pt-1 pb-1">
-
-          <!-- Standalone Mobile Profile Picture Anchor -->
-          <div class="flex items-center gap-4 p-4 rounded-2xl border border-slate-200/90 dark:border-white/[0.08] bg-white/80 dark:bg-panel2/80 backdrop-blur-md shadow-sm">
-            <div class="relative flex-shrink-0">
-              <div class="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-cyan via-violet to-mint opacity-60 blur-sm"></div>
-              <div class="relative h-16 w-16 overflow-hidden rounded-2xl border-2 border-white dark:border-white/20 bg-slate-100 dark:bg-panel shadow-md">
-                <img
-                  src={profile.photo}
-                  alt={profile.name}
-                  class="h-full w-full object-cover object-center"
-                  loading="eager"
-                  width="64"
-                  height="64"
-                />
-              </div>
-            </div>
-            <div class="min-w-0 flex-1">
-              <div class="flex items-center gap-2">
-                <span class="font-display font-bold text-base text-slate-900 dark:text-white truncate">
-                  {profile.name}
-                </span>
-                <span class="inline-flex items-center rounded-full bg-mint/10 px-2 py-0.5 font-mono text-[9px] font-bold text-mint">
-                  ● 5+ Yrs Ops
-                </span>
-              </div>
-              <p class="font-mono text-xs text-slate-600 dark:text-slate-300 truncate">
-                DevOps &amp; Cloud Platform Engineer
-              </p>
-              <p class="text-[11px] text-slate-500 dark:text-slate-400 truncate mt-0.5">
-                AWS · Azure · Kubernetes · Terraform
-              </p>
-            </div>
-          </div>
-
-          <!-- Mobile 8-Node Technology Grid (No lines, clean fallback) -->
-          <div class="rounded-2xl border border-slate-200/90 dark:border-white/[0.08] bg-slate-50/90 dark:bg-panel/90 p-4 space-y-3">
-            <div class="flex items-center justify-between px-0.5">
-              <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                Core Technology Ecosystem
-              </span>
-              <span class="font-mono text-[9px] text-cyan uppercase tracking-wider">
-                8 Core Tools
-              </span>
-            </div>
-
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              {constellationNodes.map((t) => (
-                <div class="flex items-center gap-2 p-2 rounded-xl border border-slate-200/80 dark:border-white/[0.06] bg-white dark:bg-panel2 shadow-2xs">
-                  <span class="flex-shrink-0">
-                    <TechIcon name={t.id} size={18} />
-                  </span>
-                  <div class="min-w-0">
-                    <span class="block text-xs font-bold text-slate-900 dark:text-white truncate leading-tight">
-                      {t.name}
-                    </span>
-                    <span class="block font-mono text-[8px] uppercase tracking-wider text-slate-500 dark:text-slate-400 truncate">
-                      {t.tag}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
         </div>
 
         <!-- 4. Resume-Verified Proof Points (Max 3 Points) -->
@@ -338,170 +317,301 @@ const constellationNodes = [
       </div>
 
       <!-- ========================================================================= -->
-      <!-- RIGHT COLUMN: Desktop Constellation Layout with SVG Lines & Pulses        -->
+      <!-- RIGHT COLUMN: Animated DevOps Delivery Pipeline (Desktop 1024px+)         -->
       <!-- ========================================================================= -->
       <div class="hero-animate-in relative hidden lg:block" style="animation-delay: 150ms;">
 
+        <!-- Pipeline Glass Console Window -->
         <div
-          class="relative w-full h-[520px] select-none rounded-3xl border border-slate-200/90 dark:border-white/[0.08] bg-slate-50/40 dark:bg-panel/50 backdrop-blur-xl p-4 overflow-hidden shadow-xl"
-          id="hero-constellation-canvas"
+          class="relative w-full rounded-3xl border border-slate-200/90 dark:border-white/[0.08] bg-white/70 dark:bg-panel/75 backdrop-blur-xl p-5 sm:p-6 overflow-hidden shadow-2xl"
+          id="devops-pipeline-console"
+          role="region"
+          aria-label="Interactive DevOps Delivery Pipeline Animation"
         >
 
-          <!-- Ambient Radial Backdrop -->
-          <div class="pointer-events-none absolute inset-0 flex items-center justify-center opacity-30 dark:opacity-20" aria-hidden="true">
-            <div class="h-96 w-96 rounded-full border border-dashed border-cyan/40"></div>
-            <div class="absolute h-64 w-64 rounded-full border border-dashed border-violet/40"></div>
+          <!-- Top Console Header -->
+          <div class="flex items-center justify-between pb-4 border-b border-slate-200/80 dark:border-white/[0.06] mb-3">
+            <div class="flex items-center gap-2.5">
+              <span class="relative flex h-2.5 w-2.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan"></span>
+              </span>
+              <span class="font-mono text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200">
+                DevOps Delivery Pipeline
+              </span>
+            </div>
+
+            <div class="flex items-center gap-2 font-mono text-[10px] text-slate-500 dark:text-slate-400">
+              <span class="inline-flex items-center gap-1 rounded bg-slate-100 dark:bg-white/[0.05] px-2 py-0.5 text-cyan font-bold">
+                7 STAGES
+              </span>
+              <span class="hidden xl:inline text-slate-400 dark:text-slate-500">|</span>
+              <span class="hidden xl:inline text-mint font-semibold">● 60% Faster Velocity</span>
+            </div>
           </div>
 
           <!-- =================================================================== -->
-          <!-- SVG CONNECTOR LINES & DATA STREAM PULSES                             -->
+          <!-- DESKTOP PIPELINE CANVAS: SVG Track + Sequential Traveling Pulses     -->
           <!-- =================================================================== -->
-          <svg
-            class="absolute inset-0 h-full w-full pointer-events-none overflow-visible z-0"
-            viewBox="0 0 560 520"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            id="constellation-svg"
-          >
-            <defs>
-              <!-- Glowing Filter for Traveling Pulses -->
-              <filter id="pulse-glow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
-                <feMerge>
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
+          <div class="relative w-full h-[470px] select-none">
 
-              <!-- Line Gradients -->
-              <linearGradient id="line-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#0284C7" stop-opacity="0.6" />
-                <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.3" />
-              </linearGradient>
-              <linearGradient id="line-violet" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#6366F1" stop-opacity="0.6" />
-                <stop offset="100%" stop-color="#818CF8" stop-opacity="0.3" />
-              </linearGradient>
-              <linearGradient id="line-mint" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#059669" stop-opacity="0.6" />
-                <stop offset="100%" stop-color="#34D399" stop-opacity="0.3" />
-              </linearGradient>
-            </defs>
+            <!-- SVG Circuit Tracks & Animated Data Streams -->
+            <svg
+              class="absolute inset-0 h-full w-full pointer-events-none overflow-visible z-0"
+              viewBox="0 0 640 480"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <defs>
+                <!-- Glowing Filter for Signal Pulses -->
+                <filter id="signal-glow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
+                  <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
 
-            <!-- 8 Curved Connection Paths from each Node into the Center Profile Circle -->
-            {constellationNodes.map((node) => (
+                <!-- Track Linear Gradients -->
+                <linearGradient id="track-flow" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#0284C7" stop-opacity="0.8" />
+                  <stop offset="50%" stop-color="#6366F1" stop-opacity="0.8" />
+                  <stop offset="100%" stop-color="#059669" stop-opacity="0.8" />
+                </linearGradient>
+
+                <linearGradient id="signal-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#38BDF8" />
+                  <stop offset="50%" stop-color="#818CF8" />
+                  <stop offset="100%" stop-color="#34D399" />
+                </linearGradient>
+              </defs>
+
+              <!-- Base Inactive Circuit Track -->
               <path
-                id={`path-${node.id}`}
-                data-node-id={node.id}
-                d={node.pathD}
-                class="constellation-path"
-                stroke={node.accent === 'mint' ? 'url(#line-mint)' : node.accent === 'violet' ? 'url(#line-violet)' : 'url(#line-cyan)'}
-                stroke-width="1.2"
-                stroke-dasharray="4 4"
+                d={desktopCircuitPath}
+                class="stroke-slate-300/60 dark:stroke-white/[0.08]"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
               />
-            ))}
 
-            <!-- Continuous Data Stream Pulses traveling along each path into the center profile -->
-            {constellationNodes.map((node) => (
+              <!-- Flowing Dashed Pulse Track -->
+              <path
+                d={desktopCircuitPath}
+                stroke="url(#track-flow)"
+                stroke-width="2"
+                stroke-dasharray="6 8"
+                class="pipeline-circuit-flow"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+              <!-- Primary Luminous Data Particle traveling along the complete 7-stage pipeline (10s cycle) -->
               <circle
-                r="3.5"
-                fill={node.accent === 'mint' ? '#059669' : node.accent === 'violet' ? '#6366F1' : '#0284C7'}
-                class="pulse-particle"
-                filter="url(#pulse-glow)"
+                r="5"
+                fill="url(#signal-gradient)"
+                filter="url(#signal-glow)"
+                class="pipeline-signal-particle"
               >
                 <animateMotion
-                  dur={node.dur}
-                  begin={node.begin}
+                  dur="10s"
                   repeatCount="indefinite"
-                  path={node.pathD}
+                  path={desktopCircuitPath}
+                  rotate="auto"
                 />
               </circle>
-            ))}
-          </svg>
 
-          <!-- =================================================================== -->
-          <!-- CENTER ANCHOR: Circular Profile (~140px) with 5+ Yrs Ops Badge      -->
-          <!-- =================================================================== -->
-          <div
-            class="absolute z-20 flex flex-col items-center justify-center text-center cursor-default group"
-            style="left: 280px; top: 240px; transform: translate(-50%, -50%);"
-            id="center-profile"
-          >
-            <!-- Glowing Halo & Profile Portrait -->
-            <div class="relative">
-              <div class="absolute -inset-2.5 rounded-full bg-gradient-to-tr from-cyan via-violet to-mint opacity-55 blur-xl transition duration-500 group-hover:opacity-85 group-hover:blur-2xl"></div>
-
-              <!-- Circular Profile Container (~140px diameter) -->
-              <div class="relative h-[140px] w-[140px] rounded-full border-2 border-white dark:border-white/25 bg-slate-100 dark:bg-panel2 shadow-2xl overflow-hidden ring-4 ring-slate-900/5 dark:ring-white/10 transition-transform duration-500 group-hover:scale-105">
-                <img
-                  src={profile.photo}
-                  alt={profile.name}
-                  class="h-full w-full object-cover object-center"
-                  loading="eager"
-                  width="140"
-                  height="140"
+              <!-- Secondary Trailing Packet for realistic data flow sensation -->
+              <circle
+                r="3"
+                fill="#38BDF8"
+                opacity="0.7"
+                filter="url(#signal-glow)"
+                class="pipeline-signal-particle"
+              >
+                <animateMotion
+                  dur="10s"
+                  begin="-0.4s"
+                  repeatCount="indefinite"
+                  path={desktopCircuitPath}
+                  rotate="auto"
                 />
-              </div>
+              </circle>
+            </svg>
 
-              <!-- Experience Badge Beneath Portrait -->
-              <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-slate-300 dark:border-white/15 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md px-3 py-1 shadow-md flex items-center gap-1.5 z-30 transition-transform duration-300 group-hover:scale-105">
-                <span class="h-2 w-2 rounded-full bg-mint animate-pulse" aria-hidden="true"></span>
-                <span class="font-mono text-[9.5px] font-bold tracking-wider text-slate-800 dark:text-slate-200 uppercase">
-                  5+ YRS OPS
-                </span>
+            <!-- =================================================================== -->
+            <!-- 7 SEQUENTIALLY POSITIONED & ANIMATED DEVOPS STAGE CAPSULES          -->
+            <!-- =================================================================== -->
+            {pipelineStages.map((stage) => (
+              <div
+                class="pipeline-node-wrapper absolute z-10 -translate-x-1/2 -translate-y-1/2 group cursor-pointer transition-all duration-300"
+                style={`left: ${(stage.x / 640) * 100}%; top: ${(stage.y / 480) * 100}%;`}
+                data-stage-id={stage.stage}
+                tabindex="0"
+                role="button"
+                aria-label={`Stage ${stage.stage}: ${stage.name} (${stage.tag}) - ${stage.highlight}`}
+              >
+                <!-- Stage Interactive Capsule -->
+                <div
+                  class:list={[
+                    "pipeline-stage-capsule flex flex-col gap-1.5 rounded-2xl border p-2.5 sm:p-3 shadow-md transition-all duration-300 backdrop-blur-md",
+                    "bg-white/95 dark:bg-panel2/95 border-slate-200/90 dark:border-white/10",
+                    "hover:scale-[1.06] hover:shadow-xl hover:bg-white dark:hover:bg-panel",
+                    "min-w-[145px] max-w-[170px]",
+                    stage.stage === '07' && "min-w-[280px] max-w-[340px]"
+                  ]}
+                  style={`--stage-accent: ${stage.accentColor}; --stage-glow: ${stage.accentGlow}; animation-delay: ${stage.delay};`}
+                >
+                  <!-- Stage Header: Stage Number Badge + Category Tag -->
+                  <div class="flex items-center justify-between gap-1">
+                    <span class:list={[
+                      "font-mono text-[9.5px] font-extrabold uppercase px-1.5 py-0.5 rounded-md",
+                      stage.accent === 'cyan' && "bg-cyan/10 text-cyan dark:text-cyan",
+                      stage.accent === 'violet' && "bg-violet/10 text-violet dark:text-violet",
+                      stage.accent === 'mint' && "bg-mint/10 text-mint dark:text-mint"
+                    ]}>
+                      {stage.stage} · {stage.tag}
+                    </span>
+
+                    <span class="font-mono text-[8px] text-slate-400 dark:text-slate-500 uppercase tracking-tight truncate">
+                      {stage.shortName}
+                    </span>
+                  </div>
+
+                  <!-- Stage Technology Logos + Names -->
+                  <div class="flex items-center flex-wrap gap-2 pt-0.5">
+                    {stage.technologies.map((t) => (
+                      <div class="flex items-center gap-1.5">
+                        <span class="flex-shrink-0 transition-transform duration-200 group-hover:scale-110">
+                          <TechIcon name={t.id} size={18} />
+                        </span>
+                        <span class="font-display font-bold text-xs text-slate-900 dark:text-white leading-tight">
+                          {t.name}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <!-- Micro Capability Caption -->
+                  <p class="text-[9.5px] leading-tight text-slate-500 dark:text-slate-400 truncate mt-0.5">
+                    {stage.highlight}
+                  </p>
+                </div>
               </div>
+            ))}
+
+          </div>
+
+          <!-- Bottom Telemetry Status Bar -->
+          <div class="mt-2 pt-3 border-t border-slate-200/80 dark:border-white/[0.06] flex items-center justify-between text-xs font-mono">
+            <div class="flex items-center gap-1 text-[10px] text-slate-500 dark:text-slate-400">
+              <span class="font-bold text-slate-700 dark:text-slate-300">FLOW:</span>
+              <span>Cloud</span>
+              <span>→</span>
+              <span>IaC</span>
+              <span>→</span>
+              <span>OCI</span>
+              <span>→</span>
+              <span>K8s</span>
+              <span>→</span>
+              <span>CI/CD</span>
+              <span>→</span>
+              <span>GitOps</span>
+              <span>→</span>
+              <span class="text-mint font-bold">Observe</span>
             </div>
 
-            <!-- Name & Title Beneath Badge -->
-            <div class="mt-4 space-y-0.5">
-              <span class="block font-display font-bold text-sm sm:text-base text-slate-900 dark:text-white leading-tight">
-                {profile.name}
-              </span>
-              <span class="block font-mono text-[9px] text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                DevOps &amp; Cloud Engineer
-              </span>
+            <div class="flex items-center gap-1.5 text-[10px] text-mint">
+              <span class="h-1.5 w-1.5 rounded-full bg-mint animate-pulse"></span>
+              <span class="font-bold">99.9% Uptime</span>
             </div>
           </div>
 
-          <!-- =================================================================== -->
-          <!-- 8 FLOATING CONSTELLATION NODES (Primary & Secondary Rings)          -->
-          <!-- =================================================================== -->
-          {constellationNodes.map((node) => (
-            <div
-              class="constellation-node absolute z-10 -translate-x-1/2 -translate-y-1/2 group cursor-pointer transition-all duration-200"
-              style={`left: ${node.x}px; top: ${node.y}px;`}
-              data-node-id={node.id}
-              tabindex="0"
-              role="button"
-              aria-label={`${node.name} - ${node.domain}`}
-            >
-              <!-- Interactive Glass Capsule Pill -->
-              <div
-                class:list={[
-                  "node-capsule flex items-center gap-2 rounded-2xl border px-3 py-1.5 shadow-sm transition-all duration-200 backdrop-blur-md",
-                  "bg-white/90 dark:bg-panel2/90 border-slate-200/90 dark:border-white/10",
-                  "hover:scale-[1.08] hover:shadow-md hover:bg-white dark:hover:bg-panel",
-                  node.accent === 'cyan' && "hover:border-cyan/70 dark:hover:border-cyan/60 hover:ring-2 hover:ring-cyan/30",
-                  node.accent === 'violet' && "hover:border-violet/70 dark:hover:border-violet/60 hover:ring-2 hover:ring-violet/30",
-                  node.accent === 'mint' && "hover:border-mint/70 dark:hover:border-mint/60 hover:ring-2 hover:ring-mint/30"
-                ]}
-              >
-                <!-- Brand SVG Vector Icon -->
-                <span class="flex-shrink-0 transition-transform duration-200 group-hover:scale-110">
-                  <TechIcon name={node.id} size={18} />
-                </span>
+        </div>
 
-                <!-- Node Label & Micro Domain -->
-                <div class="min-w-0">
-                  <span class="block font-display font-bold text-[11.5px] text-slate-900 dark:text-white leading-tight truncate">
-                    {node.name}
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- MOBILE / TABLET VERTICAL DEVOPS PIPELINE (< 1024px)                       -->
+    <!-- ========================================================================= -->
+    <div class="block lg:hidden mt-8 sm:mt-10">
+
+      <div class="rounded-3xl border border-slate-200/90 dark:border-white/[0.08] bg-white/80 dark:bg-panel/85 backdrop-blur-xl p-4 sm:p-6 space-y-4 shadow-xl">
+
+        <!-- Mobile Pipeline Header -->
+        <div class="flex items-center justify-between pb-3 border-b border-slate-200/80 dark:border-white/[0.06]">
+          <div class="flex items-center gap-2">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan"></span>
+            </span>
+            <span class="font-mono text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+              DevOps Delivery Flow
+            </span>
+          </div>
+
+          <span class="font-mono text-[10px] text-cyan font-bold bg-cyan/10 px-2 py-0.5 rounded-full">
+            7 Sequential Stages
+          </span>
+        </div>
+
+        <!-- Vertical Flow Container with Animated Spine Line -->
+        <div class="relative pl-6 sm:pl-8 space-y-3 sm:space-y-4">
+
+          <!-- Vertical Pulsing Spine -->
+          <div class="absolute left-2.5 sm:left-3.5 top-3 bottom-3 w-0.5 bg-gradient-to-b from-cyan via-violet to-mint opacity-40"></div>
+
+          <!-- 7 Vertical Stage Cards -->
+          {pipelineStages.map((stage) => (
+            <div class="relative flex items-start gap-3">
+
+              <!-- Node Anchor Dot on Vertical Spine -->
+              <div class="absolute -left-6 sm:-left-8 top-3 flex items-center justify-center">
+                <span class:list={[
+                  "h-3.5 w-3.5 rounded-full border-2 border-white dark:border-panel shadow-sm flex items-center justify-center",
+                  stage.accent === 'cyan' && "bg-cyan",
+                  stage.accent === 'violet' && "bg-violet",
+                  stage.accent === 'mint' && "bg-mint"
+                ]}>
+                  <span class="h-1 w-1 rounded-full bg-white"></span>
+                </span>
+              </div>
+
+              <!-- Stage Content Card -->
+              <div class="flex-1 rounded-2xl border border-slate-200/80 dark:border-white/[0.06] bg-slate-50/90 dark:bg-panel2/90 p-3 sm:p-3.5 space-y-2">
+                <div class="flex items-center justify-between gap-1">
+                  <span class:list={[
+                    "font-mono text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded",
+                    stage.accent === 'cyan' && "bg-cyan/10 text-cyan",
+                    stage.accent === 'violet' && "bg-violet/10 text-violet",
+                    stage.accent === 'mint' && "bg-mint/10 text-mint"
+                  ]}>
+                    STAGE {stage.stage} · {stage.tag}
                   </span>
-                  <span class="block font-mono text-[8px] uppercase tracking-wider text-slate-500 dark:text-slate-400 truncate">
-                    {node.tag}
+                  <span class="font-mono text-[9px] text-slate-500 dark:text-slate-400 truncate">
+                    {stage.name}
                   </span>
                 </div>
+
+                <div class="flex items-center flex-wrap gap-3 pt-0.5">
+                  {stage.technologies.map((t) => (
+                    <div class="flex items-center gap-1.5">
+                      <TechIcon name={t.id} size={18} />
+                      <span class="font-display font-bold text-xs text-slate-900 dark:text-white">
+                        {t.name}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <p class="text-[11px] text-slate-600 dark:text-slate-400 leading-tight">
+                  {stage.highlight}
+                </p>
               </div>
+
             </div>
           ))}
 
@@ -510,40 +620,9 @@ const constellationNodes = [
       </div>
 
     </div>
+
   </div>
 </section>
-
-<!-- Hover Interaction Engine for Constellation Nodes & SVG Lines -->
-<script is:inline>
-  (function () {
-    const canvas = document.getElementById('hero-constellation-canvas');
-    if (!canvas) return;
-
-    const nodes = canvas.querySelectorAll('.constellation-node');
-
-    nodes.forEach((node) => {
-      const nodeId = node.getAttribute('data-node-id');
-      const targetPath = canvas.querySelector(`#path-${nodeId}`);
-
-      function onEnter() {
-        if (targetPath) {
-          targetPath.classList.add('is-active-line');
-        }
-      }
-
-      function onLeave() {
-        if (targetPath) {
-          targetPath.classList.remove('is-active-line');
-        }
-      }
-
-      node.addEventListener('mouseenter', onEnter);
-      node.addEventListener('focus', onEnter);
-      node.addEventListener('mouseleave', onLeave);
-      node.addEventListener('blur', onLeave);
-    });
-  })();
-</script>
 
 <style>
   @keyframes heroFadeIn {
@@ -561,35 +640,49 @@ const constellationNodes = [
     animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
-  /* Moving Dash Animation along Connection Lines */
-  @keyframes strokeDashFlow {
+  /* Moving Dash Animation along Connection Circuit */
+  @keyframes circuitTrackFlow {
     to {
-      stroke-dashoffset: -16;
+      stroke-dashoffset: -28;
     }
   }
 
-  .constellation-path {
-    opacity: 0.22;
-    transition: opacity 200ms ease, stroke-width 200ms ease, stroke 200ms ease;
-    animation: strokeDashFlow 3s linear infinite;
+  .pipeline-circuit-flow {
+    opacity: 0.65;
+    animation: circuitTrackFlow 1.8s linear infinite;
   }
 
-  /* Highlighted Line on Node Hover */
-  .constellation-path.is-active-line {
-    opacity: 0.75 !important;
-    stroke-width: 2px !important;
-    filter: drop-shadow(0 0 4px rgba(2, 132, 199, 0.7));
+  /* Sequential Node Highlighting Keyframe Loop (10s total cycle) */
+  @keyframes stageSequentialPulse {
+    0%, 18%, 100% {
+      border-color: rgba(226, 232, 240, 0.8);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      transform: scale(1);
+    }
+    4%, 12% {
+      border-color: var(--stage-accent);
+      box-shadow: 0 0 20px var(--stage-glow), inset 0 0 10px var(--stage-glow);
+      transform: scale(1.05);
+    }
+  }
+
+  :global(.dark) .pipeline-stage-capsule {
+    animation: stageSequentialPulse 10s ease-in-out infinite;
+  }
+
+  .pipeline-stage-capsule {
+    animation: stageSequentialPulse 10s ease-in-out infinite;
   }
 
   /* Accessibility: Prefers Reduced Motion */
   @media (prefers-reduced-motion: reduce) {
     .hero-animate-in,
-    .constellation-path {
+    .pipeline-circuit-flow,
+    .pipeline-stage-capsule {
       animation: none !important;
-      opacity: 0.25 !important;
       transform: none !important;
     }
-    .pulse-particle {
+    .pipeline-signal-particle {
       display: none !important;
     }
   }
