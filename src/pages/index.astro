@@ -261,35 +261,43 @@ const currentProject = projects[0];
         </div>
 
         <!-- 2. Side-by-Side: Interactive YAML Manifest + Categorized Skill Groups -->
-        <div class="grid gap-6 lg:grid-cols-[1fr_1fr]">
-          
+        <div class="grid gap-6 lg:grid-cols-[1fr_1.1fr]">
+
           <!-- YAML Manifest Viewer -->
-          <div class="stack-panel rounded-2xl sm:rounded-3xl border border-slate-300 dark:border-white/10 bg-slate-900 text-slate-100 overflow-hidden reveal-up shadow-md">
-            <div class="flex items-center justify-between border-b border-white/[0.08] px-4 py-3 bg-black/30">
-              <div class="flex items-center gap-2">
-                <span class="status-dot red"></span><span class="status-dot amber"></span><span class="status-dot green"></span>
-                <span class="ml-2 font-mono text-[10px] tracking-widest text-slate-400 uppercase">infra/stack.yaml</span>
+          <div class="stack-panel rounded-2xl sm:rounded-3xl border border-slate-300 dark:border-white/10 bg-slate-900 text-slate-100 overflow-hidden reveal-up shadow-md flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between border-b border-white/[0.08] px-4 py-3 bg-black/30">
+                <div class="flex items-center gap-2">
+                  <span class="status-dot red"></span><span class="status-dot amber"></span><span class="status-dot green"></span>
+                  <span class="ml-2 font-mono text-[10px] tracking-widest text-slate-400 uppercase">infra/stack.yaml</span>
+                </div>
+                <span class="font-mono text-[9px] text-mint uppercase tracking-wider">● drift-checked</span>
               </div>
-              <span class="font-mono text-[9px] text-mint uppercase tracking-wider">● drift-checked</span>
-            </div>
-            <pre class="overflow-x-auto p-4 sm:p-5 font-mono text-xs leading-relaxed text-slate-200 m-0 bg-transparent"><code><span class="yaml-line"><span class="yaml-comment"># infra/stack.yaml — declarative toolchain</span></span>
+              <pre class="overflow-x-auto p-4 sm:p-5 font-mono text-xs leading-relaxed text-slate-200 m-0 bg-transparent"><code><span class="yaml-line"><span class="yaml-comment"># infra/stack.yaml — declarative toolchain</span></span>
 <span class="yaml-line"><span class="yaml-key">stack:</span></span>
 {Object.entries(stackYaml).map(([key, vals]) => (
   <span class="yaml-line">  <span class="yaml-key">{key}:</span><span class="yaml-val"> [{vals.join(', ')}]</span></span>
 ))}
 <span class="yaml-line"><span class="yaml-comment"># mode: zero-downtime · observable · resilient</span></span>
 </code></pre>
+            </div>
+            <div class="border-t border-white/[0.08] p-4 bg-black/20 text-xs font-mono text-slate-400 flex items-center justify-between">
+              <span>Environment: Multi-AZ Production</span>
+              <span class="text-cyan">AWS &amp; Azure Ready</span>
+            </div>
           </div>
 
-          <!-- Structured Capability Pillars -->
-          <div class="grid gap-3 sm:gap-3.5 reveal-up" style="animation-delay:100ms">
-            {skillGroups.slice(0, 5).map((group) => (
-              <article class="surface rounded-2xl border border-slate-200 dark:border-white/[0.08] p-4 sm:p-4.5 transition hover:-translate-y-0.5 shadow-sm">
-                <div class="flex items-start justify-between gap-4">
-                  <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white font-display">{group.name}</h3>
-                  <span class="rounded-full bg-slate-100 dark:bg-white/[0.05] px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-[0.15em] text-slate-600 dark:text-muted">{group.tier}</span>
+          <!-- Structured Capability Pillars (All 10 Categories) -->
+          <div class="grid gap-3 sm:grid-cols-2 reveal-up" style="animation-delay:100ms">
+            {skillGroups.map((group) => (
+              <article class="surface rounded-2xl border border-slate-200 dark:border-white/[0.08] p-3.5 sm:p-4 transition hover:-translate-y-0.5 shadow-sm flex flex-col justify-between">
+                <div>
+                  <div class="flex items-start justify-between gap-2">
+                    <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white font-display leading-tight">{group.name}</h3>
+                    <span class="rounded-full bg-slate-100 dark:bg-white/[0.05] px-1.5 py-0.5 font-mono text-[8px] font-semibold uppercase tracking-wider text-slate-600 dark:text-muted flex-shrink-0">{group.tier}</span>
+                  </div>
+                  <p class="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-300">{group.skills.join(' · ')}</p>
                 </div>
-                <p class="mt-2 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-300">{group.skills.join(' · ')}</p>
               </article>
             ))}
           </div>

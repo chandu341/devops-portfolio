@@ -17,6 +17,16 @@ import elasticSvg from '@/assets/technologies/elastic.svg?raw';
 import dynatraceSvg from '@/assets/technologies/dynatrace.svg?raw';
 import sonarqubeSvg from '@/assets/technologies/sonarqube.svg?raw';
 import trivySvg from '@/assets/technologies/trivy.svg?raw';
+import gitSvg from '@/assets/technologies/git.svg?raw';
+import gitlabSvg from '@/assets/technologies/gitlab.svg?raw';
+import bitbucketSvg from '@/assets/technologies/bitbucket.svg?raw';
+import bashSvg from '@/assets/technologies/bash.svg?raw';
+import nginxSvg from '@/assets/technologies/nginx.svg?raw';
+import apacheSvg from '@/assets/technologies/apache.svg?raw';
+import mysqlSvg from '@/assets/technologies/mysql.svg?raw';
+import jiraSvg from '@/assets/technologies/jira.svg?raw';
+import servicenowSvg from '@/assets/technologies/servicenow.svg?raw';
+import seleniumSvg from '@/assets/technologies/selenium.svg?raw';
 
 interface Props {
   name: string;
@@ -40,6 +50,7 @@ const svgMap: Record<string, string> = {
   s3: awsSvg,
   rds: awsSvg,
   dynamo: awsSvg,
+  dynamodb: awsSvg,
   docker: dockerSvg,
   azure: azureSvg,
   microsoftazure: azureSvg,
@@ -47,7 +58,9 @@ const svgMap: Record<string, string> = {
   argo: argocdSvg,
   githubactions: githubActionsSvg,
   github: githubActionsSvg,
-  git: githubActionsSvg,
+  git: gitSvg,
+  gitlab: gitlabSvg,
+  bitbucket: bitbucketSvg,
   prometheus: prometheusSvg,
   grafana: grafanaSvg,
   jenkins: jenkinsSvg,
@@ -55,10 +68,23 @@ const svgMap: Record<string, string> = {
   ansible: ansibleSvg,
   python: pythonSvg,
   linux: linuxSvg,
+  bash: bashSvg,
+  shell: bashSvg,
+  shellbash: bashSvg,
+  nginx: nginxSvg,
+  apache: apacheSvg,
+  tomcat: apacheSvg,
+  mysql: mysqlSvg,
+  jira: jiraSvg,
+  servicenow: servicenowSvg,
+  selenium: seleniumSvg,
+  catchpoint: dynatraceSvg,
   elastic: elasticSvg,
   elasticsearch: elasticSvg,
   elasticstack: elasticSvg,
   elk: elasticSvg,
+  logstash: elasticSvg,
+  kibana: elasticSvg,
   dynatrace: dynatraceSvg,
   sonarqube: sonarqubeSvg,
   sonar: sonarqubeSvg,
