@@ -8,39 +8,117 @@ import {
   Mail,
   MapPin,
   ShieldCheck,
-  Sparkles,
-  Terminal
+  Sparkles
 } from '@lucide/astro';
 import { profile } from '@/data/profile';
-import { allTechnologies } from '@/data/technologies';
 import TechIcon from '@/components/TechIcon.astro';
 
-// Grouping technologies by architectural domain for the interactive ecosystem
-const ecosystemGroups = [
+// Curated 10 Core Production Technologies for the Architectural Constellation
+const constellationNodes = [
   {
-    domain: 'Cloud & Infrastructure',
+    id: 'aws',
+    name: 'AWS',
+    tag: 'Cloud',
+    domain: 'Infrastructure',
     accent: 'cyan',
-    tools: allTechnologies.filter(t => ['aws', 'azure', 'terraform', 'ansible'].includes(t.id))
+    left: '14%',
+    top: '16%',
+    connections: ['terraform', 'docker']
   },
   {
-    domain: 'Containers & GitOps',
+    id: 'terraform',
+    name: 'Terraform',
+    tag: 'IaC',
+    domain: 'Provisioning',
     accent: 'violet',
-    tools: allTechnologies.filter(t => ['kubernetes', 'docker', 'helm', 'argocd'].includes(t.id))
+    left: '50%',
+    top: '12%',
+    connections: ['aws', 'azure', 'profile']
   },
   {
-    domain: 'CI/CD & Observability',
-    accent: 'mint',
-    tools: allTechnologies.filter(t => ['githubactions', 'jenkins', 'prometheus', 'grafana'].includes(t.id))
-  },
-  {
-    domain: 'SecOps & Core Systems',
+    id: 'azure',
+    name: 'Azure',
+    tag: 'Cloud',
+    domain: 'Infrastructure',
     accent: 'cyan',
-    tools: allTechnologies.filter(t => ['sonarqube', 'trivy', 'elastic', 'linux', 'dynatrace', 'python'].includes(t.id))
+    left: '86%',
+    top: '16%',
+    connections: ['terraform', 'kubernetes']
+  },
+  {
+    id: 'docker',
+    name: 'Docker',
+    tag: 'Runtime',
+    domain: 'Containers',
+    accent: 'cyan',
+    left: '11%',
+    top: '47%',
+    connections: ['aws', 'profile', 'githubactions']
+  },
+  {
+    id: 'kubernetes',
+    name: 'Kubernetes',
+    tag: 'Platform',
+    domain: 'Orchestration',
+    accent: 'cyan',
+    left: '89%',
+    top: '47%',
+    connections: ['azure', 'profile', 'argocd', 'prometheus']
+  },
+  {
+    id: 'githubactions',
+    name: 'GitHub Actions',
+    tag: 'CI/CD',
+    domain: 'Automation',
+    accent: 'violet',
+    left: '16%',
+    top: '79%',
+    connections: ['docker', 'jenkins']
+  },
+  {
+    id: 'jenkins',
+    name: 'Jenkins',
+    tag: 'CI/CD',
+    domain: 'Pipelines',
+    accent: 'cyan',
+    left: '37%',
+    top: '88%',
+    connections: ['githubactions', 'argocd']
+  },
+  {
+    id: 'argocd',
+    name: 'Argo CD',
+    tag: 'GitOps',
+    domain: 'Continuous Sync',
+    accent: 'mint',
+    left: '63%',
+    top: '88%',
+    connections: ['jenkins', 'kubernetes', 'grafana']
+  },
+  {
+    id: 'prometheus',
+    name: 'Prometheus',
+    tag: 'Metrics',
+    domain: 'Telemetry',
+    accent: 'mint',
+    left: '84%',
+    top: '79%',
+    connections: ['kubernetes', 'grafana']
+  },
+  {
+    id: 'grafana',
+    name: 'Grafana',
+    tag: 'Dashboards',
+    domain: 'Observability',
+    accent: 'mint',
+    left: '50%',
+    top: '69%',
+    connections: ['profile', 'argocd', 'prometheus']
   }
 ];
 ---
 
-<section class="relative overflow-hidden pt-6 sm:pt-10 lg:pt-14 pb-12 sm:pb-16 lg:pb-20" id="top">
+<section class="relative overflow-hidden pt-6 sm:pt-10 lg:pt-14 pb-12 sm:pb-16 lg:pb-24" id="top">
 
   <!-- Subtle Ambient Lighting Mesh (Light/Dark adaptive) -->
   <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
@@ -51,11 +129,11 @@ const ecosystemGroups = [
 
   <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full min-w-0">
 
-    <!-- Hero Grid: Left Column (Editorial Identity & CTAs) + Right Column (Unified Technical Console) -->
-    <div class="grid items-center gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-12 xl:gap-16">
+    <!-- Hero Grid: Left Column (Editorial Identity & Value Proposition) + Right Column (Personal Focal Anchor & Technical Constellation) -->
+    <div class="grid items-center gap-10 lg:grid-cols-[1.05fr_1.15fr] lg:gap-12 xl:gap-16">
 
       <!-- ========================================================================= -->
-      <!-- LEFT COLUMN: Command-Line Editorial Identity & Value Proposition         -->
+      <!-- LEFT COLUMN: Editorial Identity, Proven Value & High-Contrast CTAs       -->
       <!-- ========================================================================= -->
       <div class="space-y-6 sm:space-y-7">
 
@@ -181,122 +259,268 @@ const ecosystemGroups = [
       </div>
 
       <!-- ========================================================================= -->
-      <!-- RIGHT COLUMN: Unified Technical Console & Focal Architectural Anchor     -->
+      <!-- RIGHT COLUMN: Focal Profile Anchor & Technical Constellation Stage        -->
       <!-- ========================================================================= -->
       <div class="hero-animate-in relative" style="animation-delay: 150ms;">
 
-        <!-- Architectural Glass Console Container -->
-        <div class="relative rounded-3xl border border-slate-200/90 dark:border-white/[0.09] bg-white/80 dark:bg-panel/85 backdrop-blur-xl p-5 sm:p-6 shadow-xl lg:shadow-2xl overflow-hidden">
+        <!-- ======================================================================= -->
+        <!-- DESKTOP DISPLAY: Organic Orbital Constellation with SVG Connection Mesh -->
+        <!-- ======================================================================= -->
+        <div class="hidden lg:block relative w-full h-[510px] select-none" id="constellation-canvas">
 
-          <!-- Subtle Circuit Graphic Background -->
-          <div class="pointer-events-none absolute inset-0 opacity-[0.03] dark:opacity-[0.06]" aria-hidden="true">
-            <svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-              <defs>
-                <pattern id="hero-grid-pat" width="32" height="32" patternUnits="userSpaceOnUse">
-                  <path d="M0 32 L32 32 M32 0 L32 32" fill="none" stroke="currentColor" stroke-width="1" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#hero-grid-pat)" />
-            </svg>
+          <!-- Background Orbital Rings radiating from center -->
+          <div class="pointer-events-none absolute inset-0 flex items-center justify-center" aria-hidden="true">
+            <!-- Inner Orbital Ring -->
+            <div class="absolute h-[250px] w-[250px] rounded-full border border-slate-200/60 dark:border-white/[0.05] constellation-ring-slow"></div>
+            <!-- Mid Orbital Ring -->
+            <div class="absolute h-[380px] w-[380px] rounded-full border border-dashed border-slate-200/50 dark:border-white/[0.035] constellation-ring-reverse"></div>
+            <!-- Outer Ambient Ring -->
+            <div class="absolute h-[480px] w-[480px] rounded-full border border-slate-200/30 dark:border-white/[0.02]"></div>
           </div>
 
-          <!-- Console Header Bar -->
-          <div class="relative flex items-center justify-between border-b border-slate-200/80 dark:border-white/[0.08] pb-4 mb-5">
-            <div class="flex items-center gap-2.5">
-              <span class="flex h-2 w-2 rounded-full bg-mint"></span>
-              <span class="font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.16em] text-slate-800 dark:text-slate-200">
-                Production Ecosystem
-              </span>
-            </div>
-            <div class="flex items-center gap-2 font-mono text-[9px] sm:text-[10px] text-slate-500 dark:text-slate-400">
-              <Terminal size={12} class="text-cyan" />
-              <span>18 Verified Tools</span>
-            </div>
-          </div>
+          <!-- SVG Architectural Vector Connection Mesh -->
+          <svg
+            class="absolute inset-0 h-full w-full pointer-events-none overflow-visible z-0"
+            viewBox="0 0 540 500"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <defs>
+              <!-- Connection Line Gradient -->
+              <linearGradient id="line-grad-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0284C7" stop-opacity="0.5" />
+                <stop offset="100%" stop-color="#6366F1" stop-opacity="0.2" />
+              </linearGradient>
+              <linearGradient id="line-grad-violet" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#6366F1" stop-opacity="0.5" />
+                <stop offset="100%" stop-color="#059669" stop-opacity="0.2" />
+              </linearGradient>
+              <linearGradient id="line-grad-mint" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#059669" stop-opacity="0.5" />
+                <stop offset="100%" stop-color="#0284C7" stop-opacity="0.2" />
+              </linearGradient>
 
-          <!-- Profile Anchor Row (Focal Portrait + Experience Highlights) -->
-          <div class="relative flex items-center gap-4 sm:gap-5 pb-5 border-b border-slate-200/80 dark:border-white/[0.08]">
+              <!-- Radial glow filter for animated packets -->
+              <filter id="packet-glow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="2" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+            </defs>
 
-            <!-- Focal Portrait with Multi-Layered Halo -->
-            <div class="relative flex-shrink-0 group">
-              <div class="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-cyan via-violet to-mint opacity-60 blur-md transition duration-500 group-hover:opacity-90"></div>
-              <div class="relative h-20 w-20 sm:h-24 sm:w-24 overflow-hidden rounded-2xl border-2 border-white dark:border-white/20 bg-slate-100 dark:bg-panel2 shadow-md">
+            <!-- Architectural Connection Paths -->
+            <!-- 1. AWS to Terraform -->
+            <path id="path-aws-tf" d="M 76 80 Q 170 50, 270 60" class="constellation-path" stroke="url(#line-grad-cyan)" stroke-width="1.5" stroke-dasharray="4 4" />
+            <!-- 2. Terraform to Azure -->
+            <path id="path-tf-azure" d="M 270 60 Q 370 50, 464 80" class="constellation-path" stroke="url(#line-grad-violet)" stroke-width="1.5" stroke-dasharray="4 4" />
+            <!-- 3. Terraform to Profile Center Anchor -->
+            <path id="path-tf-profile" d="M 270 60 L 270 185" class="constellation-path" stroke="url(#line-grad-cyan)" stroke-width="1.5" />
+
+            <!-- 4. AWS to Docker -->
+            <path id="path-aws-docker" d="M 76 80 Q 50 160, 59 235" class="constellation-path" stroke="url(#line-grad-cyan)" stroke-width="1.5" stroke-dasharray="4 4" />
+            <!-- 5. Docker to Profile Center Anchor -->
+            <path id="path-docker-profile" d="M 59 235 L 215 235" class="constellation-path" stroke="url(#line-grad-cyan)" stroke-width="1.5" />
+            <!-- 6. Profile Center Anchor to Kubernetes -->
+            <path id="path-profile-k8s" d="M 325 235 L 481 235" class="constellation-path" stroke="url(#line-grad-cyan)" stroke-width="1.5" />
+            <!-- 7. Azure to Kubernetes -->
+            <path id="path-azure-k8s" d="M 464 80 Q 490 160, 481 235" class="constellation-path" stroke="url(#line-grad-violet)" stroke-width="1.5" stroke-dasharray="4 4" />
+
+            <!-- 8. Docker to GitHub Actions -->
+            <path id="path-docker-gha" d="M 59 235 Q 60 320, 86 395" class="constellation-path" stroke="url(#line-grad-violet)" stroke-width="1.5" stroke-dasharray="4 4" />
+            <!-- 9. GitHub Actions to Jenkins -->
+            <path id="path-gha-jenkins" d="M 86 395 Q 140 430, 200 440" class="constellation-path" stroke="url(#line-grad-violet)" stroke-width="1.5" stroke-dasharray="4 4" />
+            <!-- 10. Jenkins to Argo CD -->
+            <path id="path-jenkins-argocd" d="M 200 440 L 340 440" class="constellation-path" stroke="url(#line-grad-mint)" stroke-width="1.5" stroke-dasharray="4 4" />
+            <!-- 11. Argo CD to Kubernetes -->
+            <path id="path-argocd-k8s" d="M 340 440 Q 440 370, 481 235" class="constellation-path" stroke="url(#line-grad-mint)" stroke-width="1.5" stroke-dasharray="4 4" />
+
+            <!-- 12. Profile Center Anchor to Grafana Bridge -->
+            <path id="path-profile-grafana" d="M 270 285 L 270 345" class="constellation-path" stroke="url(#line-grad-mint)" stroke-width="1.5" />
+            <!-- 13. Grafana to Prometheus -->
+            <path id="path-grafana-prom" d="M 270 345 Q 360 360, 454 395" class="constellation-path" stroke="url(#line-grad-mint)" stroke-width="1.5" stroke-dasharray="4 4" />
+            <!-- 14. Prometheus to Kubernetes -->
+            <path id="path-prom-k8s" d="M 454 395 Q 480 320, 481 235" class="constellation-path" stroke="url(#line-grad-cyan)" stroke-width="1.5" stroke-dasharray="4 4" />
+            <!-- 15. Argo CD to Grafana -->
+            <path id="path-argocd-grafana" d="M 340 440 Q 300 400, 270 345" class="constellation-path" stroke="url(#line-grad-mint)" stroke-width="1.5" stroke-dasharray="4 4" />
+
+            <!-- Subtle Live Energy Packets moving along key pathways -->
+            <circle r="2.5" fill="#0284C7" opacity="0.8" filter="url(#packet-glow)">
+              <animateMotion dur="5s" repeatCount="indefinite" path="M 76 80 Q 170 50, 270 60 L 270 185" />
+            </circle>
+            <circle r="2.5" fill="#6366F1" opacity="0.8" filter="url(#packet-glow)">
+              <animateMotion dur="6s" repeatCount="indefinite" path="M 86 395 Q 140 430, 200 440 L 340 440 Q 440 370, 481 235" />
+            </circle>
+            <circle r="2.5" fill="#059669" opacity="0.8" filter="url(#packet-glow)">
+              <animateMotion dur="5.5s" repeatCount="indefinite" path="M 481 235 Q 480 320, 454 395 Q 360 360, 270 345" />
+            </circle>
+          </svg>
+
+          <!-- =================================================================== -->
+          <!-- CENTRAL FOCAL ANCHOR: Profile Portrait with Glowing Ambient Halo    -->
+          <!-- =================================================================== -->
+          <div
+            class="absolute z-20 flex flex-col items-center justify-center text-center cursor-default group"
+            style="left: 50%; top: 47%; transform: translate(-50%, -50%);"
+          >
+            <!-- Glowing Halo Layer -->
+            <div class="relative">
+              <div class="absolute -inset-2 rounded-full bg-gradient-to-tr from-cyan via-violet to-mint opacity-50 blur-lg transition duration-500 group-hover:opacity-80 group-hover:blur-xl"></div>
+
+              <!-- Portrait Image Container -->
+              <div class="relative h-28 w-28 rounded-full border-2 border-white dark:border-white/20 bg-slate-100 dark:bg-panel2 shadow-xl overflow-hidden ring-4 ring-slate-900/5 dark:ring-white/10 transition-transform duration-500 group-hover:scale-105">
                 <img
                   src={profile.photo}
                   alt={profile.name}
-                  class="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  class="h-full w-full object-cover object-center"
                   loading="eager"
-                  width="96"
-                  height="96"
+                  width="112"
+                  height="112"
+                />
+              </div>
+
+              <!-- Floating Experience Badge -->
+              <div class="absolute -bottom-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-slate-300 dark:border-white/15 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md px-2.5 py-0.5 shadow-md flex items-center gap-1.5 z-30 transition-transform duration-300 group-hover:scale-105">
+                <span class="h-1.5 w-1.5 rounded-full bg-mint animate-pulse" aria-hidden="true"></span>
+                <span class="font-mono text-[9px] font-bold tracking-wider text-slate-800 dark:text-slate-200 uppercase">
+                  5+ Yrs Ops
+                </span>
+              </div>
+            </div>
+
+            <!-- Identity Label Subtitle -->
+            <div class="mt-4 space-y-0.5">
+              <span class="block font-display font-bold text-xs sm:text-sm text-slate-900 dark:text-white">
+                {profile.name}
+              </span>
+              <span class="block font-mono text-[9px] text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                DevOps &amp; Cloud Arch
+              </span>
+            </div>
+          </div>
+
+          <!-- =================================================================== -->
+          <!-- CONSTELLATION NODES: Interactive Curated Technology Capsules         -->
+          <!-- =================================================================== -->
+          {constellationNodes.map((node) => (
+            <div
+              class="constellation-node absolute z-10 -translate-x-1/2 -translate-y-1/2 group"
+              style={`left: ${node.left}; top: ${node.top};`}
+              data-tech={node.id}
+            >
+              <!-- Interactive Glass Capsule -->
+              <div
+                class:list={[
+                  "flex items-center gap-2 rounded-2xl border px-3 py-2 shadow-sm transition-all duration-300 cursor-default backdrop-blur-md",
+                  "bg-white/90 dark:bg-panel2/90",
+                  "hover:-translate-y-1 hover:scale-105 hover:shadow-lg",
+                  node.accent === 'cyan' && "border-slate-200/90 dark:border-white/10 hover:border-cyan/60 dark:hover:border-cyan/50 hover:bg-white dark:hover:bg-panel",
+                  node.accent === 'violet' && "border-slate-200/90 dark:border-white/10 hover:border-violet/60 dark:hover:border-violet/50 hover:bg-white dark:hover:bg-panel",
+                  node.accent === 'mint' && "border-slate-200/90 dark:border-white/10 hover:border-mint/60 dark:hover:border-mint/50 hover:bg-white dark:hover:bg-panel"
+                ]}
+              >
+                <!-- Brand SVG Vector Icon -->
+                <span class="flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
+                  <TechIcon name={node.id} size={18} />
+                </span>
+
+                <!-- Node Label & Micro Domain -->
+                <div class="min-w-0">
+                  <span class="block font-display font-bold text-[11px] text-slate-900 dark:text-white leading-tight truncate">
+                    {node.name}
+                  </span>
+                  <span class="block font-mono text-[7.5px] uppercase tracking-wider text-slate-500 dark:text-slate-400 truncate mt-0.5">
+                    {node.domain}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+
+        </div>
+
+        <!-- ======================================================================= -->
+        <!-- MOBILE & TABLET DISPLAY: Ergonomic Connected Architectural Matrix      -->
+        <!-- ======================================================================= -->
+        <div class="block lg:hidden relative rounded-3xl border border-slate-200/90 dark:border-white/[0.09] bg-white/80 dark:bg-panel/85 backdrop-blur-xl p-5 sm:p-6 shadow-xl overflow-hidden">
+
+          <!-- Background Subtle Circuit Grid -->
+          <div class="pointer-events-none absolute inset-0 opacity-[0.03] dark:opacity-[0.05]" aria-hidden="true">
+            <svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+              <defs>
+                <pattern id="hero-mob-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+                  <path d="M0 24 L24 24 M24 0 L24 24" fill="none" stroke="currentColor" stroke-width="1" />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#hero-mob-grid)" />
+            </svg>
+          </div>
+
+          <!-- Profile Anchor Header -->
+          <div class="relative flex items-center gap-4 pb-5 border-b border-slate-200/80 dark:border-white/[0.08]">
+            <!-- Focal Portrait with Halo -->
+            <div class="relative flex-shrink-0 group">
+              <div class="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-cyan via-violet to-mint opacity-60 blur-md transition duration-500 group-hover:opacity-90"></div>
+              <div class="relative h-18 w-18 sm:h-20 sm:w-20 overflow-hidden rounded-2xl border-2 border-white dark:border-white/20 bg-slate-100 dark:bg-panel2 shadow-md">
+                <img
+                  src={profile.photo}
+                  alt={profile.name}
+                  class="h-full w-full object-cover object-center"
+                  loading="eager"
+                  width="80"
+                  height="80"
                 />
               </div>
             </div>
 
-            <!-- Identity & Specialization Micro-Summary -->
+            <!-- Identity Summary -->
             <div class="min-w-0 flex-1 space-y-1">
               <div class="flex items-center gap-2">
-                <span class="font-display font-bold text-sm sm:text-base text-slate-900 dark:text-white truncate">
+                <span class="font-display font-bold text-base sm:text-lg text-slate-900 dark:text-white truncate">
                   {profile.name}
                 </span>
                 <span class="inline-flex items-center rounded-full bg-cyan/10 px-2 py-0.5 font-mono text-[9px] font-bold text-cyan">
                   5+ YRS
                 </span>
               </div>
-              <p class="font-mono text-[11px] text-slate-600 dark:text-slate-300 truncate">
+              <p class="font-mono text-xs text-slate-600 dark:text-slate-300 truncate">
                 DevOps &amp; Cloud Engineer
               </p>
-              <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
-                Specialized in Amazon EKS, Azure AKS, Terraform IaC &amp; Argo CD GitOps pipelines.
+              <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">
+                Core Cloud &amp; Platform Architecture
               </p>
             </div>
-
           </div>
 
-          <!-- Interactive Domain-Grouped Technology Ecosystem -->
-          <div class="relative mt-5 space-y-4">
-            {ecosystemGroups.map((group) => (
-              <div class="space-y-2">
+          <!-- Connected Core 10 Technology Grid -->
+          <div class="relative mt-4">
+            <div class="flex items-center justify-between mb-3 px-0.5">
+              <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                Core Production Stack
+              </span>
+              <span class="font-mono text-[9px] text-mint uppercase tracking-wider">
+                ● Connected Mesh
+              </span>
+            </div>
 
-                <!-- Domain Group Header -->
-                <div class="flex items-center justify-between px-0.5">
-                  <span class="font-mono text-[9.5px] sm:text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                    {group.domain}
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
+              {constellationNodes.map((tech) => (
+                <div
+                  class="group flex items-center gap-2 rounded-xl border border-slate-200/80 dark:border-white/[0.08] bg-slate-50/80 dark:bg-white/[0.03] p-2 transition-all duration-200 hover:border-cyan/40 hover:bg-white dark:hover:bg-white/[0.06] cursor-default"
+                >
+                  <span class="flex-shrink-0 transition-transform duration-200 group-hover:scale-110">
+                    <TechIcon name={tech.id} size={16} />
                   </span>
-                  <span class="h-[1px] flex-1 bg-slate-200/60 dark:bg-white/[0.05] ml-3"></span>
+                  <div class="min-w-0 flex-1">
+                    <span class="block text-[11px] font-bold text-slate-900 dark:text-white truncate font-display">
+                      {tech.name}
+                    </span>
+                    <span class="block font-mono text-[8px] text-slate-500 dark:text-slate-400 uppercase tracking-wider truncate">
+                      {tech.tag}
+                    </span>
+                  </div>
                 </div>
-
-                <!-- Domain Technology Grid -->
-                <div class="grid grid-cols-2 gap-2 sm:grid-cols-4">
-                  {group.tools.map((tech) => (
-                    <div
-                      class:list={[
-                        "group relative flex items-center gap-2 rounded-xl border p-2 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm cursor-default",
-                        tech.isPrimary
-                          ? "border-cyan/30 dark:border-cyan/35 bg-slate-100/90 dark:bg-white/[0.05] hover:border-cyan/60 dark:hover:border-cyan/50 hover:bg-white dark:hover:bg-white/[0.08]"
-                          : "border-slate-200/80 dark:border-white/[0.07] bg-slate-50/80 dark:bg-white/[0.025] hover:border-slate-300 dark:hover:border-white/20 hover:bg-slate-100/90 dark:hover:bg-white/[0.06]"
-                      ]}
-                      title={`${tech.name} · ${tech.category} — ${tech.shortDesc}`}
-                    >
-                      <!-- Authentic Brand SVG Icon -->
-                      <span class="flex-shrink-0 transition-transform duration-200 group-hover:scale-110">
-                        <TechIcon name={tech.id} size={18} />
-                      </span>
-
-                      <!-- Tech Name & Tag -->
-                      <div class="min-w-0 flex-1">
-                        <span class="block text-[11.5px] font-bold text-slate-900 dark:text-white truncate font-display leading-tight">
-                          {tech.name}
-                        </span>
-                        <span class="block font-mono text-[8px] text-slate-500 dark:text-slate-400 uppercase tracking-wider truncate mt-0.5">
-                          {tech.tag}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
         </div>
@@ -323,8 +547,55 @@ const ecosystemGroups = [
     animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
+  /* Orbital Ring Rotations */
+  @keyframes ringRotateSlow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes ringRotateReverse {
+    from {
+      transform: rotate(360deg);
+    }
+    to {
+      transform: rotate(0deg);
+    }
+  }
+
+  .constellation-ring-slow {
+    animation: ringRotateSlow 60s linear infinite;
+  }
+
+  .constellation-ring-reverse {
+    animation: ringRotateReverse 45s linear infinite;
+  }
+
+  /* Path dash drift animation */
+  @keyframes pathDashDrift {
+    to {
+      stroke-dashoffset: -16;
+    }
+  }
+
+  .constellation-path[stroke-dasharray] {
+    animation: pathDashDrift 2.5s linear infinite;
+  }
+
+  /* Node Hover Dynamics */
+  .constellation-node:hover ~ svg .constellation-path {
+    opacity: 0.35;
+  }
+
+  /* Accessibility: Prefers Reduced Motion */
   @media (prefers-reduced-motion: reduce) {
-    .hero-animate-in {
+    .hero-animate-in,
+    .constellation-ring-slow,
+    .constellation-ring-reverse,
+    .constellation-path {
       animation: none !important;
       opacity: 1 !important;
       transform: none !important;
