@@ -1,5 +1,5 @@
 ---
-import { Award, ExternalLink, Sparkles } from '@lucide/astro';
+import { Award, Building2, Calendar, CircleCheck, ExternalLink, MapPin, Sparkles } from '@lucide/astro';
 import ArchitectureDiagram from '@/components/ArchitectureDiagram.astro';
 import Footer from '@/components/Footer.astro';
 import Hero from '@/components/Hero.astro';
@@ -93,47 +93,131 @@ const currentProject = projects[0];
       </div>
     </section>
 
-    <!-- 04 — EXPERIENCE -->
+    <!-- 04 — EXPERIENCE / Career Deployment History -->
     <section id="experience" class="section-pad bg-slate-100/60 dark:bg-white/[0.02]">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full min-w-0 box-border">
-        <div class="mb-8 sm:mb-10 reveal-up">
-          <p class="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-violet inline-flex items-center gap-2">
+
+        <div class="mb-8 sm:mb-12 reveal-up">
+          <p class="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-violet dark:text-violet inline-flex items-center gap-2">
             <span class="inline-block h-1 w-2.5 rounded-full bg-cyan" aria-hidden="true"></span>
             04 — git log --career
           </p>
           <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 dark:text-white font-display">
             Deployment history.
           </h2>
+          <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl font-normal">
+            Production cloud operations, Kubernetes platform delivery, and automated infrastructure across enterprise environments.
+          </p>
         </div>
+
         <div class="career-timeline">
-          {experiences.map((job, index) => (
-            <article class="career-timeline__item reveal-up" style={`animation-delay:${index * 80}ms`}>
-              <div class="career-timeline__marker"></div>
-              <div class="career-timeline__content p-5 sm:p-6 lg:p-7 rounded-2xl sm:rounded-3xl surface border border-slate-200 dark:border-white/[0.08] shadow-sm">
-                <div class="flex flex-col gap-2 sm:gap-3 md:flex-row md:items-center md:justify-between">
-                  <div>
-                    <p class="font-mono text-[10px] sm:text-xs font-semibold uppercase tracking-[0.18em] text-cyan">
-                      release/{job.dates.split(' to ')[1] ? job.dates.split(' to ')[1].toLowerCase().replace(/\s+/g, '-') : 'current'}{index === 0 ? ' — HEAD' : ''}
-                    </p>
-                    <h3 class="mt-1.5 text-xl sm:text-2xl font-bold text-slate-900 dark:text-white font-display">{job.role}</h3>
+          {experiences.map((job, index) => {
+            const isCurrent = index === 0;
+            return (
+              <article class="career-timeline__item reveal-up" style={`animation-delay:${index * 80}ms`}>
+                <div class:list={["career-timeline__marker", isCurrent && "career-timeline__marker--current"]} aria-hidden="true"></div>
+
+                <div class:list={[
+                  "career-timeline__content rounded-2xl sm:rounded-3xl surface border p-5 sm:p-7 lg:p-8 transition-all duration-300",
+                  isCurrent
+                    ? "border-cyan/40 dark:border-cyan/30 shadow-md ring-1 ring-cyan/15 dark:ring-cyan/20"
+                    : "border-slate-200 dark:border-white/[0.08] shadow-sm"
+                ]}>
+
+                  <!-- Top Row: Release Meta & Status Badge -->
+                  <div class="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between border-b border-slate-200/80 dark:border-white/[0.07] pb-4 mb-5">
+                    <div class="flex items-center gap-2.5">
+                      <span class="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-[0.18em] text-cyan">
+                        release/{job.dates.split(' to ')[1] ? job.dates.split(' to ')[1].toLowerCase().replace(/\s+/g, '-') : 'current'}{isCurrent ? ' — HEAD' : ''}
+                      </span>
+                    </div>
+
+                    {isCurrent ? (
+                      <span class="self-start sm:self-auto inline-flex items-center gap-2 rounded-full border border-mint/40 bg-mint/[0.08] px-3.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-mint shadow-2xs">
+                        <span class="relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-mint opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-mint"></span>
+                        </span>
+                        Current / Active Deployment
+                      </span>
+                    ) : (
+                      <span class="self-start sm:self-auto inline-flex items-center gap-1.5 rounded-full border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/[0.04] px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-600 dark:text-slate-300">
+                        <span class="h-1.5 w-1.5 rounded-full bg-slate-400 dark:bg-slate-500"></span>
+                        Completed Deployment
+                      </span>
+                    )}
                   </div>
-                  {index === 0 && <span class="self-start md:self-auto rounded-full border border-cyan/40 bg-cyan/[0.08] px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan">● current</span>}
+
+                  <!-- Role Title & Company / Client Header -->
+                  <div>
+                    <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white font-display">
+                      {job.role}
+                    </h3>
+
+                    <div class="mt-3 flex flex-wrap items-center gap-y-2 gap-x-3 text-xs sm:text-sm">
+                      <!-- Company Tag -->
+                      <div class="inline-flex items-center gap-1.5 font-bold text-slate-900 dark:text-white bg-slate-100 dark:bg-white/[0.08] px-2.5 py-1 rounded-md border border-slate-200 dark:border-white/10">
+                        <Building2 size={14} class="text-violet" />
+                        <span>{job.company}</span>
+                      </div>
+
+                      <!-- Client Tag (if applicable) -->
+                      {job.client && (
+                        <div class="inline-flex items-center gap-1.5 rounded-md bg-cyan/10 dark:bg-cyan/15 border border-cyan/30 px-2.5 py-1 text-xs font-bold text-cyan-900 dark:text-cyan-300">
+                          <span class="text-cyan font-mono text-[10px] uppercase tracking-wider">Client:</span>
+                          <span>{job.client}</span>
+                        </div>
+                      )}
+
+                      <!-- Location -->
+                      {job.location && (
+                        <div class="inline-flex items-center gap-1 text-slate-600 dark:text-slate-400 font-normal">
+                          <MapPin size={13} class="text-slate-400" />
+                          <span>{job.location}</span>
+                        </div>
+                      )}
+
+                      <!-- Dates -->
+                      <div class="inline-flex items-center gap-1.5 font-mono text-xs font-medium text-slate-600 dark:text-slate-400">
+                        <Calendar size={13} class="text-slate-400" />
+                        <span>{job.dates}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Highlight Achievements -->
+                  <div class="mt-6">
+                    <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 mb-3">
+                      Key Deliverables &amp; Engineering Outcomes
+                    </p>
+                    <ul class="grid gap-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300 lg:grid-cols-2">
+                      {job.highlights.map((item) => (
+                        <li class="flex items-start gap-2.5 rounded-xl bg-slate-50/90 dark:bg-white/[0.025] border border-slate-200/70 dark:border-white/[0.04] p-3.5 transition-colors hover:border-cyan/30">
+                          <CircleCheck size={16} class="mt-0.5 text-cyan flex-shrink-0" />
+                          <span class="text-xs sm:text-sm font-normal text-slate-700 dark:text-slate-300 leading-snug">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <!-- Declared Technology Stack -->
+                  <div class="mt-6 pt-5 border-t border-slate-200/80 dark:border-white/[0.07]">
+                    <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 mb-2.5">
+                      Verified Toolchain &amp; Technologies
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 sm:gap-2">
+                      {job.technologies.map((tech) => (
+                        <span class="inline-flex items-center gap-1 rounded-lg border border-slate-200/90 dark:border-white/10 bg-slate-100/90 dark:bg-white/[0.04] px-2.5 py-1 font-mono text-[10px] sm:text-[11px] font-semibold text-slate-800 dark:text-slate-200 transition-all hover:border-cyan/50 hover:bg-cyan/10 hover:text-cyan-800 dark:hover:text-cyan-300">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
                 </div>
-                <p class="mt-2 text-sm sm:text-base font-medium text-slate-700 dark:text-slate-300">{job.company}{job.client ? ` · ${job.client}` : ''}{job.location ? ` · ${job.location}` : ''}</p>
-                <p class="mt-1 font-mono text-[10px] sm:text-xs uppercase tracking-[0.18em] text-slate-500 dark:text-muted">{job.dates}</p>
-                <ul class="mt-5 sm:mt-6 grid gap-2.5 sm:gap-3 text-sm leading-6 text-slate-600 dark:text-slate-300 lg:grid-cols-2">
-                  {job.highlights.map((item) => (
-                    <li class="flex gap-2.5"><span class="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-violet"></span><span>{item}</span></li>
-                  ))}
-                </ul>
-                <div class="mt-5 sm:mt-6 flex flex-wrap gap-2">
-                  {job.technologies.map((tech) => (
-                    <span class="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-white/8 bg-slate-100 dark:bg-white/[0.02] px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-slate-700 dark:text-slate-300">{tech}</span>
-                  ))}
-                </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

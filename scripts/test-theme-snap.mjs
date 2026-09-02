@@ -37,12 +37,12 @@ const server = http.createServer((req, res) => {
   }
 });
 
-server.listen(5993, '127.0.0.1', async () => {
+server.listen(5994, '127.0.0.1', async () => {
   const chromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 
-  async function captureSection(theme, sectionId, width, height, outFile) {
-    const port = 9223;
-    const tempProfile = path.join(process.env.TEMP || '.', 'chrome-qa-' + theme + '-' + width + '-' + Date.now());
+  async function captureThemeSection(theme, sectionId, width, height, outFile) {
+    const port = 9224;
+    const tempProfile = path.join(process.env.TEMP || '.', 'chrome-theme-' + theme + '-' + Date.now());
 
     const chrome = spawn(chromePath, [
       '--headless=new',
@@ -50,7 +50,7 @@ server.listen(5993, '127.0.0.1', async () => {
       `--user-data-dir=${tempProfile}`,
       `--window-size=${width},${height}`,
       '--hide-scrollbars',
-      'http://127.0.0.1:5993/'
+      'http://127.0.0.1:5994/'
     ]);
 
     await new Promise(r => setTimeout(r, 1200));
@@ -93,7 +93,7 @@ server.listen(5993, '127.0.0.1', async () => {
       // Wait 3.2s for BootLoader
       await new Promise(r => setTimeout(r, 3200));
 
-      // Force Theme & scroll to section
+      // Force Theme and Scroll to section
       await send('Runtime.evaluate', {
         expression: `
           if ('${theme}' === 'light') {
@@ -111,7 +111,7 @@ server.listen(5993, '127.0.0.1', async () => {
 
       const screenshot = await send('Page.captureScreenshot', { format: 'png' });
       fs.writeFileSync(outFile, Buffer.from(screenshot.data, 'base64'));
-      console.log(`[QA] [${theme.toUpperCase()}] ${sectionId || 'top'} @ ${width}x${height} -> ${path.basename(outFile)} (${fs.statSync(outFile).size} bytes)`);
+      console.log(`[THEME QA] [${theme.toUpperCase()}] ${sectionId} @ ${width}x${height} -> ${path.basename(outFile)}`);
 
       ws.close();
     } catch (e) {
@@ -123,35 +123,10 @@ server.listen(5993, '127.0.0.1', async () => {
   }
 
   try {
-    // 1280px Desktop - Dark & Light
-    await captureSection('dark', 'top', 1280, 850, path.resolve('dist/qa-hero-dark-1280.png'));
-    await captureSection('light', 'top', 1280, 850, path.resolve('dist/qa-hero-light-1280.png'));
-
-    await captureSection('dark', 'experience', 1280, 900, path.resolve('dist/qa-exp-dark-1280.png'));
-    await captureSection('light', 'experience', 1280, 900, path.resolve('dist/qa-exp-light-1280.png'));
-
-    await captureSection('dark', 'skills', 1280, 900, path.resolve('dist/qa-skills-dark-1280.png'));
-    await captureSection('light', 'skills', 1280, 900, path.resolve('dist/qa-skills-light-1280.png'));
-
-    await captureSection('dark', 'projects', 1280, 900, path.resolve('dist/qa-projects-dark-1280.png'));
-    await captureSection('light', 'projects', 1280, 900, path.resolve('dist/qa-projects-light-1280.png'));
-
-    // 768px Tablet
-    await captureSection('dark', 'top', 768, 900, path.resolve('dist/qa-hero-dark-768.png'));
-    await captureSection('light', 'top', 768, 900, path.resolve('dist/qa-hero-light-768.png'));
-
-    await captureSection('dark', 'experience', 768, 900, path.resolve('dist/qa-exp-dark-768.png'));
-    await captureSection('light', 'experience', 768, 900, path.resolve('dist/qa-exp-light-768.png'));
-
-    // 390px Mobile
-    await captureSection('dark', 'top', 390, 844, path.resolve('dist/qa-hero-dark-390.png'));
-    await captureSection('light', 'top', 390, 844, path.resolve('dist/qa-hero-light-390.png'));
-
-    await captureSection('dark', 'experience', 390, 844, path.resolve('dist/qa-exp-dark-390.png'));
-    await captureSection('light', 'experience', 390, 844, path.resolve('dist/qa-exp-light-390.png'));
-
-    await captureSection('dark', 'contact', 390, 844, path.resolve('dist/qa-contact-dark-390.png'));
-    await captureSection('light', 'contact', 390, 844, path.resolve('dist/qa-contact-light-390.png'));
+    await captureThemeSection('light', 'experience', 1280, 900, path.resolve('dist/qa-exp-light-1280.png'));
+    await captureThemeSection('dark', 'experience', 1280, 900, path.resolve('dist/qa-exp-dark-1280.png'));
+    await captureThemeSection('light', 'top', 1280, 850, path.resolve('dist/qa-hero-light-1280.png'));
+    await captureThemeSection('dark', 'top', 1280, 850, path.resolve('dist/qa-hero-dark-1280.png'));
   } finally {
     server.close();
     process.exit(0);
