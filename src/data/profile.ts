@@ -110,16 +110,12 @@ export const experiences = [
     location: 'Bengaluru, India',
     dates: '10/2023 to Current',
     highlights: [
-      'Managed containerized microservices on Amazon EKS across production and QA environments, supporting 12+ services with Docker, Kubernetes and Helm while maintaining application availability, scalability and reliable releases.',
-      'Built and maintained Jenkins and GitHub Actions CI/CD pipelines, improving deployment speed by 60%, and implemented Argo CD GitOps workflows for consistent, zero-downtime deployments across environments.',
-      'Provisioned AWS infrastructure with Terraform, including VPCs, EKS clusters, node groups and IAM roles, reducing environment provisioning time from several hours to under 30 minutes through reusable IaC workflows.',
-      'Tracked SLIs including availability, error rates, latency and application health against defined SLA/SLO targets, identifying reliability risks and using Error Budgets to prioritize remediation.',
-      'Handled P1/P2 production incidents and RCA for Kubernetes and application issues by correlating Dynatrace, Catchpoint, Elastic Stack and Kubernetes logs and metrics to identify root causes, restore services and implement preventive actions.',
-      'Developed synthetic monitoring tests in Catchpoint using Selenium for critical web applications, business transactions, APIs and SSL health checks, enabling proactive detection of availability and performance issues.',
-      'Analyzed application and infrastructure logs across AKS using Elastic Stack, supporting troubleshooting, RCA and faster incident resolution during production operations.',
-      'Troubleshot production and QA Kubernetes clusters, resolving pod failures, scaling issues and 20+ incidents through Jira and ServiceNow while participating in on-call operational support.',
-      'Administered Kubernetes Deployments, Services, StatefulSets and Ingress resources alongside AWS ALB Ingress and Route 53 DNS routing to maintain reliable application connectivity and standardized deployments.',
-      'Integrated SonarQube and Trivy into CI/CD pipelines, adding automated code-quality analysis and container vulnerability scanning before production releases.'
+      'Managed containerized microservices on Amazon EKS across production and QA environments supporting 12+ services with Docker, Kubernetes, and Helm while maintaining high availability, scalability, and reliable release cadences.',
+      'Built and maintained Jenkins and GitHub Actions CI/CD pipelines with integrated SonarQube and Trivy scanning, improving deployment velocity by 60% with automated vulnerability and quality gates.',
+      'Implemented Argo CD GitOps workflows for automated, zero-downtime microservice deployments and environment synchronization across Kubernetes clusters.',
+      'Provisioned and automated AWS infrastructure with Terraform (VPCs, EKS clusters, node groups, IAM), reducing environment provisioning time from several hours to under 30 minutes.',
+      'Monitored application health, SLIs/SLOs, and error budgets with Dynatrace and Catchpoint synthetic tests, proactively detecting availability and performance anomalies.',
+      'Resolved 20+ P1/P2 production incidents across EKS and AKS by correlating Elastic Stack logs and APM telemetry, driving root cause analysis (RCA) and participating in on-call rotations.'
     ],
     technologies: ['AWS', 'Amazon EKS', 'Azure AKS', 'Docker', 'Kubernetes', 'Helm', 'Argo CD', 'Terraform', 'Jenkins', 'GitHub Actions', 'Dynatrace', 'Catchpoint', 'Elastic Stack', 'SonarQube', 'Trivy', 'ServiceNow', 'Jira']
   },
@@ -130,11 +126,11 @@ export const experiences = [
     location: '',
     dates: '06/2021 to 10/2023',
     highlights: [
-      'Migrated 50+ on-premises VMs and databases to AWS using rehost and replatforming strategies with zero downtime, covering migration assessment, workload validation and post-migration performance optimization.',
-      'Automated AWS infrastructure with Terraform across multi-AZ VPCs, EC2, ALB, S3 and RDS, improving infrastructure performance by 35-40% and reducing manual provisioning effort by 50-80%.',
-      'Automated Ubuntu EC2 provisioning with Terraform user data scripts for Apache configuration, application bootstrapping and deployment validation, reducing release cycle time by 70%.',
-      'Implemented internet-facing Application Load Balancers with listeners, target groups and health checks, achieving 99.9% availability across multiple Availability Zones.',
-      'Provisioned and managed S3 and RDS through Terraform, using Git-based IaC workflows to maintain secure, scalable infrastructure while improving consistency and cost control.'
+      'Migrated 50+ on-premises VMs and databases to AWS using rehost and replatforming strategies with zero downtime, covering migration assessment, workload validation, and post-migration optimization.',
+      'Automated AWS infrastructure with Terraform across multi-AZ VPCs, EC2, ALB, S3, and RDS, improving infrastructure performance by 35-40% and reducing manual provisioning effort by 50-80%.',
+      'Automated Ubuntu EC2 provisioning with Terraform user data scripts for Apache configuration, application bootstrapping, and deployment validation, reducing release cycle time by 70%.',
+      'Implemented internet-facing Application Load Balancers with listeners, target groups, and health checks, achieving 99.9% availability across multiple Availability Zones.',
+      'Managed S3 storage policies and RDS database instances through Git-driven Terraform IaC workflows to maintain secure, scalable, and cost-optimized cloud infrastructure.'
     ],
     technologies: ['AWS', 'Terraform', 'VPC', 'EC2', 'ALB', 'S3', 'RDS', 'Linux', 'Apache', 'Git']
   },
@@ -242,9 +238,9 @@ export const projects = [
 ];
 
 export const certifications = [
-  'AWS and DevOps Internship at MNP Technologies',
-  'Completed AWS Solution Architect certification from Edureka',
-  'Completed Terraform certification from Percipio SkillSoft'
+  'AWS & DevOps Training Completion — MNP Technologies',
+  'AWS Solution Architect Certification — Edureka',
+  'Terraform Infrastructure Certification — Percipio SkillSoft'
 ];
 
 export const achievements = [

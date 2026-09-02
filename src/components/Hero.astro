@@ -13,98 +13,123 @@ import {
 import { profile } from '@/data/profile';
 import TechIcon from '@/components/TechIcon.astro';
 
-// Structured 5-Stage DevOps Engineering Pipeline Flow
-const pipelineStages = [
+// Exactly 8 Curated Core Technologies for the Hero Constellation
+// Primary Ring (Inner, 4 nodes): AWS, Terraform, Kubernetes, Docker
+// Secondary Ring (Outer, 4 nodes): Azure, GitHub Actions, Prometheus, Grafana
+const constellationNodes = [
+  // Primary Ring (Inner 4 nodes around profile)
   {
-    id: 'stage-cloud',
-    stageNumber: '01',
-    stageName: 'Cloud Platforms',
-    shortName: 'Cloud',
+    id: 'aws',
+    name: 'AWS',
+    tag: 'Cloud',
+    domain: 'Public Cloud',
     accent: 'cyan',
-    technologies: [
-      { id: 'aws', name: 'AWS', domain: 'Public Cloud', accent: 'cyan', connections: ['terraform', 'ansible', 'kubernetes', 'azure'] },
-      { id: 'azure', name: 'Azure', domain: 'Public Cloud', accent: 'cyan', connections: ['terraform', 'ansible', 'kubernetes', 'aws'] }
-    ]
+    ring: 'primary',
+    x: 170,
+    y: 140,
+    pathD: 'M 170 140 Q 205 165, 235 195',
+    dur: '3.2s',
+    begin: '0.4s'
   },
   {
-    id: 'stage-iac',
-    stageNumber: '02',
-    stageName: 'Infrastructure as Code',
-    shortName: 'IaC',
+    id: 'terraform',
+    name: 'Terraform',
+    tag: 'IaC',
+    domain: 'Cloud Provisioning',
     accent: 'violet',
-    technologies: [
-      { id: 'terraform', name: 'Terraform', domain: 'Cloud IaC', accent: 'violet', connections: ['aws', 'azure', 'kubernetes', 'docker'] },
-      { id: 'ansible', name: 'Ansible', domain: 'Config Mgmt', accent: 'violet', connections: ['aws', 'azure', 'docker', 'linux'] }
-    ]
+    ring: 'primary',
+    x: 390,
+    y: 140,
+    pathD: 'M 390 140 Q 355 165, 325 195',
+    dur: '3.2s',
+    begin: '0.8s'
   },
   {
-    id: 'stage-containers',
-    stageNumber: '03',
-    stageName: 'Containers & Platform',
-    shortName: 'Containers',
+    id: 'kubernetes',
+    name: 'Kubernetes',
+    tag: 'Platform',
+    domain: 'Container Orchestration',
     accent: 'cyan',
-    technologies: [
-      { id: 'docker', name: 'Docker', domain: 'OCI Runtime', accent: 'cyan', connections: ['kubernetes', 'githubactions', 'jenkins', 'terraform'] },
-      { id: 'kubernetes', name: 'Kubernetes', domain: 'Orchestration', accent: 'cyan', connections: ['docker', 'helm', 'argocd', 'prometheus', 'aws', 'azure', 'terraform'] },
-      { id: 'helm', name: 'Helm', domain: 'K8s Packages', accent: 'cyan', connections: ['kubernetes', 'argocd'] }
-    ]
+    ring: 'primary',
+    x: 390,
+    y: 340,
+    pathD: 'M 390 340 Q 355 315, 325 285',
+    dur: '3.2s',
+    begin: '2.0s'
   },
   {
-    id: 'stage-delivery',
-    stageNumber: '04',
-    stageName: 'CI/CD & GitOps Delivery',
-    shortName: 'Delivery',
-    accent: 'violet',
-    technologies: [
-      { id: 'githubactions', name: 'GitHub Actions', domain: 'CI Workflows', accent: 'violet', connections: ['docker', 'jenkins', 'argocd', 'sonarqube'] },
-      { id: 'jenkins', name: 'Jenkins', domain: 'CI Pipelines', accent: 'cyan', connections: ['docker', 'githubactions', 'argocd'] },
-      { id: 'argocd', name: 'Argo CD', domain: 'GitOps Sync', accent: 'mint', connections: ['kubernetes', 'helm', 'githubactions', 'jenkins'] }
-    ]
+    id: 'docker',
+    name: 'Docker',
+    tag: 'Containers',
+    domain: 'Container Runtime',
+    accent: 'cyan',
+    ring: 'primary',
+    x: 170,
+    y: 340,
+    pathD: 'M 170 340 Q 205 315, 235 285',
+    dur: '3.2s',
+    begin: '2.4s'
   },
+
+  // Secondary Ring (Outer 4 nodes filling the corners)
   {
-    id: 'stage-observability',
-    stageNumber: '05',
-    stageName: 'Observability & APM',
-    shortName: 'Observability',
+    id: 'grafana',
+    name: 'Grafana',
+    tag: 'Dashboards',
+    domain: 'APM & Telemetry',
     accent: 'mint',
-    technologies: [
-      { id: 'prometheus', name: 'Prometheus', domain: 'Metrics & Alerting', accent: 'mint', connections: ['kubernetes', 'grafana', 'dynatrace'] },
-      { id: 'grafana', name: 'Grafana', domain: 'Dashboards', accent: 'mint', connections: ['prometheus', 'elastic', 'dynatrace'] },
-      { id: 'dynatrace', name: 'Dynatrace', domain: 'Full-Stack APM', accent: 'mint', connections: ['kubernetes', 'grafana', 'prometheus'] },
-      { id: 'elastic', name: 'Elasticsearch', domain: 'Log Telemetry', accent: 'mint', connections: ['grafana', 'kubernetes', 'prometheus'] }
-    ]
+    ring: 'secondary',
+    x: 75,
+    y: 65,
+    pathD: 'M 75 65 Q 160 125, 230 185',
+    dur: '3.5s',
+    begin: '0s'
+  },
+  {
+    id: 'azure',
+    name: 'Azure',
+    tag: 'Cloud',
+    domain: 'Public Cloud',
+    accent: 'cyan',
+    ring: 'secondary',
+    x: 485,
+    y: 65,
+    pathD: 'M 485 65 Q 400 125, 330 185',
+    dur: '3.5s',
+    begin: '1.2s'
+  },
+  {
+    id: 'githubactions',
+    name: 'GitHub Actions',
+    tag: 'CI/CD',
+    domain: 'Automated Delivery',
+    accent: 'violet',
+    ring: 'secondary',
+    x: 485,
+    y: 415,
+    pathD: 'M 485 415 Q 400 355, 330 295',
+    dur: '3.5s',
+    begin: '1.6s'
+  },
+  {
+    id: 'prometheus',
+    name: 'Prometheus',
+    tag: 'Metrics',
+    domain: 'Monitoring & Alerts',
+    accent: 'mint',
+    ring: 'secondary',
+    x: 75,
+    y: 415,
+    pathD: 'M 75 415 Q 160 355, 230 295',
+    dur: '3.5s',
+    begin: '2.8s'
   }
-];
-
-// Flat list for desktop canvas placement
-const desktopTechNodes = [
-  // Stage 1: Cloud (Top Left & Top Right)
-  { id: 'aws', name: 'AWS', tag: 'Cloud', stage: '01 Cloud', accent: 'cyan', x: 80, y: 70, connections: ['terraform', 'ansible', 'kubernetes'] },
-  { id: 'azure', name: 'Azure', tag: 'Cloud', stage: '01 Cloud', accent: 'cyan', x: 460, y: 70, connections: ['terraform', 'ansible', 'kubernetes'] },
-
-  // Stage 2: IaC (Mid Top Left & Mid Top Right)
-  { id: 'terraform', name: 'Terraform', tag: 'IaC', stage: '02 IaC', accent: 'violet', x: 190, y: 55, connections: ['aws', 'azure', 'kubernetes', 'docker'] },
-  { id: 'ansible', name: 'Ansible', tag: 'IaC', stage: '02 IaC', accent: 'violet', x: 350, y: 55, connections: ['aws', 'azure', 'docker'] },
-
-  // Stage 3: Containers (Left & Right Flanks)
-  { id: 'docker', name: 'Docker', tag: 'Containers', stage: '03 Platform', accent: 'cyan', x: 65, y: 235, connections: ['kubernetes', 'githubactions', 'jenkins', 'terraform'] },
-  { id: 'kubernetes', name: 'Kubernetes', tag: 'Orchestration', stage: '03 Platform', accent: 'cyan', x: 475, y: 235, connections: ['docker', 'helm', 'argocd', 'prometheus', 'aws', 'azure', 'terraform'] },
-  { id: 'helm', name: 'Helm', tag: 'Packages', stage: '03 Platform', accent: 'cyan', x: 475, y: 345, connections: ['kubernetes', 'argocd'] },
-
-  // Stage 4: CI/CD & Delivery (Bottom Left & Mid Bottom)
-  { id: 'githubactions', name: 'GitHub Actions', tag: 'CI/CD', stage: '04 Delivery', accent: 'violet', x: 85, y: 395, connections: ['docker', 'jenkins', 'argocd'] },
-  { id: 'jenkins', name: 'Jenkins', tag: 'CI/CD', stage: '04 Delivery', accent: 'cyan', x: 195, y: 440, connections: ['docker', 'githubactions', 'argocd'] },
-  { id: 'argocd', name: 'Argo CD', tag: 'GitOps', stage: '04 Delivery', accent: 'mint', x: 345, y: 440, connections: ['kubernetes', 'helm', 'githubactions', 'jenkins'] },
-
-  // Stage 5: Observability (Center Bottom & Bottom Right)
-  { id: 'prometheus', name: 'Prometheus', tag: 'Metrics', stage: '05 Observability', accent: 'mint', x: 450, y: 435, connections: ['kubernetes', 'grafana', 'dynatrace'] },
-  { id: 'grafana', name: 'Grafana', tag: 'Dashboards', stage: '05 Observability', accent: 'mint', x: 270, y: 355, connections: ['prometheus', 'elastic', 'dynatrace', 'kubernetes'] }
 ];
 ---
 
 <section class="relative overflow-hidden pt-6 sm:pt-10 lg:pt-14 pb-12 sm:pb-16 lg:pb-24" id="top">
 
-  <!-- Ambient Lighting Mesh (Light/Dark adaptive) -->
+  <!-- Ambient Background Glow Mesh (Theme-adaptive) -->
   <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
     <div class="absolute -top-32 left-1/4 h-[550px] w-[550px] rounded-full bg-cyan/[0.07] dark:bg-cyan/[0.08] blur-[130px]"></div>
     <div class="absolute top-1/3 right-0 h-[500px] w-[500px] rounded-full bg-violet/[0.06] dark:bg-violet/[0.08] blur-[130px]"></div>
@@ -113,7 +138,7 @@ const desktopTechNodes = [
 
   <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full min-w-0">
 
-    <!-- Hero Grid: Left Column (Identity, Value Proposition, Proof Points, CTAs) + Right Column (DevOps Engineering Pipeline Flow) -->
+    <!-- Main Hero Layout: Left Column (Identity, Values, Proofs, CTAs) + Right Column (Constellation Layout) -->
     <div class="grid items-center gap-10 lg:grid-cols-[1.05fr_1.15fr] lg:gap-12 xl:gap-16">
 
       <!-- ========================================================================= -->
@@ -143,10 +168,10 @@ const desktopTechNodes = [
             <span class="block font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-cyan font-bold">
               Engineering Portfolio
             </span>
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight font-display leading-[0.98] text-slate-900 dark:text-white">
-              <span class="block">CHANDU</span>
-              <span class="block bg-gradient-to-r from-cyan via-violet to-mint bg-clip-text text-transparent">
-                VENNA
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight font-display leading-[1.05] text-slate-900 dark:text-white">
+              <span class="inline sm:block">Chandu</span>{' '}
+              <span class="inline sm:block bg-gradient-to-r from-cyan via-violet to-mint bg-clip-text text-transparent">
+                Venna
               </span>
             </h1>
           </div>
@@ -160,7 +185,7 @@ const desktopTechNodes = [
           </div>
         </div>
 
-        <!-- 3. Value Proposition -->
+        <!-- 3. Value Proposition Statement -->
         <div class="hero-animate-in space-y-4" style="animation-delay: 150ms;">
           <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl font-normal">
             Building reliable cloud infrastructure, Kubernetes platforms, and automated delivery systems across AWS and Azure.
@@ -168,11 +193,11 @@ const desktopTechNodes = [
         </div>
 
         <!-- ========================================================================= -->
-        <!-- MOBILE-ONLY PROFILE + PIPELINE (Follows Exact Mobile Sequence Required)   -->
+        <!-- MOBILE-ONLY VIEW (< 768px): Standalone Profile + 8-Node Clean Grid        -->
         <!-- ========================================================================= -->
         <div class="block lg:hidden space-y-5 pt-1 pb-1">
 
-          <!-- Standalone Mobile Profile Picture Anchor (Never Hidden!) -->
+          <!-- Standalone Mobile Profile Picture Anchor -->
           <div class="flex items-center gap-4 p-4 rounded-2xl border border-slate-200/90 dark:border-white/[0.08] bg-white/80 dark:bg-panel2/80 backdrop-blur-md shadow-sm">
             <div class="relative flex-shrink-0">
               <div class="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-cyan via-violet to-mint opacity-60 blur-sm"></div>
@@ -205,38 +230,30 @@ const desktopTechNodes = [
             </div>
           </div>
 
-          <!-- Mobile DevOps Engineering Pipeline Flow Cards -->
+          <!-- Mobile 8-Node Technology Grid (No lines, clean fallback) -->
           <div class="rounded-2xl border border-slate-200/90 dark:border-white/[0.08] bg-slate-50/90 dark:bg-panel/90 p-4 space-y-3">
             <div class="flex items-center justify-between px-0.5">
               <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                DevOps Pipeline Flow
+                Core Technology Ecosystem
               </span>
-              <span class="font-mono text-[9px] text-mint uppercase tracking-wider">
-                ● 5 Stages
+              <span class="font-mono text-[9px] text-cyan uppercase tracking-wider">
+                8 Core Tools
               </span>
             </div>
 
-            <div class="space-y-2.5">
-              {pipelineStages.map((stage, idx) => (
-                <div class="flex flex-col gap-1.5 p-2.5 rounded-xl border border-slate-200/80 dark:border-white/[0.06] bg-white dark:bg-panel2 shadow-2xs">
-                  <div class="flex items-center justify-between text-[10px] font-mono">
-                    <span class="font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
-                      <span class={stage.accent === 'mint' ? 'text-mint' : stage.accent === 'violet' ? 'text-violet' : 'text-cyan'}>
-                        {stage.stageNumber}
-                      </span>
-                      <span>{stage.stageName}</span>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              {constellationNodes.map((t) => (
+                <div class="flex items-center gap-2 p-2 rounded-xl border border-slate-200/80 dark:border-white/[0.06] bg-white dark:bg-panel2 shadow-2xs">
+                  <span class="flex-shrink-0">
+                    <TechIcon name={t.id} size={18} />
+                  </span>
+                  <div class="min-w-0">
+                    <span class="block text-xs font-bold text-slate-900 dark:text-white truncate leading-tight">
+                      {t.name}
                     </span>
-                    {idx < pipelineStages.length - 1 && (
-                      <span class="text-slate-400 dark:text-slate-500">↓</span>
-                    )}
-                  </div>
-                  <div class="flex flex-wrap gap-1.5 pt-0.5">
-                    {stage.technologies.map((t) => (
-                      <span class="inline-flex items-center gap-1 rounded-lg border border-slate-200/60 dark:border-white/5 bg-slate-100/70 dark:bg-white/[0.03] px-2 py-1 text-[11px] font-medium text-slate-800 dark:text-slate-200">
-                        <TechIcon name={t.id} size={14} />
-                        <span>{t.name}</span>
-                      </span>
-                    ))}
+                    <span class="block font-mono text-[8px] uppercase tracking-wider text-slate-500 dark:text-slate-400 truncate">
+                      {t.tag}
+                    </span>
                   </div>
                 </div>
               ))}
@@ -321,191 +338,166 @@ const desktopTechNodes = [
       </div>
 
       <!-- ========================================================================= -->
-      <!-- RIGHT COLUMN: Desktop DevOps Engineering Pipeline Flow Canvas             -->
+      <!-- RIGHT COLUMN: Desktop Constellation Layout with SVG Lines & Pulses        -->
       <!-- ========================================================================= -->
       <div class="hero-animate-in relative hidden lg:block" style="animation-delay: 150ms;">
 
-        <div class="relative w-full h-[510px] select-none rounded-3xl border border-slate-200/90 dark:border-white/[0.08] bg-slate-50/50 dark:bg-panel/60 backdrop-blur-xl p-4 overflow-hidden shadow-xl" id="devops-pipeline-canvas">
+        <div
+          class="relative w-full h-[520px] select-none rounded-3xl border border-slate-200/90 dark:border-white/[0.08] bg-slate-50/40 dark:bg-panel/50 backdrop-blur-xl p-4 overflow-hidden shadow-xl"
+          id="hero-constellation-canvas"
+        >
 
-          <!-- Pipeline Stage Tiers Watermark Grid -->
-          <div class="pointer-events-none absolute inset-0 p-6 flex flex-col justify-between opacity-40 dark:opacity-25 font-mono text-[9px] tracking-widest uppercase" aria-hidden="true">
-            <div class="flex justify-between border-b border-dashed border-slate-300 dark:border-white/10 pb-1 text-cyan">
-              <span>01 Cloud Infrastructure</span>
-              <span>AWS &amp; Azure Provisioning</span>
-            </div>
-            <div class="flex justify-between border-b border-dashed border-slate-300 dark:border-white/10 pb-1 text-violet">
-              <span>02 Infrastructure as Code</span>
-              <span>Declarative Terraform &amp; Ansible</span>
-            </div>
-            <div class="flex justify-between border-b border-dashed border-slate-300 dark:border-white/10 pb-1 text-cyan">
-              <span>03 Container Platform</span>
-              <span>Docker · Kubernetes · Helm</span>
-            </div>
-            <div class="flex justify-between border-b border-dashed border-slate-300 dark:border-white/10 pb-1 text-violet">
-              <span>04 CI/CD &amp; GitOps Delivery</span>
-              <span>Automated Build · Test · Argo CD Sync</span>
-            </div>
-            <div class="flex justify-between text-mint">
-              <span>05 Continuous Observability</span>
-              <span>Prometheus · Grafana · Dynatrace Telemetry</span>
-            </div>
+          <!-- Ambient Radial Backdrop -->
+          <div class="pointer-events-none absolute inset-0 flex items-center justify-center opacity-30 dark:opacity-20" aria-hidden="true">
+            <div class="h-96 w-96 rounded-full border border-dashed border-cyan/40"></div>
+            <div class="absolute h-64 w-64 rounded-full border border-dashed border-violet/40"></div>
           </div>
 
-          <!-- SVG Vector Pipeline Connection Mesh & Pulse Pathways -->
+          <!-- =================================================================== -->
+          <!-- SVG CONNECTOR LINES & DATA STREAM PULSES                             -->
+          <!-- =================================================================== -->
           <svg
             class="absolute inset-0 h-full w-full pointer-events-none overflow-visible z-0"
-            viewBox="0 0 540 500"
+            viewBox="0 0 560 520"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
-            id="pipeline-svg-mesh"
+            id="constellation-svg"
           >
             <defs>
-              <linearGradient id="flow-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#0284C7" stop-opacity="0.6" />
-                <stop offset="100%" stop-color="#6366F1" stop-opacity="0.3" />
-              </linearGradient>
-              <linearGradient id="flow-violet" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#6366F1" stop-opacity="0.6" />
-                <stop offset="100%" stop-color="#059669" stop-opacity="0.3" />
-              </linearGradient>
-              <linearGradient id="flow-mint" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#059669" stop-opacity="0.6" />
-                <stop offset="100%" stop-color="#0284C7" stop-opacity="0.3" />
-              </linearGradient>
-
-              <!-- Radial glow filter for animated packets -->
-              <filter id="packet-glow" x="-30%" y="-30%" width="160%" height="160%">
-                <feGaussianBlur stdDeviation="2.5" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              <!-- Glowing Filter for Traveling Pulses -->
+              <filter id="pulse-glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
               </filter>
+
+              <!-- Line Gradients -->
+              <linearGradient id="line-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0284C7" stop-opacity="0.6" />
+                <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.3" />
+              </linearGradient>
+              <linearGradient id="line-violet" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#6366F1" stop-opacity="0.6" />
+                <stop offset="100%" stop-color="#818CF8" stop-opacity="0.3" />
+              </linearGradient>
+              <linearGradient id="line-mint" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#059669" stop-opacity="0.6" />
+                <stop offset="100%" stop-color="#34D399" stop-opacity="0.3" />
+              </linearGradient>
             </defs>
 
-            <!-- STAGE 1 -> STAGE 2: Cloud to IaC -->
-            <path id="path-aws-tf" data-from="aws" data-to="terraform" d="M 80 70 Q 130 60, 190 55" class="pipeline-path" stroke="url(#flow-cyan)" stroke-width="1.5" stroke-dasharray="4 4" />
-            <path id="path-azure-ansible" data-from="azure" data-to="ansible" d="M 460 70 Q 410 60, 350 55" class="pipeline-path" stroke="url(#flow-cyan)" stroke-width="1.5" stroke-dasharray="4 4" />
-            <path id="path-tf-ansible" data-from="terraform" data-to="ansible" d="M 190 55 L 350 55" class="pipeline-path" stroke="url(#flow-violet)" stroke-width="1.5" stroke-dasharray="4 4" />
+            <!-- 8 Curved Connection Paths from each Node into the Center Profile Circle -->
+            {constellationNodes.map((node) => (
+              <path
+                id={`path-${node.id}`}
+                data-node-id={node.id}
+                d={node.pathD}
+                class="constellation-path"
+                stroke={node.accent === 'mint' ? 'url(#line-mint)' : node.accent === 'violet' ? 'url(#line-violet)' : 'url(#line-cyan)'}
+                stroke-width="1.2"
+                stroke-dasharray="4 4"
+              />
+            ))}
 
-            <!-- STAGE 2 -> CENTER ANCHOR (CHANDU VENNA) -->
-            <path id="path-tf-profile" data-from="terraform" data-to="profile" d="M 190 55 Q 220 120, 270 190" class="pipeline-path" stroke="url(#flow-cyan)" stroke-width="1.5" />
-            <path id="path-ansible-profile" data-from="ansible" data-to="profile" d="M 350 55 Q 320 120, 270 190" class="pipeline-path" stroke="url(#flow-violet)" stroke-width="1.5" />
-
-            <!-- STAGE 2 -> STAGE 3: IaC to Containers -->
-            <path id="path-tf-docker" data-from="terraform" data-to="docker" d="M 190 55 Q 100 130, 65 235" class="pipeline-path" stroke="url(#flow-cyan)" stroke-width="1.5" stroke-dasharray="4 4" />
-            <path id="path-tf-k8s" data-from="terraform" data-to="kubernetes" d="M 190 55 Q 340 110, 475 235" class="pipeline-path" stroke="url(#flow-cyan)" stroke-width="1.5" stroke-dasharray="4 4" />
-            <path id="path-profile-docker" data-from="profile" data-to="docker" d="M 215 235 L 65 235" class="pipeline-path" stroke="url(#flow-cyan)" stroke-width="1.5" />
-            <path id="path-profile-k8s" data-from="profile" data-to="kubernetes" d="M 325 235 L 475 235" class="pipeline-path" stroke="url(#flow-cyan)" stroke-width="1.5" />
-            <path id="path-k8s-helm" data-from="kubernetes" data-to="helm" d="M 475 235 L 475 345" class="pipeline-path" stroke="url(#flow-cyan)" stroke-width="1.5" stroke-dasharray="4 4" />
-
-            <!-- STAGE 3 -> STAGE 4: Containers to Delivery (GHA, Jenkins, ArgoCD) -->
-            <path id="path-docker-gha" data-from="docker" data-to="githubactions" d="M 65 235 Q 70 320, 85 395" class="pipeline-path" stroke="url(#flow-violet)" stroke-width="1.5" stroke-dasharray="4 4" />
-            <path id="path-gha-jenkins" data-from="githubactions" data-to="jenkins" d="M 85 395 Q 140 425, 195 440" class="pipeline-path" stroke="url(#flow-violet)" stroke-width="1.5" stroke-dasharray="4 4" />
-            <path id="path-jenkins-argocd" data-from="jenkins" data-to="argocd" d="M 195 440 L 345 440" class="pipeline-path" stroke="url(#flow-violet)" stroke-width="1.5" stroke-dasharray="4 4" />
-            <path id="path-argocd-k8s" data-from="argocd" data-to="kubernetes" d="M 345 440 Q 420 380, 475 235" class="pipeline-path" stroke="url(#flow-mint)" stroke-width="1.5" stroke-dasharray="4 4" />
-
-            <!-- STAGE 3 & 4 -> STAGE 5: Observability Feedback Loop -->
-            <path id="path-k8s-prom" data-from="kubernetes" data-to="prometheus" d="M 475 235 Q 490 350, 450 435" class="pipeline-path" stroke="url(#flow-mint)" stroke-width="1.5" stroke-dasharray="4 4" />
-            <path id="path-prom-grafana" data-from="prometheus" data-to="grafana" d="M 450 435 Q 360 400, 270 355" class="pipeline-path" stroke="url(#flow-mint)" stroke-width="1.5" stroke-dasharray="4 4" />
-            <path id="path-grafana-profile" data-from="grafana" data-to="profile" d="M 270 355 L 270 285" class="pipeline-path" stroke="url(#flow-mint)" stroke-width="1.5" />
-            <path id="path-argocd-grafana" data-from="argocd" data-to="grafana" d="M 345 440 Q 300 400, 270 355" class="pipeline-path" stroke="url(#flow-mint)" stroke-width="1.5" stroke-dasharray="4 4" />
-
-            <!-- Animated Energy Pulses Moving Along the Pipeline -->
-            <!-- 1. Cloud to IaC to Profile -->
-            <circle r="3" fill="#0284C7" opacity="0.85" filter="url(#packet-glow)">
-              <animateMotion dur="5.5s" repeatCount="indefinite" path="M 80 70 Q 130 60, 190 55 Q 220 120, 270 190" />
-            </circle>
-
-            <!-- 2. Delivery Pipeline into Kubernetes -->
-            <circle r="3" fill="#6366F1" opacity="0.85" filter="url(#packet-glow)">
-              <animateMotion dur="6.5s" repeatCount="indefinite" path="M 85 395 Q 140 425, 195 440 L 345 440 Q 420 380, 475 235" />
-            </circle>
-
-            <!-- 3. Kubernetes Telemetry into Observability Loop -->
-            <circle r="3" fill="#059669" opacity="0.85" filter="url(#packet-glow)">
-              <animateMotion dur="5.8s" repeatCount="indefinite" path="M 475 235 Q 490 350, 450 435 Q 360 400, 270 355 L 270 285" />
-            </circle>
+            <!-- Continuous Data Stream Pulses traveling along each path into the center profile -->
+            {constellationNodes.map((node) => (
+              <circle
+                r="3.5"
+                fill={node.accent === 'mint' ? '#059669' : node.accent === 'violet' ? '#6366F1' : '#0284C7'}
+                class="pulse-particle"
+                filter="url(#pulse-glow)"
+              >
+                <animateMotion
+                  dur={node.dur}
+                  begin={node.begin}
+                  repeatCount="indefinite"
+                  path={node.pathD}
+                />
+              </circle>
+            ))}
           </svg>
 
           <!-- =================================================================== -->
-          <!-- CENTRAL FOCAL ANCHOR: Profile Portrait with Glowing Ambient Halo    -->
+          <!-- CENTER ANCHOR: Circular Profile (~140px) with 5+ Yrs Ops Badge      -->
           <!-- =================================================================== -->
           <div
             class="absolute z-20 flex flex-col items-center justify-center text-center cursor-default group"
-            style="left: 50%; top: 47%; transform: translate(-50%, -50%);"
-            id="node-profile"
-            data-tech-id="profile"
-            data-connections="aws,azure,terraform,ansible,docker,kubernetes,grafana"
+            style="left: 280px; top: 240px; transform: translate(-50%, -50%);"
+            id="center-profile"
           >
-            <!-- Glowing Halo Layer -->
+            <!-- Glowing Halo & Profile Portrait -->
             <div class="relative">
-              <div class="absolute -inset-2 rounded-full bg-gradient-to-tr from-cyan via-violet to-mint opacity-50 blur-lg transition duration-500 group-hover:opacity-85 group-hover:blur-xl"></div>
+              <div class="absolute -inset-2.5 rounded-full bg-gradient-to-tr from-cyan via-violet to-mint opacity-55 blur-xl transition duration-500 group-hover:opacity-85 group-hover:blur-2xl"></div>
 
-              <!-- Portrait Image Container -->
-              <div class="relative h-28 w-28 rounded-full border-2 border-white dark:border-white/20 bg-slate-100 dark:bg-panel2 shadow-xl overflow-hidden ring-4 ring-slate-900/5 dark:ring-white/10 transition-transform duration-500 group-hover:scale-105">
+              <!-- Circular Profile Container (~140px diameter) -->
+              <div class="relative h-[140px] w-[140px] rounded-full border-2 border-white dark:border-white/25 bg-slate-100 dark:bg-panel2 shadow-2xl overflow-hidden ring-4 ring-slate-900/5 dark:ring-white/10 transition-transform duration-500 group-hover:scale-105">
                 <img
                   src={profile.photo}
                   alt={profile.name}
                   class="h-full w-full object-cover object-center"
                   loading="eager"
-                  width="112"
-                  height="112"
+                  width="140"
+                  height="140"
                 />
               </div>
 
-              <!-- Floating Experience Badge -->
-              <div class="absolute -bottom-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-slate-300 dark:border-white/15 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md px-2.5 py-0.5 shadow-md flex items-center gap-1.5 z-30 transition-transform duration-300 group-hover:scale-105">
-                <span class="h-1.5 w-1.5 rounded-full bg-mint animate-pulse" aria-hidden="true"></span>
-                <span class="font-mono text-[9px] font-bold tracking-wider text-slate-800 dark:text-slate-200 uppercase">
-                  5+ Yrs Ops
+              <!-- Experience Badge Beneath Portrait -->
+              <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-slate-300 dark:border-white/15 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md px-3 py-1 shadow-md flex items-center gap-1.5 z-30 transition-transform duration-300 group-hover:scale-105">
+                <span class="h-2 w-2 rounded-full bg-mint animate-pulse" aria-hidden="true"></span>
+                <span class="font-mono text-[9.5px] font-bold tracking-wider text-slate-800 dark:text-slate-200 uppercase">
+                  5+ YRS OPS
                 </span>
               </div>
             </div>
 
-            <!-- Identity Label Subtitle -->
+            <!-- Name & Title Beneath Badge -->
             <div class="mt-4 space-y-0.5">
-              <span class="block font-display font-bold text-xs sm:text-sm text-slate-900 dark:text-white">
+              <span class="block font-display font-bold text-sm sm:text-base text-slate-900 dark:text-white leading-tight">
                 {profile.name}
               </span>
               <span class="block font-mono text-[9px] text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                DevOps &amp; Cloud Arch
+                DevOps &amp; Cloud Engineer
               </span>
             </div>
           </div>
 
           <!-- =================================================================== -->
-          <!-- PIPELINE TECH NODES: Interactive Curated Stage Capsules             -->
+          <!-- 8 FLOATING CONSTELLATION NODES (Primary & Secondary Rings)          -->
           <!-- =================================================================== -->
-          {desktopTechNodes.map((node) => (
+          {constellationNodes.map((node) => (
             <div
-              class="pipeline-node absolute z-10 -translate-x-1/2 -translate-y-1/2 group cursor-pointer transition-all duration-300"
+              class="constellation-node absolute z-10 -translate-x-1/2 -translate-y-1/2 group cursor-pointer transition-all duration-200"
               style={`left: ${node.x}px; top: ${node.y}px;`}
-              data-tech-id={node.id}
-              data-connections={node.connections.join(',')}
+              data-node-id={node.id}
               tabindex="0"
               role="button"
-              aria-label={`${node.name} - ${node.stage}`}
+              aria-label={`${node.name} - ${node.domain}`}
             >
-              <!-- Interactive Glass Capsule -->
+              <!-- Interactive Glass Capsule Pill -->
               <div
                 class:list={[
-                  "node-pill flex items-center gap-2 rounded-2xl border px-3 py-1.5 shadow-sm transition-all duration-300 backdrop-blur-md",
-                  "bg-white/90 dark:bg-panel2/90",
-                  node.accent === 'cyan' && "border-slate-200/90 dark:border-white/10 hover:border-cyan/60 dark:hover:border-cyan/50",
-                  node.accent === 'violet' && "border-slate-200/90 dark:border-white/10 hover:border-violet/60 dark:hover:border-violet/50",
-                  node.accent === 'mint' && "border-slate-200/90 dark:border-white/10 hover:border-mint/60 dark:hover:border-mint/50"
+                  "node-capsule flex items-center gap-2 rounded-2xl border px-3 py-1.5 shadow-sm transition-all duration-200 backdrop-blur-md",
+                  "bg-white/90 dark:bg-panel2/90 border-slate-200/90 dark:border-white/10",
+                  "hover:scale-[1.08] hover:shadow-md hover:bg-white dark:hover:bg-panel",
+                  node.accent === 'cyan' && "hover:border-cyan/70 dark:hover:border-cyan/60 hover:ring-2 hover:ring-cyan/30",
+                  node.accent === 'violet' && "hover:border-violet/70 dark:hover:border-violet/60 hover:ring-2 hover:ring-violet/30",
+                  node.accent === 'mint' && "hover:border-mint/70 dark:hover:border-mint/60 hover:ring-2 hover:ring-mint/30"
                 ]}
               >
                 <!-- Brand SVG Vector Icon -->
-                <span class="flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
-                  <TechIcon name={node.id} size={17} />
+                <span class="flex-shrink-0 transition-transform duration-200 group-hover:scale-110">
+                  <TechIcon name={node.id} size={18} />
                 </span>
 
                 <!-- Node Label & Micro Domain -->
                 <div class="min-w-0">
-                  <span class="block font-display font-bold text-[11px] text-slate-900 dark:text-white leading-tight truncate">
+                  <span class="block font-display font-bold text-[11.5px] text-slate-900 dark:text-white leading-tight truncate">
                     {node.name}
                   </span>
-                  <span class="block font-mono text-[7.5px] uppercase tracking-wider text-slate-500 dark:text-slate-400 truncate">
+                  <span class="block font-mono text-[8px] uppercase tracking-wider text-slate-500 dark:text-slate-400 truncate">
                     {node.tag}
                   </span>
                 </div>
@@ -521,87 +513,35 @@ const desktopTechNodes = [
   </div>
 </section>
 
-<!-- Interactive Pipeline Node Relationship Engine (IDLE, HOVER, CONNECTED) -->
+<!-- Hover Interaction Engine for Constellation Nodes & SVG Lines -->
 <script is:inline>
   (function () {
-    const canvas = document.getElementById('devops-pipeline-canvas');
+    const canvas = document.getElementById('hero-constellation-canvas');
     if (!canvas) return;
 
-    const nodes = canvas.querySelectorAll('.pipeline-node');
-    const profileNode = document.getElementById('node-profile');
-    const paths = canvas.querySelectorAll('.pipeline-path');
-
-    function highlightNetwork(activeNode) {
-      const activeId = activeNode.getAttribute('data-tech-id');
-      const connStr = activeNode.getAttribute('data-connections') || '';
-      const connectedIds = connStr.split(',').filter(Boolean);
-      connectedIds.push(activeId);
-
-      // Node state styling
-      nodes.forEach((node) => {
-        const id = node.getAttribute('data-tech-id');
-        const pill = node.querySelector('.node-pill');
-        if (id === activeId) {
-          node.classList.add('is-hovered');
-          node.classList.remove('is-dimmed', 'is-connected');
-          if (pill) pill.classList.add('ring-2', 'ring-cyan', 'scale-105', 'bg-white', 'dark:bg-panel');
-        } else if (connectedIds.includes(id)) {
-          node.classList.add('is-connected');
-          node.classList.remove('is-dimmed', 'is-hovered');
-          if (pill) pill.classList.add('ring-1', 'ring-violet/60', 'scale-102');
-        } else {
-          node.classList.add('is-dimmed');
-          node.classList.remove('is-hovered', 'is-connected');
-        }
-      });
-
-      // Highlight matching SVG paths
-      paths.forEach((path) => {
-        const from = path.getAttribute('data-from');
-        const to = path.getAttribute('data-to');
-        if (
-          (from === activeId && connectedIds.includes(to)) ||
-          (to === activeId && connectedIds.includes(from)) ||
-          (connectedIds.includes(from) && connectedIds.includes(to))
-        ) {
-          path.classList.add('is-active-path');
-          path.setAttribute('stroke-width', '2.5');
-          path.style.opacity = '1';
-        } else {
-          path.classList.remove('is-active-path');
-          path.setAttribute('stroke-width', '1');
-          path.style.opacity = '0.15';
-        }
-      });
-    }
-
-    function resetNetwork() {
-      nodes.forEach((node) => {
-        node.classList.remove('is-hovered', 'is-connected', 'is-dimmed');
-        const pill = node.querySelector('.node-pill');
-        if (pill) {
-          pill.classList.remove('ring-2', 'ring-1', 'ring-cyan', 'ring-violet/60', 'scale-105', 'scale-102', 'bg-white', 'dark:bg-panel');
-        }
-      });
-
-      paths.forEach((path) => {
-        path.classList.remove('is-active-path');
-        path.setAttribute('stroke-width', '1.5');
-        path.style.opacity = '';
-      });
-    }
+    const nodes = canvas.querySelectorAll('.constellation-node');
 
     nodes.forEach((node) => {
-      node.addEventListener('mouseenter', () => highlightNetwork(node));
-      node.addEventListener('focus', () => highlightNetwork(node));
-      node.addEventListener('mouseleave', resetNetwork);
-      node.addEventListener('blur', resetNetwork);
-    });
+      const nodeId = node.getAttribute('data-node-id');
+      const targetPath = canvas.querySelector(`#path-${nodeId}`);
 
-    if (profileNode) {
-      profileNode.addEventListener('mouseenter', () => highlightNetwork(profileNode));
-      profileNode.addEventListener('mouseleave', resetNetwork);
-    }
+      function onEnter() {
+        if (targetPath) {
+          targetPath.classList.add('is-active-line');
+        }
+      }
+
+      function onLeave() {
+        if (targetPath) {
+          targetPath.classList.remove('is-active-line');
+        }
+      }
+
+      node.addEventListener('mouseenter', onEnter);
+      node.addEventListener('focus', onEnter);
+      node.addEventListener('mouseleave', onLeave);
+      node.addEventListener('blur', onLeave);
+    });
   })();
 </script>
 
@@ -621,45 +561,36 @@ const desktopTechNodes = [
     animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
-  /* Pipeline Path Dash Animation */
-  @keyframes pipelineFlowDrift {
+  /* Moving Dash Animation along Connection Lines */
+  @keyframes strokeDashFlow {
     to {
       stroke-dashoffset: -16;
     }
   }
 
-  .pipeline-path[stroke-dasharray] {
-    animation: pipelineFlowDrift 2.5s linear infinite;
+  .constellation-path {
+    opacity: 0.22;
+    transition: opacity 200ms ease, stroke-width 200ms ease, stroke 200ms ease;
+    animation: strokeDashFlow 3s linear infinite;
   }
 
-  /* Node State Transitions */
-  .pipeline-node.is-dimmed {
-    opacity: 0.35;
-    transform: translate(-50%, -50%) scale(0.96);
-  }
-
-  .pipeline-node.is-connected {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.02);
-  }
-
-  .pipeline-node.is-hovered {
-    opacity: 1;
-    z-index: 30;
-    transform: translate(-50%, -50%) scale(1.08);
-  }
-
-  .pipeline-path.is-active-path {
-    filter: drop-shadow(0 0 4px rgba(2, 132, 199, 0.6));
+  /* Highlighted Line on Node Hover */
+  .constellation-path.is-active-line {
+    opacity: 0.75 !important;
+    stroke-width: 2px !important;
+    filter: drop-shadow(0 0 4px rgba(2, 132, 199, 0.7));
   }
 
   /* Accessibility: Prefers Reduced Motion */
   @media (prefers-reduced-motion: reduce) {
     .hero-animate-in,
-    .pipeline-path {
+    .constellation-path {
       animation: none !important;
-      opacity: 1 !important;
+      opacity: 0.25 !important;
       transform: none !important;
+    }
+    .pulse-particle {
+      display: none !important;
     }
   }
 </style>
