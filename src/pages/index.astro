@@ -7,6 +7,7 @@ import SiteHeader from '@/components/SiteHeader.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ContactSection from '@/components/ContactSection.astro';
 import FloatingContact from '@/components/FloatingContact.astro';
+import BackToTop from '@/components/BackToTop.astro';
 import TechIcon from '@/components/TechIcon.astro';
 import { achievements, certifications, education, experiences, impactMetrics, profile, projects, skillGroups, stackYaml } from '@/data/profile';
 import { allTechnologies } from '@/data/technologies';
@@ -363,8 +364,9 @@ const currentProject = projects[0];
     <ContactSection />
   </main>
 
-  <!-- Elegant Floating Contact Trigger -->
+  <!-- Floating Contact & Back-to-Top Triggers -->
   <FloatingContact />
+  <BackToTop />
 
   <Footer />
 </BaseLayout>

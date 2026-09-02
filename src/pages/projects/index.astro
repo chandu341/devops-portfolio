@@ -5,6 +5,7 @@ import Footer from '@/components/Footer.astro';
 import SiteHeader from '@/components/SiteHeader.astro';
 import { profile, projects } from '@/data/profile';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import BackToTop from '@/components/BackToTop.astro';
 
 const statusMap: Record<string, { label: string; cls: string }> = {
   'eks-microservices-gitops-observability': { label: 'deployed', cls: 'bg-mint/15 text-mint' },
@@ -61,5 +62,6 @@ const statusMap: Record<string, { label: string; cls: string }> = {
       })}
     </section>
   </main>
+  <BackToTop />
   <Footer />
 </BaseLayout>

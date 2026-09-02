@@ -5,6 +5,7 @@ import Footer from '@/components/Footer.astro';
 import SiteHeader from '@/components/SiteHeader.astro';
 import { profile, projects } from '@/data/profile';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import BackToTop from '@/components/BackToTop.astro';
 
 export function getStaticPaths() {
   return projects.map((project) => ({
@@ -112,5 +113,6 @@ const { project } = Astro.props;
       </section>
     </article>
   </main>
+  <BackToTop />
   <Footer />
 </BaseLayout>

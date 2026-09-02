@@ -1,0 +1,39 @@
+---
+import { ArrowUp } from '@lucide/astro';
+---
+
+<button
+  type="button"
+  id="back-to-top"
+  aria-label="Back to top of page"
+  class="fixed left-4 bottom-5 z-40 sm:left-6 sm:bottom-6 grid h-10 w-10 place-items-center rounded-full border border-slate-300 dark:border-white/15 bg-white/90 dark:bg-panel2/90 text-slate-700 dark:text-slate-200 shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-110 hover:border-cyan/50 hover:text-cyan active:scale-95 opacity-0 pointer-events-none translate-y-4"
+>
+  <ArrowUp size={18} class="transition-transform duration-200 group-hover:-translate-y-0.5" />
+</button>
+
+<script is:inline>
+  (function () {
+    const btn = document.getElementById('back-to-top');
+    if (!btn) return;
+
+    function toggleVisibility() {
+      if (window.scrollY > 350) {
+        btn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+        btn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      } else {
+        btn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+        btn.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      }
+    }
+
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
+    toggleVisibility();
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  })();
+</script>
