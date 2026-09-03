@@ -6,13 +6,13 @@ interface Props {
 const { groups } = Astro.props;
 ---
 
-<div class="architecture-flow">
+<div class="architecture-flow" style={`--cols: ${groups.length || 4}`}>
   {groups.map((group, index) => (
     <div class="architecture-group">
-      <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">{group.group}</p>
+      <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-cyan font-semibold">{group.group}</p>
       <div class="mt-4 grid gap-2">
         {group.nodes.map((node) => (
-          <div class="rounded-[10px] border border-white/[0.08] bg-white/[0.045] px-3 py-2 text-sm text-slate-200">{node}</div>
+          <div class="rounded-[10px] border border-white/10 bg-white/[0.06] px-3 py-2 text-xs sm:text-sm font-mono text-slate-200">{node}</div>
         ))}
       </div>
       {index < groups.length - 1 && <span class="architecture-connector" aria-hidden="true"></span>}
