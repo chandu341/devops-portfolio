@@ -12,7 +12,7 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/im-chanduvenna/',
   github: 'https://github.com/chandu341',
   resume: '/resume.pdf',
-  availability: 'Open to DevOps / Cloud / SRE opportunities',
+  availability: 'Available for DevOps, Cloud & SRE Roles',
   summary:
     'DevOps Engineer with 5+ years of experience in creating and managing cloud-based infrastructures and CI/CD pipelines in AWS and Azure environments. Experienced in deploying containerized applications on various Kubernetes-based platforms, such as Amazon EKS and Azure AKS. Knowledgeable in using Infrastructure as Code tools, such as Terraform, and CI/CD tools, like Jenkins and GitHub Actions, in addition to GitOps using Argo CD. Experienced in using various DevSecOps tools, such as Prometheus, Grafana, Elastic Stack, and Catchpoint, in monitoring and log analysis.'
 };
@@ -35,6 +35,7 @@ export const navItems = [
   { label: 'About', href: '/#about' },
   { label: 'Experience', href: '/#experience' },
   { label: 'Projects', href: '/projects' },
+  { label: 'Playbooks', href: '/engineering' },
   { label: 'Skills', href: '/#skills' },
   { label: 'Certifications', href: '/#credentials' },
   { label: 'Contact', href: '/#contact' }

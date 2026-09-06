@@ -1,31 +1,284 @@
 ---
+import {
+  ArrowLeft,
+  CircleCheck,
+  ChevronRight,
+  Copy,
+  Terminal
+} from '@lucide/astro';
 import Footer from '@/components/Footer.astro';
-import SectionTitle from '@/components/SectionTitle.astro';
 import SiteHeader from '@/components/SiteHeader.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { profile } from '@/data/profile';
 
-const futureNotes = [
-  'Kubernetes pod failure troubleshooting checklist',
-  'Terraform workflow for AWS environment provisioning',
-  'Synthetic monitoring patterns with Selenium and Catchpoint',
-  'CI/CD security checks with SonarQube and Trivy'
+const playbooks = [
+  {
+    id: 'k8s-rca',
+    badge: 'Kubernetes SRE',
+    title: 'Production Kubernetes Pod Failure & RCA Playbook',
+    readTime: '6 min read',
+    accent: 'cyan',
+    summary: 'Standard operating procedure for diagnosing CrashLoopBackOff, OOMKilled, Ingress 502s, and StatefulSet PVC disk pressure in production EKS & AKS clusters.',
+    architecture: ['EKS Node Group', 'CoreDNS', 'Kubelet', 'CRI (containerd)', 'APM / Elastic Stack'],
+    steps: [
+      {
+        phase: '1. Fast Triage & Event Inspection',
+        command: 'kubectl get events -n production --sort-by=".metadata.creationTimestamp" | tail -n 20',
+        desc: 'Identifies cluster-level event abnormalities, failed scheduling, or node resource exhaustion.'
+      },
+      {
+        phase: '2. Deep Container Termination Reason',
+        command: 'kubectl get pod <pod-name> -n production -o jsonpath="{.status.containerStatuses[*].lastState.terminated.reason}"',
+        desc: 'Extracts exact kernel exit reason (OOMKilled exit 137, SIGSEGV exit 139, or Application Exception exit 1).'
+      },
+      {
+        phase: '3. Log Stream & Previous Container Inspection',
+        command: 'kubectl logs <pod-name> -n production --previous --tail=100',
+        desc: 'Captures stderr traces right before the container collapsed or failed health probes.'
+      }
+    ]
+  },
+  {
+    id: 'terraform-migration',
+    badge: 'Infrastructure as Code',
+    title: 'Zero-Downtime AWS Cloud Migration Architecture',
+    readTime: '8 min read',
+    accent: 'violet',
+    summary: 'Multi-AZ VPC provisioning strategy, ALB target group weighted cutovers, and modular Terraform state structure for migrating 50+ on-premises enterprise workloads to AWS.',
+    architecture: ['Terraform Cloud / S3 Backend', 'Transit Gateway', 'Multi-AZ VPC', 'ALB Target Groups', 'Aurora RDS Multi-AZ'],
+    steps: [
+      {
+        phase: '1. Multi-AZ Network Topology Isolation',
+        command: 'terraform plan -target=module.vpc -out=vpc.tfplan',
+        desc: 'Provisions public/private subnets across 3 Availability Zones with dedicated NAT Gateways for egress security.'
+      },
+      {
+        phase: '2. Database Continuous Replication Sync',
+        command: 'aws dms start-replication-task --replication-task-arn $DMS_TASK_ARN --start-replication-task-type start-replication',
+        desc: 'Maintains sub-second CDC sync between legacy on-prem databases and AWS RDS before cutover.'
+      },
+      {
+        phase: '3. Weighted DNS & ALB Canary Cutover',
+        command: 'aws route53 change-resource-record-sets --hosted-zone-id $ZONE_ID --change-batch file://weighted-cutover.json',
+        desc: 'Shifts traffic progressively (10% -> 50% -> 100%) while observing Dynatrace error rate thresholds.'
+      }
+    ]
+  },
+  {
+    id: 'gitops-security',
+    badge: 'DevSecOps & CI/CD',
+    title: 'Automated GitOps & Container Security Gate Pipeline',
+    readTime: '5 min read',
+    accent: 'mint',
+    summary: 'End-to-end security gating integrating SonarQube code quality metrics, Trivy CVE vulnerability scans, and Argo CD automated synchronization.',
+    architecture: ['GitHub Webhook', 'Jenkins / GitHub Actions', 'SonarQube SAST', 'Trivy Scanner', 'Argo CD Cluster'],
+    steps: [
+      {
+        phase: '1. Container Image CVE Scans in CI',
+        command: 'trivy image --severity HIGH,CRITICAL --exit-code 1 app:v${BUILD_NUMBER}',
+        desc: 'Fails build pipeline immediately if high or critical vulnerabilities exist in base OS or dependencies.'
+      },
+      {
+        phase: '2. Static Manifest Linting & Best Practices',
+        command: 'kube-linter lint manifests/ --config .kube-linter.yaml',
+        desc: 'Enforces non-root user containers, read-only root filesystems, and strict resource limits.'
+      },
+      {
+        phase: '3. Declarative Argo CD GitOps Sync',
+        command: 'argocd app sync production-microservices --prune',
+        desc: 'Applies desired Git state to the live cluster with automated rollback on health probe failure.'
+      }
+    ]
+  },
+  {
+    id: 'observability-slo',
+    badge: 'Observability & SRE',
+    title: 'Enterprise Observability: Dynatrace, Catchpoint & Elastic Stack',
+    readTime: '7 min read',
+    accent: 'amber',
+    summary: 'Correlating synthetic browser transactions, APM distributed traces, and central log aggregations to maintain 99.9% uptime SLA across microservice ecosystems.',
+    architecture: ['Catchpoint Synthetics', 'Dynatrace OneAgent', 'OpenTelemetry', 'Elasticsearch / Logstash', 'Grafana SLO Boards'],
+    steps: [
+      {
+        phase: '1. Synthetic Transaction Probing',
+        command: 'curl -s -o /dev/null -w "DNS: %{time_namelookup}s | Connect: %{time_connect}s | TTFB: %{time_starttransfer}s | Total: %{time_total}s\n" https://api.production.internal/health',
+        desc: 'Validates multi-region latency milestones and SSL handshake health across edge locations.'
+      },
+      {
+        phase: '2. Elastic Log Correlation by TraceId',
+        command: 'es-query --index="logs-prod-*" --filter="trace_id:$TRACE_ID" --fields="@timestamp,service.name,log.level,message"',
+        desc: 'Pinpoints the exact microservice and code line causing cascading request failures.'
+      },
+      {
+        phase: '3. Automated P1/P2 Alert Escalation',
+        command: 'servicenow-cli create-incident --urgency=1 --impact=1 --ci="EKS-Cluster-Prod" --desc="SLO Budget Breach > 0.1%"',
+        desc: 'Automatically opens bridge tickets and pages primary on-call engineers via ServiceNow integration.'
+      }
+    ]
+  }
 ];
 ---
 
-<BaseLayout title={`Engineering Notes | ${profile.name}`} description="Future engineering notes planned for Kubernetes, Terraform, CI/CD, monitoring, and cloud operations.">
+<BaseLayout
+  title={`DevOps Engineering Lab & Architecture Runbooks | ${profile.name}`}
+  description="Technical playbooks, incident response guides, and cloud architecture patterns by Chandu Venna."
+>
   <SiteHeader />
-  <main class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
-    <SectionTitle eyebrow="Engineering Notes" title="A place for technical writing" description="Planned engineering write-ups covering production Kubernetes, Infrastructure as Code, CI/CD automation, and Observability." />
-    <div class="grid gap-4 sm:grid-cols-2">
-      {futureNotes.map((note) => (
-        <article class="rounded-2xl border border-slate-200 dark:border-white/10 bg-white/80 dark:bg-panel2/75 p-5 shadow-sm">
-          <p class="text-xs font-mono font-semibold uppercase tracking-wider text-cyan">Planned note</p>
-          <h2 class="mt-2.5 text-lg font-bold text-slate-900 dark:text-white font-display">{note}</h2>
-          <p class="mt-2.5 text-xs leading-relaxed text-slate-600 dark:text-slate-300">Resume-aligned engineering knowledge article.</p>
+
+  <main class="mx-auto max-w-6xl px-4 py-12 sm:py-16 sm:px-6 lg:px-8">
+
+    <!-- Top Back Navigation & Eyebrow -->
+    <div class="mb-8 flex items-center justify-between">
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-panel2 px-3.5 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:border-cyan hover:text-cyan transition-colors"
+      >
+        <ArrowLeft size={14} /> Back to Portfolio
+      </a>
+      <span class="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-mint font-semibold">
+        <span class="h-2 w-2 rounded-full bg-mint animate-pulse"></span>
+        Interactive DevOps Knowledge Base
+      </span>
+    </div>
+
+    <!-- Main Title & Bio Header -->
+    <div class="mb-12">
+      <div class="inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/10 px-3 py-1 text-xs font-mono font-medium text-cyan mb-3">
+        <Terminal size={14} />
+        <span>engineer@chandu-ops: ~/engineering-playbooks</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white font-display">
+        DevOps &amp; Cloud Engineering Playbooks
+      </h1>
+      <p class="mt-4 max-w-3xl text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
+        Curated incident triage workflows, infrastructure automation recipes, and production architecture blueprints developed and battle-tested through 5+ years of enterprise cloud engineering at GENPACT (Honeywell &amp; GE).
+      </p>
+    </div>
+
+    <!-- Playbook Cards Grid -->
+    <div class="space-y-8">
+      {playbooks.map((item) => (
+        <article class="rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-white/[0.09] bg-white/95 dark:bg-panel2/90 p-6 sm:p-8 shadow-sm dark:shadow-[0_20px_50px_rgba(0,0,0,0.35)] backdrop-blur-md transition-all duration-300">
+
+          <!-- Card Header -->
+          <div class="flex flex-wrap items-center justify-between gap-3 pb-5 border-b border-slate-200 dark:border-white/[0.08]">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex items-center rounded-lg border border-cyan/30 bg-cyan/10 px-2.5 py-1 font-mono text-xs font-semibold text-cyan">
+                {item.badge}
+              </span>
+              <span class="font-mono text-xs text-slate-500 dark:text-slate-400">
+                {item.readTime}
+              </span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="inline-flex items-center gap-1 font-mono text-[11px] text-mint">
+                <CircleCheck size={13} /> Production Verified
+              </span>
+            </div>
+          </div>
+
+          <!-- Title & Summary -->
+          <div class="mt-5">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white font-display">
+              {item.title}
+            </h2>
+            <p class="mt-2.5 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+              {item.summary}
+            </p>
+          </div>
+
+          <!-- Architecture Components Pill Row -->
+          <div class="mt-5">
+            <p class="font-mono text-[11px] uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold mb-2">
+              Architecture &amp; Toolchain:
+            </p>
+            <div class="flex flex-wrap gap-2">
+              {item.architecture.map((node) => (
+                <span class="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-ink/70 px-2.5 py-1 font-mono text-xs text-slate-700 dark:text-slate-200">
+                  <span class="h-1.5 w-1.5 rounded-full bg-cyan"></span>
+                  {node}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <!-- Triage Steps & Shell Commands -->
+          <div class="mt-6 space-y-4">
+            <p class="font-mono text-xs font-semibold uppercase tracking-wider text-slate-900 dark:text-white">
+              Triage Steps &amp; Diagnostic Commands:
+            </p>
+            <div class="grid gap-3">
+              {item.steps.map((s, idx) => (
+                <div class="rounded-xl border border-slate-200 dark:border-white/[0.07] bg-slate-50/80 dark:bg-ink/60 p-4 space-y-2">
+                  <div class="flex items-center justify-between">
+                    <span class="font-mono text-xs font-semibold text-slate-900 dark:text-slate-100">
+                      {s.phase}
+                    </span>
+                    <span class="font-mono text-[10px] text-slate-500 dark:text-slate-400">
+                      Phase {idx + 1}
+                    </span>
+                  </div>
+
+                  <!-- Copyable Command Block -->
+                  <div class="group relative flex items-center justify-between rounded-lg border border-slate-300 dark:border-white/10 bg-slate-900 px-3.5 py-2.5 font-mono text-xs text-cyan overflow-x-auto">
+                    <code class="pr-8 text-cyan whitespace-nowrap sm:whitespace-normal">{s.command}</code>
+                    <button
+                      type="button"
+                      class="copy-cmd-btn absolute right-2 top-2 rounded-md p-1 text-slate-400 hover:text-white bg-slate-800 transition-colors"
+                      data-cmd={s.command}
+                      aria-label="Copy shell command"
+                    >
+                      <Copy size={13} />
+                    </button>
+                  </div>
+
+                  <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
+                    {s.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </article>
       ))}
     </div>
+
+    <!-- Bottom CTA Banner -->
+    <div class="mt-14 rounded-3xl border border-slate-200 dark:border-white/10 bg-gradient-to-br from-slate-900 to-slate-950 p-8 sm:p-10 text-white shadow-xl text-center">
+      <h3 class="text-2xl sm:text-3xl font-bold font-display">Need architecture assistance or DevOps consulting?</h3>
+      <p class="mt-3 max-w-2xl mx-auto text-slate-300 text-sm sm:text-base leading-relaxed">
+        Let's discuss how we can bring automated CI/CD pipelines, Kubernetes GitOps reliability, and Terraform cloud scaling to your infrastructure.
+      </p>
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-4">
+        <a href="/#contact" class="inline-flex items-center gap-2 rounded-xl bg-cyan text-ink font-semibold px-6 py-3 text-sm hover:bg-white transition-all hover:scale-105">
+          Reach Out to Chandu <ChevronRight size={16} />
+        </a>
+        <a href={profile.resume} class="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 text-white font-semibold px-6 py-3 text-sm hover:bg-white/20 transition-all">
+          Download Complete Resume
+        </a>
+      </div>
+    </div>
+
   </main>
+
   <Footer />
 </BaseLayout>
+
+<script is:inline>
+  (function () {
+    const copyBtns = document.querySelectorAll('.copy-cmd-btn');
+    copyBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const cmd = btn.getAttribute('data-cmd');
+        if (!cmd) return;
+        navigator.clipboard.writeText(cmd).then(() => {
+          btn.classList.add('text-mint');
+          setTimeout(() => {
+            btn.classList.remove('text-mint');
+          }, 1500);
+        });
+      });
+    });
+  })();
+</script>
