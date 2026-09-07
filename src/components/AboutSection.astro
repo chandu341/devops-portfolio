@@ -1,0 +1,173 @@
+---
+import { Activity, CircleCheck, GitMerge, Layers, ShieldCheck } from '@lucide/astro';
+import { profile } from '@/data/profile';
+
+const corePrinciples = [
+  {
+    id: '01',
+    title: 'Deterministic Infrastructure',
+    tagline: 'Code-defined, drift-free, reproducible.',
+    description: 'Infrastructure should never rely on tribal knowledge or manual console tweaks. Every resource—VPCs, EKS clusters, load balancers, and IAM policies—is defined in Terraform and versioned in Git for full auditability and zero drift.',
+    icon: Layers,
+    accent: 'cyan'
+  },
+  {
+    id: '02',
+    title: 'Zero-Downtime Releases',
+    tagline: 'Predictable delivery with GitOps.',
+    description: 'Deployments should be routine non-events. Leveraging Argo CD and Helm on Amazon EKS and Azure AKS, releases are automated, synchronized directly from Git, and validated through health probes before receiving production traffic.',
+    icon: GitMerge,
+    accent: 'violet'
+  },
+  {
+    id: '03',
+    title: 'Observability & Rapid RCA',
+    tagline: 'Actionable telemetry over alert noise.',
+    description: 'Monitoring is more than passive dashboards. By instrumenting distributed metrics, APM telemetry, Catchpoint synthetic probes, and centralized Elastic Stack logs, issues are detected early and resolved with deep root cause analysis.',
+    icon: Activity,
+    accent: 'mint'
+  },
+  {
+    id: '04',
+    title: 'Shift-Left DevSecOps',
+    tagline: 'Automated vulnerability & quality gates.',
+    description: 'Security is embedded into the CI/CD pipeline from commit to cluster. Container images and application source code are automatically scanned with Trivy and SonarQube before artifacts ever reach production registries.',
+    icon: ShieldCheck,
+    accent: 'amber'
+  }
+];
+
+const operationalManifesto = [
+  { label: 'Cloud Strategy', value: 'Multi-AZ AWS & Azure topologies designed for 99.9% availability' },
+  { label: 'Release Cadence', value: 'Automated CI/CD pipelines improving release velocity by 60%' },
+  { label: 'Incident Posture', value: 'SRE-driven runbooks, proactive alerting, and blameless RCA' },
+  { label: 'Security Baseline', value: 'Least-privilege IAM, secret isolation, and container scanning' }
+];
+---
+
+<section id="about" class="section-pad border-t border-slate-200 dark:border-white/[0.07] bg-slate-50/50 dark:bg-ink/50" aria-label="About and engineering philosophy">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full min-w-0 box-border">
+
+    <!-- Section Header -->
+    <div class="mb-10 sm:mb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 reveal-up">
+      <div>
+        <p class="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-violet dark:text-violet inline-flex items-center gap-2">
+          <span class="inline-block h-1.5 w-3 rounded-full bg-cyan" aria-hidden="true"></span>
+          03 — whoami // engineering philosophy
+        </p>
+        <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 dark:text-white font-display">
+          Reliability is engineered, not assumed.
+        </h2>
+      </div>
+      <span class="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-cyan/40 bg-cyan/[0.08] px-3.5 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan">
+        <span class="h-1.5 w-1.5 rounded-full bg-cyan animate-pulse"></span>
+        {profile.experience} Production Experience
+      </span>
+    </div>
+
+    <!-- Main Grid: Interactive Command Console + Core Principles -->
+    <div class="grid gap-6 lg:grid-cols-12">
+
+      <!-- Left Column: Command Console Profile Narrative (5 cols) -->
+      <div class="lg:col-span-5 flex flex-col gap-6 reveal-up">
+
+        <!-- Terminal-Styled Narrative Card -->
+        <div class="surface rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-white/[0.08] p-5 sm:p-7 shadow-sm flex flex-col justify-between h-full">
+          <div>
+            <!-- Terminal Title Bar -->
+            <div class="flex items-center justify-between border-b border-slate-200 dark:border-white/[0.08] pb-3.5 mb-5">
+              <div class="flex items-center gap-2">
+                <span class="h-2.5 w-2.5 rounded-full bg-rose-500/80"></span>
+                <span class="h-2.5 w-2.5 rounded-full bg-amber-500/80"></span>
+                <span class="h-2.5 w-2.5 rounded-full bg-emerald-500/80"></span>
+                <span class="ml-2 font-mono text-[11px] text-slate-500 dark:text-slate-400">whoami --mindset</span>
+              </div>
+              <span class="font-mono text-[10px] uppercase tracking-wider text-mint font-semibold">Active</span>
+            </div>
+
+            <!-- Narrative Content -->
+            <div class="space-y-4 text-sm sm:text-base leading-relaxed text-slate-700 dark:text-slate-300">
+              <p class="font-medium text-slate-900 dark:text-white">
+                I am a DevOps &amp; Cloud Engineer based in Bengaluru with 5+ years of hands-on experience designing, provisioning, and operating cloud infrastructure across AWS and Azure.
+              </p>
+              <p>
+                My philosophy is simple: <strong class="text-slate-900 dark:text-white font-semibold">eliminate operational guesswork</strong>. Production systems must be predictable, resilient, and observable from the first line of code through to runtime metrics.
+              </p>
+              <p>
+                Having supported enterprise workloads for clients like <strong class="text-slate-900 dark:text-white font-semibold">Honeywell</strong> (EKS, Argo CD, Dynatrace) and <strong class="text-slate-900 dark:text-white font-semibold">GE</strong> (50+ VM cloud migration), I specialize in transforming manual operations into robust, automated delivery pipelines.
+              </p>
+            </div>
+          </div>
+
+          <!-- Bottom Operational Badges -->
+          <div class="mt-6 pt-5 border-t border-slate-200 dark:border-white/[0.08] flex flex-wrap gap-2">
+            <span class="inline-flex items-center gap-1 rounded-lg border border-slate-200 dark:border-white/10 bg-slate-100/80 dark:bg-white/[0.04] px-2.5 py-1 font-mono text-[11px] font-semibold text-slate-700 dark:text-slate-300">
+              📍 Bengaluru, India
+            </span>
+            <span class="inline-flex items-center gap-1 rounded-lg border border-cyan/30 bg-cyan/10 px-2.5 py-1 font-mono text-[11px] font-semibold text-cyan-800 dark:text-cyan-300">
+              ☁️ AWS &amp; Azure
+            </span>
+            <span class="inline-flex items-center gap-1 rounded-lg border border-violet/30 bg-violet/10 px-2.5 py-1 font-mono text-[11px] font-semibold text-violet-800 dark:text-violet-300">
+              ☸️ Kubernetes &amp; GitOps
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Right Column: 4 Core Engineering Principles (7 cols) -->
+      <div class="lg:col-span-7 flex flex-col gap-4 reveal-up">
+        <div class="grid gap-4 sm:grid-cols-2 h-full">
+          {corePrinciples.map((principle) => {
+            const Icon = principle.icon;
+            return (
+              <article class="surface rounded-2xl border border-slate-200 dark:border-white/[0.08] p-5 sm:p-6 transition-all duration-200 hover:-translate-y-1 hover:border-cyan/40 dark:hover:border-cyan/30 shadow-sm flex flex-col justify-between group">
+                <div>
+                  <div class="flex items-center justify-between gap-2 mb-3.5">
+                    <div class="grid h-10 w-10 place-items-center rounded-xl bg-slate-100 dark:bg-white/[0.06] text-slate-800 dark:text-white transition-colors duration-200 group-hover:bg-cyan/10 group-hover:text-cyan">
+                      <Icon size={20} />
+                    </div>
+                    <span class="font-mono text-xs font-bold uppercase tracking-[0.2em] text-slate-600 dark:text-slate-400">
+                      {principle.id}
+                    </span>
+                  </div>
+                  <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white font-display">
+                    {principle.title}
+                  </h3>
+                  <p class="mt-1 font-mono text-[11px] font-medium text-violet dark:text-violet-glow">
+                    {principle.tagline}
+                  </p>
+                  <p class="mt-2.5 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                    {principle.description}
+                  </p>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Operational Manifesto / Production Posture Banner -->
+    <div class="mt-6 rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-white/[0.08] bg-white/70 dark:bg-panel2/60 p-5 sm:p-6 shadow-sm reveal-up">
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {operationalManifesto.map((item) => (
+          <div class="flex items-start gap-3">
+            <CircleCheck size={18} class="mt-0.5 text-mint flex-shrink-0" />
+            <div>
+              <p class="font-mono text-[10px] uppercase tracking-[0.16em] text-slate-600 dark:text-slate-400 font-semibold">
+                {item.label}
+              </p>
+              <p class="mt-0.5 text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-200 leading-snug">
+                {item.value}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
