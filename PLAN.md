@@ -131,7 +131,7 @@
   - Harmonize CSS custom properties in `src/styles/global.css` with `tailwind.config.mjs`.
   - Establish standardized typography, spacing, radius, and elevation tokens.
 
-- [ ] **Phase 3: Shared layout refactor**
+- [x] **Phase 3: Shared layout refactor**
   - Ensure `BaseLayout.astro` has optimal meta headers, fonts, and clean container boundaries.
 
 - [ ] **Phase 4: Navigation**
