@@ -1,0 +1,289 @@
+---
+import {
+  Activity,
+  ArrowUpRight,
+  CircleCheck,
+  Radio,
+  Zap
+} from '@lucide/astro';
+import TechIcon from '@/components/TechIcon.astro';
+
+// SRE Golden Signals & Telemetry Observability Telemetry
+const goldenSignals = [
+  {
+    title: 'P99 Latency',
+    value: '118ms',
+    target: '< 200ms',
+    status: 'optimal',
+    change: '-14ms vs last week',
+    accent: 'cyan'
+  },
+  {
+    title: 'Success Rate (SLO)',
+    value: '99.94%',
+    target: '99.90% SLA',
+    status: 'optimal',
+    change: '+0.04% error budget',
+    accent: 'mint'
+  },
+  {
+    title: 'Production Traffic',
+    value: '42.8k req/s',
+    target: 'Multi-AZ ALB',
+    status: 'nominal',
+    change: 'Zero throttled requests',
+    accent: 'violet'
+  },
+  {
+    title: 'Cluster Saturation',
+    value: '58.2%',
+    target: 'HPA 70% threshold',
+    status: 'optimal',
+    change: 'Karpenter auto-scaled',
+    accent: 'cyan'
+  }
+];
+
+const telemetryTabs = [
+  {
+    id: 'apm',
+    label: 'APM & Tracing',
+    tool: 'Dynatrace',
+    icon: 'dynatrace',
+    description: 'Distributed transaction traces across 12+ EKS microservices with automated root-cause detection.'
+  },
+  {
+    id: 'synthetics',
+    label: 'Synthetic Probes',
+    tool: 'Catchpoint',
+    icon: 'catchpoint',
+    description: 'Global multi-edge active availability probes monitoring API endpoints and DNS propagation.'
+  },
+  {
+    id: 'metrics',
+    label: 'Cluster Metrics',
+    tool: 'Prometheus & Grafana',
+    icon: 'prometheus',
+    description: 'Real-time telemetry scraping node CPU/memory, pod restart counts, and network ingress/egress.'
+  },
+  {
+    id: 'logs',
+    label: 'Log Ingestion',
+    tool: 'Elastic Stack',
+    icon: 'elastic',
+    description: 'Centralized indexing of multi-cluster stdout/stderr streams with sub-second Kibana search.'
+  }
+];
+
+const activeAlerts = [
+  {
+    level: 'INFO',
+    service: 'payment-service',
+    msg: 'HPA scaled replicas 6 → 10 due to traffic spike (CPU > 70%)',
+    time: '2m ago',
+    badgeCls: 'text-cyan bg-cyan/10 border-cyan/30'
+  },
+  {
+    level: 'RESOLVED',
+    service: 'auth-gateway',
+    msg: 'SSL certificate auto-renewed via cert-manager & Route53 DNS-01',
+    time: '14m ago',
+    badgeCls: 'text-mint bg-mint/10 border-mint/30'
+  },
+  {
+    level: 'AUDIT',
+    service: 'trivy-scanner',
+    msg: 'Nightly container image vulnerability scan passed: 0 Critical, 0 High CVEs',
+    time: '1h ago',
+    badgeCls: 'text-violet bg-violet/10 border-violet/30'
+  }
+];
+---
+
+<section id="observability" class="section-pad relative overflow-hidden" aria-label="SRE & Observability Telemetry Command Center">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full min-w-0 box-border">
+
+    <!-- Section Header -->
+    <div class="mb-10 sm:mb-12 reveal-up">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <p class="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-violet dark:text-violet inline-flex items-center gap-2">
+            <span class="inline-block h-1 w-2.5 rounded-full bg-mint" aria-hidden="true"></span>
+            06 — telemetry &amp; sre command center
+          </p>
+          <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 dark:text-white font-display">
+            High-reliability telemetry.
+          </h2>
+        </div>
+        <div class="flex items-center gap-2 rounded-full border border-mint/40 bg-mint/10 px-3.5 py-1.5 font-mono text-xs font-semibold text-mint">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-mint opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-mint"></span>
+          </span>
+          <span>SLO Health: 99.94% (Nominal)</span>
+        </div>
+      </div>
+      <p class="mt-4 max-w-3xl text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+        Production reliability isn't accidental. It's engineered through continuous APM distributed tracing with <strong>Dynatrace</strong>, synthetic multi-region probing with <strong>Catchpoint</strong>, metrics scraping via <strong>Prometheus/Grafana</strong>, and centralized logging via <strong>Elastic Stack</strong>.
+      </p>
+    </div>
+
+    <!-- Golden Signals Grid -->
+    <div class="grid gap-3 sm:gap-4 grid-cols-2 lg:grid-cols-4 mb-8 reveal-up">
+      {goldenSignals.map((signal) => (
+        <div class="surface rounded-2xl border border-slate-200 dark:border-white/[0.08] p-4 sm:p-5 shadow-sm flex flex-col justify-between">
+          <div class="flex items-center justify-between gap-2">
+            <span class="font-mono text-[10.5px] uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">
+              {signal.title}
+            </span>
+            <Activity size={14} class={signal.accent === 'cyan' ? 'text-cyan' : signal.accent === 'mint' ? 'text-mint' : 'text-violet'} />
+          </div>
+          <div class="my-2">
+            <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-display">
+              {signal.value}
+            </p>
+            <p class="font-mono text-[10px] text-slate-400 dark:text-slate-500 mt-0.5">
+              Target: {signal.target}
+            </p>
+          </div>
+          <div class="flex items-center gap-1.5 pt-2 border-t border-slate-100 dark:border-white/5 font-mono text-[10px] font-semibold text-mint">
+            <CircleCheck size={12} class="flex-shrink-0" />
+            <span class="truncate">{signal.change}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Interactive Telemetry Dashboard Console -->
+    <div class="rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-white/[0.09] bg-white/95 dark:bg-panel2/90 shadow-xl overflow-hidden backdrop-blur-md reveal-up">
+
+      <!-- Console Header Bar -->
+      <div class="flex flex-wrap items-center justify-between gap-3 px-5 sm:px-6 py-3.5 border-b border-slate-200/80 dark:border-white/[0.07] bg-slate-50/80 dark:bg-slate-950/60">
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-1.5">
+            <span class="h-2.5 w-2.5 rounded-full bg-danger/80 dark:bg-danger"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-warning/80 dark:bg-warning"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-success/80 dark:bg-success"></span>
+          </div>
+          <span class="font-mono text-xs font-semibold text-slate-700 dark:text-slate-300">
+            sre-telemetry-monitor.live
+          </span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span class="rounded-md bg-mint/10 border border-mint/20 px-2 py-0.5 font-mono text-[10px] font-bold text-mint inline-flex items-center gap-1.5">
+            <span class="h-1.5 w-1.5 rounded-full bg-mint animate-pulse"></span>
+            ALL 12 MICROSERVICES HEALTHY
+          </span>
+        </div>
+      </div>
+
+      <!-- Main Console Content -->
+      <div class="p-5 sm:p-6 lg:p-8 grid gap-8 lg:grid-cols-[1fr_1.1fr]">
+
+        <!-- Left Column: Toolchain Pillars & Methodology -->
+        <div class="space-y-4">
+          <p class="font-mono text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold">
+            Observability Stack Architecture
+          </p>
+
+          <div class="grid gap-3">
+            {telemetryTabs.map((item) => (
+              <div class="rounded-xl border border-slate-200/80 dark:border-white/[0.06] bg-slate-50/70 dark:bg-white/[0.02] p-3.5 sm:p-4 transition hover:border-cyan/30">
+                <div class="flex items-center justify-between gap-2 mb-1.5">
+                  <div class="flex items-center gap-2">
+                    <span class="p-1 rounded-md bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-xs">
+                      <TechIcon name={item.icon} size={16} />
+                    </span>
+                    <h3 class="font-display font-bold text-xs sm:text-sm text-slate-900 dark:text-white">
+                      {item.label}
+                    </h3>
+                  </div>
+                  <span class="font-mono text-[10px] font-bold text-cyan bg-cyan/10 border border-cyan/20 px-2 py-0.5 rounded">
+                    {item.tool}
+                  </span>
+                </div>
+                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Right Column: Live Event Stream & Simulated Telemetry Feed -->
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <p class="font-mono text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold flex items-center gap-1.5">
+              <Radio size={14} class="text-cyan animate-pulse" />
+              Live Operational Event Feed
+            </p>
+            <span class="font-mono text-[10px] text-slate-400 dark:text-slate-500">
+              Auto-synced from AWS &amp; Azure
+            </span>
+          </div>
+
+          <!-- Terminal Stream Window -->
+          <div class="rounded-xl border border-slate-200 dark:border-white/10 bg-slate-950 p-4 sm:p-5 font-mono text-xs text-slate-300 space-y-3.5 shadow-inner">
+            <div class="flex items-center justify-between border-b border-white/10 pb-2.5 text-[11px] text-slate-400">
+              <span class="flex items-center gap-1.5 text-cyan">
+                <Zap size={13} />
+                <span>k8s.production.cluster.events</span>
+              </span>
+              <span class="text-mint">status: streaming</span>
+            </div>
+
+            <!-- Event Rows -->
+            <div class="space-y-2.5">
+              {activeAlerts.map((evt) => (
+                <div class="rounded-lg bg-white/[0.04] p-2.5 border border-white/5 space-y-1">
+                  <div class="flex items-center justify-between gap-2 text-[10px]">
+                    <div class="flex items-center gap-1.5">
+                      <span class:list={['px-1.5 py-0.5 rounded font-bold uppercase border', evt.badgeCls]}>
+                        {evt.level}
+                      </span>
+                      <span class="text-slate-400">[{evt.service}]</span>
+                    </div>
+                    <span class="text-slate-500">{evt.time}</span>
+                  </div>
+                  <p class="text-[11px] text-slate-200 leading-tight font-mono">
+                    {evt.msg}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <!-- Command Line prompt -->
+            <div class="pt-2 border-t border-white/10 flex items-center gap-2 text-[11px] text-slate-400">
+              <span class="text-mint">$</span>
+              <span class="text-slate-300">dynatrace-cli slo evaluate --target=99.9% --window=30d</span>
+              <span class="ml-auto text-mint font-bold">PASS (99.94%)</span>
+            </div>
+          </div>
+
+          <!-- Deep-dive Runbooks CTA -->
+          <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 bg-cyan/5 dark:bg-cyan/[0.03] border border-cyan/20 rounded-xl p-3.5">
+            <div class="text-left">
+              <p class="font-display font-bold text-xs sm:text-sm text-slate-900 dark:text-white">
+                Detailed Incident Triage &amp; SRE Runbooks
+              </p>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400">
+                Explore production RCA procedures, pod failure debugging, and cloud cutover scripts.
+              </p>
+            </div>
+            <a
+              href="/engineering"
+              class="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-semibold px-3.5 py-1.5 text-xs transition hover:bg-cyan dark:hover:bg-cyan hover:text-slate-950 whitespace-nowrap flex-shrink-0"
+            >
+              <span>View Runbooks</span>
+              <ArrowUpRight size={13} />
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>

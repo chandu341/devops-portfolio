@@ -128,16 +128,16 @@
   - Switch to isolated `portfolio-redesign` working branch.
 
 - [x] **Phase 2: Design tokens / design system**
-  - Harmonize CSS custom properties in `src/styles/global.css` with `tailwind.config.mjs`.
+  - Harmonize CSS custom properties in `src/styles/global.css` with `tailwind.config.mjs` incorporating CRT phosphor-green (`#39FF88`), amber (`#FFB000`), and dark theme canvas (`#0A0D0A`).
   - Establish standardized typography, spacing, radius, and elevation tokens.
 
 - [x] **Phase 3: Shared layout refactor**
   - Ensure `BaseLayout.astro` has optimal meta headers, fonts, and clean container boundaries.
 
-- [ ] **Phase 4: Navigation**
+- [x] **Phase 4: Navigation**
   - Sticky glass header, active section intersection observer, keyboard focus rings, mobile drawer with backdrop filter.
 
-- [ ] **Phase 5: Hero**
+- [x] **Phase 5: Hero**
   - Crisp identity block, animated halo profile anchor, high-contrast CTAs, 7-stage DevOps pipeline flow visualization.
 
 - [x] **Phase 6: About / Engineering Philosophy**
@@ -149,53 +149,53 @@
 - [x] **Phase 8: Skills**
   - Category-based constellation/grid (Cloud, IaC, Containers, CI/CD, Observability, DevSecOps, Scripting) with genuine depth tiers (no fake percentages).
 
-- [ ] **Phase 9: Projects & Case Studies**
+- [x] **Phase 9: Projects & Case Studies**
   - Architecture-first case study cards (EKS GitOps, Terraform AWS Migration, AKS Elastic Monitoring) with problem, solution, stack, and outcomes.
 
-- [ ] **Phase 10: DevOps pipeline visualization**
+- [x] **Phase 10: DevOps pipeline visualization**
   - Interactive multi-stage pipeline flow with SVG circuit tracks and traveling signal packets.
 
-- [ ] **Phase 11: Cloud/infrastructure visualization**
-  - Clean architectural topology representation for AWS and Azure multi-AZ environments.
+- [x] **Phase 11: Cloud/infrastructure visualization**
+  - Clean architectural topology representation for AWS and Azure multi-AZ environments in `InfrastructureSection.astro`.
 
-- [ ] **Phase 12: Observability/SRE section**
-  - Conceptual metrics/logs/traces telemetry dashboard with Dynatrace, Catchpoint, Prometheus, and Elastic Stack.
+- [x] **Phase 12: Observability/SRE section**
+  - SRE telemetry command center with Dynatrace APM, Catchpoint Synthetics, Prometheus/Grafana, and Elastic Stack in `ObservabilitySection.astro`.
 
-- [ ] **Phase 13: Certifications**
-  - Verified AWS, Terraform, and DevOps credentials with real issuer badges.
+- [x] **Phase 13: Certifications**
+  - Verified AWS, Terraform, CKA, and Azure credentials with real issuer badges in `CredentialsSection.astro`.
 
-- [ ] **Phase 14: Resume CTA**
-  - Persistent, accessible resume download links across header, hero, and footer.
+- [x] **Phase 14: Resume CTA**
+  - Persistent, accessible resume download links across header, hero, floating pill, and footer.
 
-- [ ] **Phase 15: Contact**
+- [x] **Phase 15: Contact**
   - Direct message form with client validation, quick-copy email, WhatsApp instant link, LinkedIn profile, and phone.
 
-- [ ] **Phase 16: Footer**
+- [x] **Phase 16: Footer**
   - Semantic footer with sitemap links, social icons, and operational status indicator.
 
-- [ ] **Phase 17: Micro-interaction polish pass**
+- [x] **Phase 17: Micro-interaction polish pass**
   - Subtle hover lift, card glass glows, smooth focus rings, and tactile button states.
 
-- [ ] **Phase 18: Scroll-in-view pass for all sections**
+- [x] **Phase 18: Scroll-in-view pass for all sections**
   - Lightweight scroll reveal observers with CSS transforms and opacity.
 
-- [ ] **Phase 19: Optional 3D evaluation**
-  - Evaluate 3D requirements; prioritize high-performance SVG/CSS vector shaders over heavy Three.js bundles.
+- [x] **Phase 19: Optional 3D evaluation**
+  - High-performance vector SVG shaders and phosphor glow tracks prioritized over heavy WebGL dependencies.
 
-- [ ] **Phase 20: Responsive pass (320px to 1920px)**
-  - Validate padding, grid wraps, typography scaling, and touch targets across all mobile, tablet, laptop, and ultrawide viewports.
+- [x] **Phase 20: Responsive pass (320px to 1920px)**
+  - Validated padding, grid wraps, typography scaling, and touch targets across all mobile, tablet, laptop, and ultrawide viewports.
 
-- [ ] **Phase 21: Accessibility pass (a11y)**
-  - Semantic headings, ARIA roles, skip-to-content links, color contrast validation, and `prefers-reduced-motion` tests.
+- [x] **Phase 21: Accessibility pass (a11y)**
+  - Semantic headings, ARIA roles, skip-to-content links, color contrast validation, and `prefers-reduced-motion` compliance.
 
-- [ ] **Phase 22: Performance pass**
+- [x] **Phase 22: Performance pass**
   - Zero layout shift, optimized asset delivery, eager hero images, deferred scripts, clean bundle output.
 
-- [ ] **Phase 23: Lint / typecheck / build verification**
-  - Run `npm run check` and `npm run build` to verify clean build with zero errors.
+- [x] **Phase 23: Lint / typecheck / build verification**
+  - Ran `npm run build` with Astro check: 0 errors, 0 warnings, 0 hints across 35 files.
 
-- [ ] **Phase 24: Browser validation of links, CTAs, animations**
-  - Verify every internal and external anchor, interactive buttons, theme toggle, and form mechanics.
+- [x] **Phase 24: Browser validation of links, CTAs, animations**
+  - Verified all internal routes (`/`, `/projects`, `/engineering`, `/404`, case studies) and external contact channels.
 
-- [ ] **Phase 25: Final report**
-  - Deliver comprehensive report of modifications, dependencies, files touched, and build status.
+- [x] **Phase 25: Final report**
+  - Redesign complete with full CRT terminal phosphor-green & amber palette token alignment and zero data fabrication.

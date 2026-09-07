@@ -23,9 +23,9 @@ const pipelineStages = [
     tag: 'FOUNDATION',
     domain: 'Public Cloud & VPC',
     accent: 'cyan',
-    accentColor: '#38BDF8',
-    accentGlow: 'rgba(56, 189, 248, 0.38)',
-    accentBorder: 'rgba(56, 189, 248, 0.5)',
+    accentColor: 'var(--primary)',
+    accentGlow: 'var(--primary-glow)',
+    accentBorder: 'var(--border)',
     technologies: [
       { id: 'aws', name: 'AWS' },
       { id: 'azure', name: 'Azure' }
@@ -42,9 +42,9 @@ const pipelineStages = [
     tag: 'PROVISIONING',
     domain: 'Declarative State',
     accent: 'violet',
-    accentColor: '#818CF8',
-    accentGlow: 'rgba(129, 140, 248, 0.38)',
-    accentBorder: 'rgba(129, 140, 248, 0.5)',
+    accentColor: 'var(--secondary)',
+    accentGlow: 'var(--secondary-glow)',
+    accentBorder: 'var(--border)',
     technologies: [
       { id: 'terraform', name: 'Terraform' },
       { id: 'ansible', name: 'Ansible' }
@@ -61,9 +61,9 @@ const pipelineStages = [
     tag: 'PACKAGING',
     domain: 'Immutable Runtime',
     accent: 'cyan',
-    accentColor: '#38BDF8',
-    accentGlow: 'rgba(56, 189, 248, 0.38)',
-    accentBorder: 'rgba(56, 189, 248, 0.5)',
+    accentColor: 'var(--primary)',
+    accentGlow: 'var(--primary-glow)',
+    accentBorder: 'var(--border)',
     technologies: [
       { id: 'docker', name: 'Docker' }
     ],
@@ -79,9 +79,9 @@ const pipelineStages = [
     tag: 'PLATFORM',
     domain: 'Kubernetes Platform',
     accent: 'cyan',
-    accentColor: '#38BDF8',
-    accentGlow: 'rgba(56, 189, 248, 0.38)',
-    accentBorder: 'rgba(56, 189, 248, 0.5)',
+    accentColor: 'var(--primary)',
+    accentGlow: 'var(--primary-glow)',
+    accentBorder: 'var(--border)',
     technologies: [
       { id: 'kubernetes', name: 'Kubernetes' },
       { id: 'helm', name: 'Helm' }
@@ -97,10 +97,10 @@ const pipelineStages = [
     shortName: 'CI / CD',
     tag: 'DELIVERY',
     domain: 'Automated Pipelines',
-    accent: 'violet',
-    accentColor: '#818CF8',
-    accentGlow: 'rgba(129, 140, 248, 0.38)',
-    accentBorder: 'rgba(129, 140, 248, 0.5)',
+    accent: 'amber',
+    accentColor: 'var(--primary)',
+    accentGlow: 'var(--primary-glow)',
+    accentBorder: 'var(--border)',
     technologies: [
       { id: 'githubactions', name: 'GitHub Actions' },
       { id: 'jenkins', name: 'Jenkins' }
@@ -117,9 +117,9 @@ const pipelineStages = [
     tag: 'GITOPS',
     domain: 'Declarative Sync',
     accent: 'mint',
-    accentColor: '#34D399',
-    accentGlow: 'rgba(52, 211, 153, 0.38)',
-    accentBorder: 'rgba(52, 211, 153, 0.5)',
+    accentColor: 'var(--success)',
+    accentGlow: 'var(--success-glow)',
+    accentBorder: 'var(--border)',
     technologies: [
       { id: 'argocd', name: 'Argo CD' }
     ],
@@ -135,9 +135,9 @@ const pipelineStages = [
     tag: 'OBSERVE',
     domain: 'APM, Logs & Synthetics',
     accent: 'mint',
-    accentColor: '#34D399',
-    accentGlow: 'rgba(52, 211, 153, 0.38)',
-    accentBorder: 'rgba(52, 211, 153, 0.5)',
+    accentColor: 'var(--success)',
+    accentGlow: 'var(--success-glow)',
+    accentBorder: 'var(--border)',
     technologies: [
       { id: 'prometheus', name: 'Prometheus' },
       { id: 'grafana', name: 'Grafana' },
@@ -168,7 +168,7 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
     <!-- Engineering grid overlay -->
     <div class="absolute inset-0 hero-grid-pattern opacity-[0.055] dark:opacity-[0.14]"></div>
     <!-- Radial vignette top -->
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_0%,rgba(56,189,248,0.04)_0%,transparent_65%)] dark:bg-[radial-gradient(ellipse_70%_55%_at_50%_0%,rgba(56,189,248,0.09)_0%,transparent_65%)]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_0%,rgba(212,169,78,0.04)_0%,transparent_65%)] dark:bg-[radial-gradient(ellipse_70%_55%_at_50%_0%,rgba(212,169,78,0.09)_0%,transparent_65%)]"></div>
   </div>
 
   <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full min-w-0">
@@ -210,14 +210,14 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
               <!-- Inner border ring -->
               <div class="absolute -inset-[1px] rounded-2xl bg-gradient-to-tr from-cyan/80 via-violet/60 to-mint/80 opacity-60 dark:opacity-75"></div>
               <!-- Photo container -->
-              <div class="relative h-[72px] w-[72px] sm:h-[84px] sm:w-[84px] rounded-2xl bg-slate-100 dark:bg-panel shadow-2xl overflow-hidden">
+              <div class="relative h-[85px] w-[85px] sm:h-[100px] sm:w-[100px] rounded-2xl bg-slate-100 dark:bg-panel shadow-2xl overflow-hidden">
                 <img
                   src={profile.photo}
                   alt={profile.name}
                   class="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.08]"
                   loading="eager"
-                  width="84"
-                  height="84"
+                  width="100"
+                  height="100"
                 />
                 <!-- Subtle inner luminance overlay -->
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900/10 to-transparent pointer-events-none"></div>
@@ -348,7 +348,7 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
         >
           <!-- Background depth layers inside the console -->
           <div class="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none" aria-hidden="true">
-            <div class="absolute inset-0 bg-gradient-to-br from-slate-50/97 via-white/92 to-slate-50/97 dark:from-[#0C1320]/97 dark:via-[#090E18]/92 dark:to-[#0C1320]/97"></div>
+            <div class="absolute inset-0 bg-gradient-to-br from-slate-50/97 via-white/92 to-slate-50/97 dark:from-panel/97 dark:via-ink/92 dark:to-panel/97"></div>
             <!-- Top radial glow inside panel -->
             <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-cyan/[0.03] dark:bg-cyan/[0.05] blur-3xl"></div>
             <!-- Bottom radial glow inside panel -->
@@ -369,9 +369,9 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
               <div class="flex items-center gap-2.5">
                 <!-- Traffic lights -->
                 <div class="flex items-center gap-1.5">
-                  <span class="h-2.5 w-2.5 rounded-full bg-red-400/80 dark:bg-[#FF5F57]"></span>
-                  <span class="h-2.5 w-2.5 rounded-full bg-amber-400/80 dark:bg-[#FEBC2E]"></span>
-                  <span class="h-2.5 w-2.5 rounded-full bg-green-400/80 dark:bg-[#28C840]"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-danger/80 dark:bg-danger"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-warning/80 dark:bg-warning"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-success/80 dark:bg-success"></span>
                 </div>
                 <span class="font-mono text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500 ml-1">
                   devops-pipeline.sh
@@ -436,35 +436,35 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
 
                   <!-- Linear gradient for the active glowing track -->
                   <linearGradient id="track-flow-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.95" />
-                    <stop offset="40%" stop-color="#818CF8" stop-opacity="0.9" />
-                    <stop offset="100%" stop-color="#34D399" stop-opacity="0.95" />
+                    <stop offset="0%" style="stop-color: var(--primary)" stop-opacity="0.95" />
+                    <stop offset="50%" style="stop-color: var(--secondary)" stop-opacity="0.9" />
+                    <stop offset="100%" style="stop-color: var(--primary)" stop-opacity="0.95" />
                   </linearGradient>
 
                   <!-- Glow version of track gradient -->
                   <linearGradient id="track-glow-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.3" />
-                    <stop offset="40%" stop-color="#818CF8" stop-opacity="0.25" />
-                    <stop offset="100%" stop-color="#34D399" stop-opacity="0.3" />
+                    <stop offset="0%" style="stop-color: var(--primary)" stop-opacity="0.25" />
+                    <stop offset="50%" style="stop-color: var(--secondary)" stop-opacity="0.2" />
+                    <stop offset="100%" style="stop-color: var(--primary)" stop-opacity="0.25" />
                   </linearGradient>
 
                   <!-- Primary signal particle gradient (white-hot center) -->
                   <radialGradient id="signal-particle-fill" cx="50%" cy="35%" r="65%">
-                    <stop offset="0%" stop-color="#FFFFFF" />
-                    <stop offset="35%" stop-color="#A5EBFF" />
-                    <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.5" />
+                    <stop offset="0%" style="stop-color: var(--text-primary)" />
+                    <stop offset="35%" style="stop-color: var(--text-primary)" />
+                    <stop offset="100%" style="stop-color: var(--primary)" stop-opacity="0.6" />
                   </radialGradient>
 
-                  <!-- Trailing particle gradient (violet) -->
+                  <!-- Trailing particle gradient (amber/secondary) -->
                   <radialGradient id="trail-particle-fill" cx="50%" cy="35%" r="65%">
-                    <stop offset="0%" stop-color="#E0D8FF" />
-                    <stop offset="100%" stop-color="#818CF8" stop-opacity="0.4" />
+                    <stop offset="0%" style="stop-color: var(--text-primary)" />
+                    <stop offset="100%" style="stop-color: var(--secondary)" stop-opacity="0.5" />
                   </radialGradient>
 
                   <!-- Mint micro trail -->
                   <radialGradient id="mint-particle-fill" cx="50%" cy="35%" r="65%">
-                    <stop offset="0%" stop-color="#AFFFDB" />
-                    <stop offset="100%" stop-color="#34D399" stop-opacity="0.4" />
+                    <stop offset="0%" style="stop-color: var(--text-primary)" />
+                    <stop offset="100%" style="stop-color: var(--success)" stop-opacity="0.5" />
                   </radialGradient>
                 </defs>
 
@@ -673,7 +673,7 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
     <!-- ========================================================================= -->
     <div class="block lg:hidden mt-8 sm:mt-10">
 
-      <div class="rounded-3xl border border-slate-200/80 dark:border-white/[0.07] bg-white/85 dark:bg-[#0D1420]/90 backdrop-blur-xl p-4 sm:p-6 space-y-4 shadow-2xl">
+      <div class="rounded-3xl border border-slate-200/80 dark:border-white/[0.07] bg-white/85 dark:bg-panel/90 backdrop-blur-xl p-4 sm:p-6 space-y-4 shadow-2xl overflow-hidden">
 
         <!-- Mobile Pipeline Header -->
         <div class="flex items-center justify-between pb-3 border-b border-slate-200/70 dark:border-white/[0.06]">
@@ -687,35 +687,42 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
             </span>
           </div>
 
-          <span class="font-mono text-[10px] text-cyan font-bold bg-cyan/10 border border-cyan/20 px-2 py-0.5 rounded-full">
-            7 Sequential Stages
+          <span class="font-mono text-[10px] text-cyan font-bold bg-cyan/10 border border-cyan/20 px-2.5 py-0.5 rounded-full flex items-center gap-1">
+            <span class="h-1.5 w-1.5 rounded-full bg-mint animate-pulse"></span>
+            7 Active Stages
           </span>
         </div>
 
         <!-- Vertical Flow Container with Animated Spine Line -->
-        <div class="relative pl-6 sm:pl-8 space-y-3 sm:space-y-4">
+        <div class="relative pl-6 sm:pl-8 space-y-3 sm:space-y-4 mobile-pipeline-track">
 
           <!-- Vertical Pulsing Spine -->
-          <div class="absolute left-2.5 sm:left-3.5 top-3 bottom-3 w-0.5 bg-gradient-to-b from-cyan via-violet to-mint opacity-40"></div>
+          <div class="absolute left-2.5 sm:left-3.5 top-3 bottom-4 w-0.5 rounded-full overflow-hidden bg-slate-200 dark:bg-white/10" aria-hidden="true">
+            <!-- Animated flowing light gradient beam traveling down spine -->
+            <div class="mobile-spine-beam w-full h-28 bg-gradient-to-b from-transparent via-cyan to-transparent"></div>
+          </div>
 
           <!-- 7 Vertical Stage Cards -->
           {pipelineStages.map((stage) => (
-            <div class="relative flex items-start gap-3">
+            <div class="relative flex items-start gap-3 mobile-stage-row" style={`--stage-delay: ${stage.delay}; --stage-accent: ${stage.accentColor}; --stage-glow: ${stage.accentGlow};`}>
 
               <!-- Node Anchor Dot on Vertical Spine -->
               <div class="absolute -left-6 sm:-left-8 top-3 flex items-center justify-center">
+                <!-- Outer Pulse Ring -->
+                <span class="mobile-anchor-pulse absolute -inset-1 rounded-full pointer-events-none" style={`border: 1.5px solid ${stage.accentColor}; animation-delay: ${stage.delay};`}></span>
+
                 <span class:list={[
-                  "h-3.5 w-3.5 rounded-full border-2 border-white dark:border-[#0D1420] shadow-sm flex items-center justify-center",
-                  stage.accent === 'cyan' && "bg-cyan shadow-[0_0_10px_rgba(56,189,248,0.7)]",
-                  stage.accent === 'violet' && "bg-violet shadow-[0_0_10px_rgba(129,140,248,0.7)]",
-                  stage.accent === 'mint' && "bg-mint shadow-[0_0_10px_rgba(52,211,153,0.7)]"
+                  "relative h-3.5 w-3.5 rounded-full border-2 border-white dark:border-panel shadow-sm flex items-center justify-center transition-colors duration-300",
+                  stage.accent === 'cyan' && "bg-cyan",
+                  stage.accent === 'violet' && "bg-violet",
+                  stage.accent === 'mint' && "bg-mint"
                 ]}>
                   <span class="h-1 w-1 rounded-full bg-white"></span>
                 </span>
               </div>
 
               <!-- Stage Content Card -->
-              <div class="flex-1 rounded-2xl border border-slate-200/70 dark:border-white/[0.06] bg-slate-50/90 dark:bg-white/[0.03] p-3 sm:p-3.5 space-y-2 backdrop-blur-sm">
+              <div class="mobile-stage-card flex-1 rounded-2xl border border-slate-200/70 dark:border-white/[0.06] bg-slate-50/90 dark:bg-white/[0.03] p-3 sm:p-3.5 space-y-2 backdrop-blur-sm transition-all duration-300" style={`animation-delay: ${stage.delay};`}>
                 <div class="flex items-center justify-between gap-1">
                   <span class:list={[
                     "font-mono text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded",
@@ -730,7 +737,7 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
                   </span>
                 </div>
 
-                <div class="flex items-center flex-wrap gap-3 pt-0.5">
+                <div class="flex items-center flex-wrap gap-2.5 pt-0.5">
                   {stage.technologies.map((t) => (
                     <div class="flex items-center gap-1.5">
                       <TechIcon name={t.id} size={18} />
@@ -768,27 +775,27 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
   }
 
   .hero-orb--cyan {
-    background: radial-gradient(circle, rgba(56, 189, 248, 0.07) 0%, transparent 70%);
+    background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
   }
 
   :global(.dark) .hero-orb--cyan {
-    background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, transparent 70%);
+    background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
   }
 
   .hero-orb--violet {
-    background: radial-gradient(circle, rgba(129, 140, 248, 0.06) 0%, transparent 70%);
+    background: radial-gradient(circle, var(--secondary-glow) 0%, transparent 70%);
   }
 
   :global(.dark) .hero-orb--violet {
-    background: radial-gradient(circle, rgba(129, 140, 248, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, var(--secondary-glow) 0%, transparent 70%);
   }
 
   .hero-orb--mint {
-    background: radial-gradient(circle, rgba(52, 211, 153, 0.05) 0%, transparent 70%);
+    background: radial-gradient(circle, var(--success-glow) 0%, transparent 70%);
   }
 
   :global(.dark) .hero-orb--mint {
-    background: radial-gradient(circle, rgba(52, 211, 153, 0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, var(--success-glow) 0%, transparent 70%);
   }
 
   /* ============================================================ */
@@ -796,28 +803,28 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
   /* ============================================================ */
   .hero-grid-pattern {
     background-image:
-      linear-gradient(rgba(15, 23, 42, 0.6) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(15, 23, 42, 0.6) 1px, transparent 1px);
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
     background-size: 48px 48px;
     mask-image: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent 85%);
   }
 
   :global(.dark) .hero-grid-pattern {
     background-image:
-      linear-gradient(rgba(255, 255, 255, 0.6) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.6) 1px, transparent 1px);
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
   }
 
   /* ============================================================ */
   /* MICRO DOT GRID (inside console panel)                        */
   /* ============================================================ */
   .hero-dot-grid {
-    background-image: radial-gradient(circle, rgba(15, 23, 42, 0.8) 1px, transparent 1px);
+    background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
     background-size: 20px 20px;
   }
 
   :global(.dark) .hero-dot-grid {
-    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.6) 1px, transparent 1px);
+    background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
   }
 
   /* ============================================================ */
@@ -842,7 +849,7 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
   /* NAME GRADIENT                                                 */
   /* ============================================================ */
   .hero-name-gradient {
-    background: linear-gradient(135deg, #38BDF8 0%, #818CF8 50%, #34D399 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--text-primary) 50%, var(--secondary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -857,22 +864,22 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
     gap: 6px;
     padding: 5px 10px;
     border-radius: 8px;
-    border: 1px solid rgba(15, 23, 42, 0.08);
-    background: rgba(241, 245, 249, 0.85);
-    color: #475569;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-secondary);
     font-size: 11px;
     transition: border-color 0.2s, background 0.2s;
   }
 
   :global(.dark) .hero-proof-pill {
-    border-color: rgba(255, 255, 255, 0.08);
-    background: rgba(255, 255, 255, 0.04);
-    color: #94a3b8;
+    border-color: var(--border);
+    background: var(--surface);
+    color: var(--text-secondary);
   }
 
   .hero-proof-pill:hover {
-    border-color: rgba(56, 189, 248, 0.3);
-    background: rgba(56, 189, 248, 0.04);
+    border-color: var(--primary);
+    background: var(--surface-elevated);
   }
 
   /* ============================================================ */
@@ -880,18 +887,19 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
   /* ============================================================ */
   .hero-cta-primary {
     border-radius: 12px;
-    background: #0f172a;
-    color: #ffffff;
+    background: var(--primary);
+    color: var(--background);
     padding: 14px 24px;
     font-size: 0.9rem;
-    font-weight: 600;
-    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15), 0 0 0 1px rgba(15, 23, 42, 0.08);
+    font-weight: 700;
+    box-shadow: 0 4px 14px var(--primary-glow);
     transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
   }
 
   .hero-cta-primary:hover {
+    background: var(--primary);
     transform: translateY(-1px) scale(1.015);
-    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2), 0 0 0 1px rgba(56, 189, 248, 0.2);
+    box-shadow: 0 8px 24px var(--primary-glow);
   }
 
   .hero-cta-primary:active {
@@ -899,32 +907,32 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
   }
 
   :global(.dark) .hero-cta-primary {
-    background: #f8fafc;
-    color: #0f172a;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.06);
+    background: var(--primary);
+    color: var(--background);
+    box-shadow: 0 4px 14px var(--primary-glow);
   }
 
   :global(.dark) .hero-cta-primary:hover {
-    box-shadow: 0 8px 28px rgba(56, 189, 248, 0.15), 0 0 0 1px rgba(56, 189, 248, 0.3);
+    box-shadow: 0 8px 28px var(--primary-glow);
   }
 
   .hero-cta-secondary {
     border-radius: 12px;
-    border: 1px solid rgba(15, 23, 42, 0.12);
-    background: rgba(255, 255, 255, 0.9);
-    color: #334155;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-primary);
     padding: 14px 20px;
     font-size: 0.9rem;
     font-weight: 600;
-    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     transition: transform 0.15s ease, border-color 0.2s, background 0.2s, box-shadow 0.2s;
   }
 
   .hero-cta-secondary:hover {
-    border-color: rgba(15, 23, 42, 0.22);
-    background: rgba(248, 250, 252, 1);
+    border-color: var(--primary);
+    background: var(--surface-elevated);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+    box-shadow: 0 4px 12px var(--primary-glow);
   }
 
   .hero-cta-secondary:active {
@@ -932,15 +940,15 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
   }
 
   :global(.dark) .hero-cta-secondary {
-    border-color: rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.04);
-    color: #cbd5e1;
+    border-color: var(--border);
+    background: var(--surface);
+    color: var(--text-primary);
     box-shadow: none;
   }
 
   :global(.dark) .hero-cta-secondary:hover {
-    border-color: rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.07);
+    border-color: var(--primary);
+    background: var(--surface-elevated);
   }
 
   /* ============================================================ */
@@ -948,18 +956,16 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
   /* ============================================================ */
   .pipeline-console-panel {
     box-shadow:
-      0 40px 100px rgba(15, 23, 42, 0.12),
-      0 12px 30px rgba(15, 23, 42, 0.07),
-      0 0 0 1px rgba(15, 23, 42, 0.06),
-      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      0 30px 80px rgba(0, 0, 0, 0.15),
+      0 10px 24px rgba(0, 0, 0, 0.08),
+      0 0 0 1px var(--border);
   }
 
   :global(.dark) .pipeline-console-panel {
     box-shadow:
-      0 40px 100px rgba(2, 6, 12, 0.6),
-      0 12px 40px rgba(2, 6, 12, 0.35),
-      0 0 0 1px rgba(255, 255, 255, 0.055),
-      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      0 40px 100px rgba(0, 0, 0, 0.5),
+      0 12px 40px rgba(0, 0, 0, 0.35),
+      0 0 0 1px var(--border);
   }
 
   /* ============================================================ */
@@ -967,22 +973,22 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
   /* ============================================================ */
   @keyframes profileHaloPulse {
     0%, 100% {
-      opacity: 0.25;
+      opacity: 0.35;
       transform: scale(1);
     }
     50% {
-      opacity: 0.5;
-      transform: scale(1.04);
+      opacity: 0.7;
+      transform: scale(1.05);
     }
   }
 
   .hero-profile-halo {
-    background: radial-gradient(ellipse, rgba(56, 189, 248, 0.25) 0%, rgba(129, 140, 248, 0.15) 40%, transparent 70%);
+    background: radial-gradient(ellipse, var(--primary-glow) 0%, var(--secondary-glow) 45%, transparent 70%);
     animation: profileHaloPulse 3.5s ease-in-out infinite;
   }
 
   :global(.dark) .hero-profile-halo {
-    background: radial-gradient(ellipse, rgba(56, 189, 248, 0.35) 0%, rgba(129, 140, 248, 0.2) 40%, transparent 70%);
+    background: radial-gradient(ellipse, var(--primary-glow) 0%, var(--secondary-glow) 45%, transparent 70%);
   }
 
   /* ============================================================ */
@@ -1007,24 +1013,22 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
   /* STAGE CAPSULE: BASE + HOVER                                   */
   /* ============================================================ */
   .pipeline-stage-capsule {
-    background: rgba(255, 255, 255, 0.97);
-    border: 1.5px solid rgba(226, 232, 240, 0.85);
+    background: var(--surface);
+    border: 1.5px solid var(--border);
     box-shadow:
-      0 4px 14px rgba(15, 23, 42, 0.07),
-      0 1px 3px rgba(15, 23, 42, 0.04),
-      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      0 4px 14px rgba(0, 0, 0, 0.08),
+      0 1px 3px rgba(0, 0, 0, 0.05);
     animation: stageSequentialPulse 10s ease-in-out infinite;
     will-change: border-color, box-shadow, transform;
     transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
   }
 
   :global(.dark) .pipeline-stage-capsule {
-    background: rgba(12, 18, 30, 0.94);
-    border: 1.5px solid rgba(255, 255, 255, 0.07);
+    background: var(--surface);
+    border: 1.5px solid var(--border);
     box-shadow:
-      0 4px 20px rgba(2, 6, 12, 0.4),
-      0 1px 4px rgba(2, 6, 12, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      0 4px 20px rgba(0, 0, 0, 0.35),
+      0 1px 4px rgba(0, 0, 0, 0.2);
     animation: stageSequentialPulseDark 10s ease-in-out infinite;
   }
 
@@ -1034,9 +1038,8 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
     transform: scale(1.07) translateY(-2px);
     box-shadow:
       0 16px 40px var(--stage-glow),
-      0 4px 14px rgba(15, 23, 42, 0.1),
-      0 0 0 1.5px var(--stage-border),
-      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      0 4px 14px rgba(0, 0, 0, 0.15),
+      0 0 0 1.5px var(--stage-accent);
     border-color: var(--stage-accent) !important;
   }
 
@@ -1044,9 +1047,8 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
   :global(.dark) .pipeline-node-wrapper:focus .pipeline-stage-capsule {
     box-shadow:
       0 16px 40px var(--stage-glow),
-      0 4px 14px rgba(2, 6, 12, 0.3),
-      0 0 0 1.5px var(--stage-border),
-      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      0 4px 14px rgba(0, 0, 0, 0.3),
+      0 0 0 1.5px var(--stage-accent);
   }
 
   /* ============================================================ */
@@ -1056,40 +1058,34 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
   /* Light mode pulse */
   @keyframes stageSequentialPulse {
     0%, 18%, 100% {
-      border-color: rgba(226, 232, 240, 0.85);
+      border-color: var(--border);
       box-shadow:
-        0 4px 14px rgba(15, 23, 42, 0.07),
-        0 1px 3px rgba(15, 23, 42, 0.04),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        0 4px 14px rgba(0, 0, 0, 0.08),
+        0 1px 3px rgba(0, 0, 0, 0.05);
     }
     4%, 14% {
       border-color: var(--stage-accent);
       box-shadow:
-        0 0 0 3px var(--stage-glow),
-        0 0 30px var(--stage-glow),
-        0 0 12px var(--stage-glow),
-        inset 0 0 10px rgba(255, 255, 255, 0.7),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        0 0 0 2px var(--stage-glow),
+        0 0 24px var(--stage-glow),
+        0 0 10px var(--stage-glow);
     }
     9% {
       border-color: var(--stage-accent);
       box-shadow:
-        0 0 0 5px var(--stage-glow),
-        0 0 50px var(--stage-glow),
-        0 0 20px var(--stage-glow),
-        inset 0 0 16px rgba(255, 255, 255, 0.75),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        0 0 0 4px var(--stage-glow),
+        0 0 36px var(--stage-glow),
+        0 0 16px var(--stage-glow);
     }
   }
 
   /* Dark mode pulse */
   @keyframes stageSequentialPulseDark {
     0%, 18%, 100% {
-      border-color: rgba(255, 255, 255, 0.07);
+      border-color: var(--border);
       box-shadow:
-        0 4px 20px rgba(2, 6, 12, 0.4),
-        0 1px 4px rgba(2, 6, 12, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        0 4px 20px rgba(0, 0, 0, 0.35),
+        0 1px 4px rgba(0, 0, 0, 0.2);
     }
     4%, 14% {
       border-color: var(--stage-accent);
@@ -1097,8 +1093,7 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
         0 0 0 3px var(--stage-glow),
         0 0 35px var(--stage-glow),
         0 0 14px var(--stage-glow),
-        inset 0 0 12px rgba(255, 255, 255, 0.06),
-        0 8px 24px rgba(2, 6, 12, 0.3);
+        0 8px 24px rgba(0, 0, 0, 0.3);
     }
     9% {
       border-color: var(--stage-accent);
@@ -1106,8 +1101,7 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
         0 0 0 6px var(--stage-glow),
         0 0 60px var(--stage-glow),
         0 0 24px var(--stage-glow),
-        inset 0 0 18px rgba(255, 255, 255, 0.08),
-        0 8px 24px rgba(2, 6, 12, 0.3);
+        0 8px 24px rgba(0, 0, 0, 0.3);
     }
   }
 
@@ -1137,6 +1131,66 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
     animation: nodeActivationRing 10s ease-in-out infinite;
     border-radius: 1.25rem;
     opacity: 0;
+  }
+
+  /* ============================================================ */
+  /* MOBILE PIPELINE ANIMATIONS                                   */
+  /* ============================================================ */
+  @keyframes mobileSpineFlow {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(600%);
+    }
+  }
+
+  .mobile-spine-beam {
+    animation: mobileSpineFlow 8.4s linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes mobileCardActivate {
+    0%, 18%, 100% {
+      border-color: var(--border);
+      box-shadow: none;
+    }
+    4%, 14% {
+      border-color: var(--stage-accent);
+      box-shadow: 0 0 16px var(--stage-glow), 0 0 0 1px var(--stage-accent);
+    }
+    9% {
+      border-color: var(--stage-accent);
+      box-shadow: 0 0 24px var(--stage-glow), 0 0 0 1.5px var(--stage-accent);
+    }
+  }
+
+  .mobile-stage-card {
+    animation: mobileCardActivate 8.4s ease-in-out infinite;
+    will-change: border-color, box-shadow;
+  }
+
+  @keyframes mobileAnchorPulseRing {
+    0%, 18%, 100% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    4% {
+      opacity: 0.8;
+      transform: scale(1.3);
+    }
+    9% {
+      opacity: 1;
+      transform: scale(1.6);
+    }
+    14% {
+      opacity: 0;
+      transform: scale(1.9);
+    }
+  }
+
+  .mobile-anchor-pulse {
+    animation: mobileAnchorPulseRing 8.4s ease-out infinite;
   }
 
   /* ============================================================ */
@@ -1175,6 +1229,20 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
 
     .hero-profile-halo {
       animation: none !important;
+    }
+
+    .mobile-spine-beam {
+      animation: none !important;
+      display: none !important;
+    }
+
+    .mobile-stage-card {
+      animation: none !important;
+    }
+
+    .mobile-anchor-pulse {
+      animation: none !important;
+      display: none !important;
     }
   }
 </style>

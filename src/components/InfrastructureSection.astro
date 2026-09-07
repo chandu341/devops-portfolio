@@ -1,0 +1,274 @@
+---
+import {
+  Cloud,
+  Cpu,
+  Database,
+  Globe,
+  Layers,
+  Lock,
+  Network,
+  Server,
+  Shield
+} from '@lucide/astro';
+
+const architectures = [
+  {
+    id: 'aws-eks',
+    label: 'AWS Multi-AZ EKS Enterprise',
+    subtitle: 'Honeywell Production Microservices Workload',
+    badge: 'AWS Enterprise',
+    badgeCls: 'bg-amber-500/10 text-amber-500 border-amber-500/30',
+    layers: [
+      {
+        name: 'Tier 01: Edge & Ingress Routing',
+        icon: Globe,
+        accent: 'cyan',
+        items: [
+          { name: 'Amazon Route 53', desc: 'Latency-based multi-region DNS & health checks' },
+          { name: 'AWS WAF & CloudFront', desc: 'DDoS mitigation & edge asset acceleration' },
+          { name: 'Multi-AZ ALB (Ingress)', desc: 'TLS termination via cert-manager & Route53 DNS-01' }
+        ]
+      },
+      {
+        name: 'Tier 02: Kubernetes Cluster & Compute',
+        icon: Cpu,
+        accent: 'mint',
+        items: [
+          { name: 'Amazon EKS 1.28+', desc: 'Multi-AZ control plane across us-east-1a/b/c' },
+          { name: 'Karpenter Autoscaler', desc: 'Just-in-time EC2 Spot & On-Demand provisioning' },
+          { name: 'ArgoCD GitOps Sync', desc: 'Automated cluster state reconciliation from Git' }
+        ]
+      },
+      {
+        name: 'Tier 03: Data, Cache & Messaging',
+        icon: Database,
+        accent: 'violet',
+        items: [
+          { name: 'Amazon Aurora Multi-AZ', desc: 'PostgreSQL read replicas with automatic failover' },
+          { name: 'Amazon ElastiCache', desc: 'Redis cluster for sub-millisecond session caching' },
+          { name: 'Amazon S3 & DynamoDB', desc: 'Encrypted object store & Terraform state locking' }
+        ]
+      },
+      {
+        name: 'Tier 04: Security & Observability',
+        icon: Shield,
+        accent: 'cyan',
+        items: [
+          { name: 'AWS KMS & Secrets Mgr', desc: 'Envelope encryption & automatic credential rotation' },
+          { name: 'IAM Roles for Service Accounts (IRSA)', desc: 'Least-privilege pod-level security' },
+          { name: 'Dynatrace & Prometheus', desc: 'Distributed APM tracing & cluster telemetry scraping' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'azure-migration',
+    label: 'Azure Hybrid Cloud Landing Zone',
+    subtitle: 'GE 50+ VM Enterprise Cloud Migration',
+    badge: 'Azure Cloud',
+    badgeCls: 'bg-cyan/10 text-cyan border-cyan/30',
+    layers: [
+      {
+        name: 'Tier 01: Network & Hybrid Gateway',
+        icon: Network,
+        accent: 'cyan',
+        items: [
+          { name: 'Azure ExpressRoute & VPN', desc: '10 Gbps private connection to on-premises DC' },
+          { name: 'Azure Front Door & WAF', desc: 'Global Layer 7 load balancer with SSL offload' },
+          { name: 'Hub-and-Spoke VNet', desc: 'Isolated subnets with Network Security Groups (NSGs)' }
+        ]
+      },
+      {
+        name: 'Tier 02: Workload & Compute Layer',
+        icon: Server,
+        accent: 'mint',
+        items: [
+          { name: 'Azure Virtual Machines', desc: '50+ migrated enterprise VMs on Premium SSDs' },
+          { name: 'Azure Kubernetes Service (AKS)', desc: 'Containerized legacy app modernization' },
+          { name: 'VM Availability Sets', desc: '99.99% high availability across fault domains' }
+        ]
+      },
+      {
+        name: 'Tier 03: Storage & Database Tier',
+        icon: Database,
+        accent: 'violet',
+        items: [
+          { name: 'Azure SQL Managed Instance', desc: 'Fully managed evergreen SQL database' },
+          { name: 'Azure Blob Storage (ZRS)', desc: 'Zone-redundant storage with lifecycle policies' },
+          { name: 'Azure Backup & Site Recovery', desc: 'Automated disaster recovery with RPO < 15m' }
+        ]
+      },
+      {
+        name: 'Tier 04: Governance & Monitoring',
+        icon: Lock,
+        accent: 'cyan',
+        items: [
+          { name: 'Azure Policy & Blueprints', desc: 'Automated compliance enforcement across subscriptions' },
+          { name: 'Azure Key Vault', desc: 'Hardware security module (HSM) key management' },
+          { name: 'Elastic Stack & Log Analytics', desc: 'Centralized indexing of multi-tier syslog streams' }
+        ]
+      }
+    ]
+  }
+];
+---
+
+<section id="infrastructure" class="section-pad relative overflow-hidden" aria-label="Cloud & Infrastructure Architecture">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full min-w-0 box-border">
+
+    <!-- Section Header -->
+    <div class="mb-10 sm:mb-12 reveal-up">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <p class="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-violet dark:text-violet inline-flex items-center gap-2">
+            <span class="inline-block h-1 w-2.5 rounded-full bg-cyan" aria-hidden="true"></span>
+            07 — cloud infrastructure topology
+          </p>
+          <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 dark:text-white font-display">
+            Resilient multi-cloud topologies.
+          </h2>
+        </div>
+        <div class="flex items-center gap-2 rounded-full border border-cyan/40 bg-cyan/10 px-3.5 py-1.5 font-mono text-xs font-semibold text-cyan">
+          <Layers size={14} />
+          <span>Terraform Automated</span>
+        </div>
+      </div>
+      <p class="mt-4 max-w-3xl text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+        Production infrastructure engineered for zero-single-point-of-failure, automated drift detection, and strict compliance across AWS Multi-AZ and Azure enterprise environments.
+      </p>
+
+      <!-- Architecture Switcher Tabs -->
+      <div class="mt-8 flex flex-wrap gap-2.5" role="tablist" aria-label="Select cloud architecture view">
+        {architectures.map((arch, i) => (
+          <button
+            type="button"
+            class:list={[
+              "infra-tab-btn rounded-xl px-4 py-2.5 font-mono text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer flex items-center gap-2",
+              i === 0
+                ? "bg-cyan text-white shadow-md border border-cyan"
+                : "bg-white/80 dark:bg-white/[0.04] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10 hover:border-cyan/40 hover:text-cyan"
+            ]}
+            data-target={`arch-${arch.id}`}
+            role="tab"
+            aria-selected={i === 0 ? "true" : "false"}
+          >
+            <Cloud size={15} />
+            <span>{arch.label}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Architecture Displays -->
+    {architectures.map((arch, index) => (
+      <div
+        id={`arch-${arch.id}`}
+        class:list={[
+          "infra-arch-view rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-white/[0.09] bg-white/90 dark:bg-panel2/80 p-6 sm:p-8 shadow-xl backdrop-blur-md transition-all duration-300 reveal-up",
+          index !== 0 && "hidden"
+        ]}
+      >
+        <!-- Topology Header -->
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200/80 dark:border-white/[0.07] pb-4 mb-6">
+          <div>
+            <div class="flex items-center gap-2.5 mb-1.5">
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white font-display">
+                {arch.label}
+              </h3>
+              <span class:list={['rounded-full px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] border', arch.badgeCls]}>
+                {arch.badge}
+              </span>
+            </div>
+            <p class="font-mono text-xs text-slate-500 dark:text-slate-400">
+              {arch.subtitle}
+            </p>
+          </div>
+          <div class="flex items-center gap-2 font-mono text-[11px] text-mint">
+            <span class="h-2 w-2 rounded-full bg-mint animate-pulse"></span>
+            <span>IaC State: Synchronized &amp; Locked</span>
+          </div>
+        </div>
+
+        <!-- 4-Tier Topology Grid -->
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {arch.layers.map((layer) => {
+            const LayerIcon = layer.icon;
+            return (
+              <div class="surface rounded-2xl border border-slate-200 dark:border-white/[0.08] p-4 sm:p-5 shadow-sm flex flex-col justify-between hover:border-cyan/40 transition">
+                <div>
+                  <div class="flex items-center justify-between gap-2 border-b border-slate-100 dark:border-white/5 pb-3 mb-3.5">
+                    <p class="font-mono text-[10.5px] uppercase tracking-wider text-slate-700 dark:text-slate-300 font-bold">
+                      {layer.name}
+                    </p>
+                    <LayerIcon size={16} class={layer.accent === 'cyan' ? 'text-cyan' : layer.accent === 'mint' ? 'text-mint' : 'text-violet'} />
+                  </div>
+
+                  <div class="space-y-2.5">
+                    {layer.items.map((item) => (
+                      <div class="rounded-lg bg-slate-50/80 dark:bg-white/[0.03] p-2.5 border border-slate-200/60 dark:border-white/5">
+                        <p class="font-mono text-xs font-bold text-slate-900 dark:text-white">
+                          {item.name}
+                        </p>
+                        <p class="mt-0.5 text-[11px] text-slate-500 dark:text-slate-400 leading-snug">
+                          {item.desc}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div class="pt-3 mt-3 border-t border-slate-100 dark:border-white/5 flex items-center justify-between font-mono text-[10px] text-slate-400 dark:text-slate-500">
+                  <span>Multi-AZ Redundant</span>
+                  <span class="text-mint">● Active</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <!-- Infrastructure Summary Banner -->
+        <div class="mt-6 rounded-xl bg-slate-50/80 dark:bg-slate-950/60 border border-slate-200/80 dark:border-white/5 p-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-slate-600 dark:text-slate-300">
+          <div class="flex items-center gap-2">
+            <span class="text-cyan">$</span>
+            <span>terraform plan -out=tfplan.binary &amp;&amp; terraform apply tfplan.binary</span>
+          </div>
+          <span class="text-mint font-bold">Apply complete: 0 errors, drift-free</span>
+        </div>
+      </div>
+    ))}
+
+  </div>
+</section>
+
+<script is:inline>
+  (function initInfraTabs() {
+    var buttons = document.querySelectorAll('.infra-tab-btn');
+    var views = document.querySelectorAll('.infra-arch-view');
+
+    if (!buttons.length || !views.length) return;
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var targetId = btn.getAttribute('data-target');
+
+        buttons.forEach(function (b) {
+          b.setAttribute('aria-selected', 'false');
+          b.classList.remove('bg-cyan', 'text-white', 'border-cyan', 'shadow-md');
+          b.classList.add('bg-white/80', 'dark:bg-white/[0.04]', 'text-slate-700', 'dark:text-slate-300', 'border-slate-200', 'dark:border-white/10');
+        });
+
+        btn.setAttribute('aria-selected', 'true');
+        btn.classList.add('bg-cyan', 'text-white', 'border-cyan', 'shadow-md');
+        btn.classList.remove('bg-white/80', 'dark:bg-white/[0.04]', 'text-slate-700', 'dark:text-slate-300', 'border-slate-200', 'dark:border-white/10');
+
+        views.forEach(function (view) {
+          if (view.id === targetId) {
+            view.classList.remove('hidden');
+          } else {
+            view.classList.add('hidden');
+          }
+        });
+      });
+    });
+  })();
+</script>

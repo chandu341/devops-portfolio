@@ -25,20 +25,20 @@ export default {
         'chart-primary': 'var(--chart-primary)',
         'chart-secondary': 'var(--chart-secondary)',
 
-        // Command Center Dark/Light Theme Palette
-        ink: '#080B10',
-        panel: '#0E131A',
-        panel2: '#121922',
-        line: '#243140',
-        cyan: '#0284C7',
-        'cyan-glow': '#38BDF8',
-        violet: '#6366F1',
-        'violet-glow': '#818CF8',
-        amber: '#D97706',
-        'amber-glow': '#FBBF24',
-        mint: '#059669',
-        'mint-glow': '#34D399',
-        muted: '#64748B'
+        // Light & Dark Theme Palette
+        ink: 'var(--background)',
+        panel: 'var(--surface)',
+        panel2: 'var(--surface-elevated)',
+        line: 'var(--border)',
+        cyan: 'var(--primary)',
+        'cyan-glow': 'var(--primary-glow)',
+        violet: 'var(--secondary)',
+        'violet-glow': 'var(--secondary-glow)',
+        amber: 'var(--warning)',
+        'amber-glow': 'var(--warning)',
+        mint: 'var(--success)',
+        'mint-glow': 'var(--success-glow)',
+        muted: 'var(--text-muted)'
       },
       borderRadius: {
         'token-sm': 'var(--radius-sm)',
@@ -57,12 +57,12 @@ export default {
         mono: ['"JetBrains Mono"', 'SFMono-Regular', 'Consolas', 'monospace']
       },
       boxShadow: {
-        lift: '0 18px 60px rgba(0, 0, 0, 0.38)',
-        focus: '0 0 0 1px rgba(76, 201, 240, 0.18), 0 28px 100px rgba(0, 0, 0, 0.48)',
-        'glow-cyan': '0 0 30px rgba(76, 201, 240, 0.25)',
-        'glow-violet': '0 0 30px rgba(124, 140, 255, 0.25)',
-        'glow-mint': '0 0 30px rgba(94, 230, 168, 0.25)',
-        'card-glass': '0 20px 50px rgba(0, 0, 0, 0.5), 0 0 1px 1px rgba(255, 255, 255, 0.08)'
+        lift: '0 18px 60px rgba(0, 0, 0, 0.4)',
+        focus: '0 0 0 1px rgba(57, 255, 136, 0.25), 0 18px 40px rgba(0, 0, 0, 0.4)',
+        'glow-cyan': '0 0 30px rgba(57, 255, 136, 0.2)',
+        'glow-violet': '0 0 30px rgba(255, 176, 0, 0.2)',
+        'glow-mint': '0 0 30px rgba(57, 255, 136, 0.2)',
+        'card-glass': '0 10px 30px rgba(0, 0, 0, 0.4), 0 0 1px 1px rgba(255, 255, 255, 0.05)'
       },
       keyframes: {
         marquee: {
