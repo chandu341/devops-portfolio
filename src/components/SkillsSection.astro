@@ -1,0 +1,170 @@
+---
+import { Cpu, Terminal } from '@lucide/astro';
+import TechIcon from '@/components/TechIcon.astro';
+import { skillGroups, stackYaml } from '@/data/profile';
+import { allTechnologies } from '@/data/technologies';
+
+const filterCategories = [
+  { id: 'all', label: 'All Stack' },
+  { id: 'Containers', label: 'Containers & K8s' },
+  { id: 'Infrastructure', label: 'IaC & Automation' },
+  { id: 'Cloud', label: 'Cloud Platforms' },
+  { id: 'GitOps', label: 'CI/CD & GitOps' },
+  { id: 'Observability', label: 'Observability & SRE' },
+  { id: 'Systems', label: 'Systems & Scripts' }
+];
+---
+
+<section id="skills" class="section-pad border-t border-slate-200 dark:border-white/[0.07] bg-slate-50/50 dark:bg-ink/50" aria-label="Technical skills and architecture toolchain">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full min-w-0 box-border">
+
+    <!-- Section Header -->
+    <div class="mb-8 sm:mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 reveal-up">
+      <div>
+        <p class="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-violet dark:text-violet inline-flex items-center gap-2">
+          <span class="inline-block h-1.5 w-3 rounded-full bg-cyan" aria-hidden="true"></span>
+          06 — cat /etc/capabilities.d/*
+        </p>
+        <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 dark:text-white font-display">
+          Engineered toolchain &amp; stack.
+        </h2>
+        <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl font-normal">
+          Declarative, production-tested technologies categorized by architecture tier without arbitrary percentage bars.
+        </p>
+      </div>
+
+      <!-- Verified Toolchain Badge -->
+      <div class="hidden sm:inline-flex items-center gap-2 rounded-full border border-cyan/40 bg-cyan/[0.08] px-3.5 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan">
+        <Cpu size={14} class="text-cyan animate-pulse" />
+        <span>18+ Verified Toolchains</span>
+      </div>
+    </div>
+
+    <!-- Category Filter Bar -->
+    <div class="mb-6 flex flex-wrap items-center gap-2 reveal-up" role="tablist" aria-label="Filter technologies by category">
+      {filterCategories.map((cat, i) => (
+        <button
+          type="button"
+          class:list={[
+            "skill-filter-btn rounded-full px-3.5 py-1.5 font-mono text-xs font-semibold transition-all duration-200 cursor-pointer",
+            i === 0
+              ? "bg-cyan text-slate-950 shadow-xs border border-cyan"
+              : "bg-white/80 dark:bg-white/[0.04] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10 hover:border-cyan/40 hover:text-cyan"
+          ]}
+          data-category={cat.id}
+          role="tab"
+          aria-selected={i === 0 ? "true" : "false"}
+        >
+          {cat.label}
+        </button>
+      ))}
+    </div>
+
+    <!-- 1. Visual Tool Cards Grid -->
+    <div id="tech-cards-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-3.5 mb-10 reveal-up">
+      {allTechnologies.map((tool) => (
+        <div
+          class="tech-card group flex flex-col justify-between rounded-2xl border border-slate-200/90 dark:border-white/[0.08] bg-white/90 dark:bg-panel2 p-3.5 sm:p-4 shadow-2xs hover:shadow-md transition-all duration-200 hover:-translate-y-1 hover:border-cyan/50 dark:hover:border-cyan/40"
+          data-domain={tool.domain}
+        >
+          <!-- Top Header: Logo + Tag -->
+          <div class="flex items-center justify-between gap-2">
+            <span class="transition-transform duration-200 group-hover:scale-110 flex-shrink-0">
+              <TechIcon name={tool.id} size={28} />
+            </span>
+            <span class="rounded-md border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/[0.05] px-1.5 py-0.5 font-mono text-[8px] font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex-shrink-0">
+              {tool.tag}
+            </span>
+          </div>
+          <!-- Content: Name + Description -->
+          <div class="mt-3">
+            <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white truncate font-display">{tool.name}</h3>
+            <p class="mt-0.5 font-mono text-[10px] text-slate-500 dark:text-slate-400 truncate">{tool.shortDesc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- 2. Side-by-Side: Declarative YAML Manifest + Categorized Skill Groups -->
+    <div class="grid gap-6 lg:grid-cols-[1fr_1.15fr]">
+
+      <!-- YAML Manifest Viewer -->
+      <div class="stack-panel rounded-2xl sm:rounded-3xl border border-slate-300 dark:border-white/10 bg-slate-900 text-slate-100 overflow-hidden reveal-up shadow-md flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between border-b border-white/[0.08] px-4 py-3 bg-black/30">
+            <div class="flex items-center gap-2">
+              <span class="status-dot red"></span><span class="status-dot amber"></span><span class="status-dot green"></span>
+              <span class="ml-2 font-mono text-[10px] tracking-widest text-slate-400 uppercase">infra/stack.yaml</span>
+            </div>
+            <span class="font-mono text-[9px] text-mint uppercase tracking-wider">● drift-checked</span>
+          </div>
+          <pre class="overflow-x-auto p-4 sm:p-5 font-mono text-xs leading-relaxed text-slate-200 m-0 bg-transparent"><code><span class="yaml-line"><span class="yaml-comment"># infra/stack.yaml — declarative toolchain</span></span>
+<span class="yaml-line"><span class="yaml-key">stack:</span></span>
+{Object.entries(stackYaml).map(([key, vals]) => (
+  <span class="yaml-line">  <span class="yaml-key">{key}:</span><span class="yaml-val"> [{vals.join(', ')}]</span></span>
+))}
+<span class="yaml-line"><span class="yaml-comment"># mode: zero-downtime · observable · resilient</span></span>
+</code></pre>
+        </div>
+        <div class="border-t border-white/[0.08] p-4 bg-black/20 text-xs font-mono text-slate-400 flex items-center justify-between">
+          <span class="flex items-center gap-1.5">
+            <Terminal size={12} class="text-cyan" />
+            Environment: Multi-AZ Production
+          </span>
+          <span class="text-cyan font-semibold">AWS &amp; Azure Ready</span>
+        </div>
+      </div>
+
+      <!-- Structured Capability Pillars (All 10 Categories) -->
+      <div class="grid gap-3 sm:grid-cols-2 reveal-up" style="animation-delay:100ms">
+        {skillGroups.map((group) => (
+          <article class="surface rounded-2xl border border-slate-200 dark:border-white/[0.08] p-3.5 sm:p-4 transition hover:-translate-y-0.5 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white font-display leading-tight">{group.name}</h3>
+                <span class="rounded-full bg-slate-100 dark:bg-white/[0.05] px-1.5 py-0.5 font-mono text-[8px] font-semibold uppercase tracking-wider text-slate-600 dark:text-muted flex-shrink-0">{group.tier}</span>
+              </div>
+              <p class="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-300">{group.skills.join(' · ')}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script is:inline>
+  (function initSkillFilters() {
+    var buttons = document.querySelectorAll('.skill-filter-btn');
+    var cards = document.querySelectorAll('.tech-card');
+
+    if (!buttons.length || !cards.length) return;
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var category = btn.getAttribute('data-category');
+
+        buttons.forEach(function (b) {
+          b.setAttribute('aria-selected', 'false');
+          b.classList.remove('bg-cyan', 'text-slate-950', 'border-cyan', 'shadow-xs');
+          b.classList.add('bg-white/80', 'dark:bg-white/[0.04]', 'text-slate-700', 'dark:text-slate-300', 'border-slate-200', 'dark:border-white/10');
+        });
+
+        btn.setAttribute('aria-selected', 'true');
+        btn.classList.add('bg-cyan', 'text-slate-950', 'border-cyan', 'shadow-xs');
+        btn.classList.remove('bg-white/80', 'dark:bg-white/[0.04]', 'text-slate-700', 'dark:text-slate-300', 'border-slate-200', 'dark:border-white/10');
+
+        cards.forEach(function (card) {
+          var domain = card.getAttribute('data-domain');
+          if (category === 'all' || domain === category) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  })();
+</script>

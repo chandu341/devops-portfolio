@@ -146,7 +146,7 @@
 - [x] **Phase 7: Experience**
   - Interactive career timeline (GENPACT Honeywell/GE, MNP Technologies) with genuine highlights and tech badges.
 
-- [ ] **Phase 8: Skills**
+- [x] **Phase 8: Skills**
   - Category-based constellation/grid (Cloud, IaC, Containers, CI/CD, Observability, DevSecOps, Scripting) with genuine depth tiers (no fake percentages).
 
 - [ ] **Phase 9: Projects & Case Studies**
