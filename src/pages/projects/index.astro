@@ -67,7 +67,7 @@ const filterTabs = [
         const status = statusMap[project.slug] || { label: 'deployed', cls: 'bg-mint/15 text-mint border-mint/30' };
         return (
           <article
-            class="project-archive-card grid gap-6 rounded-2xl sm:rounded-3xl p-6 lg:p-8 lg:grid-cols-[0.85fr_1.15fr] border border-slate-200 dark:border-white/[0.08] bg-white/90 dark:bg-panel2/80 shadow-md backdrop-blur-md transition hover:border-cyan/40"
+            class="project-archive-card grid gap-6 rounded-2xl sm:rounded-3xl p-6 lg:p-8 lg:grid-cols-[0.85fr_1.15fr] border border-slate-200 dark:border-white/[0.08] bg-white/90 dark:bg-panel2 shadow-md backdrop-blur-md transition hover:border-cyan/40"
             data-category={project.category}
           >
             <!-- Left Info Pane -->
@@ -101,7 +101,7 @@ const filterTabs = [
                 <!-- Metrics Grid -->
                 <div class="mt-5 grid gap-2.5 sm:grid-cols-2">
                   {project.metrics.map((metric) => (
-                    <div class="rounded-xl border border-slate-200 dark:border-white/5 bg-slate-50/90 dark:bg-ink/50 p-3 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2">
+                    <div class="rounded-xl border border-slate-200 dark:border-white/5 bg-slate-50/90 dark:bg-ink p-3 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2">
                       <Sparkles size={14} class="text-cyan flex-shrink-0" />
                       <span>{metric}</span>
                     </div>
