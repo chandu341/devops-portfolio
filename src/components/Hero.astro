@@ -210,14 +210,14 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
               <!-- Inner border ring -->
               <div class="absolute -inset-[1px] rounded-2xl bg-gradient-to-tr from-cyan/80 via-violet/60 to-mint/80 opacity-60 dark:opacity-75"></div>
               <!-- Photo container -->
-              <div class="relative h-[85px] w-[85px] sm:h-[100px] sm:w-[100px] rounded-2xl bg-slate-100 dark:bg-panel shadow-2xl overflow-hidden">
+              <div class="relative h-[110px] w-[110px] sm:h-[130px] sm:w-[130px] rounded-2xl bg-slate-100 dark:bg-panel shadow-2xl overflow-hidden">
                 <img
                   src={profile.photo}
                   alt={profile.name}
                   class="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.08]"
                   loading="eager"
-                  width="100"
-                  height="100"
+                  width="130"
+                  height="130"
                 />
                 <!-- Subtle inner luminance overlay -->
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900/10 to-transparent pointer-events-none"></div>
@@ -234,19 +234,27 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
               <span class="block font-mono text-[11px] sm:text-xs uppercase tracking-[0.22em] text-cyan font-bold">
                 Engineering Portfolio
               </span>
-              <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.4rem] font-black tracking-tight font-display leading-[1.05] text-slate-900 dark:text-white">
+              <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.4rem] font-black tracking-tight font-display leading-[1.05] text-slate-900 dark:text-white" aria-label="Chandu Venna">
                 <span class="inline sm:block">Chandu</span>{' '}
-                <span class="inline sm:block hero-name-gradient">
-                  Venna
+                <span class="inline-flex items-baseline min-w-[5.8ch]" aria-hidden="true">
+                  <span id="hero-venna-typing" class="venna-typing-root">
+                    <span class="venna-char venna-char-1">V</span>
+                    <span class="venna-char venna-char-2">E</span>
+                    <span class="venna-char venna-char-3">N</span>
+                    <span class="venna-char venna-char-4">N</span>
+                    <span class="venna-char venna-char-5">A</span>
+                  </span>
+                  <span class="hero-name-caret" aria-hidden="true"></span>
                 </span>
+                <span class="sr-only">Venna</span>
               </h1>
             </div>
           </div>
 
-          <!-- Professional Designation Rule -->
+          <!-- Professional Designation Rule (Permanently static, no animation, zero rotation) -->
           <div class="flex items-center gap-3 pt-1">
             <div class="h-px w-14 rounded-full bg-gradient-to-r from-cyan to-violet"></div>
-            <p class="text-lg sm:text-xl lg:text-2xl font-bold text-slate-800 dark:text-slate-100 font-display tracking-tight">
+            <p class="font-display text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-slate-800 dark:text-slate-100">
               DevOps &amp; Cloud Engineer
             </p>
           </div>
@@ -307,7 +315,7 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
             class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors duration-200"
             aria-label="GitHub Profile"
           >
-            <CodeXml size={16} class="text-slate-400 dark:text-slate-500" />
+            <CodeXml size={16} class="text-slate-500 dark:text-slate-400" />
             <span>GitHub</span>
           </a>
           <span class="text-slate-200 dark:text-slate-700">/</span>
@@ -318,7 +326,7 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
             class="flex items-center gap-1.5 hover:text-violet transition-colors duration-200"
             aria-label="LinkedIn Profile"
           >
-            <BriefcaseBusiness size={16} class="text-slate-400 dark:text-slate-500" />
+            <BriefcaseBusiness size={16} class="text-slate-500 dark:text-slate-400" />
             <span>LinkedIn</span>
           </a>
           <span class="text-slate-200 dark:text-slate-700">/</span>
@@ -327,7 +335,7 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
             class="flex items-center gap-1.5 hover:text-cyan transition-colors duration-200"
             aria-label="Send Email"
           >
-            <Mail size={16} class="text-slate-400 dark:text-slate-500" />
+            <Mail size={16} class="text-slate-500 dark:text-slate-400" />
             <span>Email</span>
           </a>
         </div>
@@ -373,7 +381,7 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
                   <span class="h-2.5 w-2.5 rounded-full bg-warning/80 dark:bg-warning"></span>
                   <span class="h-2.5 w-2.5 rounded-full bg-success/80 dark:bg-success"></span>
                 </div>
-                <span class="font-mono text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500 ml-1">
+                <span class="font-mono text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400 ml-1">
                   devops-pipeline.sh
                 </span>
               </div>
@@ -607,7 +615,7 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
                         {stage.stage} · {stage.tag}
                       </span>
 
-                      <span class="font-mono text-[8px] text-slate-400 dark:text-slate-500 uppercase tracking-tight truncate">
+                      <span class="font-mono text-[8px] text-slate-500 dark:text-slate-400 uppercase tracking-tight truncate">
                         {stage.shortName}
                       </span>
                     </div>
@@ -641,17 +649,17 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
               <div class="flex items-center gap-1 text-[10px] text-slate-500 dark:text-slate-400">
                 <span class="font-bold text-slate-700 dark:text-slate-300">FLOW:</span>
                 <span>Cloud</span>
-                <span class="text-slate-300 dark:text-slate-600">→</span>
+                <span class="text-slate-400 dark:text-slate-500">→</span>
                 <span>IaC</span>
-                <span class="text-slate-300 dark:text-slate-600">→</span>
+                <span class="text-slate-400 dark:text-slate-500">→</span>
                 <span>OCI</span>
-                <span class="text-slate-300 dark:text-slate-600">→</span>
+                <span class="text-slate-400 dark:text-slate-500">→</span>
                 <span>K8s</span>
-                <span class="text-slate-300 dark:text-slate-600">→</span>
+                <span class="text-slate-400 dark:text-slate-500">→</span>
                 <span>CI/CD</span>
-                <span class="text-slate-300 dark:text-slate-600">→</span>
+                <span class="text-slate-400 dark:text-slate-500">→</span>
                 <span>GitOps</span>
-                <span class="text-slate-300 dark:text-slate-600">→</span>
+                <span class="text-slate-400 dark:text-slate-500">→</span>
                 <span class="text-mint font-bold">Observe</span>
               </div>
 
@@ -1246,3 +1254,74 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
     }
   }
 </style>
+
+<script is:inline>
+  (function () {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const container = document.getElementById('hero-venna-typing');
+    if (!container) return;
+
+    const letters = [
+      { char: 'V', cls: 'venna-char-1' },
+      { char: 'E', cls: 'venna-char-2' },
+      { char: 'N', cls: 'venna-char-3' },
+      { char: 'N', cls: 'venna-char-4' },
+      { char: 'A', cls: 'venna-char-5' }
+    ];
+
+    function renderLetters(count) {
+      container.innerHTML = letters
+        .slice(0, count)
+        .map(function (l) {
+          return '<span class="venna-char ' + l.cls + '">' + l.char + '</span>';
+        })
+        .join('');
+    }
+
+    if (prefersReducedMotion.matches) {
+      renderLetters(letters.length);
+      return;
+    }
+
+    let currentIndex = letters.length;
+    let isDeleting = true;
+    let timer = null;
+
+    function step() {
+      if (isDeleting) {
+        currentIndex--;
+        renderLetters(currentIndex);
+
+        if (currentIndex === 0) {
+          isDeleting = false;
+          timer = setTimeout(step, 450);
+        } else {
+          timer = setTimeout(step, 90);
+        }
+      } else {
+        currentIndex++;
+        renderLetters(currentIndex);
+
+        if (currentIndex === letters.length) {
+          isDeleting = true;
+          timer = setTimeout(step, 2000);
+        } else {
+          timer = setTimeout(step, 140);
+        }
+      }
+    }
+
+    timer = setTimeout(step, 2200);
+
+    prefersReducedMotion.addEventListener('change', function (e) {
+      if (e.matches) {
+        if (timer) clearTimeout(timer);
+        renderLetters(letters.length);
+      } else {
+        currentIndex = letters.length;
+        isDeleting = true;
+        timer = setTimeout(step, 2000);
+      }
+    });
+  })();
+</script>

@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import BootLoader from '@/components/BootLoader.astro';
+import ParticleBackground from '@/components/ParticleBackground.astro';
 import { profile } from '@/data/profile';
 
 interface Props {
@@ -66,21 +67,48 @@ const websiteSchema = {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     
-    <!-- Inline theme initializer script to prevent FOUC -->
+    <!-- Inline palette and theme initializer script to prevent FOUC -->
     <script is:inline>
       (function() {
-        const storedTheme = localStorage.getItem('theme');
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (storedTheme === 'dark' || (!storedTheme && systemPrefersDark)) {
+        const VALID_PALETTES = ['midnight-cloud', 'graphite-copper', 'obsidian-violet', 'cloud-daylight'];
+        const PALETTE_BG = {
+          'midnight-cloud': '#050A0F',
+          'graphite-copper': '#14161A',
+          'obsidian-violet': '#0B0B10',
+          'cloud-daylight': '#F4F8FA'
+        };
+
+        let storedPalette = localStorage.getItem('portfolio-palette');
+        if (!VALID_PALETTES.includes(storedPalette)) {
+          const storedTheme = localStorage.getItem('theme');
+          const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (storedTheme === 'light' || (!storedTheme && !systemPrefersDark)) {
+            storedPalette = 'cloud-daylight';
+          } else {
+            storedPalette = 'midnight-cloud';
+          }
+        }
+
+        const isDark = storedPalette !== 'cloud-daylight';
+        document.documentElement.setAttribute('data-palette', storedPalette);
+        if (isDark) {
           document.documentElement.classList.add('dark');
+          document.documentElement.setAttribute('data-theme', 'dark');
         } else {
           document.documentElement.classList.remove('dark');
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+
+        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+        if (metaThemeColor && PALETTE_BG[storedPalette]) {
+          metaThemeColor.setAttribute('content', PALETTE_BG[storedPalette]);
         }
       })();
     </script>
     <script is:inline type="application/ld+json" set:html={JSON.stringify([personSchema, websiteSchema])} />
   </head>
   <body class="bg-slate-50 dark:bg-ink text-slate-800 dark:text-slate-100 antialiased selection:bg-cyan/25 transition-colors duration-300 font-sans">
+    <ParticleBackground />
     <BootLoader />
     <slot />
   </body>

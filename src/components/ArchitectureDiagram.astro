@@ -8,7 +8,7 @@ const { groups } = Astro.props;
 
 <div class="architecture-flow" style={`--cols: ${groups.length || 4}`}>
   {groups.map((group, index) => (
-    <div class="architecture-group group/card transition-all duration-300 hover:border-cyan/40 hover:shadow-[0_0_20px_rgba(212,169,78,0.15)]">
+    <div class="architecture-group group/card transition-all duration-300 hover:border-cyan/40">
       <div class="flex items-center justify-between gap-2 border-b border-slate-200/80 dark:border-white/[0.08] pb-2.5 mb-3">
         <p class="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-cyan font-bold flex items-center gap-1.5">
           <span class="h-1.5 w-1.5 rounded-full bg-cyan animate-pulse"></span>
@@ -55,7 +55,7 @@ const { groups } = Astro.props;
 
   :global(.dark) .architecture-group {
     border: 1px solid var(--border);
-    background: linear-gradient(180deg, rgba(42, 38, 32, 0.95), rgba(33, 30, 25, 0.95));
+    background: var(--surface);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
   }
 

@@ -1,0 +1,339 @@
+---
+---
+<canvas id="particle-canvas" class="particle-canvas" aria-hidden="true"></canvas>
+
+<style>
+  .particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const canvas = document.getElementById('particle-canvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    const PALETTE_COLORS = {
+      'midnight-cloud': {
+        primary: { r: 103, g: 232, b: 249 },   // #67E8F9
+        secondary: { r: 52, g: 211, b: 153 },  // #34D399
+        lineAlpha: 0.06
+      },
+      'graphite-copper': {
+        primary: { r: 217, g: 136, b: 77 },   // #D9884D
+        secondary: { r: 111, g: 163, b: 196 }, // #6FA3C4
+        lineAlpha: 0.05
+      },
+      'obsidian-violet': {
+        primary: { r: 155, g: 123, b: 240 },  // #9B7BF0
+        secondary: { r: 108, g: 140, b: 224 }, // #6C8CE0
+        lineAlpha: 0.05
+      },
+      'cloud-daylight': {
+        primary: { r: 2, g: 132, b: 199 },     // #0284C7
+        secondary: { r: 5, g: 150, b: 105 },   // #059669
+        lineAlpha: 0.04
+      }
+    };
+
+    function getCurrentPaletteKey() {
+      const docPalette = document.documentElement.getAttribute('data-palette');
+      if (docPalette && PALETTE_COLORS[docPalette]) return docPalette;
+
+      const stored = localStorage.getItem('portfolio-palette');
+      if (stored && PALETTE_COLORS[stored]) return stored;
+
+      const theme = localStorage.getItem('theme') || document.documentElement.getAttribute('data-theme');
+      if (theme === 'light') return 'cloud-daylight';
+      return 'midnight-cloud';
+    }
+
+    let activeColors = PALETTE_COLORS[getCurrentPaletteKey()] || PALETTE_COLORS['midnight-cloud'];
+
+    function updateColors() {
+      const key = getCurrentPaletteKey();
+      activeColors = PALETTE_COLORS[key] || PALETTE_COLORS['midnight-cloud'];
+    }
+
+    window.addEventListener('palette-changed', function () {
+      updateColors();
+    });
+
+    window.addEventListener('theme-changed', function () {
+      updateColors();
+    });
+
+    const observer = new MutationObserver(function () {
+      updateColors();
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-palette', 'data-theme', 'class'] });
+
+    function getParticleCount() {
+      const w = window.innerWidth;
+      if (w < 640) return 35;      // Mobile: 25–45
+      if (w < 1024) return 65;     // Tablet: 50–80
+      return 100;                  // Desktop: 80–140
+    }
+
+    let targetParallaxX = 0;
+    let targetParallaxY = 0;
+    let currentParallaxX = 0;
+    let currentParallaxY = 0;
+
+    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+    if (!isTouch && window.innerWidth >= 1024) {
+      window.addEventListener('mousemove', function (e) {
+        const cx = window.innerWidth / 2;
+        const cy = window.innerHeight / 2;
+        targetParallaxX = ((e.clientX - cx) / cx);
+        targetParallaxY = ((e.clientY - cy) / cy);
+      }, { passive: true });
+    }
+
+    class Particle {
+      constructor() {
+        this.init();
+      }
+
+      init() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+
+        // Size Distribution:
+        // 60% @ 1.5–2.0px, 25% @ 2.0–2.5px, 10% @ 2.5–3.0px, 5% @ 3.0–4.0px
+        const roll = Math.random();
+        if (roll < 0.60) {
+          this.radius = 1.5 + Math.random() * 0.5;
+          this.layer = 'far';
+        } else if (roll < 0.85) {
+          this.radius = 2.0 + Math.random() * 0.5;
+          this.layer = 'middle';
+        } else if (roll < 0.95) {
+          this.radius = 2.5 + Math.random() * 0.5;
+          this.layer = 'near';
+        } else {
+          this.radius = 3.0 + Math.random() * 1.0;
+          this.layer = 'near';
+        }
+
+        // Opacity by Depth (Strict floor: >= 0.25):
+        // Far: 0.25–0.40, Middle: 0.40–0.60, Near: 0.55–0.80
+        if (this.layer === 'far') {
+          this.baseOpacity = 0.25 + Math.random() * 0.15;
+          this.parallaxMultiplier = 1.0;
+        } else if (this.layer === 'middle') {
+          this.baseOpacity = 0.40 + Math.random() * 0.20;
+          this.parallaxMultiplier = 2.5;
+        } else {
+          this.baseOpacity = 0.55 + Math.random() * 0.25;
+          this.parallaxMultiplier = 4.5;
+        }
+        this.opacity = this.baseOpacity;
+
+        // Glow Hierarchy:
+        // 80% plain, 15% soft glow (6–8px blur), 5% bright highlight (14–16px blur)
+        const glowRoll = Math.random();
+        if (glowRoll < 0.80) {
+          this.glowType = 'none';
+          this.blur = 0;
+        } else if (glowRoll < 0.95) {
+          this.glowType = 'soft';
+          this.blur = 6 + Math.random() * 2;
+        } else {
+          this.glowType = 'bright';
+          this.blur = 14 + Math.random() * 2;
+        }
+
+        // Independent Motion & Cycle 4–15s
+        const speed = Math.random() * 0.30 + 0.12;
+        const angle = Math.random() * Math.PI * 2;
+        this.vx = Math.cos(angle) * speed;
+        this.vy = Math.sin(angle) * speed;
+
+        this.cycleDuration = (4 + Math.random() * 11) * 60; // in frames (~60fps)
+        this.cycleProgress = Math.random() * this.cycleDuration;
+        this.isPrimary = Math.random() > 0.45;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Invisible wraparound at edges
+        const padding = 15;
+        if (this.x < -padding) this.x = width + padding;
+        if (this.x > width + padding) this.x = -padding;
+        if (this.y < -padding) this.y = height + padding;
+        if (this.y > height + padding) this.y = -padding;
+
+        this.cycleProgress++;
+        const phase = (this.cycleProgress / this.cycleDuration) * Math.PI * 2;
+        // Modulate opacity within valid range (staying >= 0.25)
+        const opacityDelta = Math.sin(phase) * 0.08;
+        this.opacity = Math.max(0.25, Math.min(0.95, this.baseOpacity + opacityDelta));
+      }
+
+      draw(pX, pY) {
+        const c = this.isPrimary ? activeColors.primary : activeColors.secondary;
+        const px = this.x + pX * this.parallaxMultiplier;
+        const py = this.y + pY * this.parallaxMultiplier;
+
+        ctx.save();
+        if (this.glowType !== 'none') {
+          ctx.shadowBlur = this.blur;
+          ctx.shadowColor = `rgba(${c.r}, ${c.g}, ${c.b}, ${this.opacity * 0.85})`;
+        }
+        ctx.beginPath();
+        ctx.arc(px, py, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${c.r}, ${c.g}, ${c.b}, ${this.opacity})`;
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    let particles = [];
+    function initParticles() {
+      const count = getParticleCount();
+      particles = [];
+      for (let i = 0; i < count; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    initParticles();
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      const targetCount = getParticleCount();
+      if (particles.length !== targetCount) {
+        initParticles();
+      }
+    }
+
+    let resizeTimeout;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(resize, 100);
+    }, { passive: true });
+
+    let animationId = null;
+    let isRunning = false;
+
+    function renderStatic() {
+      ctx.clearRect(0, 0, width, height);
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].draw(0, 0);
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+
+      if (!isTouch && window.innerWidth >= 1024) {
+        currentParallaxX += (targetParallaxX - currentParallaxX) * 0.05;
+        currentParallaxY += (targetParallaxY - currentParallaxY) * 0.05;
+      } else {
+        currentParallaxX = 0;
+        currentParallaxY = 0;
+      }
+
+      // Connecting lines between nearby particles (max 1–2 connections per particle)
+      const count = particles.length;
+      const maxDistance = 95;
+      const lineC = activeColors.secondary;
+
+      for (let i = 0; i < count; i++) {
+        let connections = 0;
+        for (let j = i + 1; j < count; j++) {
+          if (connections >= 2) break;
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distSq = dx * dx + dy * dy;
+
+          if (distSq < maxDistance * maxDistance) {
+            const dist = Math.sqrt(distSq);
+            const alpha = (1 - dist / maxDistance) * activeColors.lineAlpha;
+            const pX_i = particles[i].x + currentParallaxX * particles[i].parallaxMultiplier;
+            const pY_i = particles[i].y + currentParallaxY * particles[i].parallaxMultiplier;
+            const pX_j = particles[j].x + currentParallaxX * particles[j].parallaxMultiplier;
+            const pY_j = particles[j].y + currentParallaxY * particles[j].parallaxMultiplier;
+
+            ctx.beginPath();
+            ctx.moveTo(pX_i, pY_i);
+            ctx.lineTo(pX_j, pY_j);
+            ctx.strokeStyle = `rgba(${lineC.r}, ${lineC.g}, ${lineC.b}, ${alpha})`;
+            ctx.lineWidth = 0.75;
+            ctx.stroke();
+            connections++;
+          }
+        }
+      }
+
+      // Update & Draw particles
+      for (let i = 0; i < count; i++) {
+        particles[i].update();
+        particles[i].draw(currentParallaxX, currentParallaxY);
+      }
+
+      if (isRunning) {
+        animationId = requestAnimationFrame(animate);
+      }
+    }
+
+    function startLoop() {
+      if (prefersReducedMotion.matches) {
+        renderStatic();
+        return;
+      }
+      if (!isRunning) {
+        isRunning = true;
+        animationId = requestAnimationFrame(animate);
+      }
+    }
+
+    function stopLoop() {
+      isRunning = false;
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+      }
+    }
+
+    // Lifecycle: Pause when tab is hidden to save battery & CPU
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        stopLoop();
+      } else {
+        startLoop();
+      }
+    });
+
+    // Handle prefers-reduced-motion changes
+    prefersReducedMotion.addEventListener('change', function (e) {
+      if (e.matches) {
+        stopLoop();
+        renderStatic();
+      } else {
+        startLoop();
+      }
+    });
+
+    startLoop();
+  })();
+</script>

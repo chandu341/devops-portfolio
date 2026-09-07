@@ -1,70 +1,292 @@
 ---
-import { Moon, Sun } from '@lucide/astro';
+import { Check, ChevronDown, Palette, Sun, Moon } from '@lucide/astro';
 
 interface Props {
   class?: string;
   id?: string;
 }
 
-const { class: className = '', id = 'theme-toggle-btn' } = Astro.props;
+const { class: className = '', id = 'palette-switcher-desktop' } = Astro.props;
+
+const palettes = [
+  {
+    id: 'midnight-cloud',
+    name: 'Midnight Cloud',
+    mode: 'dark',
+    bg: '#050A0F',
+    primary: '#67E8F9',
+    secondary: '#34D399',
+    badge: 'Dark'
+  },
+  {
+    id: 'graphite-copper',
+    name: 'Graphite Copper',
+    mode: 'dark',
+    bg: '#14161A',
+    primary: '#D9884D',
+    secondary: '#6FA3C4',
+    badge: 'Dark'
+  },
+  {
+    id: 'obsidian-violet',
+    name: 'Obsidian Violet',
+    mode: 'dark',
+    bg: '#0B0B10',
+    primary: '#9B7BF0',
+    secondary: '#6C8CE0',
+    badge: 'Dark'
+  },
+  {
+    id: 'cloud-daylight',
+    name: 'Cloud Daylight',
+    mode: 'light',
+    bg: '#F4F8FA',
+    primary: '#0284C7',
+    secondary: '#059669',
+    badge: 'Light'
+  }
+];
 ---
 
-<button
-  id={id}
-  type="button"
-  aria-label="Toggle dark and light theme"
-  class:list={[
-    "theme-toggle-btn relative inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-300/80 dark:border-white/10 bg-slate-100 dark:bg-white/[0.04] text-slate-700 dark:text-slate-200 transition-all duration-300 hover:scale-105 hover:border-cyan/50 dark:hover:border-cyan/50 hover:bg-slate-200/80 dark:hover:bg-white/[0.08] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan shadow-sm cursor-pointer",
-    className
-  ]}
->
-  <!-- Sun Icon (visible in Dark mode to switch to Light) -->
-  <span class="theme-icon-sun pointer-events-none absolute transition-all duration-300 transform scale-0 rotate-90 opacity-0 dark:scale-100 dark:rotate-0 dark:opacity-100 text-amber-400">
-    <Sun size={17} />
-  </span>
-  
-  <!-- Moon Icon (visible in Light mode to switch to Dark) -->
-  <span class="theme-icon-moon pointer-events-none absolute transition-all duration-300 transform scale-100 rotate-0 opacity-100 dark:scale-0 dark:-rotate-90 dark:opacity-0 text-slate-700">
-    <Moon size={16} />
-  </span>
-</button>
+<div class:list={["palette-switcher-root relative inline-block text-left", className]} data-switcher-id={id}>
+  <!-- Trigger Button -->
+  <button
+    id={`${id}-btn`}
+    type="button"
+    class="palette-trigger-btn inline-flex h-9 items-center gap-2 rounded-xl border border-slate-300/80 dark:border-white/10 bg-slate-100 dark:bg-white/[0.04] px-2.5 sm:px-3 text-xs font-semibold text-slate-700 dark:text-slate-200 transition-all duration-300 hover:border-cyan/50 dark:hover:border-cyan/50 hover:bg-slate-200/80 dark:hover:bg-white/[0.08] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan shadow-sm cursor-pointer"
+    aria-haspopup="listbox"
+    aria-expanded="false"
+    aria-label="Select theme palette"
+  >
+    <!-- Dynamic Color Swatch Dots -->
+    <span class="relative flex h-3.5 w-3.5 items-center justify-center flex-shrink-0">
+      <span class="palette-indicator-dot h-3 w-3 rounded-full border border-black/10 dark:border-white/20 shadow-xs transition-colors duration-300"></span>
+      <span class="palette-indicator-accent absolute -bottom-0.5 -right-0.5 h-1.5 w-1.5 rounded-full ring-1 ring-white dark:ring-ink transition-colors duration-300"></span>
+    </span>
+
+    <span class="palette-current-name font-mono text-[11px] sm:text-xs tracking-tight truncate max-w-[85px] sm:max-w-[110px] hidden sm:inline">
+      Palette
+    </span>
+
+    <ChevronDown size={13} class="palette-chevron text-slate-400 dark:text-slate-400 transition-transform duration-200 flex-shrink-0" />
+  </button>
+
+  <!-- Dropdown Menu -->
+  <div
+    class="palette-dropdown hidden absolute right-0 mt-2 w-56 sm:w-60 origin-top-right rounded-2xl border border-slate-200 dark:border-white/10 bg-white/95 dark:bg-panel/98 p-1.5 shadow-2xl backdrop-blur-2xl z-50 focus:outline-none transition-all duration-200"
+    role="listbox"
+    aria-label="Theme palettes"
+    tabindex="-1"
+  >
+    <div class="px-2.5 py-2 border-b border-slate-100 dark:border-white/5 flex items-center justify-between">
+      <span class="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-400 flex items-center gap-1.5">
+        <Palette size={12} class="text-cyan" /> Theme Palettes
+      </span>
+      <span class="font-mono text-[9px] text-slate-400 dark:text-slate-500">4 Styles</span>
+    </div>
+
+    <div class="py-1 space-y-0.5">
+      {palettes.map((pal) => (
+        <button
+          type="button"
+          role="option"
+          data-palette-id={pal.id}
+          data-is-dark={pal.mode === 'dark' ? 'true' : 'false'}
+          class="palette-option-btn w-full flex items-center justify-between gap-2.5 rounded-xl px-2.5 py-2 text-left text-xs transition-colors hover:bg-slate-100 dark:hover:bg-white/[0.06] focus:bg-slate-100 dark:focus:bg-white/[0.06] focus:outline-none cursor-pointer group"
+          aria-selected="false"
+        >
+          <div class="flex items-center gap-2.5 min-w-0">
+            <!-- Palette Color Preview Swatch -->
+            <div class="relative h-6 w-6 rounded-lg border border-slate-200 dark:border-white/15 flex items-center justify-center flex-shrink-0 shadow-inner overflow-hidden" style={`background-color: ${pal.bg};`}>
+              <div class="h-3 w-3 rounded-full shadow-xs" style={`background-color: ${pal.primary};`}></div>
+              <div class="absolute bottom-0 right-0 h-2 w-2 rounded-tl-md" style={`background-color: ${pal.secondary};`}></div>
+            </div>
+
+            <div class="min-w-0">
+              <span class="palette-option-name block font-semibold text-slate-800 dark:text-slate-200 group-hover:text-cyan dark:group-hover:text-cyan transition-colors truncate">
+                {pal.name}
+              </span>
+              <span class="font-mono text-[9px] text-slate-400 dark:text-slate-500 flex items-center gap-1">
+                {pal.mode === 'dark' ? (
+                  <Moon size={9} class="text-slate-400" />
+                ) : (
+                  <Sun size={9} class="text-amber" />
+                )}
+                {pal.badge}
+              </span>
+            </div>
+          </div>
+
+          <!-- Active Checkmark Indicator -->
+          <div class="palette-check-indicator opacity-0 transition-opacity flex-shrink-0 text-cyan">
+            <Check size={14} />
+          </div>
+        </button>
+      ))}
+    </div>
+  </div>
+</div>
 
 <script is:inline>
   (function () {
-    // Prevent multiple registrations across multiple component instances
-    if (window.__themeToggleScriptLoaded) return;
-    window.__themeToggleScriptLoaded = true;
+    if (window.__paletteSwitcherLoaded) return;
+    window.__paletteSwitcherLoaded = true;
 
-    function getTheme() {
-      if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-        return localStorage.getItem('theme');
+    const PALETTES = [
+      { id: 'midnight-cloud', name: 'Midnight Cloud', mode: 'dark', bg: '#050A0F', primary: '#67E8F9', secondary: '#34D399' },
+      { id: 'graphite-copper', name: 'Graphite Copper', mode: 'dark', bg: '#14161A', primary: '#D9884D', secondary: '#6FA3C4' },
+      { id: 'obsidian-violet', name: 'Obsidian Violet', mode: 'dark', bg: '#0B0B10', primary: '#9B7BF0', secondary: '#6C8CE0' },
+      { id: 'cloud-daylight', name: 'Cloud Daylight', mode: 'light', bg: '#F4F8FA', primary: '#0284C7', secondary: '#059669' }
+    ];
+
+    function getStoredPalette() {
+      let stored = localStorage.getItem('portfolio-palette');
+      const valid = PALETTES.some(p => p.id === stored);
+      if (stored && valid) return stored;
+
+      const theme = localStorage.getItem('theme');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (theme === 'light' || (!theme && !systemDark)) {
+        return 'cloud-daylight';
       }
-      return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+      return 'midnight-cloud';
     }
 
-    function setTheme(theme) {
-      const isDark = theme === 'dark';
+    function applyPalette(paletteId, dispatch) {
+      const palette = PALETTES.find(p => p.id === paletteId) || PALETTES[0];
+      const isDark = palette.mode === 'dark';
+
+      document.documentElement.setAttribute('data-palette', palette.id);
       if (isDark) {
         document.documentElement.classList.add('dark');
+        document.documentElement.setAttribute('data-theme', 'dark');
         localStorage.setItem('theme', 'dark');
       } else {
         document.documentElement.classList.remove('dark');
+        document.documentElement.setAttribute('data-theme', 'light');
         localStorage.setItem('theme', 'light');
       }
-      window.dispatchEvent(new CustomEvent('theme-changed', { detail: { isDark } }));
+
+      localStorage.setItem('portfolio-palette', palette.id);
+
+      // Update all switcher instances on the page
+      updateAllSwitchers(palette);
+
+      if (dispatch !== false) {
+        window.dispatchEvent(new CustomEvent('palette-changed', {
+          detail: { palette: palette.id, isDark, primary: palette.primary, secondary: palette.secondary }
+        }));
+        window.dispatchEvent(new CustomEvent('theme-changed', {
+          detail: { isDark }
+        }));
+      }
     }
 
-    // Global delegated click listener for all theme toggle buttons
+    function updateAllSwitchers(palette) {
+      document.querySelectorAll('.palette-switcher-root').forEach(function (root) {
+        const nameEl = root.querySelector('.palette-current-name');
+        if (nameEl) nameEl.textContent = palette.name;
+
+        const dotEl = root.querySelector('.palette-indicator-dot');
+        if (dotEl) dotEl.style.backgroundColor = palette.primary;
+
+        const accentEl = root.querySelector('.palette-indicator-accent');
+        if (accentEl) accentEl.style.backgroundColor = palette.secondary;
+
+        root.querySelectorAll('.palette-option-btn').forEach(function (btn) {
+          const btnId = btn.getAttribute('data-palette-id');
+          const isSelected = btnId === palette.id;
+          btn.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+          const check = btn.querySelector('.palette-check-indicator');
+          if (check) {
+            if (isSelected) {
+              check.classList.remove('opacity-0');
+              check.classList.add('opacity-100');
+              btn.classList.add('bg-slate-100', 'dark:bg-white/[0.06]');
+            } else {
+              check.classList.remove('opacity-100');
+              check.classList.add('opacity-0');
+              btn.classList.remove('bg-slate-100', 'dark:bg-white/[0.06]');
+            }
+          }
+        });
+      });
+    }
+
+    function closeAllDropdowns() {
+      document.querySelectorAll('.palette-switcher-root').forEach(function (root) {
+        const btn = root.querySelector('.palette-trigger-btn');
+        const menu = root.querySelector('.palette-dropdown');
+        const chevron = root.querySelector('.palette-chevron');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+        if (menu) menu.classList.add('hidden');
+        if (chevron) chevron.classList.remove('rotate-180');
+      });
+    }
+
+    function toggleDropdown(root) {
+      const btn = root.querySelector('.palette-trigger-btn');
+      const menu = root.querySelector('.palette-dropdown');
+      const chevron = root.querySelector('.palette-chevron');
+      if (!btn || !menu) return;
+
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      if (isExpanded) {
+        btn.setAttribute('aria-expanded', 'false');
+        menu.classList.add('hidden');
+        if (chevron) chevron.classList.remove('rotate-180');
+      } else {
+        closeAllDropdowns();
+        btn.setAttribute('aria-expanded', 'true');
+        menu.classList.remove('hidden');
+        if (chevron) chevron.classList.add('rotate-180');
+      }
+    }
+
+    // Global Delegated Click Listeners
     document.addEventListener('click', function (e) {
       const target = e.target;
-      const toggleBtn = target && target.closest ? target.closest('.theme-toggle-btn') : null;
-      if (!toggleBtn) return;
-      
-      e.preventDefault();
-      e.stopPropagation();
-      const currentTheme = getTheme();
-      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      setTheme(nextTheme);
+      if (!target) return;
+
+      // Trigger button clicked
+      const triggerBtn = target.closest ? target.closest('.palette-trigger-btn') : null;
+      if (triggerBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        const root = triggerBtn.closest('.palette-switcher-root');
+        if (root) toggleDropdown(root);
+        return;
+      }
+
+      // Option button clicked
+      const optionBtn = target.closest ? target.closest('.palette-option-btn') : null;
+      if (optionBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        const palId = optionBtn.getAttribute('data-palette-id');
+        if (palId) {
+          applyPalette(palId, true);
+          closeAllDropdowns();
+        }
+        return;
+      }
+
+      // Clicked outside dropdown
+      if (!target.closest || !target.closest('.palette-switcher-root')) {
+        closeAllDropdowns();
+      }
     });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closeAllDropdowns();
+      }
+    });
+
+    // Initial sync
+    const currentPal = getStoredPalette();
+    const initialPaletteObj = PALETTES.find(p => p.id === currentPal) || PALETTES[0];
+    applyPalette(initialPaletteObj.id, false);
   })();
 </script>
