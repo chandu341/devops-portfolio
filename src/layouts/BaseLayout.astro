@@ -70,22 +70,25 @@ const websiteSchema = {
     <!-- Inline palette and theme initializer script to prevent FOUC -->
     <script is:inline>
       (function() {
-        const VALID_PALETTES = ['midnight-cloud', 'graphite-copper', 'obsidian-violet', 'cloud-daylight'];
         const PALETTE_BG = {
-          'midnight-cloud': '#050A0F',
-          'graphite-copper': '#14161A',
           'obsidian-violet': '#0B0B10',
           'cloud-daylight': '#F4F8FA'
         };
 
         let storedPalette = localStorage.getItem('portfolio-palette');
-        if (!VALID_PALETTES.includes(storedPalette)) {
+        // Migrate legacy palettes to Obsidian Violet
+        if (storedPalette === 'midnight-cloud' || storedPalette === 'graphite-copper') {
+          storedPalette = 'obsidian-violet';
+          localStorage.setItem('portfolio-palette', storedPalette);
+        }
+
+        if (storedPalette !== 'obsidian-violet' && storedPalette !== 'cloud-daylight') {
           const storedTheme = localStorage.getItem('theme');
           const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
           if (storedTheme === 'light' || (!storedTheme && !systemPrefersDark)) {
             storedPalette = 'cloud-daylight';
           } else {
-            storedPalette = 'midnight-cloud';
+            storedPalette = 'obsidian-violet';
           }
         }
 

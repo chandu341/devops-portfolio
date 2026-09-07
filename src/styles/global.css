@@ -3,14 +3,12 @@
 @tailwind utilities;
 
 /* ============================================================ */
-/* 4 NAMED PALETTES ARCHITECTURE                                */
-/* 1. Midnight Cloud (dark)                                     */
-/* 2. Graphite Copper (dark)                                    */
-/* 3. Obsidian Violet (dark)                                    */
-/* 4. Cloud Daylight (light)                                    */
+/* 2-THEME ARCHITECTURE                                         */
+/* 1. Light Mode: Cloud Daylight                                */
+/* 2. Dark Mode: Obsidian Violet                                */
 /* ============================================================ */
 
-/* 4. Cloud Daylight (Light Default) */
+/* 1. Cloud Daylight (Light Default) */
 :root,
 html[data-theme="light"],
 :root[data-theme="light"],
@@ -25,8 +23,8 @@ html[data-palette="cloud-daylight"],
   --border: #D7E2E8;
   --border-subtle: #EDF4F7;
   --text-primary: #0B1720;
-  --text-secondary: #405563;
-  --text-muted: #71828D;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
   --primary: #0284C7;
   --primary-glow: #0284C722;
   --secondary: #059669;
@@ -54,73 +52,11 @@ html[data-palette="cloud-daylight"],
   color: var(--text-primary);
 }
 
-/* 1. Midnight Cloud (Dark) */
-html[data-palette="midnight-cloud"],
-:root[data-palette="midnight-cloud"],
-html.dark:not([data-palette]),
-:root.dark:not([data-palette]) {
-  color-scheme: dark;
-  --background: #050A0F;
-  --background-secondary: #07131A;
-  --surface: #0B1720;
-  --surface-elevated: #101E29;
-  --border: #1D3442;
-  --border-subtle: #101E29;
-  --text-primary: #F4F8FA;
-  --text-secondary: #B4C3CC;
-  --text-muted: #71828D;
-  --primary: #67E8F9;
-  --primary-glow: #67E8F933;
-  --secondary: #34D399;
-  --secondary-glow: #34D39922;
-  --success: #34D399;
-  --success-glow: #34D39922;
-  --warning: #FBBF24;
-  --danger: #F87171;
-  --chart-primary: #67E8F9;
-  --chart-secondary: #34D399;
-  --particle-primary: #67E8F9;
-  --particle-secondary: #34D399;
-  --venna-c1: #67E8F9;
-  --venna-c2: #38BDF8;
-  --venna-c3: #34D399;
-  --venna-c4: #A7F3D0;
-  --venna-c5: #818CF8;
-}
-
-/* 2. Graphite Copper (Dark) */
-html[data-palette="graphite-copper"],
-:root[data-palette="graphite-copper"] {
-  color-scheme: dark;
-  --background: #14161A;
-  --background-secondary: #1B1E23;
-  --surface: #1B1E23;
-  --surface-elevated: #23262C;
-  --border: #33373E;
-  --border-subtle: #23262C;
-  --text-primary: #F1F2F4;
-  --text-secondary: #ADB2BA;
-  --text-muted: #727880;
-  --primary: #D9884D;
-  --primary-glow: #D9884D40;
-  --secondary: #6FA3C4;
-  --secondary-glow: #6FA3C433;
-  --success: #7BCC98;
-  --success-glow: #7BCC9833;
-  --warning: #E3AC4A;
-  --danger: #E36B57;
-  --chart-primary: #D9884D;
-  --chart-secondary: #6FA3C4;
-  --particle-primary: #D9884D;
-  --particle-secondary: #6FA3C4;
-  --venna-c1: #D9884D;
-  --venna-c2: #E3AC4A;
-  --venna-c3: #7BCC98;
-  --venna-c4: #67E8F9;
-  --venna-c5: #9B7BF0;
-}
-
-/* 3. Obsidian Violet (Dark) */
+/* 2. Obsidian Violet (Dark Mode) */
+html.dark,
+:root.dark,
+html[data-theme="dark"],
+:root[data-theme="dark"],
 html[data-palette="obsidian-violet"],
 :root[data-palette="obsidian-violet"] {
   color-scheme: dark;
@@ -130,17 +66,17 @@ html[data-palette="obsidian-violet"],
   --surface-elevated: #1E1C29;
   --border: #2C2A3A;
   --border-subtle: #1E1C29;
-  --text-primary: #F1EEFA;
-  --text-secondary: #B3ABCC;
-  --text-muted: #726C8A;
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
   --primary: #9B7BF0;
   --primary-glow: #9B7BF033;
   --secondary: #6C8CE0;
   --secondary-glow: #6C8CE022;
-  --success: #5EEAD4;
-  --success-glow: #5EEAD422;
-  --warning: #F59E0B;
-  --danger: #F43F5E;
+  --success: #34D399;
+  --success-glow: #34D39922;
+  --warning: #FBBF24;
+  --danger: #F87171;
   --chart-primary: #9B7BF0;
   --chart-secondary: #6C8CE0;
   --particle-primary: #9B7BF0;
@@ -188,7 +124,7 @@ body::before,
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background-image: radial-gradient(circle, rgba(184, 95, 42, 0.12) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(2, 132, 199, 0.08) 1px, transparent 1px);
   background-size: 28px 28px;
   mask-image: radial-gradient(ellipse 85% 75% at 50% 35%, #000 45%, transparent 95%);
   -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 35%, #000 45%, transparent 95%);
@@ -197,7 +133,7 @@ body::before,
 }
 
 html.dark body::before {
-  background-image: radial-gradient(circle, rgba(217, 136, 77, 0.14) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(155, 123, 240, 0.12) 1px, transparent 1px);
 }
 
 body::after,

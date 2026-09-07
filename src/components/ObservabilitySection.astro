@@ -111,7 +111,7 @@ const activeAlerts = [
             <span class="inline-block h-1 w-2.5 rounded-full bg-mint" aria-hidden="true"></span>
             06 — telemetry &amp; sre command center
           </p>
-          <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 dark:text-white font-display">
+          <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-950 dark:text-slate-50 font-display">
             High-reliability telemetry.
           </h2>
         </div>
@@ -133,7 +133,7 @@ const activeAlerts = [
       {goldenSignals.map((signal) => (
         <div class="surface rounded-2xl border border-slate-200 dark:border-white/[0.08] p-4 sm:p-5 shadow-sm flex flex-col justify-between">
           <div class="flex items-center justify-between gap-2">
-            <span class="font-mono text-[10.5px] uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">
+            <span class="font-mono text-[10.5px] uppercase tracking-wider text-slate-600 dark:text-slate-300 font-semibold">
               {signal.title}
             </span>
             <Activity size={14} class={signal.accent === 'cyan' ? 'text-cyan' : signal.accent === 'mint' ? 'text-mint' : 'text-violet'} />
@@ -142,7 +142,7 @@ const activeAlerts = [
             <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-display">
               {signal.value}
             </p>
-            <p class="font-mono text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">
+            <p class="font-mono text-[10px] text-slate-600 dark:text-slate-300 mt-0.5">
               Target: {signal.target}
             </p>
           </div>
@@ -183,7 +183,7 @@ const activeAlerts = [
 
         <!-- Left Column: Toolchain Pillars & Methodology -->
         <div class="space-y-4">
-          <p class="font-mono text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold">
+          <p class="font-mono text-xs uppercase tracking-wider text-slate-600 dark:text-slate-300 font-bold">
             Observability Stack Architecture
           </p>
 
@@ -214,11 +214,11 @@ const activeAlerts = [
         <!-- Right Column: Live Event Stream & Simulated Telemetry Feed -->
         <div class="space-y-4">
           <div class="flex items-center justify-between">
-            <p class="font-mono text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold flex items-center gap-1.5">
+            <p class="font-mono text-xs uppercase tracking-wider text-slate-600 dark:text-slate-300 font-bold flex items-center gap-1.5">
               <Radio size={14} class="text-cyan animate-pulse" />
               Live Operational Event Feed
             </p>
-            <span class="font-mono text-[10px] text-slate-500 dark:text-slate-400">
+            <span class="font-mono text-[10px] text-slate-600 dark:text-slate-300">
               Auto-synced from AWS &amp; Azure
             </span>
           </div>
@@ -267,7 +267,7 @@ const activeAlerts = [
               <p class="font-display font-bold text-xs sm:text-sm text-slate-900 dark:text-white">
                 Detailed Incident Triage &amp; SRE Runbooks
               </p>
-              <p class="text-[11px] text-slate-500 dark:text-slate-400">
+              <p class="text-[11px] text-slate-600 dark:text-slate-300">
                 Explore production RCA procedures, pod failure debugging, and cloud cutover scripts.
               </p>
             </div>

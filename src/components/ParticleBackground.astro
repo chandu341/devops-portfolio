@@ -28,25 +28,24 @@
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     const PALETTE_COLORS = {
-      'midnight-cloud': {
-        primary: { r: 103, g: 232, b: 249 },   // #67E8F9
-        secondary: { r: 52, g: 211, b: 153 },  // #34D399
-        lineAlpha: 0.06
-      },
-      'graphite-copper': {
-        primary: { r: 217, g: 136, b: 77 },   // #D9884D
-        secondary: { r: 111, g: 163, b: 196 }, // #6FA3C4
-        lineAlpha: 0.05
-      },
       'obsidian-violet': {
-        primary: { r: 155, g: 123, b: 240 },  // #9B7BF0
-        secondary: { r: 108, g: 140, b: 224 }, // #6C8CE0
+        colors: [
+          { r: 155, g: 123, b: 240 },  // Violet #9B7BF0
+          { r: 56, g: 189, b: 248 },   // Cyan #38BDF8
+          { r: 52, g: 211, b: 153 },   // Emerald #34D399
+          { r: 96, g: 165, b: 250 }    // Electric Blue #60A5FA
+        ],
+        lineColor: { r: 155, g: 123, b: 240 },
         lineAlpha: 0.05
       },
       'cloud-daylight': {
-        primary: { r: 2, g: 132, b: 199 },     // #0284C7
-        secondary: { r: 5, g: 150, b: 105 },   // #059669
-        lineAlpha: 0.04
+        colors: [
+          { r: 124, g: 58, b: 237 },   // Violet #7C3AED
+          { r: 2, g: 132, b: 199 },     // Cyan-Blue #0284C7
+          { r: 5, g: 150, b: 105 }     // Emerald #059669
+        ],
+        lineColor: { r: 2, g: 132, b: 199 },
+        lineAlpha: 0.05
       }
     };
 
@@ -59,14 +58,14 @@
 
       const theme = localStorage.getItem('theme') || document.documentElement.getAttribute('data-theme');
       if (theme === 'light') return 'cloud-daylight';
-      return 'midnight-cloud';
+      return 'obsidian-violet';
     }
 
-    let activeColors = PALETTE_COLORS[getCurrentPaletteKey()] || PALETTE_COLORS['midnight-cloud'];
+    let activeColors = PALETTE_COLORS[getCurrentPaletteKey()] || PALETTE_COLORS['obsidian-violet'];
 
     function updateColors() {
       const key = getCurrentPaletteKey();
-      activeColors = PALETTE_COLORS[key] || PALETTE_COLORS['midnight-cloud'];
+      activeColors = PALETTE_COLORS[key] || PALETTE_COLORS['obsidian-violet'];
     }
 
     window.addEventListener('palette-changed', function () {
@@ -167,7 +166,7 @@
 
         this.cycleDuration = (4 + Math.random() * 11) * 60; // in frames (~60fps)
         this.cycleProgress = Math.random() * this.cycleDuration;
-        this.isPrimary = Math.random() > 0.45;
+        this.colorIndex = Math.floor(Math.random() * 12);
       }
 
       update() {
@@ -189,7 +188,8 @@
       }
 
       draw(pX, pY) {
-        const c = this.isPrimary ? activeColors.primary : activeColors.secondary;
+        const colorList = activeColors.colors || [activeColors.primary, activeColors.secondary];
+        const c = colorList[this.colorIndex % colorList.length];
         const px = this.x + pX * this.parallaxMultiplier;
         const py = this.y + pY * this.parallaxMultiplier;
 
@@ -256,7 +256,7 @@
       // Connecting lines between nearby particles (max 1–2 connections per particle)
       const count = particles.length;
       const maxDistance = 95;
-      const lineC = activeColors.secondary;
+      const lineC = activeColors.lineColor || (activeColors.colors ? activeColors.colors[0] : activeColors.secondary);
 
       for (let i = 0; i < count; i++) {
         let connections = 0;
