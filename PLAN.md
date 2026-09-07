@@ -140,10 +140,10 @@
 - [ ] **Phase 5: Hero**
   - Crisp identity block, animated halo profile anchor, high-contrast CTAs, 7-stage DevOps pipeline flow visualization.
 
-- [ ] **Phase 6: About / Engineering Philosophy**
+- [x] **Phase 6: About / Engineering Philosophy**
   - Production-first mindset, reliability engineering principles, real career narrative.
 
-- [ ] **Phase 7: Experience**
+- [x] **Phase 7: Experience**
   - Interactive career timeline (GENPACT Honeywell/GE, MNP Technologies) with genuine highlights and tech badges.
 
 - [ ] **Phase 8: Skills**
