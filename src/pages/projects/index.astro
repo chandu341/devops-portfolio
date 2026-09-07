@@ -1,5 +1,5 @@
 ---
-import { ExternalLink } from '@lucide/astro';
+import { ExternalLink, Layers, Sparkles } from '@lucide/astro';
 import ArchitectureDiagram from '@/components/ArchitectureDiagram.astro';
 import Footer from '@/components/Footer.astro';
 import SiteHeader from '@/components/SiteHeader.astro';
@@ -8,53 +8,135 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import BackToTop from '@/components/BackToTop.astro';
 
 const statusMap: Record<string, { label: string; cls: string }> = {
-  'eks-microservices-gitops-observability': { label: 'deployed', cls: 'bg-mint/15 text-mint' },
-  'terraform-aws-cloud-migration': { label: 'production', cls: 'bg-cyan/15 text-cyan' },
-  'aks-elastic-stack-monitoring': { label: 'operational', cls: 'bg-violet/15 text-violet' }
+  'eks-microservices-gitops-observability': { label: 'deployed', cls: 'bg-mint/15 text-mint border-mint/30' },
+  'terraform-aws-cloud-migration': { label: 'production', cls: 'bg-cyan/15 text-cyan border-cyan/30' },
+  'aks-elastic-stack-monitoring': { label: 'operational', cls: 'bg-violet/15 text-violet border-violet/30' }
 };
+
+const filterTabs = [
+  { id: 'all', label: 'All Projects' },
+  { id: 'Kubernetes', label: 'Kubernetes & GitOps' },
+  { id: 'Cloud Migration', label: 'Cloud Migration' },
+  { id: 'Monitoring', label: 'Observability & SRE' }
+];
 ---
 
 <BaseLayout title={`Projects | ${profile.name} DevOps Portfolio`} description={`Resume-backed DevOps, cloud migration, Kubernetes, and observability project case studies by ${profile.name}.`}>
   <SiteHeader />
-  <main id="main-content" class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-    <section class="py-10">
-      <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-violet dark:text-violet">ls projects/</p>
-      <div class="mt-5 grid gap-8 lg:grid-cols-[0.86fr_1.14fr] lg:items-end">
-        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight text-slate-900 dark:text-white font-display">Selected engineering work</h1>
-        <p class="max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
-          Infrastructure, Kubernetes, automation, and reliability case studies based on production resume experience.
+  <main id="main-content" class="mx-auto max-w-7xl px-4 py-12 sm:py-16 sm:px-6 lg:px-8">
+
+    <!-- Hero / Archive Header -->
+    <section class="py-8 sm:py-10 reveal-up">
+      <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-violet dark:text-violet inline-flex items-center gap-2">
+        <span class="inline-block h-1.5 w-3 rounded-full bg-cyan" aria-hidden="true"></span>
+        ls projects/
+      </p>
+      <div class="mt-4 grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight text-slate-900 dark:text-white font-display">
+          Selected engineering work.
+        </h1>
+        <p class="max-w-2xl text-base sm:text-lg leading-relaxed text-slate-600 dark:text-slate-300">
+          Infrastructure as Code, Kubernetes GitOps platforms, automation, and high-reliability SRE case studies based on verified production experience.
         </p>
       </div>
-      <div class="mt-8 flex flex-wrap gap-2">
-        {['Infrastructure as Code', 'Kubernetes Platform', 'GitOps & CI/CD', 'Observability & SRE'].map((item) => (
-          <span class="rounded-full border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.04] px-4 py-1.5 text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 shadow-sm">{item}</span>
+
+      <!-- Filter Tabs -->
+      <div class="mt-8 flex flex-wrap gap-2" role="tablist" aria-label="Filter projects by category">
+        {filterTabs.map((tab, i) => (
+          <button
+            type="button"
+            class:list={[
+              "project-filter-btn rounded-full px-4 py-1.5 font-mono text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer",
+              i === 0
+                ? "bg-cyan text-slate-950 shadow-xs border border-cyan"
+                : "bg-white/80 dark:bg-white/[0.04] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10 hover:border-cyan/40 hover:text-cyan"
+            ]}
+            data-category={tab.id}
+            role="tab"
+            aria-selected={i === 0 ? "true" : "false"}
+          >
+            {tab.label}
+          </button>
         ))}
       </div>
     </section>
 
-    <section class="grid gap-7 py-8">
+    <!-- Project Cards Grid -->
+    <section class="grid gap-8 py-6" id="projects-grid">
       {projects.map((project, index) => {
-        const status = statusMap[project.slug] || { label: 'deployed', cls: 'bg-mint/15 text-mint' };
+        const status = statusMap[project.slug] || { label: 'deployed', cls: 'bg-mint/15 text-mint border-mint/30' };
         return (
-          <article class="grid gap-6 rounded-2xl sm:rounded-3xl p-6 lg:p-8 lg:grid-cols-[0.82fr_1.18fr] border border-slate-200 dark:border-white/[0.08] bg-white/90 dark:bg-panel2/80 shadow-md backdrop-blur-md">
-            <div>
-              <div class="flex items-center justify-between gap-3">
-                <p class="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">0{index + 1} | {project.category}</p>
-                <span class:list={['rounded-full px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.14em]', status.cls]}>{status.label}</span>
+          <article
+            class="project-archive-card grid gap-6 rounded-2xl sm:rounded-3xl p-6 lg:p-8 lg:grid-cols-[0.85fr_1.15fr] border border-slate-200 dark:border-white/[0.08] bg-white/90 dark:bg-panel2/80 shadow-md backdrop-blur-md transition hover:border-cyan/40"
+            data-category={project.category}
+          >
+            <!-- Left Info Pane -->
+            <div class="flex flex-col justify-between">
+              <div>
+                <!-- Top Row: ID, Category, Client, Status -->
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200/80 dark:border-white/[0.07] pb-3 mb-4">
+                  <div class="flex items-center gap-2">
+                    <p class="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+                      0{index + 1} | {project.category}
+                    </p>
+                    {project.client && (
+                      <span class="rounded bg-cyan/10 dark:bg-cyan/15 border border-cyan/30 px-2 py-0.5 font-mono text-[10px] font-bold text-cyan-800 dark:text-cyan-300">
+                        {project.client}
+                      </span>
+                    )}
+                  </div>
+                  <span class:list={['rounded-full px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] border', status.cls]}>
+                    {status.label}
+                  </span>
+                </div>
+
+                <!-- Title & Problem Statement -->
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display">
+                  {project.name}
+                </h2>
+                <p class="mt-3 leading-relaxed text-slate-600 dark:text-slate-300 text-sm sm:text-base">
+                  {project.problem}
+                </p>
+
+                <!-- Metrics Grid -->
+                <div class="mt-5 grid gap-2.5 sm:grid-cols-2">
+                  {project.metrics.map((metric) => (
+                    <div class="rounded-xl border border-slate-200 dark:border-white/5 bg-slate-50/90 dark:bg-ink/50 p-3 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2">
+                      <Sparkles size={14} class="text-cyan flex-shrink-0" />
+                      <span>{metric}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <h2 class="mt-4 text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display">{project.name}</h2>
-              <p class="mt-3 leading-relaxed text-slate-600 dark:text-slate-300 text-sm sm:text-base">{project.problem}</p>
-              <div class="mt-6 grid gap-3 sm:grid-cols-2">
-                {project.metrics.map((metric) => (
-                  <div class="rounded-xl border border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-ink/50 p-3.5 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">{metric}</div>
-                ))}
+
+              <!-- Bottom Stack & Action Link -->
+              <div class="mt-6 pt-4 border-t border-slate-200/80 dark:border-white/[0.07] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div class="flex flex-wrap gap-1.5">
+                  {project.stack.slice(0, 4).map((tech) => (
+                    <span class="rounded-md bg-slate-100 dark:bg-white/[0.04] border border-slate-200 dark:border-white/5 px-2 py-0.5 text-[10px] font-mono text-slate-600 dark:text-slate-400">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <a
+                  href={`/projects/${project.slug}`}
+                  class="inline-flex items-center gap-2 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-ink px-4 py-2.5 text-xs sm:text-sm font-semibold transition hover:-translate-y-0.5 shadow-sm self-start sm:self-auto"
+                >
+                  <span>Read full case study</span>
+                  <ExternalLink size={15} />
+                </a>
               </div>
-              <p class="mt-6 font-mono text-xs text-slate-500 dark:text-slate-400">{project.stack.join(' · ')}</p>
-              <a href={`/projects/${project.slug}`} class="mt-6 inline-flex items-center gap-2 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-ink px-5 py-3 text-sm font-semibold transition hover:-translate-y-0.5 shadow-sm">
-                Read case study <ExternalLink size={16} />
-              </a>
             </div>
-            <div class="rounded-xl sm:rounded-2xl p-4 bg-slate-950 text-white overflow-hidden shadow-inner flex flex-col justify-center">
+
+            <!-- Right Architecture Pane -->
+            <div class="rounded-xl sm:rounded-2xl p-4 bg-slate-950 text-white overflow-hidden shadow-inner border border-white/10 flex flex-col justify-center">
+              <div class="flex items-center justify-between mb-3 border-b border-white/10 pb-2">
+                <span class="font-mono text-[10px] text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <Layers size={12} class="text-cyan" />
+                  Architecture Flow
+                </span>
+                <span class="font-mono text-[9px] text-cyan">{project.client} Workload</span>
+              </div>
               <ArchitectureDiagram groups={project.architecture} />
             </div>
           </article>
@@ -65,3 +147,37 @@ const statusMap: Record<string, { label: string; cls: string }> = {
   <BackToTop />
   <Footer />
 </BaseLayout>
+
+<script is:inline>
+  (function initProjectFilters() {
+    var buttons = document.querySelectorAll('.project-filter-btn');
+    var cards = document.querySelectorAll('.project-archive-card');
+
+    if (!buttons.length || !cards.length) return;
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var category = btn.getAttribute('data-category');
+
+        buttons.forEach(function (b) {
+          b.setAttribute('aria-selected', 'false');
+          b.classList.remove('bg-cyan', 'text-slate-950', 'border-cyan', 'shadow-xs');
+          b.classList.add('bg-white/80', 'dark:bg-white/[0.04]', 'text-slate-700', 'dark:text-slate-300', 'border-slate-200', 'dark:border-white/10');
+        });
+
+        btn.setAttribute('aria-selected', 'true');
+        btn.classList.add('bg-cyan', 'text-slate-950', 'border-cyan', 'shadow-xs');
+        btn.classList.remove('bg-white/80', 'dark:bg-white/[0.04]', 'text-slate-700', 'dark:text-slate-300', 'border-slate-200', 'dark:border-white/10');
+
+        cards.forEach(function (card) {
+          var cardCat = card.getAttribute('data-category') || '';
+          if (category === 'all' || cardCat.toLowerCase().indexOf(category.toLowerCase()) !== -1) {
+            card.style.display = 'grid';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  })();
+</script>
