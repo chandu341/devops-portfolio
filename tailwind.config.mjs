@@ -5,6 +5,27 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Design System Semantic Tokens (CSS variables)
+        background: 'var(--background)',
+        surface: 'var(--surface)',
+        'surface-elevated': 'var(--surface-elevated)',
+        'border-token': 'var(--border)',
+        'border-subtle': 'var(--border-subtle)',
+        'text-primary': 'var(--text-primary)',
+        'text-secondary': 'var(--text-secondary)',
+        'text-muted': 'var(--text-muted)',
+        primary: 'var(--primary)',
+        'primary-glow': 'var(--primary-glow)',
+        secondary: 'var(--secondary)',
+        'secondary-glow': 'var(--secondary-glow)',
+        success: 'var(--success)',
+        'success-glow': 'var(--success-glow)',
+        warning: 'var(--warning)',
+        danger: 'var(--danger)',
+        'chart-primary': 'var(--chart-primary)',
+        'chart-secondary': 'var(--chart-secondary)',
+
+        // Command Center Dark/Light Theme Palette
         ink: '#080B10',
         panel: '#0E131A',
         panel2: '#121922',
@@ -18,6 +39,17 @@ export default {
         mint: '#059669',
         'mint-glow': '#34D399',
         muted: '#64748B'
+      },
+      borderRadius: {
+        'token-sm': 'var(--radius-sm)',
+        'token-md': 'var(--radius-md)',
+        'token-lg': 'var(--radius-lg)',
+        'token-xl': 'var(--radius-xl)'
+      },
+      transitionDuration: {
+        fast: '150ms',
+        normal: '250ms',
+        slow: '400ms'
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'sans-serif'],
