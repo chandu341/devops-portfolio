@@ -9,25 +9,25 @@ const { groups } = Astro.props;
 <div class="architecture-flow" style={`--cols: ${groups.length || 4}`}>
   {groups.map((group, index) => (
     <div class="architecture-group group/card transition-all duration-300 hover:border-cyan/40">
-      <div class="flex items-center justify-between gap-2 border-b border-slate-200/80 dark:border-white/[0.08] pb-2.5 mb-3">
-        <p class="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-cyan font-bold flex items-center gap-1.5">
-          <span class="h-1.5 w-1.5 rounded-full bg-cyan animate-pulse"></span>
-          {group.group}
+      <div class="flex items-center justify-between gap-1.5 border-b border-slate-200/80 dark:border-white/[0.08] pb-2 mb-2.5">
+        <p class="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.14em] text-cyan font-bold flex items-center gap-1.5 min-w-0">
+          <span class="h-1.5 w-1.5 rounded-full bg-cyan animate-pulse flex-shrink-0"></span>
+          <span class="truncate" title={group.group}>{group.group}</span>
         </p>
-        <span class="font-mono text-[9px] text-slate-500 dark:text-slate-400">Tier 0{index + 1}</span>
+        <span class="font-mono text-[9px] text-slate-400 dark:text-slate-500 flex-shrink-0">T0{index + 1}</span>
       </div>
 
-      <div class="grid gap-2">
+      <div class="grid gap-1.5">
         {group.nodes.map((node) => (
-          <div class="rounded-xl border border-slate-200/90 dark:border-white/10 bg-slate-50/80 dark:bg-white/[0.04] px-3 py-2 text-xs sm:text-sm font-mono text-slate-800 dark:text-slate-200 transition-colors duration-200 hover:bg-slate-100 dark:hover:bg-white/[0.08] hover:border-cyan/30 flex items-center justify-between gap-2">
-            <span class="truncate">{node}</span>
-            <span class="h-1 w-1 rounded-full bg-mint/70 flex-shrink-0" title="Active node"></span>
+          <div class="rounded-lg border border-slate-200/90 dark:border-white/10 bg-slate-50/80 dark:bg-white/[0.04] px-2.5 py-1.5 text-[11px] sm:text-xs font-mono text-slate-800 dark:text-slate-200 transition-colors duration-200 hover:bg-slate-100 dark:hover:bg-white/[0.08] hover:border-cyan/30 flex items-center justify-between gap-1.5 min-w-0">
+            <span class="leading-snug break-words min-w-0 flex-1">{node}</span>
+            <span class="h-1 w-1 rounded-full bg-mint/80 flex-shrink-0 ml-1" title="Active node"></span>
           </div>
         ))}
       </div>
 
       {index < groups.length - 1 && (
-        <span class="architecture-connector" aria-hidden="true">
+        <span class="architecture-connector hidden md:block" aria-hidden="true">
           <span class="connector-pulse"></span>
         </span>
       )}
@@ -38,19 +38,31 @@ const { groups } = Astro.props;
 <style>
   .architecture-flow {
     display: grid;
-    grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr));
-    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.875rem;
     position: relative;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  @media (min-width: 768px) {
+    .architecture-flow {
+      grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr));
+      gap: 1.25rem;
+    }
   }
 
   .architecture-group {
     position: relative;
-    border-radius: 18px;
+    border-radius: 14px;
     border: 1px solid var(--border);
     background: var(--surface);
-    padding: 1rem 1.15rem;
-    min-height: 100%;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    padding: 0.85rem 0.95rem;
+    min-width: 0;
+    box-sizing: border-box;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
   }
 
   :global(.dark) .architecture-group {
@@ -120,54 +132,6 @@ const { groups } = Astro.props;
     }
     100% {
       left: 100%;
-      opacity: 0;
-    }
-  }
-
-  @media (max-width: 900px) {
-    .architecture-flow {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-
-    .architecture-connector {
-      left: 50%;
-      right: auto;
-      top: auto;
-      bottom: -1.5rem;
-      width: 2px;
-      height: 1.5rem;
-      transform: translateX(-50%);
-    }
-
-    .connector-pulse {
-      top: 0;
-      left: -2px;
-      animation: connectorTravelVertical 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-    }
-
-    .architecture-connector::after {
-      right: auto;
-      left: -3px;
-      top: auto;
-      bottom: -1px;
-      transform: rotate(135deg);
-    }
-  }
-
-  @keyframes connectorTravelVertical {
-    0% {
-      top: 0;
-      opacity: 0;
-    }
-    20% {
-      opacity: 1;
-    }
-    80% {
-      opacity: 1;
-    }
-    100% {
-      top: 100%;
       opacity: 0;
     }
   }

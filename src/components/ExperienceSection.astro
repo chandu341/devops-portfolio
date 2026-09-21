@@ -3,13 +3,13 @@ import { Building2, Calendar, CircleCheck, GitCommitVertical, GitPullRequest, Ma
 import { experiences } from '@/data/profile';
 
 const releaseTags = [
-  { commit: '7f9a2d1', tag: 'release/v2.4-honeywell', branch: 'main (HEAD)' },
-  { commit: '4c8e1b3', tag: 'release/v2.0-ge-migration', branch: 'releases/prod' },
-  { commit: '1a5f9c0', tag: 'release/v1.0-trainee-foundations', branch: 'releases/archive' }
+  { commit: '7f9a2d1', tag: 'GENPACT / Honeywell', branch: 'Current' },
+  { commit: '4c8e1b3', tag: 'GENPACT / GE', branch: 'Previous' },
+  { commit: '1a5f9c0', tag: 'MNP Technologies', branch: 'Foundations' }
 ];
 ---
 
-<section id="experience" class="section-pad border-t border-slate-200 dark:border-white/[0.07] bg-slate-100/60 dark:bg-white/[0.02]" aria-label="Career experience and deployment history">
+<section id="experience" class="section-pad border-t border-slate-200 dark:border-white/[0.07] bg-slate-100/60 dark:bg-white/[0.02]" aria-label="Professional Work Experience">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full min-w-0 box-border">
 
     <!-- Section Header -->
@@ -17,10 +17,10 @@ const releaseTags = [
       <div>
         <p class="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-violet dark:text-violet inline-flex items-center gap-2">
           <span class="inline-block h-1.5 w-3 rounded-full bg-cyan" aria-hidden="true"></span>
-          04 — git log --career
+          Career Track
         </p>
         <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 dark:text-white font-display">
-          Deployment history &amp; career log.
+          Work Experience
         </h2>
         <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl font-normal">
           5+ years of verified production cloud operations, Kubernetes platform delivery, and automated infrastructure across enterprise environments.
@@ -34,7 +34,7 @@ const releaseTags = [
         </div>
         <div class="text-left pr-2">
           <p class="font-mono text-[9px] uppercase tracking-wider text-slate-600 dark:text-slate-300 font-bold">Total Experience</p>
-          <p class="font-mono text-xs font-bold text-slate-900 dark:text-white">5+ Years Verified</p>
+          <p class="font-mono text-xs font-bold text-slate-900 dark:text-white">5+ Years Enterprise</p>
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@ const releaseTags = [
     <div class="career-timeline">
       {experiences.map((job, index) => {
         const isCurrent = index === 0;
-        const release = releaseTags[index] || { commit: '0000000', tag: `release/v${index}`, branch: 'main' };
+        const release = releaseTags[index] || { commit: '0000000', tag: job.company, branch: 'History' };
 
         return (
           <article class="career-timeline__item reveal-up" style={`animation-delay:${index * 80}ms`}>
@@ -58,21 +58,17 @@ const releaseTags = [
                 : "border-slate-200 dark:border-white/[0.08] shadow-sm bg-white/90 dark:bg-panel"
             ]}>
 
-              <!-- Top Row: Git Release Meta & Deployment Status Badge -->
+              <!-- Top Row: Role Meta & Status Badge -->
               <div class="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between border-b border-slate-200/80 dark:border-white/[0.07] pb-4 mb-5">
                 <div class="flex flex-wrap items-center gap-2 sm:gap-3">
-                  <!-- Commit SHA -->
+                  <!-- Tag / Milestone -->
                   <span class="inline-flex items-center gap-1 font-mono text-[10px] sm:text-[11px] font-semibold text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-white/[0.05] px-2 py-0.5 rounded border border-slate-200 dark:border-white/10">
                     <GitCommitVertical size={12} class="text-cyan" />
-                    {release.commit}
+                    Milestone 0{index + 1}
                   </span>
-                  <!-- Release Tag -->
+                  <!-- Org Tag -->
                   <span class="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-[0.16em] text-cyan">
                     {release.tag}
-                  </span>
-                  <!-- Branch -->
-                  <span class="hidden sm:inline-block font-mono text-[10px] text-slate-600 dark:text-slate-300">
-                    on {release.branch}
                   </span>
                 </div>
 
@@ -83,12 +79,12 @@ const releaseTags = [
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-mint opacity-75"></span>
                       <span class="relative inline-flex rounded-full h-2 w-2 bg-mint"></span>
                     </span>
-                    Active Production Deployment
+                    Current Role
                   </span>
                 ) : (
                   <span class="self-start sm:self-auto inline-flex items-center gap-1.5 rounded-full border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/[0.04] px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-600 dark:text-slate-300">
                     <span class="h-1.5 w-1.5 rounded-full bg-slate-400 dark:bg-slate-500"></span>
-                    Archived Deployment
+                    Prior Role
                   </span>
                 )}
               </div>

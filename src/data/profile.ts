@@ -1,6 +1,6 @@
 export const profile = {
   name: 'Chandu Venna',
-  title: 'DevOps & Cloud Engineer',
+  title: 'DevOps | Cloud | SRE Engineer',
   tagline: 'I build resilient cloud systems and automate the paths that keep production running — so incidents stay rare and recovery stays fast.',
   location: 'Bengaluru, India',
   experience: '5+ years',
@@ -12,7 +12,7 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/im-chanduvenna/',
   github: 'https://github.com/chandu341',
   resume: '/resume.pdf',
-  availability: 'Available for DevOps, Cloud & SRE Roles',
+  availability: 'Available for DevOps | Cloud | SRE Roles',
   summary:
     'DevOps Engineer with 5+ years of experience in creating and managing cloud-based infrastructures and CI/CD pipelines in AWS and Azure environments. Experienced in deploying containerized applications on various Kubernetes-based platforms, such as Amazon EKS and Azure AKS. Knowledgeable in using Infrastructure as Code tools, such as Terraform, and CI/CD tools, like Jenkins and GitHub Actions, in addition to GitOps using Argo CD. Experienced in using various DevSecOps tools, such as Prometheus, Grafana, Elastic Stack, and Catchpoint, in monitoring and log analysis.'
 };
@@ -32,10 +32,8 @@ export const stackYaml = {
 
 export const navItems = [
   { label: 'Home', href: '/#top' },
-  { label: 'About', href: '/#about' },
   { label: 'Experience', href: '/#experience' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'Playbooks', href: '/engineering' },
+  { label: 'Projects', href: '/#projects' },
   { label: 'Skills', href: '/#skills' },
   { label: 'Certifications', href: '/#credentials' },
   { label: 'Contact', href: '/#contact' }

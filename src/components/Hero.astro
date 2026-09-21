@@ -1,11 +1,9 @@
 ---
 import {
-  ArrowRight,
   BriefcaseBusiness,
   CodeXml,
   Download,
   Layers,
-  Mail,
   MapPin,
   ShieldCheck,
   Sparkles
@@ -188,7 +186,7 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-mint opacity-75"></span>
               <span class="relative inline-flex rounded-full h-2 w-2 bg-mint"></span>
             </span>
-            <span>Available for DevOps, Cloud &amp; SRE Roles</span>
+            <span>Available for DevOps | Cloud | SRE Roles</span>
           </span>
 
           <span class="inline-flex items-center gap-1.5 font-mono text-[11px] text-slate-600 dark:text-slate-300">
@@ -229,41 +227,31 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
               </div>
             </div>
 
-            <!-- Typographic Name & Eyebrow Category -->
-            <div class="space-y-1 min-w-0 flex-1">
-              <span class="block font-mono text-[11px] sm:text-xs uppercase tracking-[0.22em] text-cyan font-bold">
-                Engineering Portfolio
-              </span>
-              <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.4rem] font-black tracking-tight font-display leading-[1.05] text-slate-900 dark:text-white" aria-label="Chandu Venna">
-                <span class="inline sm:block">Chandu</span>{' '}
-                <span class="inline-flex items-baseline min-w-[5.8ch]" aria-hidden="true">
-                  <span id="hero-venna-typing" class="venna-typing-root">
-                    <span class="venna-char venna-char-1">V</span>
-                    <span class="venna-char venna-char-2">E</span>
-                    <span class="venna-char venna-char-3">N</span>
-                    <span class="venna-char venna-char-4">N</span>
-                    <span class="venna-char venna-char-5">A</span>
-                  </span>
-                  <span class="hero-name-caret" aria-hidden="true"></span>
-                </span>
-                <span class="sr-only">Venna</span>
+            <!-- Typographic Name & Dynamic Animated Role -->
+            <div class="space-y-1.5 min-w-0 flex-1">
+              <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.2rem] font-black tracking-tight font-display leading-[1.1] text-slate-900 dark:text-white">
+                {profile.name}
               </h1>
-            </div>
-          </div>
 
-          <!-- Professional Designation Rule (Permanently static, no animation, zero rotation) -->
-          <div class="flex items-center gap-3 pt-1">
-            <div class="h-px w-14 rounded-full bg-gradient-to-r from-cyan to-violet"></div>
-            <p class="font-display text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-slate-800 dark:text-slate-100">
-              DevOps &amp; Cloud Engineer
-            </p>
+              <!-- Dynamic Role Title (Positioned cleanly after name) -->
+              <div class="flex items-center pt-0.5">
+                <div class="min-h-[32px] flex items-center">
+                  <p class="font-display text-base sm:text-xl lg:text-2xl font-bold tracking-tight text-slate-800 dark:text-slate-100 flex items-center">
+                    <span id="hero-role-typing" class="hero-role-text text-transparent bg-clip-text bg-gradient-to-r from-cyan via-violet to-mint">
+                      DevOps | Cloud | SRE Engineer
+                    </span>
+                    <span class="hero-role-caret inline-block ml-1.5 h-5 sm:h-6 w-0.5 bg-cyan animate-pulse" aria-hidden="true"></span>
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- 3. Value Proposition Statement -->
         <div class="hero-animate-in" style="animation-delay: 150ms;">
           <p class="text-base sm:text-[1.05rem] text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl">
-            Building reliable cloud infrastructure, Kubernetes platforms, and automated delivery systems across AWS and Azure.
+            Building resilient cloud infrastructure, Kubernetes platforms, and automated CI/CD &amp; GitOps pipelines across AWS and Azure environments.
           </p>
         </div>
 
@@ -271,7 +259,7 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
         <div class="hero-animate-in flex flex-wrap items-center gap-2 pt-1 font-mono text-xs" style="animation-delay: 200ms;">
           <span class="hero-proof-pill">
             <ShieldCheck size={13} class="text-cyan" />
-            <span>5+ Yrs Production Ops</span>
+            <span>5+ Yrs Enterprise Experience</span>
           </span>
           <span class="hero-proof-pill">
             <Layers size={13} class="text-violet" />
@@ -283,60 +271,42 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
           </span>
         </div>
 
-        <!-- 5. High-Contrast Primary & Secondary CTAs -->
-        <div class="hero-animate-in pt-1 flex flex-wrap items-center gap-3.5" style="animation-delay: 240ms;">
-          <!-- Primary CTA -->
-          <a
-            href="/projects"
-            class="hero-cta-primary group inline-flex items-center gap-2.5"
-          >
-            <span>Explore Case Studies</span>
-            <ArrowRight size={16} class="transition-transform duration-200 group-hover:translate-x-1" />
-          </a>
-
-          <!-- Secondary CTA -->
+        <!-- 5. Highlighted Action Buttons: Resume, LinkedIn, GitHub -->
+        <div class="hero-animate-in pt-2 flex flex-wrap items-center gap-3" style="animation-delay: 240ms;">
+          <!-- Resume Button (Prominent) -->
           <a
             href={profile.resume}
             target="_blank"
             rel="noopener noreferrer"
-            class="hero-cta-secondary inline-flex items-center gap-2"
+            class="hero-cta-btn hero-cta-resume inline-flex items-center gap-2"
+            aria-label="Download Resume"
           >
             <Download size={16} />
-            <span>Resume</span>
+            <span>Download Resume</span>
           </a>
-        </div>
 
-        <!-- 6. Social & Direct Contact Channels -->
-        <div class="hero-animate-in pt-1 flex items-center gap-4 text-xs font-medium text-slate-600 dark:text-slate-400" style="animation-delay: 290ms;">
-          <a
-            href={profile.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors duration-200"
-            aria-label="GitHub Profile"
-          >
-            <CodeXml size={16} class="text-slate-600 dark:text-slate-300" />
-            <span>GitHub</span>
-          </a>
-          <span class="text-slate-200 dark:text-slate-700">/</span>
+          <!-- LinkedIn Button (Prominent) -->
           <a
             href={profile.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            class="flex items-center gap-1.5 hover:text-violet transition-colors duration-200"
+            class="hero-cta-btn hero-cta-linkedin inline-flex items-center gap-2"
             aria-label="LinkedIn Profile"
           >
-            <BriefcaseBusiness size={16} class="text-slate-600 dark:text-slate-300" />
+            <BriefcaseBusiness size={16} />
             <span>LinkedIn</span>
           </a>
-          <span class="text-slate-200 dark:text-slate-700">/</span>
+
+          <!-- GitHub Button (Prominent) -->
           <a
-            href={`mailto:${profile.email}`}
-            class="flex items-center gap-1.5 hover:text-cyan transition-colors duration-200"
-            aria-label="Send Email"
+            href={profile.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hero-cta-btn hero-cta-github inline-flex items-center gap-2"
+            aria-label="GitHub Profile"
           >
-            <Mail size={16} class="text-slate-600 dark:text-slate-300" />
-            <span>Email</span>
+            <CodeXml size={16} />
+            <span>GitHub</span>
           </a>
         </div>
 
@@ -854,16 +824,6 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
   }
 
   /* ============================================================ */
-  /* NAME GRADIENT                                                 */
-  /* ============================================================ */
-  .hero-name-gradient {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--text-primary) 50%, var(--secondary) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* ============================================================ */
   /* PROOF PILLS                                                   */
   /* ============================================================ */
   .hero-proof-pill {
@@ -891,72 +851,84 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
   }
 
   /* ============================================================ */
-  /* CTA BUTTONS                                                   */
+  /* PROMINENT ACTION CTA BUTTONS                                 */
   /* ============================================================ */
-  .hero-cta-primary {
+  .hero-cta-btn {
     border-radius: 12px;
-    background: var(--primary);
-    color: #FFFFFF;
-    padding: 14px 24px;
-    font-size: 0.9rem;
+    padding: 12px 20px;
+    font-size: 0.88rem;
     font-weight: 700;
-    box-shadow: 0 4px 14px var(--primary-glow);
-    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border-color 0.15s ease;
   }
 
-  .hero-cta-primary:hover {
-    transform: translateY(-1px) scale(1.015);
+  .hero-cta-btn:active {
+    transform: scale(0.97);
+  }
+
+  /* 1. Resume Primary CTA */
+  .hero-cta-resume {
+    background: var(--primary);
+    color: #FFFFFF;
+    box-shadow: 0 4px 14px var(--primary-glow);
+    border: 1px solid var(--primary);
+  }
+
+  .hero-cta-resume:hover {
+    transform: translateY(-2px);
     box-shadow: 0 8px 24px var(--primary-glow);
   }
 
-  .hero-cta-primary:active {
-    transform: scale(0.98);
-  }
-
-  :global(.dark) .hero-cta-primary {
+  :global(.dark) .hero-cta-resume {
     background: var(--primary);
     color: #0B0B10;
     box-shadow: 0 4px 14px var(--primary-glow);
   }
 
-  :global(.dark) .hero-cta-primary:hover {
+  :global(.dark) .hero-cta-resume:hover {
     box-shadow: 0 8px 28px var(--primary-glow);
   }
 
-  .hero-cta-secondary {
-    border-radius: 12px;
-    border: 1px solid #0F172A;
+  /* 2. LinkedIn Button */
+  .hero-cta-linkedin {
+    background: #0A66C2;
+    color: #FFFFFF;
+    border: 1px solid #0A66C2;
+    box-shadow: 0 4px 14px rgba(10, 102, 194, 0.25);
+  }
+
+  .hero-cta-linkedin:hover {
+    background: #004182;
+    border-color: #004182;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(10, 102, 194, 0.4);
+  }
+
+  /* 3. GitHub Button */
+  .hero-cta-github {
     background: #0F172A;
     color: #FFFFFF;
-    padding: 14px 20px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    transition: transform 0.15s ease, border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    border: 1px solid #0F172A;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
   }
 
-  .hero-cta-secondary:hover {
+  .hero-cta-github:hover {
     background: #1E293B;
     border-color: #1E293B;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.25);
   }
 
-  .hero-cta-secondary:active {
-    transform: scale(0.98);
-  }
-
-  :global(.dark) .hero-cta-secondary {
-    border-color: rgba(255, 255, 255, 0.2);
-    background: #FFFFFF;
-    color: #0B0B10;
+  :global(.dark) .hero-cta-github {
+    background: #1E1D2A;
+    color: #FFFFFF;
+    border-color: rgba(255, 255, 255, 0.15);
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
   }
 
-  :global(.dark) .hero-cta-secondary:hover {
-    background: #F1F5F9;
-    border-color: #FFFFFF;
-    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
+  :global(.dark) .hero-cta-github:hover {
+    background: #2D2B3D;
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
   }
 
   /* ============================================================ */
@@ -977,7 +949,7 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
   }
 
   /* ============================================================ */
-  /* PROFILE PHOTO HALO (always-visible subtle breathing glow)    */
+  /* PROFILE PHOTO HALO                                           */
   /* ============================================================ */
   @keyframes profileHaloPulse {
     0%, 100% {
@@ -1059,10 +1031,6 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
       0 0 0 1.5px var(--stage-accent);
   }
 
-  /* ============================================================ */
-  /* SEQUENTIAL PULSE (node activation synced with signal)        */
-  /* ============================================================ */
-
   /* Light mode pulse */
   @keyframes stageSequentialPulse {
     0%, 18%, 100% {
@@ -1113,9 +1081,7 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
     }
   }
 
-  /* ============================================================ */
-  /* NODE PULSE RING (sequential activation ring around node)     */
-  /* ============================================================ */
+  /* NODE PULSE RING */
   @keyframes nodeActivationRing {
     0%, 18%, 100% {
       opacity: 0;
@@ -1141,9 +1107,7 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
     opacity: 0;
   }
 
-  /* ============================================================ */
-  /* MOBILE PIPELINE ANIMATIONS                                   */
-  /* ============================================================ */
+  /* MOBILE PIPELINE ANIMATIONS */
   @keyframes mobileSpineFlow {
     0% {
       transform: translateY(-100%);
@@ -1201,16 +1165,10 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
     animation: mobileAnchorPulseRing 8.4s ease-out infinite;
   }
 
-  /* ============================================================ */
-  /* SIGNAL PARTICLE VISIBILITY                                    */
-  /* ============================================================ */
   .pipeline-signal-particle {
     opacity: 1;
   }
 
-  /* ============================================================ */
-  /* ACCESSIBILITY: PREFERS REDUCED MOTION                         */
-  /* ============================================================ */
   @media (prefers-reduced-motion: reduce) {
     .hero-animate-in {
       animation: none !important;
@@ -1218,110 +1176,86 @@ const desktopCircuitPath = 'M 95 75 L 320 75 L 545 75 C 625 75, 625 255, 545 255
       transform: none !important;
     }
 
-    .pipeline-circuit-flow {
-      animation: none !important;
-    }
-
-    .pipeline-stage-capsule {
-      animation: none !important;
-    }
-
-    .pipeline-node-pulse-ring {
-      animation: none !important;
-      opacity: 0 !important;
-    }
-
-    .pipeline-signal-particle {
-      display: none !important;
-    }
-
-    .hero-profile-halo {
-      animation: none !important;
-    }
-
-    .mobile-spine-beam {
-      animation: none !important;
-      display: none !important;
-    }
-
+    .pipeline-circuit-flow,
+    .pipeline-stage-capsule,
+    .hero-profile-halo,
     .mobile-stage-card {
       animation: none !important;
     }
 
+    .pipeline-node-pulse-ring,
+    .pipeline-signal-particle,
+    .mobile-spine-beam,
     .mobile-anchor-pulse {
-      animation: none !important;
       display: none !important;
     }
+  }
+
+  /* Moving arising animation for the role headline */
+  @keyframes roleArise {
+    0% {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero-role-arise {
+    display: inline-block;
+    animation: roleArise 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 </style>
 
 <script is:inline>
-  (function () {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const container = document.getElementById('hero-venna-typing');
-    if (!container) return;
+  (function initRoleTypewriter() {
+    var roleEl = document.getElementById('hero-role-typing');
+    if (!roleEl) return;
 
-    const letters = [
-      { char: 'V', cls: 'venna-char-1' },
-      { char: 'E', cls: 'venna-char-2' },
-      { char: 'N', cls: 'venna-char-3' },
-      { char: 'N', cls: 'venna-char-4' },
-      { char: 'A', cls: 'venna-char-5' }
-    ];
+    var targetText = 'DevOps | Cloud | SRE Engineer';
+    roleEl.textContent = targetText;
+    roleEl.classList.add('hero-role-arise');
 
-    function renderLetters(count) {
-      container.innerHTML = letters
-        .slice(0, count)
-        .map(function (l) {
-          return '<span class="venna-char ' + l.cls + '">' + l.char + '</span>';
-        })
-        .join('');
-    }
-
-    if (prefersReducedMotion.matches) {
-      renderLetters(letters.length);
+    // If user prefers reduced motion, keep static text
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return;
     }
 
-    let currentIndex = letters.length;
-    let isDeleting = true;
-    let timer = null;
+    var isDeleting = false;
+    var charIndex = targetText.length;
 
-    function step() {
+    function typeLoop() {
       if (isDeleting) {
-        currentIndex--;
-        renderLetters(currentIndex);
-
-        if (currentIndex === 0) {
+        charIndex--;
+        roleEl.textContent = targetText.substring(0, charIndex);
+        if (charIndex === 0) {
           isDeleting = false;
-          timer = setTimeout(step, 450);
-        } else {
-          timer = setTimeout(step, 90);
+          roleEl.classList.remove('hero-role-arise');
+          setTimeout(function () {
+            roleEl.classList.add('hero-role-arise');
+            typeLoop();
+          }, 450);
+          return;
         }
+        setTimeout(typeLoop, 35);
       } else {
-        currentIndex++;
-        renderLetters(currentIndex);
-
-        if (currentIndex === letters.length) {
+        charIndex++;
+        roleEl.textContent = targetText.substring(0, charIndex);
+        if (charIndex === targetText.length) {
           isDeleting = true;
-          timer = setTimeout(step, 2000);
-        } else {
-          timer = setTimeout(step, 140);
+          setTimeout(typeLoop, 3500);
+          return;
         }
+        setTimeout(typeLoop, 65);
       }
     }
 
-    timer = setTimeout(step, 2200);
-
-    prefersReducedMotion.addEventListener('change', function (e) {
-      if (e.matches) {
-        if (timer) clearTimeout(timer);
-        renderLetters(letters.length);
-      } else {
-        currentIndex = letters.length;
-        isDeleting = true;
-        timer = setTimeout(step, 2000);
-      }
-    });
+    // Start typewriter loop after initial reading pause
+    setTimeout(function () {
+      isDeleting = true;
+      typeLoop();
+    }, 3500);
   })();
 </script>

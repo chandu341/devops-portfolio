@@ -2,12 +2,9 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SiteHeader from '@/components/SiteHeader.astro';
 import Hero from '@/components/Hero.astro';
-import AboutSection from '@/components/AboutSection.astro';
 import ExperienceSection from '@/components/ExperienceSection.astro';
 import ProjectsSection from '@/components/ProjectsSection.astro';
 import SkillsSection from '@/components/SkillsSection.astro';
-import ObservabilitySection from '@/components/ObservabilitySection.astro';
-import InfrastructureSection from '@/components/InfrastructureSection.astro';
 import CredentialsSection from '@/components/CredentialsSection.astro';
 import ContactSection from '@/components/ContactSection.astro';
 import FloatingContact from '@/components/FloatingContact.astro';
@@ -28,10 +25,10 @@ import { impactMetrics } from '@/data/profile';
         <div class="mb-6 sm:mb-8 reveal-up">
           <p class="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-violet dark:text-violet inline-flex items-center gap-2">
             <span class="inline-block h-1 w-2.5 rounded-full bg-cyan" aria-hidden="true"></span>
-            02 — git diff --stat
+            Production Impact &amp; Metrics
           </p>
           <h2 class="mt-2.5 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 dark:text-white font-display">
-            The career, diffed.
+            Quantifiable engineering impact.
           </h2>
         </div>
         <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 xl:grid-cols-6">
@@ -48,28 +45,19 @@ import { impactMetrics } from '@/data/profile';
       </div>
     </section>
 
-    <!-- 03 — WHOAMI / Philosophy & Engineering Principles -->
-    <AboutSection />
-
-    <!-- 04 — EXPERIENCE / Career Deployment History -->
+    <!-- 03 — WORK EXPERIENCE / Professional Career History -->
     <ExperienceSection />
 
-    <!-- 05 — PROJECTS & ARCHITECTURE CASE STUDIES -->
+    <!-- 04 — PROJECTS & ARCHITECTURE CASE STUDIES -->
     <ProjectsSection />
 
-    <!-- 06 — VISUAL SKILLS & TOOLCHAIN ECOSYSTEM -->
+    <!-- 05 — VISUAL SKILLS & TOOLCHAIN ECOSYSTEM -->
     <SkillsSection />
 
-    <!-- 07 — SRE & OBSERVABILITY TELEMETRY COMMAND CENTER -->
-    <ObservabilitySection />
-
-    <!-- 08 — CLOUD INFRASTRUCTURE TOPOLOGY -->
-    <InfrastructureSection />
-
-    <!-- 09 — CREDENTIALS, CERTIFICATIONS & RECOGNITION -->
+    <!-- 06 — CREDENTIALS, CERTIFICATIONS & RECOGNITION -->
     <CredentialsSection />
 
-    <!-- 10 — FUNCTIONAL CONTACT SECTION WITH DIRECT CHANNELS -->
+    <!-- 07 — CONTACT & DIRECT CHANNELS -->
     <ContactSection />
   </main>
 

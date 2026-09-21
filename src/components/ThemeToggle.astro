@@ -19,14 +19,14 @@ const { class: className = '', id = 'theme-toggle-btn' } = Astro.props;
   aria-label="Toggle dark and light theme"
   title="Toggle dark / light theme"
 >
-  <!-- Moon Icon (Visible in Light mode to switch to Dark) -->
-  <span class="theme-icon-moon-wrap flex items-center justify-center transition-all duration-300 dark:opacity-0 dark:scale-0 dark:rotate-90 opacity-100 scale-100 rotate-0">
-    <Moon size={17} class="text-slate-800 transition-transform duration-300 hover:-rotate-12" />
+  <!-- Sun Icon (Visible in Light mode) -->
+  <span class="theme-icon-sun-wrap flex items-center justify-center transition-all duration-300 dark:opacity-0 dark:scale-0 dark:rotate-90 opacity-100 scale-100 rotate-0">
+    <Sun size={17} class="text-amber-500 transition-transform duration-300 hover:rotate-45" />
   </span>
 
-  <!-- Sun Icon (Visible in Dark mode to switch to Light) -->
-  <span class="theme-icon-sun-wrap absolute flex items-center justify-center transition-all duration-300 opacity-0 scale-0 -rotate-90 dark:opacity-100 dark:scale-100 dark:rotate-0">
-    <Sun size={17} class="text-amber-300 transition-transform duration-300 hover:rotate-45" />
+  <!-- Moon Icon (Visible in Dark mode) -->
+  <span class="theme-icon-moon-wrap absolute flex items-center justify-center transition-all duration-300 opacity-0 scale-0 -rotate-90 dark:opacity-100 dark:scale-100 dark:rotate-0">
+    <Moon size={17} class="text-cyan-300 transition-transform duration-300 hover:-rotate-12" />
   </span>
 </button>
 

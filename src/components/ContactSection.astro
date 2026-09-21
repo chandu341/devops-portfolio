@@ -1,12 +1,15 @@
 ---
-import { 
-  BriefcaseBusiness, 
-  Copy, 
-  Mail, 
-  MessageCircle, 
-  MessageSquare, 
-  Phone, 
-  Send 
+import {
+  ArrowUpRight,
+  BriefcaseBusiness,
+  Check,
+  Copy,
+  Download,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Phone,
+  Sparkles
 } from '@lucide/astro';
 import { profile } from '@/data/profile';
 
@@ -17,279 +20,168 @@ interface Props {
 const { class: className = '' } = Astro.props;
 ---
 
-<section id="contact" class:list={["section-pad relative overflow-hidden", className]} aria-label="Contact Section">
-  <!-- Subtle Ambient Glow -->
+<section id="contact" class:list={["section-pad scroll-mt-16 sm:scroll-mt-20 relative overflow-hidden border-t border-slate-200 dark:border-white/[0.07] bg-slate-50/60 dark:bg-ink", className]} aria-label="Contact and Communication">
+  <!-- Ambient Glow -->
   <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-    <div class="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full bg-cyan/[0.06] dark:bg-cyan/[0.08] blur-[120px]"></div>
-    <div class="absolute top-1/3 left-10 h-[350px] w-[350px] rounded-full bg-violet/[0.05] dark:bg-violet/[0.07] blur-[100px]"></div>
+    <div class="absolute bottom-0 right-1/4 h-[350px] w-[350px] rounded-full bg-cyan/[0.05] dark:bg-cyan/[0.07] blur-[100px]"></div>
+    <div class="absolute top-1/4 left-10 h-[300px] w-[300px] rounded-full bg-violet/[0.04] dark:bg-violet/[0.06] blur-[90px]"></div>
   </div>
 
-  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full min-w-0">
-    
+  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full min-w-0 box-border">
+
     <!-- Section Header -->
-    <div class="mb-10 sm:mb-12 reveal-up">
-      <p class="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-violet dark:text-violet inline-flex items-center gap-2">
-        <span class="inline-block h-1 w-2.5 rounded-full bg-cyan" aria-hidden="true"></span>
-        08 — reach out & connect
+    <div class="mb-8 sm:mb-10 text-center max-w-3xl mx-auto reveal-up">
+      <p class="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-violet dark:text-violet inline-flex items-center justify-center gap-2">
+        <span class="inline-block h-1.5 w-3 rounded-full bg-cyan" aria-hidden="true"></span>
+        Direct Communication &amp; Inquiries
       </p>
-      <h2 class="mt-2.5 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
-        Let's build reliable cloud systems together.
+      <h2 class="mt-2.5 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 dark:text-white font-display">
+        Let's Connect &amp; Collaborate
       </h2>
-      <p class="mt-3.5 max-w-2xl text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
-        Whether you are looking for a senior DevOps engineer, want to discuss cloud migration & Kubernetes architecture, or explore full-time / contract opportunities, drop a message below.
+      <p class="mt-2.5 text-sm sm:text-base text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
+        Looking for a verified DevOps | Cloud | SRE Engineer for high-availability cloud architecture, Kubernetes GitOps platforms, or full-time opportunities? Connect directly through the channels below.
       </p>
     </div>
 
-    <!-- Contact Grid: Left Form, Right Contact Cards -->
-    <div class="grid gap-8 lg:grid-cols-[1.18fr_0.82fr] items-start">
+    <!-- Unified Contact Hub -->
+    <div class="max-w-4xl mx-auto surface rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-white/[0.08] p-5 sm:p-7 shadow-sm reveal-up">
 
-      <!-- ========================================================================= -->
-      <!-- LEFT: Functional Interactive Contact Form                                 -->
-      <!-- ========================================================================= -->
-      <div class="reveal-up rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-white/[0.09] bg-white/90 dark:bg-panel2 p-5 sm:p-8 shadow-sm dark:shadow-[0_20px_60px_rgba(0,0,0,0.4)] backdrop-blur-md">
-        
-        <!-- Form Header -->
-        <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-200 dark:border-white/[0.08]">
-          <div class="flex items-center gap-2">
-            <span class="grid h-8 w-8 place-items-center rounded-lg bg-cyan/10 text-cyan">
-              <MessageSquare size={16} />
-            </span>
-            <div>
-              <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">Send Direct Message</h3>
-              <p class="font-mono text-[10px] text-slate-600 dark:text-slate-300">Delivered directly to {profile.email}</p>
-            </div>
-          </div>
-          <span class="inline-flex items-center gap-1.5 rounded-full border border-mint/40 bg-mint/[0.08] px-2.5 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-wider text-mint">
-            <span class="h-1.5 w-1.5 rounded-full bg-mint animate-pulse"></span>
-            avg reply &lt; 24 hrs
+      <!-- Status Header Bar -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-5 mb-5 border-b border-slate-200/80 dark:border-white/[0.07]">
+        <div class="flex items-center gap-2.5">
+          <span class="grid h-8 w-8 place-items-center rounded-lg bg-mint/10 text-mint flex-shrink-0">
+            <Sparkles size={16} />
           </span>
-        </div>
-
-        <!-- The Contact Form Element -->
-        <form id="contact-form" class="space-y-4 sm:space-y-5" novalidate>
-          
-          <!-- Honeypot field for anti-spam (hidden from users) -->
-          <div class="hidden" aria-hidden="true">
-            <label for="contact-honeypot">Do not fill this out if you are human</label>
-            <input type="text" id="contact-honeypot" name="_gotcha" tabindex="-1" autocomplete="off" />
-          </div>
-
-          <!-- Name & Email Row -->
-          <div class="grid gap-4 sm:grid-cols-2">
-            <div>
-              <label for="contact-name" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5 font-mono uppercase tracking-wider">
-                Your Name <span class="text-rose-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="contact-name"
-                name="name"
-                required
-                placeholder="e.g. Sarah Jenkins"
-                class="w-full rounded-xl border border-slate-300 dark:border-white/10 bg-slate-50 dark:bg-ink px-4 py-2.5 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 transition-all focus:border-cyan focus:bg-white dark:focus:bg-ink focus:outline-none focus:ring-2 focus:ring-cyan/20"
-              />
-              <p id="name-error" class="hidden mt-1 text-[11px] text-rose-500 font-mono"></p>
-            </div>
-
-            <div>
-              <label for="contact-email" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5 font-mono uppercase tracking-wider">
-                Email Address <span class="text-rose-500">*</span>
-              </label>
-              <input
-                type="email"
-                id="contact-email"
-                name="email"
-                required
-                placeholder="e.g. sarah@company.com"
-                class="w-full rounded-xl border border-slate-300 dark:border-white/10 bg-slate-50 dark:bg-ink px-4 py-2.5 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 transition-all focus:border-cyan focus:bg-white dark:focus:bg-ink focus:outline-none focus:ring-2 focus:ring-cyan/20"
-              />
-              <p id="email-error" class="hidden mt-1 text-[11px] text-rose-500 font-mono"></p>
-            </div>
-          </div>
-
-          <!-- Opportunity Type / Subject & Company Row -->
-          <div class="grid gap-4 sm:grid-cols-2">
-            <div>
-              <label for="contact-reason" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5 font-mono uppercase tracking-wider">
-                Inquiry Type <span class="text-rose-500">*</span>
-              </label>
-              <select
-                id="contact-reason"
-                name="subject"
-                required
-                class="w-full rounded-xl border border-slate-300 dark:border-white/10 bg-slate-50 dark:bg-ink px-4 py-2.5 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 transition-all focus:border-cyan focus:bg-white dark:focus:bg-ink focus:outline-none focus:ring-2 focus:ring-cyan/20"
-              >
-                <option value="DevOps / Cloud Opportunity">Full-Time DevOps / Cloud Role</option>
-                <option value="Kubernetes / Infrastructure Consulting">Kubernetes / Platform Consulting</option>
-                <option value="CI/CD & GitOps Automation">CI/CD & GitOps Automation Project</option>
-                <option value="Technical Networking & Collaboration">Professional Networking</option>
-                <option value="Other Opportunity">Other Discussion</option>
-              </select>
-            </div>
-
-            <div>
-              <label for="contact-company" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5 font-mono uppercase tracking-wider">
-                Company / Organization <span class="text-slate-400 font-normal text-[10px]">(Optional)</span>
-              </label>
-              <input
-                type="text"
-                id="contact-company"
-                name="company"
-                placeholder="e.g. Acme Cloud Systems"
-                class="w-full rounded-xl border border-slate-300 dark:border-white/10 bg-slate-50 dark:bg-ink px-4 py-2.5 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 transition-all focus:border-cyan focus:bg-white dark:focus:bg-ink focus:outline-none focus:ring-2 focus:ring-cyan/20"
-              />
-            </div>
-          </div>
-
-          <!-- Message Textarea -->
           <div>
-            <label for="contact-message" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5 font-mono uppercase tracking-wider">
-              Project Details or Message <span class="text-rose-500">*</span>
-            </label>
-            <textarea
-              id="contact-message"
-              name="message"
-              rows="4"
-              required
-              placeholder="Hi Chandu, we are looking for a DevOps engineer with AWS, Kubernetes, and Terraform experience..."
-              class="w-full rounded-xl border border-slate-300 dark:border-white/10 bg-slate-50 dark:bg-ink p-4 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 transition-all focus:border-cyan focus:bg-white dark:focus:bg-ink focus:outline-none focus:ring-2 focus:ring-cyan/20 resize-y"
-            ></textarea>
-            <p id="message-error" class="hidden mt-1 text-[11px] text-rose-500 font-mono"></p>
+            <div class="flex items-center gap-2">
+              <span class="h-2 w-2 rounded-full bg-mint animate-pulse"></span>
+              <span class="font-mono text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">Active Status: Available for Hire</span>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">DevOps | Cloud | SRE Engineering roles</p>
           </div>
-
-          <!-- Submit Button & Live Feedback Status -->
-          <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <button
-              type="submit"
-              id="contact-submit-btn"
-              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 dark:bg-cyan hover:bg-cyan dark:hover:bg-white text-white dark:text-ink px-6 py-3 text-sm font-semibold transition-all duration-200 hover:scale-[1.02] active:scale-[0.99] shadow-md hover:shadow-lg disabled:opacity-50 disabled:pointer-events-none cursor-pointer"
-            >
-              <span id="btn-text" class="inline-flex items-center gap-2">
-                <Send size={15} /> Send Message Directly
-              </span>
-              <span id="btn-spinner" class="hidden inline-flex items-center gap-2">
-                <svg class="animate-spin h-4 w-4 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                <span>Dispatching...</span>
-              </span>
-            </button>
-
-            <!-- Status helper text -->
-            <p class="font-mono text-[11px] text-slate-600 dark:text-slate-300 text-center sm:text-right">
-              🔒 Encrypted &amp; direct delivery
-            </p>
-          </div>
-
-          <!-- Feedback Notification Banner -->
-          <div id="form-feedback" class="hidden rounded-xl p-4 text-sm font-medium transition-all duration-300"></div>
-
-        </form>
-
+        </div>
+        <div class="flex items-center gap-1.5 font-mono text-xs text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-white/[0.04] px-3 py-1.5 rounded-xl border border-slate-200/60 dark:border-white/5">
+          <MapPin size={13} class="text-violet" />
+          <span>Bengaluru, India (Remote / Hybrid)</span>
+        </div>
       </div>
 
-      <!-- ========================================================================= -->
-      <!-- RIGHT: Candidate Connectivity & Direct Channels                          -->
-      <!-- ========================================================================= -->
-      <div class="space-y-4 sm:space-y-5 reveal-up" style="animation-delay: 150ms;">
-        
-        <!-- Fast Quick-Copy Email Card -->
-        <div class="rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-white/80 dark:bg-panel2 p-5 sm:p-6 backdrop-blur-md">
-          <p class="font-mono text-[10px] uppercase tracking-widest text-violet dark:text-violet font-semibold mb-2">
-            Direct Email Channel
-          </p>
-          <div class="flex items-center justify-between gap-3 p-3 rounded-xl border border-slate-200 dark:border-white/[0.06] bg-slate-50 dark:bg-ink">
-            <div class="min-w-0 flex items-center gap-2.5">
-              <Mail size={16} class="text-cyan flex-shrink-0" />
-              <span id="quick-email-val" class="font-mono text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-100 truncate">
-                {profile.email}
-              </span>
+      <!-- Compact Channels Grid -->
+      <div class="grid gap-3.5 sm:grid-cols-2">
+
+        <!-- 1. LinkedIn -->
+        <a
+          href={profile.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group rounded-xl border border-slate-200/90 dark:border-white/[0.07] bg-white/80 dark:bg-white/[0.02] p-4 transition-all duration-200 hover:border-violet/50 hover:bg-violet/[0.03] flex items-center justify-between gap-3"
+        >
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="grid h-10 w-10 place-items-center rounded-xl bg-violet/10 text-violet flex-shrink-0 group-hover:scale-105 transition-transform">
+              <BriefcaseBusiness size={20} />
             </div>
-            <button
-              type="button"
-              id="quick-copy-email-btn"
-              aria-label="Copy email address"
-              class="inline-flex items-center gap-1 rounded-lg border border-slate-300 dark:border-white/10 bg-white dark:bg-white/[0.05] px-2.5 py-1.5 font-mono text-[11px] font-medium text-slate-700 dark:text-slate-300 hover:border-cyan hover:text-cyan transition-colors"
-            >
-              <Copy size={13} />
-              <span id="quick-copy-text">Copy</span>
-            </button>
+            <div class="min-w-0">
+              <span class="block text-sm font-bold text-slate-900 dark:text-white font-display">LinkedIn</span>
+              <span class="block font-mono text-xs text-slate-600 dark:text-slate-300 truncate">in/im-chanduvenna</span>
+            </div>
           </div>
+          <span class="inline-flex items-center gap-1 font-mono text-[11px] font-semibold text-violet bg-violet/10 border border-violet/20 px-2.5 py-1 rounded-lg flex-shrink-0">
+            <span>Connect</span>
+            <ArrowUpRight size={12} />
+          </span>
+        </a>
+
+        <!-- 2. WhatsApp Direct Chat -->
+        <a
+          href={profile.whatsapp}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group rounded-xl border border-slate-200/90 dark:border-white/[0.07] bg-white/80 dark:bg-white/[0.02] p-4 transition-all duration-200 hover:border-mint/50 hover:bg-mint/[0.03] flex items-center justify-between gap-3"
+        >
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="grid h-10 w-10 place-items-center rounded-xl bg-mint/10 text-mint flex-shrink-0 group-hover:scale-105 transition-transform">
+              <MessageCircle size={20} />
+            </div>
+            <div class="min-w-0">
+              <span class="block text-sm font-bold text-slate-900 dark:text-white font-display">WhatsApp</span>
+              <span class="block font-mono text-xs text-slate-600 dark:text-slate-300 truncate">+91 96660 32664</span>
+            </div>
+          </div>
+          <span class="inline-flex items-center gap-1 font-mono text-[11px] font-semibold text-mint bg-mint/10 border border-mint/20 px-2.5 py-1 rounded-lg flex-shrink-0">
+            <span>Instant Chat</span>
+            <ArrowUpRight size={12} />
+          </span>
+        </a>
+
+        <!-- 3. Direct Email Channel with Copy -->
+        <div class="rounded-xl border border-slate-200/90 dark:border-white/[0.07] bg-white/80 dark:bg-white/[0.02] p-4 flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="grid h-10 w-10 place-items-center rounded-xl bg-cyan/10 text-cyan flex-shrink-0">
+              <Mail size={20} />
+            </div>
+            <div class="min-w-0">
+              <span class="block text-sm font-bold text-slate-900 dark:text-white font-display">Direct Email</span>
+              <a href={`mailto:${profile.email}`} class="block font-mono text-xs text-cyan hover:underline truncate">
+                {profile.email}
+              </a>
+            </div>
+          </div>
+          <button
+            type="button"
+            id="quick-copy-email-btn"
+            aria-label="Copy email address"
+            class="inline-flex items-center gap-1 rounded-lg border border-slate-300 dark:border-white/15 bg-slate-100 dark:bg-white/[0.05] px-2.5 py-1 font-mono text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:border-cyan hover:text-cyan transition-colors cursor-pointer flex-shrink-0"
+          >
+            <Copy size={12} id="copy-icon" />
+            <Check size={12} id="check-icon" class="hidden text-mint" />
+            <span id="quick-copy-text">Copy</span>
+          </button>
         </div>
 
-        <!-- Social & Instant Channels Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          
-          <!-- LinkedIn Card -->
-          <a
-            href={profile.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group flex items-center gap-3 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white/80 dark:bg-panel2 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-violet/50 hover:shadow-md"
-          >
-            <div class="grid h-10 w-10 place-items-center rounded-xl bg-violet/10 text-violet group-hover:scale-105 transition-transform">
-              <BriefcaseBusiness size={18} />
-            </div>
-            <div class="min-w-0 flex-1">
-              <div class="text-xs font-bold text-slate-900 dark:text-white">LinkedIn</div>
-              <div class="font-mono text-[10px] text-slate-600 dark:text-slate-300 truncate">Professional Network</div>
-            </div>
-          </a>
-
-          <!-- WhatsApp Card -->
-          <a
-            href={profile.whatsapp}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group flex items-center gap-3 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white/80 dark:bg-panel2 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-mint/50 hover:shadow-md"
-          >
-            <div class="grid h-10 w-10 place-items-center rounded-lg bg-mint/10 text-mint group-hover:scale-105 transition-transform">
-              <MessageCircle size={18} />
-            </div>
-            <div class="min-w-0 flex-1">
-              <div class="text-xs font-bold text-slate-900 dark:text-white">WhatsApp</div>
-              <div class="font-mono text-[10px] text-slate-600 dark:text-slate-300 truncate">Instant Chat</div>
-            </div>
-          </a>
-
-        </div>
-
-        <!-- Phone Card (if enabled) -->
+        <!-- 4. Direct Phone -->
         {profile.showPhone && (
           <a
             href={`tel:${profile.phone.replace(/\s+/g, '')}`}
-            class="flex items-center justify-between rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white/80 dark:bg-panel2 p-4 text-slate-700 dark:text-slate-300 hover:border-cyan/50 transition-colors"
+            class="group rounded-xl border border-slate-200/90 dark:border-white/[0.07] bg-white/80 dark:bg-white/[0.02] p-4 transition-all duration-200 hover:border-cyan/50 hover:bg-cyan/[0.03] flex items-center justify-between gap-3"
           >
-            <div class="flex items-center gap-3">
-              <div class="grid h-9 w-9 place-items-center rounded-lg bg-cyan/10 text-cyan">
-                <Phone size={16} />
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="grid h-10 w-10 place-items-center rounded-xl bg-cyan/10 text-cyan flex-shrink-0 group-hover:scale-105 transition-transform">
+                <Phone size={20} />
               </div>
-              <div>
-                <div class="text-xs font-bold text-slate-900 dark:text-white">Direct Phone</div>
-                <div class="font-mono text-[11px] text-slate-600 dark:text-slate-300">{profile.phone}</div>
+              <div class="min-w-0">
+                <span class="block text-sm font-bold text-slate-900 dark:text-white font-display">Direct Phone</span>
+                <span class="block font-mono text-xs text-slate-600 dark:text-slate-300 truncate">{profile.phone}</span>
               </div>
             </div>
-            <span class="font-mono text-[10px] uppercase tracking-wider text-cyan">Call ↗</span>
+            <span class="inline-flex items-center gap-1 font-mono text-[11px] font-semibold text-cyan bg-cyan/10 border border-cyan/20 px-2.5 py-1 rounded-lg flex-shrink-0">
+              <span>Call</span>
+              <ArrowUpRight size={12} />
+            </span>
           </a>
         )}
 
-        <!-- Availability Status Summary Card -->
-        <div class="rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-gradient-to-br from-slate-50 dark:from-ink to-slate-100 dark:to-panel2 p-5 space-y-3 font-mono text-xs">
-          <div class="flex items-center justify-between border-b border-slate-200 dark:border-white/[0.08] pb-2">
-            <span class="text-slate-600 dark:text-slate-300">status:</span>
-            <span class="font-semibold text-mint">available_for_hire = true</span>
-          </div>
-          <div class="flex items-center justify-between border-b border-slate-200 dark:border-white/[0.08] pb-2">
-            <span class="text-slate-600 dark:text-slate-300">location:</span>
-            <span class="text-slate-800 dark:text-slate-200">{profile.location} (IST / Remote)</span>
-          </div>
-          <div class="flex items-center justify-between">
-            <span class="text-slate-600 dark:text-slate-300">focus:</span>
-            <span class="text-cyan font-medium">Kubernetes · Terraform · AWS · CI/CD</span>
+      </div>
+
+      <!-- Resume Download Banner -->
+      <div class="mt-4 pt-4 border-t border-slate-200/80 dark:border-white/[0.07] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div class="flex items-center gap-2.5">
+          <span class="p-2 rounded-lg bg-amber/10 text-amber flex-shrink-0">
+            <Download size={16} />
+          </span>
+          <div>
+            <span class="block text-xs font-bold text-slate-900 dark:text-white font-display">Verified Technical Resume</span>
+            <span class="block font-mono text-[11px] text-slate-600 dark:text-slate-400">PDF format · 5+ years enterprise DevOps experience</span>
           </div>
         </div>
-
+        <a
+          href={profile.resume}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 rounded-xl border border-amber/40 bg-amber/10 hover:bg-amber/20 text-amber px-3.5 py-2 font-mono text-xs font-bold transition shadow-xs flex-shrink-0"
+        >
+          <Download size={13} />
+          <span>Download Resume</span>
+        </a>
       </div>
 
     </div>
@@ -297,151 +189,32 @@ const { class: className = '' } = Astro.props;
   </div>
 </section>
 
-<!-- Client-Side Form Submission & Validation Logic -->
+<!-- Client-Side Copy Email Script -->
 <script is:inline define:vars={{ targetEmail: profile.email }}>
   (function () {
-    const form = document.getElementById('contact-form');
-    if (!form) return;
+    var copyBtn = document.getElementById('quick-copy-email-btn');
+    var copyText = document.getElementById('quick-copy-text');
+    var copyIcon = document.getElementById('copy-icon');
+    var checkIcon = document.getElementById('check-icon');
 
-    const nameInput = document.getElementById('contact-name');
-    const emailInput = document.getElementById('contact-email');
-    const reasonSelect = document.getElementById('contact-reason');
-    const companyInput = document.getElementById('contact-company');
-    const messageInput = document.getElementById('contact-message');
-    const honeypotInput = document.getElementById('contact-honeypot');
+    if (!copyBtn || !copyText) return;
 
-    const nameError = document.getElementById('name-error');
-    const emailError = document.getElementById('email-error');
-    const messageError = document.getElementById('message-error');
+    copyBtn.addEventListener('click', function () {
+      navigator.clipboard.writeText(targetEmail).then(function () {
+        copyText.textContent = 'Copied!';
+        if (copyIcon) copyIcon.classList.add('hidden');
+        if (checkIcon) checkIcon.classList.remove('hidden');
+        copyBtn.classList.add('border-mint', 'text-mint');
 
-    const submitBtn = document.getElementById('contact-submit-btn');
-    const btnText = document.getElementById('btn-text');
-    const btnSpinner = document.getElementById('btn-spinner');
-    const feedback = document.getElementById('form-feedback');
-
-    // Quick copy email
-    const copyBtn = document.getElementById('quick-copy-email-btn');
-    const copyText = document.getElementById('quick-copy-text');
-    if (copyBtn && copyText) {
-      copyBtn.addEventListener('click', () => {
-        navigator.clipboard.writeText(targetEmail).then(() => {
-          copyText.textContent = 'Copied! ✓';
-          copyText.classList.add('text-mint', 'font-bold');
-          setTimeout(() => {
-            copyText.textContent = 'Copy';
-            copyText.classList.remove('text-mint', 'font-bold');
-          }, 2000);
-        });
+        setTimeout(function () {
+          copyText.textContent = 'Copy';
+          if (copyIcon) copyIcon.classList.remove('hidden');
+          if (checkIcon) checkIcon.classList.add('hidden');
+          copyBtn.classList.remove('border-mint', 'text-mint');
+        }, 2200);
+      }).catch(function (err) {
+        console.error('Copy failed:', err);
       });
-    }
-
-    function validateEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      // Reset errors
-      nameError.classList.add('hidden');
-      emailError.classList.add('hidden');
-      messageError.classList.add('hidden');
-      feedback.className = 'hidden';
-
-      let isValid = true;
-
-      // Spam check
-      if (honeypotInput && honeypotInput.value) {
-        console.warn('Spam submission detected.');
-        return;
-      }
-
-      if (!nameInput.value.trim()) {
-        nameError.textContent = 'Please enter your name.';
-        nameError.classList.remove('hidden');
-        isValid = false;
-      }
-
-      if (!emailInput.value.trim()) {
-        emailError.textContent = 'Please enter your email address.';
-        emailError.classList.remove('hidden');
-        isValid = false;
-      } else if (!validateEmail(emailInput.value.trim())) {
-        emailError.textContent = 'Please enter a valid email address.';
-        emailError.classList.remove('hidden');
-        isValid = false;
-      }
-
-      if (!messageInput.value.trim() || messageInput.value.trim().length < 10) {
-        messageError.textContent = 'Please provide a message with at least 10 characters.';
-        messageError.classList.remove('hidden');
-        isValid = false;
-      }
-
-      if (!isValid) return;
-
-      // Set Loading State
-      submitBtn.disabled = true;
-      btnText.classList.add('hidden');
-      btnSpinner.classList.remove('hidden');
-
-      const formData = {
-        name: nameInput.value.trim(),
-        email: emailInput.value.trim(),
-        subject: reasonSelect.value,
-        company: companyInput ? companyInput.value.trim() : '',
-        message: messageInput.value.trim(),
-        _target: targetEmail
-      };
-
-      try {
-        // Check if custom endpoint configured, or send via formspree/web3forms, or construct mailto fallback
-        const customEndpoint = (window.ENV && window.ENV.PUBLIC_CONTACT_ENDPOINT) || '';
-        let sent = false;
-
-        if (customEndpoint) {
-          const res = await fetch(customEndpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify(formData)
-          });
-          if (res.ok) sent = true;
-        }
-
-        // If no custom webhook or external post, construct seamless mailto dispatch + confirmation
-        if (!sent) {
-          const mailtoSubject = encodeURIComponent(`[Portfolio Inquiry] ${formData.subject} - from ${formData.name}`);
-          const mailtoBody = encodeURIComponent(
-            `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company || 'N/A'}\nInquiry Type: ${formData.subject}\n\nMessage:\n${formData.message}`
-          );
-          
-          // Open default mail client in background
-          window.location.href = `mailto:${targetEmail}?subject=${mailtoSubject}&body=${mailtoBody}`;
-          sent = true;
-        }
-
-        // Display Success State
-        feedback.className = 'rounded-xl p-4 border border-mint/40 bg-mint/10 text-mint font-mono text-xs sm:text-sm space-y-1 block';
-        feedback.innerHTML = `
-          <div class="flex items-center gap-2 font-bold">
-            <span>✓ Message Prepared &amp; Sent!</span>
-          </div>
-          <p class="text-slate-300 font-sans text-xs">Thank you, <strong>${formData.name}</strong>. Your inquiry has been routed to <strong>${targetEmail}</strong>. Chandu will respond shortly.</p>
-        `;
-
-        form.reset();
-      } catch (err) {
-        console.error('Submission error:', err);
-        feedback.className = 'rounded-xl p-4 border border-rose-500/40 bg-rose-500/10 text-rose-400 font-mono text-xs block';
-        feedback.innerHTML = `
-          <p class="font-bold">⚠️ Submission issue encountered.</p>
-          <p class="text-slate-300 font-sans text-xs mt-1">Please email Chandu directly at <a href="mailto:${targetEmail}" class="text-cyan underline font-mono">${targetEmail}</a>.</p>
-        `;
-      } finally {
-        submitBtn.disabled = false;
-        btnText.classList.remove('hidden');
-        btnSpinner.classList.add('hidden');
-      }
     });
   })();
 </script>
