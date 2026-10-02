@@ -1,4 +1,4 @@
-# Chandu Venna DevOps - Portfolio
+# Chandu Venna DevOps - SRE - Portfolio
 
 Static personal portfolio for Chandu Venna, focused on DevOps, SRE, cloud infrastructure, Kubernetes, CI/CD, observability, and production engineering.
 
